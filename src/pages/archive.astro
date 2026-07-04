@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Calendar from '../components/Calendar.astro';
+import { getEntriesForMonth } from '../lib/daily';
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+
+const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
+const now = new Date();
+const year = Number(Astro.url.searchParams.get('year')) || now.getFullYear();
+const month = Number(Astro.url.searchParams.get('month')) || now.getMonth() + 1;
+const entries = getEntriesForMonth(year, month);
+---
+
+<Layout title={label('archive', lang)} lang={lang}>
+  <h1>{label('archive', lang)}</h1>
+  <p class="muted">
+    {lang === 'ko'
+      ? '날짜를 선택하면 해당 일의 텐베거 리포트를 볼 수 있습니다.'
+      : 'Select a date to view that day\'s ten-bagger report.'}
+  </p>
+  <Calendar year={year} month={month} entries={entries} lang={lang} />
+</Layout>

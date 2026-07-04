@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+import Disclaimer from '../components/Disclaimer.astro';
+
+interface Props {
+  title: string;
+  lang?: Lang;
+}
+
+const { title, lang = 'ko' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const koParams = new URLSearchParams(Astro.url.search);
+koParams.set('lang', 'ko');
+const enParams = new URLSearchParams(Astro.url.search);
+enParams.set('lang', 'en');
+const koUrl = `${Astro.url.pathname}?${koParams}`;
+const enUrl = `${Astro.url.pathname}?${enParams}`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={label('tagline', lang)} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <title>{title} | {label('siteName', lang)}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="inner">
+        <a class="brand" href={`${base}?lang=${lang}`}>{label('siteName', lang)}</a>
+        <nav class="nav">
+          <a href={`${base}?lang=${lang}`}>{label('today', lang)}</a>
+          <a href={`${base}archive?lang=${lang}`}>{label('archive', lang)}</a>
+          <a href={`${base}methodology?lang=${lang}`}>{label('methodology', lang)}</a>
+          <div class="lang-toggle">
+            <a href={koUrl} class:list={{ active: lang === 'ko' }}>KO</a>
+            <a href={enUrl} class:list={{ active: lang === 'en' }}>EN</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+      <Disclaimer lang={lang} />
+    </main>
+  </body>
+</html>

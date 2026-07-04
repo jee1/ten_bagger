@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DailyCard from '../components/DailyCard.astro';
+import { getLatestEntry, getTodayDateString, getDailyEntry } from '../lib/daily';
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+
+const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
+const today = getTodayDateString();
+const entry = getDailyEntry(today) ?? getLatestEntry();
+---
+
+<Layout title={label('today', lang)} lang={lang}>
+  <p class="muted">{label('tagline', lang)}</p>
+  {entry ? (
+    <DailyCard entry={entry} lang={lang} />
+  ) : (
+    <article class="card">
+      <h1>{label('noPickTitle', lang)}</h1>
+      <p class="muted">
+        {lang === 'ko'
+          ? '아직 생성된 일일 리포트가 없습니다. 첫 배포 후 이곳에 표시됩니다.'
+          : 'No daily reports yet. They will appear here after the first deployment.'}
+      </p>
+    </article>
+  )}
+</Layout>

@@ -1,0 +1,22 @@
+[
+  {"symbol": "NVDA", "name_ko": "엔비디아", "name_en": "NVIDIA", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "AAPL", "name_ko": "애플", "name_en": "Apple", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "MSFT", "name_ko": "마이크로소프트", "name_en": "Microsoft", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "GOOGL", "name_ko": "알파벳", "name_en": "Alphabet", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "AMZN", "name_ko": "아마존", "name_en": "Amazon", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "META", "name_ko": "메타", "name_en": "Meta Platforms", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "TSLA", "name_ko": "테슬라", "name_en": "Tesla", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "AMD", "name_ko": "AMD", "name_en": "Advanced Micro Devices", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "AVGO", "name_ko": "브로드컴", "name_en": "Broadcom", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "CRM", "name_ko": "세일즈포스", "name_en": "Salesforce", "exchange": "NYSE", "currency": "USD"},
+  {"symbol": "NFLX", "name_ko": "넷플릭스", "name_en": "Netflix", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "PLTR", "name_ko": "팔란티어", "name_en": "Palantir", "exchange": "NYSE", "currency": "USD"},
+  {"symbol": "SHOP", "name_ko": "쇼피파이", "name_en": "Shopify", "exchange": "NYSE", "currency": "USD"},
+  {"symbol": "SQ", "name_ko": "블록", "name_en": "Block", "exchange": "NYSE", "currency": "USD"},
+  {"symbol": "UBER", "name_ko": "우버", "name_en": "Uber", "exchange": "NYSE", "currency": "USD"},
+  {"symbol": "COIN", "name_ko": "코인베이스", "name_en": "Coinbase", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "SNOW", "name_ko": "스노우플레이크", "name_en": "Snowflake", "exchange": "NYSE", "currency": "USD"},
+  {"symbol": "CRWD", "name_ko": "크라우드스트라이크", "name_en": "CrowdStrike", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "DDOG", "name_ko": "데이터독", "name_en": "Datadog", "exchange": "NASDAQ", "currency": "USD"},
+  {"symbol": "NET", "name_ko": "클라우드플레어", "name_en": "Cloudflare", "exchange": "NYSE", "currency": "USD"}
+]

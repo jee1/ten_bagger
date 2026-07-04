@@ -1,0 +1,22 @@
+[
+  {"symbol": "005380.KS", "name_ko": "현대차", "name_en": "Hyundai Motor", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "000660.KS", "name_ko": "SK하이닉스", "name_en": "SK hynix", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "005930.KS", "name_ko": "삼성전자", "name_en": "Samsung Electronics", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "035420.KS", "name_ko": "NAVER", "name_en": "NAVER", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "035720.KS", "name_ko": "카카오", "name_en": "Kakao", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "051910.KS", "name_ko": "LG화학", "name_en": "LG Chem", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "006400.KS", "name_ko": "삼성SDI", "name_en": "Samsung SDI", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "028260.KS", "name_ko": "삼성물산", "name_en": "Samsung C&T", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "105560.KS", "name_ko": "KB금융", "name_en": "KB Financial", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "055550.KS", "name_ko": "신한지주", "name_en": "Shinhan Financial", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "003670.KS", "name_ko": "포스코퓨처엠", "name_en": "POSCO Future M", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "207940.KS", "name_ko": "삼성바이오로직스", "name_en": "Samsung Biologics", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "068270.KS", "name_ko": "셀트리온", "name_en": "Celltrion", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "012330.KS", "name_ko": "현대모비스", "name_en": "Hyundai Mobis", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "000270.KS", "name_ko": "기아", "name_en": "Kia", "exchange": "KOSPI", "currency": "KRW"},
+  {"symbol": "247540.KQ", "name_ko": "에코프로비엠", "name_en": "Ecopro BM", "exchange": "KOSDAQ", "currency": "KRW"},
+  {"symbol": "086520.KQ", "name_ko": "에코프로", "name_en": "Ecopro", "exchange": "KOSDAQ", "currency": "KRW"},
+  {"symbol": "196170.KQ", "name_ko": "알테오젠", "name_en": "Alteogen", "exchange": "KOSDAQ", "currency": "KRW"},
+  {"symbol": "263750.KQ", "name_ko": "펄어비스", "name_en": "Pearl Abyss", "exchange": "KOSDAQ", "currency": "KRW"},
+  {"symbol": "293490.KQ", "name_ko": "카카오게임즈", "name_en": "Kakao Games", "exchange": "KOSDAQ", "currency": "KRW"}
+]

@@ -1,0 +1,18 @@
+{
+  "date": "2026-07-04",
+  "market": "US",
+  "status": "no_pick",
+  "scores": {
+    "composite": 0,
+    "growth": 0,
+    "valuation": 0,
+    "momentum": 0,
+    "quality": 0,
+    "threshold": 70.0
+  },
+  "meta": {
+    "generatedAt": "2026-07-04T06:00:00+09:00",
+    "candidatesScreened": 198,
+    "excludedRecent": 5
+  }
+}

@@ -1,0 +1,15 @@
+---
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<aside class="disclaimer" role="note">
+  <strong>{lang === 'ko' ? '투자 유의' : 'Disclaimer'}:</strong>
+  {label('disclaimer', lang)}
+</aside>

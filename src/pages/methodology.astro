@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+
+const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
+---
+
+<Layout title={label('methodology', lang)} lang={lang}>
+  <article class="card">
+    <h1>{label('methodology', lang)}</h1>
+
+    {lang === 'ko' ? (
+      <>
+        <h2>목표</h2>
+        <p>
+          향후 5년 내 시가 10배(텐베거) <strong>가능성</strong>이 높은 종목을 규칙 기반으로 스크리닝하고,
+          매일 1종목만 공개합니다. 확정 예측이 아니라 데이터와 점수에 따른 후보 제시입니다.
+        </p>
+
+        <h2>시장 교대</h2>
+        <p>날짜(일)가 홀수면 한국(KOSPI/KOSDAQ), 짝수면 미국(NYSE/NASDAQ) 유니버스를 스크리닝합니다.</p>
+
+        <h2>점수 구성 (0–100)</h2>
+        <ul>
+          <li><strong>성장 40%</strong>: 매출·이익 성장률, 성장 가속</li>
+          <li><strong>밸류 30%</strong>: PER·PEG·업종 대비 밸류에이션</li>
+          <li><strong>모멘텀 20%</strong>: 6·12개월 수익률, 52주 고점 대비</li>
+          <li><strong>품질 10%</strong>: ROE, 부채비율, FCF 마진</li>
+        </ul>
+
+        <h2>선정·없음 규칙</h2>
+        <ul>
+          <li>복합 점수 <strong>70점 이상</strong>인 종목만 후보</li>
+          <li>후보 중 최고 점수 1종목 선정</li>
+          <li>임계 미달 시 해당 일은 <strong>「없음」</strong>으로 표시</li>
+          <li>최근 30일 내 추천된 종목은 제외</li>
+        </ul>
+
+        <h2>생성 시각</h2>
+        <p>매일 06:00 KST에 GitHub Actions가 데이터를 수집·스크리닝하고 정적 페이지를 배포합니다.</p>
+
+        <h2>데이터</h2>
+        <p>미국: Yahoo Finance (yfinance). 한국: yfinance (코스피/코스닥 티커). DB 없이 JSON 파일로 Git에 저장됩니다.</p>
+      </>
+    ) : (
+      <>
+        <h2>Goal</h2>
+        <p>
+          Screen for stocks with high <strong>potential</strong> for a 10x price move within five years,
+          using rule-based scoring. One pick per day—not a guaranteed forecast.
+        </p>
+
+        <h2>Market rotation</h2>
+        <p>Odd calendar days: Korea (KOSPI/KOSDAQ). Even days: US (NYSE/NASDAQ).</p>
+
+        <h2>Score weights (0–100)</h2>
+        <ul>
+          <li><strong>Growth 40%</strong>: revenue/EPS growth and acceleration</li>
+          <li><strong>Valuation 30%</strong>: P/E, PEG, vs sector</li>
+          <li><strong>Momentum 20%</strong>: 6/12-month returns, vs 52-week high</li>
+          <li><strong>Quality 10%</strong>: ROE, debt, FCF margin</li>
+        </ul>
+
+        <h2>Pick vs none</h2>
+        <ul>
+          <li>Only stocks with composite score <strong>≥ 70</strong></li>
+          <li>Highest score wins for that day</li>
+          <li>Below threshold → <strong>none</strong> for that day</li>
+          <li>Exclude symbols recommended in the last 30 days</li>
+        </ul>
+
+        <h2>Schedule</h2>
+        <p>Daily at 06:00 KST via GitHub Actions: fetch, screen, commit JSON, build static site.</p>
+
+        <h2>Data</h2>
+        <p>US & KR via Yahoo Finance (yfinance). No database—truth lives in committed JSON files.</p>
+      </>
+    )}
+  </article>
+</Layout>
