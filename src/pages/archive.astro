@@ -1,14 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Calendar from '../components/Calendar.astro';
-import { getEntriesForMonth } from '../lib/daily';
+import { getEntriesForMonth, getKstDate } from '../lib/daily';
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
 
 const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
-const now = new Date();
-const year = Number(Astro.url.searchParams.get('year')) || now.getFullYear();
-const month = Number(Astro.url.searchParams.get('month')) || now.getMonth() + 1;
+const kstNow = getKstDate();
+const year = Number(Astro.url.searchParams.get('year')) || kstNow.getFullYear();
+const month = Number(Astro.url.searchParams.get('month')) || kstNow.getMonth() + 1;
 const entries = getEntriesForMonth(year, month);
 ---
 

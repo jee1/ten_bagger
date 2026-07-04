@@ -35,9 +35,13 @@ export function getLatestEntry(): DailyEntry | undefined {
   return getDailyEntry(dates[0]);
 }
 
-export function getTodayDateString(): string {
+export function getKstDate(): Date {
   const now = new Date();
-  const kst = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+  return new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+}
+
+export function getTodayDateString(): string {
+  const kst = getKstDate();
   const y = kst.getFullYear();
   const m = String(kst.getMonth() + 1).padStart(2, '0');
   const d = String(kst.getDate()).padStart(2, '0');

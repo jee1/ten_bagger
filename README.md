@@ -19,9 +19,9 @@ npm run dev
 GitHub Pages와 동일한 base path로 미리보기:
 
 ```bash
-BASE_PATH=/ten_bagger npm run dev
+BASE_PATH=/ten_bagger/ npm run dev
 npm run build
-BASE_PATH=/ten_bagger npm run preview
+BASE_PATH=/ten_bagger/ npm run preview
 ```
 
 ## 일일 리포트 수동 생성
