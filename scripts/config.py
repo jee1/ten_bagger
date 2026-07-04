@@ -13,6 +13,7 @@ UNIVERSE_DIR = Path(__file__).resolve().parent / "universe"
 
 COMPOSITE_THRESHOLD = 70.0
 DUPLICATE_BAN_DAYS = 30
+SCREEN_WORKERS = 8
 
 WEIGHT_GROWTH = 0.40
 WEIGHT_VALUATION = 0.30
@@ -27,6 +28,7 @@ class UniverseSymbol:
     name_en: str
     exchange: str
     currency: str
+    market_cap: int | None = None
 
 
 def market_for_date(date_str: str) -> str:

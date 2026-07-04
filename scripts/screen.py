@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import math
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -12,6 +13,7 @@ import yfinance as yf
 
 from config import (
     COMPOSITE_THRESHOLD,
+    SCREEN_WORKERS,
     UNIVERSE_DIR,
     WEIGHT_GROWTH,
     WEIGHT_MOMENTUM,
@@ -59,6 +61,7 @@ def load_universe(market: str) -> list[UniverseSymbol]:
             name_en=item["name_en"],
             exchange=item["exchange"],
             currency=item["currency"],
+            market_cap=item.get("market_cap"),
         )
         for item in raw
     ]
@@ -176,6 +179,17 @@ def score_symbol(meta: UniverseSymbol) -> ScoreResult | None:
     if not info.get("symbol") and not info.get("shortName"):
         return None
 
+    long_name = info.get("longName") or info.get("shortName")
+    if long_name:
+        meta = UniverseSymbol(
+            symbol=meta.symbol,
+            name_ko=meta.name_ko,
+            name_en=str(long_name),
+            exchange=meta.exchange,
+            currency=meta.currency,
+            market_cap=meta.market_cap,
+        )
+
     growth, g_m = _score_growth(info)
     valuation, v_m = _score_valuation(info)
     momentum, m_m = _score_momentum(ticker)
@@ -202,19 +216,23 @@ def score_symbol(meta: UniverseSymbol) -> ScoreResult | None:
 
 def screen_market(market: str, exclude_symbols: set[str]) -> tuple[list[ScoreResult], int]:
     universe = load_universe(market)
+    to_screen = [meta for meta in universe if meta.symbol not in exclude_symbols]
+    screened = len(to_screen)
     results: list[ScoreResult] = []
-    screened = 0
 
-    for meta in universe:
-        if meta.symbol in exclude_symbols:
-            continue
-        screened += 1
+    def _score_one(meta: UniverseSymbol) -> ScoreResult | None:
         try:
-            scored = score_symbol(meta)
+            return score_symbol(meta)
         except Exception:
-            continue
-        if scored and scored.composite >= COMPOSITE_THRESHOLD:
-            results.append(scored)
+            return None
+
+    workers = min(SCREEN_WORKERS, max(1, screened))
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = [pool.submit(_score_one, meta) for meta in to_screen]
+        for future in as_completed(futures):
+            scored = future.result()
+            if scored and scored.composite >= COMPOSITE_THRESHOLD:
+                results.append(scored)
 
     results.sort(key=lambda r: r.composite, reverse=True)
     return results, screened

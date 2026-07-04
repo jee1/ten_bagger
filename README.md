@@ -28,8 +28,11 @@ BASE_PATH=/ten_bagger/ npm run preview
 
 ```bash
 pip install -r scripts/requirements.txt
+cd scripts && python build_universe.py   # KOSPI/KOSDAQ·NYSE/NASDAQ 전체 상장 종목 갱신
 npm run generate:daily -- 2026-07-05
 ```
+
+유니버스는 CI에서도 매일 `build_universe.py`로 갱신한 뒤 스크리닝합니다.
 
 ## 배포 (GitHub Pages)
 

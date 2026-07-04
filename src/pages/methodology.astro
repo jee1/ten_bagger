@@ -20,6 +20,10 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
 
         <h2>시장 교대</h2>
         <p>날짜(일)가 홀수면 한국(KOSPI/KOSDAQ), 짝수면 미국(NYSE/NASDAQ) 유니버스를 스크리닝합니다.</p>
+        <p>
+          유니버스는 거래소 상장 종목 전체를 매일 갱신합니다(KOSPI·KOSDAQ 약 2,700종목, NYSE·NASDAQ 약 7,000종목).
+          스크리닝 전에 최근 30일 추천 종목만 제외합니다.
+        </p>
 
         <h2>점수 구성 (0–100)</h2>
         <ul>
@@ -41,7 +45,10 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <p>매일 06:00 KST에 GitHub Actions가 데이터를 수집·스크리닝하고 정적 페이지를 배포합니다.</p>
 
         <h2>데이터</h2>
-        <p>미국: Yahoo Finance (yfinance). 한국: yfinance (코스피/코스닥 티커). DB 없이 JSON 파일로 Git에 저장됩니다.</p>
+        <p>
+          상장 목록: FinanceDataReader(거래소). 가격·재무: Yahoo Finance (yfinance).
+          DB 없이 JSON 파일로 Git에 저장됩니다.
+        </p>
       </>
     ) : (
       <>
@@ -53,6 +60,10 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
 
         <h2>Market rotation</h2>
         <p>Odd calendar days: Korea (KOSPI/KOSDAQ). Even days: US (NYSE/NASDAQ).</p>
+        <p>
+          The universe is refreshed daily from full exchange listings (~2,700 KR, ~7,000 US).
+          Only symbols recommended in the last 30 days are excluded before screening.
+        </p>
 
         <h2>Score weights (0–100)</h2>
         <ul>
@@ -74,7 +85,10 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <p>Daily at 06:00 KST via GitHub Actions: fetch, screen, commit JSON, build static site.</p>
 
         <h2>Data</h2>
-        <p>US & KR via Yahoo Finance (yfinance). No database—truth lives in committed JSON files.</p>
+        <p>
+          Listings: FinanceDataReader (exchanges). Prices & fundamentals: Yahoo Finance (yfinance).
+          No database—truth lives in committed JSON files.
+        </p>
       </>
     )}
   </article>
