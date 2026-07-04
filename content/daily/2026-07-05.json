@@ -3,9 +3,9 @@
   "market": "KR",
   "status": "pick",
   "stock": {
-    "symbol": "005935.KS",
+    "symbol": "005930.KS",
     "name": {
-      "ko": "삼성전자우",
+      "ko": "삼성전자",
       "en": "Samsung Electronics Co., Ltd."
     },
     "exchange": "KOSPI",
@@ -21,20 +21,20 @@
   },
   "reasoning": {
     "summary": {
-      "ko": "삼성전자우(005935.KS)는 복합 점수 91.4로 임계 70.0를 상회했습니다. 성장·밸류·모멘텀 균형이 양호합니다.",
-      "en": "Samsung Electronics Co., Ltd. (005935.KS) cleared the 70.0 threshold with composite score 91.4; growth, valuation, and momentum align."
+      "ko": "삼성전자(005930.KS)는 복합 점수 91.4로 임계 70.0를 상회했습니다. 성장·밸류·모멘텀 균형이 양호합니다.",
+      "en": "Samsung Electronics Co., Ltd. (005930.KS) cleared the 70.0 threshold with composite score 91.4; growth, valuation, and momentum align."
     },
     "growth": {
       "ko": "매출 성장 69.2% / 이익 성장 492.1% 수준으로 성장 점수 100.0입니다.",
       "en": "Revenue growth 69.2% and earnings growth 492.1% yield growth score 100.0."
     },
     "valuation": {
-      "ko": "PER 3.73, PEG 0.15 기준 밸류 점수 87.2입니다.",
-      "en": "At P/E 3.73 and PEG 0.15, valuation score is 87.2."
+      "ko": "PER 4.87, PEG 0.23 기준 밸류 점수 87.2입니다.",
+      "en": "At P/E 4.87 and PEG 0.23, valuation score is 87.2."
     },
     "momentum": {
-      "ko": "6개월 수익률 137.24%, 52주 고점 대비 -11.49% — 모멘텀 점수 90.0.",
-      "en": "6M return 137.24%, -11.49% from 52W high — momentum score 90.0."
+      "ko": "6개월 수익률 166.37%, 52주 고점 대비 -14.62% — 모멘텀 점수 90.0.",
+      "en": "6M return 166.37%, -14.62% from 52W high — momentum score 90.0."
     },
     "risks": [
       {
@@ -52,7 +52,7 @@
     ]
   },
   "meta": {
-    "generatedAt": "2026-07-05T00:44:48+09:00",
+    "generatedAt": "2026-07-05T06:57:02+09:00",
     "candidatesScreened": 2765,
     "excludedRecent": 1
   }
