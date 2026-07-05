@@ -33,6 +33,17 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r scripts/requirements.txt
 
+      - name: Run Python tests
+        run: cd scripts && python -m pytest tests/ -q
+
+      - name: Cache yfinance responses
+        uses: actions/cache@v4
+        with:
+          path: scripts/cache
+          key: yf-cache-${{ runner.os }}-${{ hashFiles('scripts/universe/*.json') }}
+          restore-keys: |
+            yf-cache-${{ runner.os }}-
+
       - name: Update universe listings
         run: cd scripts && python build_universe.py
 
@@ -43,6 +54,11 @@ jobs:
             TARGET=$(TZ=Asia/Seoul date +%F)
           fi
           cd scripts && python generate_daily.py "$TARGET"
+
+      - name: Validate daily JSON
+        run: |
+          cd scripts && python sync_manifest.py
+          python validate_content.py
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -56,12 +72,14 @@ jobs:
           BASE_PATH: /${{ github.event.repository.name }}/
         run: |
           npm ci
+          npm run check
           npm run build
 
       - name: Commit daily content
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
           git add content/ scripts/universe/
           if git diff --staged --quiet; then
             echo "No content changes"
@@ -85,3 +103,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  notify-failure:
+    needs: [generate-and-deploy, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report workflow failure
+        run: |
+          echo "::error title=Daily Ten Bagger failed::See Actions logs. Re-run via workflow_dispatch with optional date."
+          exit 1

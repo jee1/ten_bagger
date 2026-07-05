@@ -10,9 +10,17 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate:daily": "cd scripts && python generate_daily.py"
+    "generate:daily": "cd scripts && python generate_daily.py",
+    "test:python": "cd scripts && python -m pytest tests/ -q",
+    "validate:content": "cd scripts && python sync_manifest.py && python validate_content.py",
+    "check": "astro check"
   },
   "dependencies": {
     "astro": "^7.0.6"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@types/node": "^22.19.1",
+    "typescript": "^5.9.3"
   }
 }

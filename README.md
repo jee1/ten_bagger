@@ -34,6 +34,22 @@ npm run generate:daily -- 2026-07-05
 
 유니버스는 CI에서도 매일 `build_universe.py`로 갱신한 뒤 스크리닝합니다.
 
+## 테스트·검증
+
+```bash
+pip install -r scripts/requirements.txt
+npm run test:python          # 스코어링 단위 테스트
+npm run validate:content     # manifest 동기화 + daily JSON 스키마 검증
+npm run check                # Astro 타입·템플릿 검사
+```
+
+## CI 장애 시 (런북)
+
+1. GitHub **Actions → Daily Ten Bagger** 에서 실패 run 로그 확인
+2. `workflow_dispatch`로 해당 날짜 재실행 (입력: `YYYY-MM-DD`)
+3. 로컬 재현: `build_universe.py` → `generate_daily.py` → `validate_content.py`
+4. `git pull --rebase` 후 push 충돌 시 `content/daily/`·`manifest.json` 수동 병합
+
 ## 배포 (GitHub Pages)
 
 1. GitHub 저장소 생성 후 push

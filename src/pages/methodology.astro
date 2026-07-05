@@ -27,11 +27,17 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
 
         <h2>점수 구성 (0–100)</h2>
         <ul>
-          <li><strong>성장 40%</strong>: 매출·이익 성장률, 성장 가속</li>
-          <li><strong>밸류 30%</strong>: PER·PEG·업종 대비 밸류에이션</li>
-          <li><strong>모멘텀 20%</strong>: 6·12개월 수익률, 52주 고점 대비</li>
-          <li><strong>품질 10%</strong>: ROE, 부채비율, FCF 마진</li>
+          <li><strong>성장 40%</strong>: 연·분기 매출·이익 성장률 (±100% 상한 클리핑)</li>
+          <li><strong>밸류 30%</strong>: PER·PEG 구간 점수</li>
+          <li><strong>모멘텀 20%</strong>: 6개월 수익률, 52주 고점 대비 위치</li>
+          <li><strong>품질 10%</strong>: ROE, 부채비율, 영업이익률</li>
         </ul>
+
+        <h2>1차 필터</h2>
+        <p>
+          한국 종목은 시가총액 500억 원 미만을 제외합니다(상장 목록에 시총이 없으면 포함).
+          미국 종목은 거래소 전체를 스크리닝합니다.
+        </p>
 
         <h2>선정·없음 규칙</h2>
         <ul>
@@ -67,11 +73,17 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
 
         <h2>Score weights (0–100)</h2>
         <ul>
-          <li><strong>Growth 40%</strong>: revenue/EPS growth and acceleration</li>
-          <li><strong>Valuation 30%</strong>: P/E, PEG, vs sector</li>
-          <li><strong>Momentum 20%</strong>: 6/12-month returns, vs 52-week high</li>
-          <li><strong>Quality 10%</strong>: ROE, debt, FCF margin</li>
+          <li><strong>Growth 40%</strong>: annual/quarterly revenue &amp; earnings growth (capped at ±100%)</li>
+          <li><strong>Valuation 30%</strong>: P/E and PEG tier scores</li>
+          <li><strong>Momentum 20%</strong>: 6-month return and position vs 52-week high</li>
+          <li><strong>Quality 10%</strong>: ROE, debt/equity, operating margin</li>
         </ul>
+
+        <h2>Pre-filter</h2>
+        <p>
+          KR names below KRW 50B market cap are excluded when cap data is available.
+          US names are screened across the full listing.
+        </p>
 
         <h2>Pick vs none</h2>
         <ul>
