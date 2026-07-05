@@ -1,6 +1,23 @@
-export interface LocalizedText {
-  ko: string;
-  en: string;
+/**
+ * App-facing content types. Base shapes come from JSON Schema codegen;
+ * pick/no_pick branches use stricter optional fields for Astro templates.
+ */
+import type {
+  DailyEntry as SchemaDailyEntry,
+  LocalizedText as SchemaLocalizedText,
+  Manifest as SchemaManifest,
+} from './content-types.generated';
+
+export type LocalizedText = SchemaLocalizedText;
+export type Manifest = SchemaManifest;
+
+export interface DailyReasoning {
+  summary: LocalizedText;
+  growth: LocalizedText;
+  valuation: LocalizedText;
+  momentum: LocalizedText;
+  quality?: LocalizedText;
+  risks: LocalizedText[];
 }
 
 export interface DailyStock {
@@ -19,15 +36,6 @@ export interface DailyScores {
   threshold: number;
 }
 
-export interface DailyReasoning {
-  summary: LocalizedText;
-  growth: LocalizedText;
-  valuation: LocalizedText;
-  momentum: LocalizedText;
-  quality?: LocalizedText;
-  risks: LocalizedText[];
-}
-
 export interface DailyMeta {
   generatedAt: string;
   candidatesScreened: number;
@@ -37,17 +45,12 @@ export interface DailyMeta {
   errors?: number;
 }
 
-export interface DailyEntry {
-  date: string;
-  market: 'KR' | 'US';
-  status: 'pick' | 'no_pick';
+export interface DailyEntry extends Omit<SchemaDailyEntry, 'stock' | 'scores' | 'reasoning' | 'meta'> {
   stock?: DailyStock;
   scores?: DailyScores;
   reasoning?: DailyReasoning;
   meta?: DailyMeta;
 }
 
-export interface Manifest {
-  dates: string[];
-  lastUpdated: string;
-}
+/** Ensures hand-written DailyEntry stays compatible with schema codegen. */
+export type _DailyEntrySchemaCheck = DailyEntry extends SchemaDailyEntry ? true : never;

@@ -11,6 +11,11 @@ from config import DAILY_DIR, MANIFEST_PATH, SCHEMA_PATH
 from sync_manifest import collect_daily_dates
 
 
+def load_validator() -> jsonschema.Draft202012Validator:
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    return jsonschema.Draft202012Validator(schema)
+
+
 def validate_manifest() -> list[str]:
     errors: list[str] = []
     if not MANIFEST_PATH.exists():
@@ -28,8 +33,7 @@ def validate_manifest() -> list[str]:
 
 
 def main() -> int:
-    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
-    validator = jsonschema.Draft202012Validator(schema)
+    validator = load_validator()
 
     if not DAILY_DIR.exists():
         print("No daily content directory; skipping validation.")

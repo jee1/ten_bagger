@@ -67,7 +67,16 @@ pre-commit run --all-files   # ruff (선택, pip install pre-commit 후)
 content/daily/     # 일별 JSON (pick | no_pick)
 content/manifest.json
 scripts/           # Python 스크리닝 엔진
+scripts/schema/    # JSON Schema (Python 검증 + TS codegen 원천)
+scripts/universe/  # 상장 목록 (git 미추적, build_universe.py 생성)
 src/               # Astro 페이지
+```
+
+스키마 변경 후 TypeScript 타입 동기화:
+
+```bash
+npm run gen:types
+npm run gen:types:check   # CI와 동일한 drift 검사
 ```
 
 선정 방법은 사이트의 **Methodology / 선정 방법** 페이지를 참고하세요.

@@ -40,6 +40,17 @@ jobs:
       - name: Run Python tests
         run: cd scripts && python -m pytest tests/ -q
 
+      - name: Cache universe listings
+        uses: actions/cache@v4
+        with:
+          path: scripts/universe
+          key: universe-${{ runner.os }}-${{ hashFiles('scripts/build_universe.py', 'scripts/requirements.txt') }}
+          restore-keys: |
+            universe-${{ runner.os }}-
+
+      - name: Update universe listings
+        run: cd scripts && python build_universe.py
+
       - name: Cache yfinance responses
         uses: actions/cache@v4
         with:
@@ -47,9 +58,6 @@ jobs:
           key: yf-cache-${{ runner.os }}-${{ hashFiles('scripts/universe/*.json') }}
           restore-keys: |
             yf-cache-${{ runner.os }}-
-
-      - name: Update universe listings
-        run: cd scripts && python build_universe.py
 
       - name: Generate daily report
         run: |
@@ -84,7 +92,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git pull --rebase origin main
-          git add content/ scripts/universe/
+          git add content/
           if git diff --staged --quiet; then
             echo "No content changes"
           else
