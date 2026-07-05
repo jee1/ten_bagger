@@ -24,6 +24,7 @@ export interface DailyReasoning {
   growth: LocalizedText;
   valuation: LocalizedText;
   momentum: LocalizedText;
+  quality?: LocalizedText;
   risks: LocalizedText[];
 }
 
@@ -31,6 +32,9 @@ export interface DailyMeta {
   generatedAt: string;
   candidatesScreened: number;
   excludedRecent: number;
+  skippedMarketCap?: number;
+  noData?: number;
+  errors?: number;
 }
 
 export interface DailyEntry {

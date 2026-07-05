@@ -71,6 +71,12 @@ const marketLabel = entry.market === 'KR' ? label('marketKR', lang) : label('mar
           <p>{t(entry.reasoning.valuation, lang)}</p>
           <h2 class="section-title">{label('momentum', lang)}</h2>
           <p>{t(entry.reasoning.momentum, lang)}</p>
+          {entry.reasoning.quality && (
+            <>
+              <h2 class="section-title">{label('quality', lang)}</h2>
+              <p>{t(entry.reasoning.quality, lang)}</p>
+            </>
+          )}
           <h2 class="section-title">{label('risks', lang)}</h2>
           <ul class="risk-list">
             {entry.reasoning.risks.map((risk) => (

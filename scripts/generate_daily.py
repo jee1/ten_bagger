@@ -4,15 +4,18 @@
 from __future__ import annotations
 
 import json
+import logging
 import sys
-from datetime import date, datetime, timedelta, timezone
-from pathlib import Path
+from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
-from config import COMPOSITE_THRESHOLD, DAILY_DIR, DUPLICATE_BAN_DAYS, MANIFEST_PATH, market_for_date
+from config import COMPOSITE_THRESHOLD, DAILY_DIR, DUPLICATE_BAN_DAYS, market_for_date
 from screen import build_reasoning, screen_market
+from sync_manifest import sync_manifest
 
 KST = ZoneInfo("Asia/Seoul")
+logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+logger = logging.getLogger(__name__)
 
 
 def _parse_date(value: str) -> date:
@@ -39,18 +42,7 @@ def recent_pick_symbols(days: int, before: date) -> set[str]:
     return symbols
 
 
-def load_manifest() -> dict:
-    if MANIFEST_PATH.exists():
-        return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
-    return {"dates": [], "lastUpdated": ""}
-
-
-def save_manifest(manifest: dict) -> None:
-    MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
-    MANIFEST_PATH.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-
-def build_no_pick(target: str, market: str, screened: int, excluded: int) -> dict:
+def build_no_pick(target: str, market: str, stats) -> dict:
     now = datetime.now(KST).isoformat(timespec="seconds")
     return {
         "date": target,
@@ -66,13 +58,16 @@ def build_no_pick(target: str, market: str, screened: int, excluded: int) -> dic
         },
         "meta": {
             "generatedAt": now,
-            "candidatesScreened": screened,
-            "excludedRecent": excluded,
+            "candidatesScreened": stats.screened,
+            "excludedRecent": stats.skipped_recent,
+            "skippedMarketCap": stats.skipped_market_cap,
+            "noData": stats.no_data,
+            "errors": stats.errors,
         },
     }
 
 
-def build_pick(target: str, market: str, result, screened: int, excluded: int) -> dict:
+def build_pick(target: str, market: str, result, stats) -> dict:
     now = datetime.now(KST).isoformat(timespec="seconds")
     return {
         "date": target,
@@ -95,8 +90,11 @@ def build_pick(target: str, market: str, result, screened: int, excluded: int) -
         "reasoning": build_reasoning(result),
         "meta": {
             "generatedAt": now,
-            "candidatesScreened": screened,
-            "excludedRecent": excluded,
+            "candidatesScreened": stats.screened,
+            "excludedRecent": stats.skipped_recent,
+            "skippedMarketCap": stats.skipped_market_cap,
+            "noData": stats.no_data,
+            "errors": stats.errors,
         },
     }
 
@@ -107,25 +105,27 @@ def main() -> int:
     before = _parse_date(target)
 
     excluded_symbols = recent_pick_symbols(DUPLICATE_BAN_DAYS, before)
-    excluded_count = len(excluded_symbols)
 
-    candidates, screened = screen_market(market, excluded_symbols)
+    candidates, stats = screen_market(market, excluded_symbols)
+    logger.info(
+        "Daily %s market=%s pick=%s screened=%d errors=%d",
+        target,
+        market,
+        candidates[0].symbol if candidates else "none",
+        stats.screened,
+        stats.errors,
+    )
 
     if candidates:
-        entry = build_pick(target, market, candidates[0], screened, excluded_count)
+        entry = build_pick(target, market, candidates[0], stats)
     else:
-        entry = build_no_pick(target, market, screened, excluded_count)
+        entry = build_no_pick(target, market, stats)
 
     DAILY_DIR.mkdir(parents=True, exist_ok=True)
     out_path = DAILY_DIR / f"{target}.json"
     out_path.write_text(json.dumps(entry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    manifest = load_manifest()
-    dates = set(manifest.get("dates", []))
-    dates.add(target)
-    manifest["dates"] = sorted(dates, reverse=True)
-    manifest["lastUpdated"] = datetime.now(timezone.utc).astimezone(KST).isoformat(timespec="seconds")
-    save_manifest(manifest)
+    sync_manifest()
 
     print(f"Wrote {out_path} status={entry['status']} market={market}")
     return 0
