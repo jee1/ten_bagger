@@ -41,6 +41,8 @@ pip install -r scripts/requirements.txt
 npm run test:python          # 스코어링 단위 테스트
 npm run validate:content     # manifest 동기화 + daily JSON 스키마 검증
 npm run check                # Astro 타입·템플릿 검사
+cd scripts && python backfill_daily.py  # 기존 daily JSON meta/reasoning 보정
+pre-commit run --all-files   # ruff (선택, pip install pre-commit 후)
 ```
 
 ## CI 장애 시 (런북)
@@ -65,7 +67,16 @@ npm run check                # Astro 타입·템플릿 검사
 content/daily/     # 일별 JSON (pick | no_pick)
 content/manifest.json
 scripts/           # Python 스크리닝 엔진
+scripts/schema/    # JSON Schema (Python 검증 + TS codegen 원천)
+scripts/universe/  # 상장 목록 (git 미추적, build_universe.py 생성)
 src/               # Astro 페이지
+```
+
+스키마 변경 후 TypeScript 타입 동기화:
+
+```bash
+npm run gen:types
+npm run gen:types:check   # CI와 동일한 drift 검사
 ```
 
 선정 방법은 사이트의 **Methodology / 선정 방법** 페이지를 참고하세요.

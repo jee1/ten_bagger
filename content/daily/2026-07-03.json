@@ -3,57 +3,64 @@
   "market": "KR",
   "status": "pick",
   "stock": {
-    "symbol": "005380.KS",
+    "symbol": "005930.KS",
     "name": {
-      "ko": "현대차",
-      "en": "Hyundai Motor"
+      "ko": "삼성전자",
+      "en": "Samsung Electronics Co., Ltd."
     },
     "exchange": "KOSPI",
     "currency": "KRW"
   },
   "scores": {
-    "composite": 74.2,
-    "growth": 78.5,
-    "valuation": 71.0,
-    "momentum": 72.3,
-    "quality": 68.1,
+    "composite": 91.4,
+    "growth": 100.0,
+    "valuation": 87.2,
+    "momentum": 90.0,
+    "quality": 72.5,
     "threshold": 70.0
   },
   "reasoning": {
     "summary": {
-      "ko": "전동화 전환과 수출 회복이 겹치며 중기 성장·모멘텀이 동시에 개선되는 대형주로, 복합 점수가 임계를 상회했습니다.",
-      "en": "Electrification and export recovery align with improving mid-term growth and momentum; composite score cleared the threshold."
+      "ko": "삼성전자(005930.KS)는 복합 점수 91.4로 임계 70.0를 상회했습니다. 성장·밸류·모멘텀 균형이 양호합니다.",
+      "en": "Samsung Electronics Co., Ltd. (005930.KS) cleared the 70.0 threshold with composite score 91.4; growth, valuation, and momentum align."
     },
     "growth": {
-      "ko": "최근 분기 매출 YoY +12%, 영업이익 +18%로 성장 가속. EV 라인업 확대로 향후 3년 CAGR 가정이 업종 평균을 상회합니다.",
-      "en": "Recent quarter revenue +12% YoY, operating profit +18%; EV lineup supports above-sector 3-year CAGR assumptions."
+      "ko": "매출 성장 69.2% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
+      "en": "Revenue growth 69.2% and earnings growth 100% yield growth score 100.0."
     },
     "valuation": {
-      "ko": "PER 8.2x로 국내 완성차 업종 중위 대비 할인. PEG 0.9 수준으로 성장 대비 밸류에이션이 부담이 적습니다.",
-      "en": "P/E 8.2x trades below domestic auto peers; PEG ~0.9 suggests growth is not fully priced in."
+      "ko": "PER 4.87, PEG 0.23 기준 밸류 점수 87.2입니다.",
+      "en": "At P/E 4.87 and PEG 0.23, valuation score is 87.2."
     },
     "momentum": {
-      "ko": "6개월 수익률 +14%, 52주 고점 대비 -8%로 추세 회복 초입 구간에 있습니다.",
-      "en": "6-month return +14%; -8% from 52-week high suggests early trend recovery."
+      "ko": "6개월 수익률 166.37%, 52주 고점 대비 -14.62% — 모멘텀 점수 90.0.",
+      "en": "6M return 166.37%, -14.62% from 52W high — momentum score 90.0."
+    },
+    "quality": {
+      "ko": "ROE 18.86%, 영업이익률 기준 품질 점수 72.5입니다.",
+      "en": "ROE 18.86%, operating margin basis — quality score 72.5."
     },
     "risks": [
       {
-        "ko": "원·달러 환율 변동에 따른 수출 마진 리스크",
-        "en": "Export margin risk from FX volatility"
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
       },
       {
-        "ko": "전기차 가격 경쟁 심화",
-        "en": "Intensifying EV price competition"
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
       },
       {
-        "ko": "글로벌 경기 둔화 시 수요 둔화",
-        "en": "Demand slowdown if global growth weakens"
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
       }
     ]
   },
   "meta": {
-    "generatedAt": "2026-07-03T06:00:00+09:00",
-    "candidatesScreened": 142,
-    "excludedRecent": 3
+    "generatedAt": "2026-07-05T10:58:11+09:00",
+    "candidatesScreened": 1899,
+    "excludedRecent": 0,
+    "skippedMarketCap": 867,
+    "noData": 0,
+    "errors": 1290
   }
 }

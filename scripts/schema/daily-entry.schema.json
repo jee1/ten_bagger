@@ -1,6 +1,5 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ten-bagger.github.io/schema/daily-entry.json",
   "title": "DailyEntry",
   "type": "object",
   "required": ["date", "market", "status"],
@@ -13,14 +12,7 @@
       "required": ["symbol", "name", "exchange", "currency"],
       "properties": {
         "symbol": { "type": "string" },
-        "name": {
-          "type": "object",
-          "required": ["ko", "en"],
-          "properties": {
-            "ko": { "type": "string" },
-            "en": { "type": "string" }
-          }
-        },
+        "name": { "$ref": "#/$defs/localizedText" },
         "exchange": { "type": "string" },
         "currency": { "enum": ["KRW", "USD"] }
       }
@@ -76,8 +68,10 @@
   ],
   "$defs": {
     "localizedText": {
+      "title": "LocalizedText",
       "type": "object",
       "required": ["ko", "en"],
+      "additionalProperties": false,
       "properties": {
         "ko": { "type": "string" },
         "en": { "type": "string" }

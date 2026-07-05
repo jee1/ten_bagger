@@ -58,7 +58,7 @@ def test_market_cap_filter_kr():
     large = UniverseSymbol("005930.KS", "b", "b", "KOSPI", "KRW", market_cap=MIN_MARKET_CAP_KR)
     assert passes_market_cap_filter(small, "KR") is False
     assert passes_market_cap_filter(large, "KR") is True
-    assert passes_market_cap_filter(small, "US") is True
+    assert passes_market_cap_filter(small, "US", {"marketCap": 1_000_000_000}) is True
 
 
 def test_composite_threshold_is_documented():

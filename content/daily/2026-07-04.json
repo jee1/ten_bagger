@@ -1,18 +1,66 @@
 {
   "date": "2026-07-04",
   "market": "US",
-  "status": "no_pick",
+  "status": "pick",
+  "stock": {
+    "symbol": "CSTM",
+    "name": {
+      "ko": "Constellium SE",
+      "en": "Constellium SE"
+    },
+    "exchange": "NYSE",
+    "currency": "USD"
+  },
   "scores": {
-    "composite": 0,
-    "growth": 0,
-    "valuation": 0,
-    "momentum": 0,
-    "quality": 0,
+    "composite": 91.4,
+    "growth": 100.0,
+    "valuation": 87.2,
+    "momentum": 90.0,
+    "quality": 72.1,
     "threshold": 70.0
   },
+  "reasoning": {
+    "summary": {
+      "ko": "Constellium SE(CSTM)는 복합 점수 91.4로 임계 70.0를 상회했습니다. 성장·밸류·모멘텀 균형이 양호합니다.",
+      "en": "Constellium SE (CSTM) cleared the 70.0 threshold with composite score 91.4; growth, valuation, and momentum align."
+    },
+    "growth": {
+      "ko": "매출 성장 24.4% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
+      "en": "Revenue growth 24.4% and earnings growth 100.0% yield growth score 100.0."
+    },
+    "valuation": {
+      "ko": "PER 9.42, PEG 0.4 기준 밸류 점수 87.2입니다.",
+      "en": "At P/E 9.42 and PEG 0.4, valuation score is 87.2."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 56.45%, 52주 고점 대비 -18.42% — 모멘텀 점수 90.0.",
+      "en": "6M return 56.45%, -18.42% from 52W high — momentum score 90.0."
+    },
+    "quality": {
+      "ko": "ROE 45.65%, 영업이익률 기준 품질 점수 72.1입니다.",
+      "en": "ROE 45.65%, operating margin basis — quality score 72.1."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ]
+  },
   "meta": {
-    "generatedAt": "2026-07-04T06:00:00+09:00",
-    "candidatesScreened": 198,
-    "excludedRecent": 5
+    "generatedAt": "2026-07-05T12:20:41+09:00",
+    "candidatesScreened": 6287,
+    "excludedRecent": 1,
+    "skippedMarketCap": 1926,
+    "noData": 92,
+    "errors": 0
   }
 }
