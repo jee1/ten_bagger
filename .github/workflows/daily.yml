@@ -41,7 +41,7 @@ jobs:
         run: cd scripts && python -m pytest tests/ -q
 
       - name: Cache universe listings
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: scripts/universe
           key: universe-${{ runner.os }}-${{ hashFiles('scripts/build_universe.py', 'scripts/requirements.txt') }}
@@ -52,7 +52,7 @@ jobs:
         run: cd scripts && python build_universe.py
 
       - name: Cache yfinance responses
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: scripts/cache
           key: yf-cache-${{ runner.os }}-${{ hashFiles('scripts/universe/*.json') }}
