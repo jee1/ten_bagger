@@ -25,8 +25,8 @@
       "en": "Samsung Electronics Co., Ltd. (005930.KS) cleared the 70.0 threshold with composite score 91.4; growth, valuation, and momentum align."
     },
     "growth": {
-      "ko": "매출 성장 69.2% / 이익 성장 492.1% 수준으로 성장 점수 100.0입니다.",
-      "en": "Revenue growth 69.2% and earnings growth 492.1% yield growth score 100.0."
+      "ko": "매출 성장 69.2% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
+      "en": "Revenue growth 69.2% and earnings growth 100% yield growth score 100.0."
     },
     "valuation": {
       "ko": "PER 4.87, PEG 0.23 기준 밸류 점수 87.2입니다.",
@@ -49,11 +49,18 @@
         "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
         "en": "10x in five years is a scenario, not a guarantee"
       }
-    ]
+    ],
+    "quality": {
+      "ko": "품질 점수 72.5입니다.",
+      "en": "Quality score is 72.5."
+    }
   },
   "meta": {
     "generatedAt": "2026-07-05T06:57:02+09:00",
     "candidatesScreened": 2765,
-    "excludedRecent": 1
+    "excludedRecent": 1,
+    "skippedMarketCap": 0,
+    "noData": 0,
+    "errors": 0
   }
 }

@@ -13,6 +13,9 @@
   "meta": {
     "generatedAt": "2026-07-04T06:00:00+09:00",
     "candidatesScreened": 198,
-    "excludedRecent": 5
+    "excludedRecent": 5,
+    "skippedMarketCap": 0,
+    "noData": 0,
+    "errors": 0
   }
 }

@@ -4,12 +4,10 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import datetime
-from zoneinfo import ZoneInfo
 
 from config import DAILY_DIR, MANIFEST_PATH
+from time_utils import now_kst
 
-KST = ZoneInfo("Asia/Seoul")
 _DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
@@ -23,7 +21,7 @@ def collect_daily_dates() -> list[str]:
 def build_manifest() -> dict:
     return {
         "dates": collect_daily_dates(),
-        "lastUpdated": datetime.now(KST).isoformat(timespec="seconds"),
+        "lastUpdated": now_kst().isoformat(timespec="seconds"),
     }
 
 

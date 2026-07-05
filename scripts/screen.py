@@ -14,6 +14,7 @@ import pandas as pd
 
 from config import (
     COMPOSITE_THRESHOLD,
+    MIN_MARKET_CAP_US,
     GROWTH_BASE_SCORE,
     GROWTH_EARN_WEIGHT,
     GROWTH_REV_WEIGHT,
@@ -136,12 +137,23 @@ def load_universe(market: str) -> list[UniverseSymbol]:
     ]
 
 
-def passes_market_cap_filter(meta: UniverseSymbol, market: str) -> bool:
-    if market != "KR":
-        return True
-    if meta.market_cap is None:
-        return True
-    return meta.market_cap >= MIN_MARKET_CAP_KR
+def passes_market_cap_filter(
+    meta: UniverseSymbol,
+    market: str,
+    info: dict[str, Any] | None = None,
+) -> bool:
+    if market == "KR":
+        if meta.market_cap is None:
+            return True
+        return meta.market_cap >= MIN_MARKET_CAP_KR
+    if market == "US":
+        if info is None:
+            return True
+        cap = _safe_float(info.get("marketCap"))
+        if cap <= 0:
+            return True
+        return cap >= MIN_MARKET_CAP_US
+    return True
 
 
 def _score_growth(info: dict[str, Any]) -> tuple[float, dict[str, Any]]:
@@ -251,9 +263,16 @@ def _score_quality(info: dict[str, Any]) -> tuple[float, dict[str, Any]]:
     }
 
 
-def score_symbol(meta: UniverseSymbol) -> ScoreResult | None:
-    info = get_ticker_info(meta.symbol)
+def score_symbol(
+    meta: UniverseSymbol,
+    market: str,
+    info: dict[str, Any] | None = None,
+) -> ScoreResult | None:
+    if info is None:
+        info = get_ticker_info(meta.symbol)
     if not info.get("symbol") and not info.get("shortName"):
+        return None
+    if not passes_market_cap_filter(meta, market, info):
         return None
 
     long_name = info.get("longName") or info.get("shortName")
@@ -308,8 +327,13 @@ def screen_market(market: str, exclude_symbols: set[str]) -> tuple[list[ScoreRes
     stats.screened = len(to_screen)
     results: list[ScoreResult] = []
 
-    def _score_one(meta: UniverseSymbol) -> ScoreResult | None:
-        return score_symbol(meta)
+    def _score_one(meta: UniverseSymbol) -> tuple[str, ScoreResult | None]:
+        info = get_ticker_info(meta.symbol)
+        if not info.get("symbol") and not info.get("shortName"):
+            return ("no_data", None)
+        if not passes_market_cap_filter(meta, market, info):
+            return ("skip_mcap", None)
+        return ("ok", score_symbol(meta, market, info))
 
     workers = min(SCREEN_WORKERS, max(1, stats.screened))
     with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -317,7 +341,7 @@ def screen_market(market: str, exclude_symbols: set[str]) -> tuple[list[ScoreRes
         for future in as_completed(futures):
             meta = futures[future]
             try:
-                scored = future.result()
+                status, scored = future.result()
             except Exception as exc:
                 stats.errors += 1
                 if len(stats.error_samples) < 5:
@@ -325,7 +349,10 @@ def screen_market(market: str, exclude_symbols: set[str]) -> tuple[list[ScoreRes
                 logger.warning("Screen error for %s: %s", meta.symbol, exc)
                 continue
 
-            if scored is None:
+            if status == "skip_mcap":
+                stats.skipped_market_cap += 1
+                continue
+            if status == "no_data" or scored is None:
                 stats.no_data += 1
                 continue
             if scored.composite >= COMPOSITE_THRESHOLD:

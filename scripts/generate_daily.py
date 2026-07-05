@@ -6,14 +6,13 @@ from __future__ import annotations
 import json
 import logging
 import sys
-from datetime import date, datetime, timedelta
-from zoneinfo import ZoneInfo
+from datetime import date, timedelta
 
 from config import COMPOSITE_THRESHOLD, DAILY_DIR, DUPLICATE_BAN_DAYS, market_for_date
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
+from time_utils import now_kst
 
-KST = ZoneInfo("Asia/Seoul")
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
 
@@ -43,7 +42,7 @@ def recent_pick_symbols(days: int, before: date) -> set[str]:
 
 
 def build_no_pick(target: str, market: str, stats) -> dict:
-    now = datetime.now(KST).isoformat(timespec="seconds")
+    now = now_kst().isoformat(timespec="seconds")
     return {
         "date": target,
         "market": market,
@@ -68,7 +67,7 @@ def build_no_pick(target: str, market: str, stats) -> dict:
 
 
 def build_pick(target: str, market: str, result, stats) -> dict:
-    now = datetime.now(KST).isoformat(timespec="seconds")
+    now = now_kst().isoformat(timespec="seconds")
     return {
         "date": target,
         "market": market,
@@ -100,7 +99,7 @@ def build_pick(target: str, market: str, result, stats) -> dict:
 
 
 def main() -> int:
-    target = sys.argv[1] if len(sys.argv) > 1 else datetime.now(KST).date().isoformat()
+    target = sys.argv[1] if len(sys.argv) > 1 else now_kst().date().isoformat()
     market = market_for_date(target)
     before = _parse_date(target)
 

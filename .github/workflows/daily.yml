@@ -14,6 +14,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 
 concurrency:
   group: daily-ten-bagger
@@ -32,6 +33,9 @@ jobs:
 
       - name: Install Python dependencies
         run: pip install -r scripts/requirements.txt
+
+      - name: Validate existing content
+        run: cd scripts && python sync_manifest.py && python validate_content.py
 
       - name: Run Python tests
         run: cd scripts && python -m pytest tests/ -q
@@ -109,7 +113,25 @@ jobs:
     if: failure()
     runs-on: ubuntu-latest
     steps:
-      - name: Report workflow failure
+      - name: Create failure issue
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          echo "::error title=Daily Ten Bagger failed::See Actions logs. Re-run via workflow_dispatch with optional date."
-          exit 1
+          TITLE="Daily Ten Bagger failed — $(TZ=Asia/Seoul date +%F)"
+          BODY=$(cat <<EOF
+          Daily workflow failed. See [Actions run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+
+          **Recovery**
+          1. Open the run log above
+          2. Re-run via \`workflow_dispatch\` with optional date (\`YYYY-MM-DD\`)
+          3. Local: \`build_universe.py\` → \`generate_daily.py\` → \`validate_content.py\`
+          EOF
+          )
+          EXISTING=$(gh issue list --repo "${{ github.repository }}" --search "$TITLE in:title" --state open --json number --jq '.[0].number' || true)
+          if [ -n "$EXISTING" ] && [ "$EXISTING" != "null" ]; then
+            gh issue comment "$EXISTING" --repo "${{ github.repository }}" --body "Failed again: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          else
+            gh issue create --repo "${{ github.repository }}" --title "$TITLE" --body "$BODY" --label "ci-failure" || \
+            gh issue create --repo "${{ github.repository }}" --title "$TITLE" --body "$BODY"
+          fi
+          echo "::error title=Daily Ten Bagger failed::Issue opened/updated. Re-run via workflow_dispatch."

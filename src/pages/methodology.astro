@@ -21,7 +21,7 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <h2>시장 교대</h2>
         <p>날짜(일)가 홀수면 한국(KOSPI/KOSDAQ), 짝수면 미국(NYSE/NASDAQ) 유니버스를 스크리닝합니다.</p>
         <p>
-          유니버스는 거래소 상장 종목 전체를 매일 갱신합니다(KOSPI·KOSDAQ 약 2,700종목, NYSE·NASDAQ 약 7,000종목).
+          유니버스는 거래소 상장 종목 전체를 매일 갱신합니다(KOSPI·KOSDAQ 약 2,800종목, NYSE·NASDAQ 약 6,300종목).
           스크리닝 전에 최근 30일 추천 종목만 제외합니다.
         </p>
 
@@ -36,7 +36,7 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <h2>1차 필터</h2>
         <p>
           한국 종목은 시가총액 500억 원 미만을 제외합니다(상장 목록에 시총이 없으면 포함).
-          미국 종목은 거래소 전체를 스크리닝합니다.
+          미국 종목은 Yahoo Finance 시가총액 3억 달러 미만을 제외합니다(시총 데이터가 없으면 포함).
         </p>
 
         <h2>선정·없음 규칙</h2>
@@ -67,7 +67,7 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <h2>Market rotation</h2>
         <p>Odd calendar days: Korea (KOSPI/KOSDAQ). Even days: US (NYSE/NASDAQ).</p>
         <p>
-          The universe is refreshed daily from full exchange listings (~2,700 KR, ~7,000 US).
+          The universe is refreshed daily from full exchange listings (~2,800 KR, ~6,300 US).
           Only symbols recommended in the last 30 days are excluded before screening.
         </p>
 
@@ -82,7 +82,7 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <h2>Pre-filter</h2>
         <p>
           KR names below KRW 50B market cap are excluded when cap data is available.
-          US names are screened across the full listing.
+          US names below USD 300M market cap are excluded when Yahoo Finance cap data is available.
         </p>
 
         <h2>Pick vs none</h2>

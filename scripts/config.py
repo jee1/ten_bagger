@@ -16,10 +16,17 @@ CACHE_TTL_SECONDS = 43_200  # 12 hours
 
 COMPOSITE_THRESHOLD = 70.0
 DUPLICATE_BAN_DAYS = 30
-SCREEN_WORKERS = 8
+SCREEN_WORKERS = 2
 
-# Minimum market cap (KRW) for KR universe; US listings omit market_cap.
+# Minimum market cap for pre-screen (when cap data is available).
 MIN_MARKET_CAP_KR = 50_000_000_000  # 500억 KRW
+MIN_MARKET_CAP_US = 300_000_000  # $300M USD
+
+# yfinance fetch resilience
+YF_MAX_RETRIES = 5
+YF_RETRY_BASE_DELAY = 2.0  # seconds, exponential backoff
+YF_RATE_LIMIT_DELAY = 30.0  # extra pause when Yahoo returns 429
+YF_MIN_REQUEST_INTERVAL = 0.35  # global throttle between live API calls
 
 WEIGHT_GROWTH = 0.40
 WEIGHT_VALUATION = 0.30

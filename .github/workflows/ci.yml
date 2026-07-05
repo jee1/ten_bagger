@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Run Python tests
+        run: cd scripts && python -m pytest tests/ -q
+
+      - name: Validate content
+        run: cd scripts && python sync_manifest.py && python validate_content.py
+
+      - name: Audit Python dependencies
+        run: pip install pip-audit && pip-audit -r scripts/requirements.txt
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install and check
+        run: |
+          npm ci
+          npm run check
+
+      - name: Audit npm dependencies
+        run: npm audit --audit-level=high
