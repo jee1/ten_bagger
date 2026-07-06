@@ -1,0 +1,80 @@
+{
+  "date": "2026-07-06",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "ECPG",
+    "name": {
+      "ko": "Encore Capital Group Inc",
+      "en": "Encore Capital Group, Inc."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Encore Capital Group Inc는 Financial Services 분야 Credit Services 기업입니다.",
+        "en": "Encore Capital Group, Inc., a specialty finance company, provides debt recovery solutions and other related services for consumers across financial assets worldwide."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Credit Services",
+        "en": "Credit Services"
+      }
+    }
+  },
+  "scores": {
+    "composite": 90.7,
+    "growth": 100.0,
+    "valuation": 87.2,
+    "momentum": 86.0,
+    "quality": 73.5,
+    "threshold": 70.0
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Encore Capital Group Inc(ECPG)는 복합 점수 90.7로 임계 70.0를 상회했습니다. 성장·밸류·모멘텀 균형이 양호합니다.",
+      "en": "Encore Capital Group, Inc. (ECPG) cleared the 70.0 threshold with composite score 90.7; growth, valuation, and momentum align."
+    },
+    "growth": {
+      "ko": "매출 성장 21.0% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
+      "en": "Revenue growth 21.0% and earnings growth 100% yield growth score 100.0."
+    },
+    "valuation": {
+      "ko": "PER 7.06, PEG 0.17 기준 밸류 점수 87.2입니다.",
+      "en": "At P/E 7.06 and PEG 0.17, valuation score is 87.2."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 66.72%, 52주 고점 대비 -3.39% — 모멘텀 점수 86.0.",
+      "en": "6M return 66.72%, -3.39% from 52W high — momentum score 86.0."
+    },
+    "quality": {
+      "ko": "ROE 31.96%, 영업이익률 기준 품질 점수 73.5입니다.",
+      "en": "ROE 31.96%, operating margin basis — quality score 73.5."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ]
+  },
+  "meta": {
+    "generatedAt": "2026-07-06T08:00:26+09:00",
+    "candidatesScreened": 6286,
+    "excludedRecent": 3,
+    "skippedMarketCap": 1926,
+    "noData": 92,
+    "errors": 0
+  }
+}
