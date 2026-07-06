@@ -14,6 +14,11 @@ export type DailyEntry = {
     name: LocalizedText;
     exchange: string;
     currency: "KRW" | "USD";
+    profile?: {
+      overview: LocalizedText;
+      sector?: LocalizedText;
+      industry?: LocalizedText;
+    };
   };
   scores?: {
     composite: number;

@@ -8,7 +8,9 @@ import re
 import sys
 
 from config import COMPOSITE_THRESHOLD, DAILY_DIR, MAX_GROWTH_PCT
+from profile import build_stock_profile
 from sync_manifest import sync_manifest
+from yf_cache import get_ticker_info
 
 _EARNINGS_KO = re.compile(r"이익 성장 \d+(?:\.\d+)?%")
 _EARNINGS_EN = re.compile(r"earnings growth \d+(?:\.\d+)?%", re.IGNORECASE)
@@ -46,6 +48,19 @@ def backfill_entry(entry: dict) -> dict:
                 "ko": f"품질 점수 {scores.get('quality', 0)}입니다.",
                 "en": f"Quality score is {scores.get('quality', 0)}.",
             }
+
+        stock = entry.get("stock") or {}
+        if stock.get("symbol") and not stock.get("profile"):
+            info = get_ticker_info(stock["symbol"])
+            name = stock.get("name") or {}
+            profile = build_stock_profile(
+                info,
+                name_ko=name.get("ko", stock["symbol"]),
+                name_en=name.get("en", stock["symbol"]),
+            )
+            if profile:
+                stock["profile"] = profile
+                entry["stock"] = stock
 
     if entry.get("status") == "no_pick":
         scores = entry.setdefault("scores", {})

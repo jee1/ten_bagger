@@ -9,7 +9,21 @@
       "en": "Encore Capital Group, Inc."
     },
     "exchange": "NASDAQ",
-    "currency": "USD"
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Encore Capital Group Inc는 Financial Services 분야 Credit Services 기업입니다.",
+        "en": "Encore Capital Group, Inc., a specialty finance company, provides debt recovery solutions and other related services for consumers across financial assets worldwide."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Credit Services",
+        "en": "Credit Services"
+      }
+    }
   },
   "scores": {
     "composite": 90.7,
@@ -26,7 +40,7 @@
     },
     "growth": {
       "ko": "매출 성장 21.0% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
-      "en": "Revenue growth 21.0% and earnings growth 100.0% yield growth score 100.0."
+      "en": "Revenue growth 21.0% and earnings growth 100% yield growth score 100.0."
     },
     "valuation": {
       "ko": "PER 7.06, PEG 0.17 기준 밸류 점수 87.2입니다.",

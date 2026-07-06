@@ -9,7 +9,21 @@
       "en": "Samsung Electronics Co., Ltd."
     },
     "exchange": "KOSPI",
-    "currency": "KRW"
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "삼성전자우는 Technology 분야 Consumer Electronics 기업입니다.",
+        "en": "Samsung Electronics Co., Ltd. engages in the consumer electronics, information technology and mobile communications, and device solutions businesses worldwide. The company operates through four divisions: Device eXperience (DX), Device Solutions (DS), SDC, and Harman."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Consumer Electronics",
+        "en": "Consumer Electronics"
+      }
+    }
   },
   "scores": {
     "composite": 91.4,
@@ -26,7 +40,7 @@
     },
     "growth": {
       "ko": "매출 성장 69.2% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
-      "en": "Revenue growth 69.2% and earnings growth 100.0% yield growth score 100.0."
+      "en": "Revenue growth 69.2% and earnings growth 100% yield growth score 100.0."
     },
     "valuation": {
       "ko": "PER 3.73, PEG 0.15 기준 밸류 점수 87.2입니다.",

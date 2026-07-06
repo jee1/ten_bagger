@@ -14,7 +14,16 @@
         "symbol": { "type": "string" },
         "name": { "$ref": "#/$defs/localizedText" },
         "exchange": { "type": "string" },
-        "currency": { "enum": ["KRW", "USD"] }
+        "currency": { "enum": ["KRW", "USD"] },
+        "profile": {
+          "type": "object",
+          "required": ["overview"],
+          "properties": {
+            "overview": { "$ref": "#/$defs/localizedText" },
+            "sector": { "$ref": "#/$defs/localizedText" },
+            "industry": { "$ref": "#/$defs/localizedText" }
+          }
+        }
       }
     },
     "scores": {
