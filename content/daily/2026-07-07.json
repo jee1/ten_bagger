@@ -1,0 +1,80 @@
+{
+  "date": "2026-07-07",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "402340.KS",
+    "name": {
+      "ko": "SK스퀘어",
+      "en": "SK Square Co., Ltd."
+    },
+    "exchange": "KOSPI",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "SK스퀘어는 Technology 분야 Semiconductors 기업입니다.",
+        "en": "SK Square Co., Ltd. invests in semiconductor, and information and communication technologies in South Korea, China, Asia, the United States, and Europe. SK Square Co., Ltd."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Semiconductors",
+        "en": "Semiconductors"
+      }
+    }
+  },
+  "scores": {
+    "composite": 88.4,
+    "growth": 100.0,
+    "valuation": 69.2,
+    "momentum": 90.0,
+    "quality": 96.2,
+    "threshold": 70.0
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "SK스퀘어(402340.KS)는 복합 점수 88.4로 임계 70.0를 상회했습니다. 성장·밸류·모멘텀 균형이 양호합니다.",
+      "en": "SK Square Co., Ltd. (402340.KS) cleared the 70.0 threshold with composite score 88.4; growth, valuation, and momentum align."
+    },
+    "growth": {
+      "ko": "매출 성장 100.0% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
+      "en": "Revenue growth 100.0% and earnings growth 100.0% yield growth score 100.0."
+    },
+    "valuation": {
+      "ko": "PER 3.92, PEG None 기준 밸류 점수 69.2입니다.",
+      "en": "At P/E 3.92 and PEG None, valuation score is 69.2."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 332.64%, 52주 고점 대비 -24.11% — 모멘텀 점수 90.0.",
+      "en": "6M return 332.64%, -24.11% from 52W high — momentum score 90.0."
+    },
+    "quality": {
+      "ko": "ROE 54.39%, 영업이익률 기준 품질 점수 96.2입니다.",
+      "en": "ROE 54.39%, operating margin basis — quality score 96.2."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ]
+  },
+  "meta": {
+    "generatedAt": "2026-07-07T07:34:15+09:00",
+    "candidatesScreened": 1904,
+    "excludedRecent": 4,
+    "skippedMarketCap": 861,
+    "noData": 0,
+    "errors": 0
+  }
+}
