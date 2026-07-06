@@ -37,6 +37,9 @@ export const labels = {
   nextMonth: { ko: '다음 달', en: 'Next' } satisfies LocalizedText,
   pick: { ko: '선정', en: 'Pick' } satisfies LocalizedText,
   none: { ko: '없음', en: 'None' } satisfies LocalizedText,
+  companyProfile: { ko: '회사 소개', en: 'Company profile' } satisfies LocalizedText,
+  sector: { ko: '섹터', en: 'Sector' } satisfies LocalizedText,
+  industry: { ko: '산업', en: 'Industry' } satisfies LocalizedText,
 } as const;
 
 export function t(text: LocalizedText, lang: Lang): string {
@@ -45,4 +48,15 @@ export function t(text: LocalizedText, lang: Lang): string {
 
 export function label(key: keyof typeof labels, lang: Lang): string {
   return labels[key][lang];
+}
+
+export function shortText(text: string, maxChars = 150): string {
+  const trimmed = text.trim();
+  if (trimmed.length <= maxChars) {
+    return trimmed;
+  }
+  const clipped = trimmed.slice(0, maxChars);
+  const lastSpace = clipped.lastIndexOf(' ');
+  const cut = lastSpace > maxChars / 2 ? clipped.slice(0, lastSpace) : clipped;
+  return `${cut.replace(/[.,;]+$/, '')}…`;
 }

@@ -25,6 +25,13 @@ export interface DailyStock {
   name: LocalizedText;
   exchange: string;
   currency: 'KRW' | 'USD';
+  profile?: DailyStockProfile;
+}
+
+export interface DailyStockProfile {
+  overview: LocalizedText;
+  sector?: LocalizedText;
+  industry?: LocalizedText;
 }
 
 export interface DailyScores {

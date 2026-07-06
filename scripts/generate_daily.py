@@ -9,9 +9,11 @@ import sys
 from datetime import date, timedelta
 
 from config import COMPOSITE_THRESHOLD, DAILY_DIR, DUPLICATE_BAN_DAYS, market_for_date
+from profile import build_stock_profile
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
 from time_utils import now_kst
+from yf_cache import get_ticker_info
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
@@ -68,16 +70,26 @@ def build_no_pick(target: str, market: str, stats) -> dict:
 
 def build_pick(target: str, market: str, result, stats) -> dict:
     now = now_kst().isoformat(timespec="seconds")
+    stock: dict = {
+        "symbol": result.symbol,
+        "name": {"ko": result.meta.name_ko, "en": result.meta.name_en},
+        "exchange": result.meta.exchange,
+        "currency": result.meta.currency,
+    }
+    info = get_ticker_info(result.symbol)
+    profile = build_stock_profile(
+        info,
+        name_ko=result.meta.name_ko,
+        name_en=result.meta.name_en,
+    )
+    if profile:
+        stock["profile"] = profile
+
     return {
         "date": target,
         "market": market,
         "status": "pick",
-        "stock": {
-            "symbol": result.symbol,
-            "name": {"ko": result.meta.name_ko, "en": result.meta.name_en},
-            "exchange": result.meta.exchange,
-            "currency": result.meta.currency,
-        },
+        "stock": stock,
         "scores": {
             "composite": result.composite,
             "growth": result.growth,

@@ -9,7 +9,21 @@
       "en": "Constellium SE"
     },
     "exchange": "NYSE",
-    "currency": "USD"
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Constellium SE는 Basic Materials 분야 Aluminum 기업입니다.",
+        "en": "Constellium SE, together with its subsidiaries, engages in the design, manufacture, and sale of rolled and extruded aluminum products for the aerospace, packaging, automotive, commercial transportation, general industrial, and defense end-markets."
+      },
+      "sector": {
+        "ko": "Basic Materials",
+        "en": "Basic Materials"
+      },
+      "industry": {
+        "ko": "Aluminum",
+        "en": "Aluminum"
+      }
+    }
   },
   "scores": {
     "composite": 91.4,
@@ -26,7 +40,7 @@
     },
     "growth": {
       "ko": "매출 성장 24.4% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
-      "en": "Revenue growth 24.4% and earnings growth 100.0% yield growth score 100.0."
+      "en": "Revenue growth 24.4% and earnings growth 100% yield growth score 100.0."
     },
     "valuation": {
       "ko": "PER 9.42, PEG 0.4 기준 밸류 점수 87.2입니다.",
