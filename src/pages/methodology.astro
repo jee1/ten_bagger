@@ -25,18 +25,28 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           스크리닝 전에 최근 30일 추천 종목만 제외합니다.
         </p>
 
-        <h2>점수 구성 (0–100)</h2>
+        <h2>점수 구성 v2 (0–100)</h2>
+        <p>
+          Score v2는 피터 린치 GARP(저평가 성장주)와 Yartseva(2025) 멀티배거 연구를 반영합니다.
+          소형·FCF·지속 가능 성장·역발상 진입을 강조합니다.
+        </p>
         <ul>
-          <li><strong>성장 40%</strong>: 연·분기 매출·이익 성장률 (±100% 상한 클리핑)</li>
-          <li><strong>밸류 30%</strong>: PER·PEG 구간 점수</li>
-          <li><strong>모멘텀 20%</strong>: 6개월 수익률, 52주 고점 대비 위치</li>
-          <li><strong>품질 10%</strong>: ROE, 부채비율, 영업이익률</li>
+          <li><strong>규모 15%</strong>: 시총이 작을수록 가산 (한국 ≤2조·미국 ≤$20억 달러 구간 만점)</li>
+          <li><strong>밸류 25%</strong>: PER·PEG, FCF 수익률, PBR</li>
+          <li><strong>성장 20%</strong>: 매출·이익 혼합 성장, 20~50% 스위트스팟 (50% 초과 페널티)</li>
+          <li><strong>품질 20%</strong>: ROE, 부채비율, 영업이익률, FCF/순이익, ROA</li>
+          <li><strong>진입 10%</strong>: 12개월 가격대·52주 고점 대비 (고점 근접 페널티)</li>
+          <li><strong>모멘텀 10%</strong>: 6개월 수익률 (보조 축, v1 대비 축소)</li>
         </ul>
 
         <h2>1차 필터</h2>
         <p>
           한국 종목은 시가총액 500억 원 미만을 제외합니다(상장 목록에 시총이 없으면 포함).
           미국 종목은 Yahoo Finance 시가총액 3억 달러 미만을 제외합니다(시총 데이터가 없으면 포함).
+        </p>
+        <p>
+          Red flag: 자본잠식(B/M 음수) 또는 FCF·영업CF 동시 음수 종목은 제외합니다.
+          애널리스트 커버리지가 낮은 종목에는 규모 점수에 소폭 가산합니다.
         </p>
 
         <h2>선정·없음 규칙</h2>
@@ -49,6 +59,11 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
 
         <h2>생성 시각</h2>
         <p>매일 06:00 KST에 GitHub Actions가 데이터를 수집·스크리닝하고 정적 페이지를 배포합니다.</p>
+
+        <h2>백테스트</h2>
+        <p>
+          v1 vs v2 비교: <code>cd scripts && python backtest_screen.py KR</code>
+        </p>
 
         <h2>데이터</h2>
         <p>
@@ -71,18 +86,28 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           Only symbols recommended in the last 30 days are excluded before screening.
         </p>
 
-        <h2>Score weights (0–100)</h2>
+        <h2>Score weights v2 (0–100)</h2>
+        <p>
+          Score v2 blends Peter Lynch GARP heuristics with Yartseva (2025) multibagger factor research:
+          size, cash yield, sustainable growth, and contrarian entry timing.
+        </p>
         <ul>
-          <li><strong>Growth 40%</strong>: annual/quarterly revenue &amp; earnings growth (capped at ±100%)</li>
-          <li><strong>Valuation 30%</strong>: P/E and PEG tier scores</li>
-          <li><strong>Momentum 20%</strong>: 6-month return and position vs 52-week high</li>
-          <li><strong>Quality 10%</strong>: ROE, debt/equity, operating margin</li>
+          <li><strong>Size 15%</strong>: smaller market cap scores higher (ideal ≤KRW 2T / ≤$2B)</li>
+          <li><strong>Valuation 25%</strong>: P/E, PEG, FCF yield, P/B</li>
+          <li><strong>Growth 20%</strong>: blended revenue &amp; earnings growth, 20–50% sweet spot (penalty above 50%)</li>
+          <li><strong>Quality 20%</strong>: ROE, debt/equity, operating margin, FCF/net income, ROA</li>
+          <li><strong>Entry 10%</strong>: 12-month price range and distance from 52-week high</li>
+          <li><strong>Momentum 10%</strong>: 6-month return (auxiliary, reduced vs v1)</li>
         </ul>
 
         <h2>Pre-filter</h2>
         <p>
           KR names below KRW 50B market cap are excluded when cap data is available.
           US names below USD 300M market cap are excluded when Yahoo Finance cap data is available.
+        </p>
+        <p>
+          Red flags: negative book equity or both FCF and operating cash flow negative.
+          Low analyst coverage receives a small size bonus.
         </p>
 
         <h2>Pick vs none</h2>
@@ -100,6 +125,11 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <p>
           Listings: FinanceDataReader (exchanges). Prices & fundamentals: Yahoo Finance (yfinance).
           No database—truth lives in committed JSON files.
+        </p>
+
+        <h2>Backtest</h2>
+        <p>
+          Compare v1 vs v2 snapshots: <code>cd scripts && python backtest_screen.py US</code>
         </p>
       </>
     )}

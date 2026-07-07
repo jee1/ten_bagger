@@ -31,19 +31,24 @@
       "required": ["composite", "growth", "valuation", "momentum", "quality", "threshold"],
       "properties": {
         "composite": { "type": "number" },
+        "size": { "type": "number" },
         "growth": { "type": "number" },
         "valuation": { "type": "number" },
+        "entry": { "type": "number" },
         "momentum": { "type": "number" },
         "quality": { "type": "number" },
-        "threshold": { "type": "number" }
+        "threshold": { "type": "number" },
+        "version": { "type": "integer", "minimum": 1 }
       }
     },
     "reasoning": {
       "type": "object",
       "properties": {
         "summary": { "$ref": "#/$defs/localizedText" },
+        "size": { "$ref": "#/$defs/localizedText" },
         "growth": { "$ref": "#/$defs/localizedText" },
         "valuation": { "$ref": "#/$defs/localizedText" },
+        "entry": { "$ref": "#/$defs/localizedText" },
         "momentum": { "$ref": "#/$defs/localizedText" },
         "quality": { "$ref": "#/$defs/localizedText" },
         "risks": {
@@ -60,6 +65,7 @@
         "candidatesScreened": { "type": "integer", "minimum": 0 },
         "excludedRecent": { "type": "integer", "minimum": 0 },
         "skippedMarketCap": { "type": "integer", "minimum": 0 },
+        "skippedRedFlags": { "type": "integer", "minimum": 0 },
         "noData": { "type": "integer", "minimum": 0 },
         "errors": { "type": "integer", "minimum": 0 }
       }

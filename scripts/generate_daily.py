@@ -8,7 +8,7 @@ import logging
 import sys
 from datetime import date, timedelta
 
-from config import COMPOSITE_THRESHOLD, DAILY_DIR, DUPLICATE_BAN_DAYS, market_for_date
+from config import COMPOSITE_THRESHOLD, DAILY_DIR, DUPLICATE_BAN_DAYS, SCORE_VERSION, market_for_date
 from profile import build_stock_profile
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
@@ -51,17 +51,21 @@ def build_no_pick(target: str, market: str, stats) -> dict:
         "status": "no_pick",
         "scores": {
             "composite": 0,
+            "size": 0,
             "growth": 0,
             "valuation": 0,
+            "entry": 0,
             "momentum": 0,
             "quality": 0,
             "threshold": COMPOSITE_THRESHOLD,
+            "version": SCORE_VERSION,
         },
         "meta": {
             "generatedAt": now,
             "candidatesScreened": stats.screened,
             "excludedRecent": stats.skipped_recent,
             "skippedMarketCap": stats.skipped_market_cap,
+            "skippedRedFlags": stats.skipped_red_flags,
             "noData": stats.no_data,
             "errors": stats.errors,
         },
@@ -92,11 +96,14 @@ def build_pick(target: str, market: str, result, stats) -> dict:
         "stock": stock,
         "scores": {
             "composite": result.composite,
+            "size": result.size,
             "growth": result.growth,
             "valuation": result.valuation,
+            "entry": result.entry,
             "momentum": result.momentum,
             "quality": result.quality,
             "threshold": COMPOSITE_THRESHOLD,
+            "version": result.score_version,
         },
         "reasoning": build_reasoning(result),
         "meta": {
@@ -104,6 +111,7 @@ def build_pick(target: str, market: str, result, stats) -> dict:
             "candidatesScreened": stats.screened,
             "excludedRecent": stats.skipped_recent,
             "skippedMarketCap": stats.skipped_market_cap,
+            "skippedRedFlags": stats.skipped_red_flags,
             "noData": stats.no_data,
             "errors": stats.errors,
         },

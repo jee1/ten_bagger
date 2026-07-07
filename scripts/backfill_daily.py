@@ -35,6 +35,7 @@ def _fix_clipped_growth_reasoning(entry: dict) -> None:
 def backfill_entry(entry: dict) -> dict:
     meta = entry.setdefault("meta", {})
     meta.setdefault("skippedMarketCap", 0)
+    meta.setdefault("skippedRedFlags", 0)
     meta.setdefault("noData", 0)
     meta.setdefault("errors", 0)
 

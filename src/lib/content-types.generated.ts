@@ -22,16 +22,21 @@ export type DailyEntry = {
   };
   scores?: {
     composite: number;
+    size?: number;
     growth: number;
     valuation: number;
+    entry?: number;
     momentum: number;
     quality: number;
     threshold: number;
+    version?: number;
   };
   reasoning?: {
     summary?: LocalizedText;
+    size?: LocalizedText;
     growth?: LocalizedText;
     valuation?: LocalizedText;
+    entry?: LocalizedText;
     momentum?: LocalizedText;
     quality?: LocalizedText;
     risks?: LocalizedText[];
@@ -41,6 +46,7 @@ export type DailyEntry = {
     candidatesScreened: number;
     excludedRecent: number;
     skippedMarketCap?: number;
+    skippedRedFlags?: number;
     noData?: number;
     errors?: number;
   };
