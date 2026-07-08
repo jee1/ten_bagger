@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-09",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "187870.KQ",
+    "name": {
+      "ko": "디바이스",
+      "en": "DEVICE CO.,Ltd"
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "디바이스는 Technology 분야 Semiconductor Equipment & Materials 기업입니다.",
+        "en": "DEVICE CO.,Ltd develops and supplies automatic control systems of semiconductors, displays, and material parts to semiconductor, LCD, and FPD manufacturers in South Korea and internationally."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Semiconductor Equipment & Materials",
+        "en": "Semiconductor Equipment & Materials"
+      }
+    }
+  },
+  "scores": {
+    "composite": 81.8,
+    "size": 100.0,
+    "growth": 74.0,
+    "valuation": 65.8,
+    "entry": 66.0,
+    "momentum": 97.1,
+    "quality": 96.0,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "디바이스(187870.KQ)는 v2 복합 점수 81.8로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "DEVICE CO.,Ltd (187870.KQ) cleared the 70.0 threshold with v2 composite 81.8; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 100.0% / 이익 0.0% (혼합 55.0%) — 지속 가능 성장 점수 74.0.",
+      "en": "Revenue 100.0% / earnings 0.0% (blended 55.0%) — sustainable growth score 74.0."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 33.18%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 33.18%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 75.72% — 보조 모멘텀 점수 97.1.",
+      "en": "6M return 75.72% — auxiliary momentum score 97.1."
+    },
+    "quality": {
+      "ko": "ROE 45.46%, ROA 25.17%, FCF/순이익 1.42 — 품질 점수 96.0.",
+      "en": "ROE 45.46%, ROA 25.17%, FCF/net income 1.42 — quality score 96.0."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 171568332800 기준 규모 점수 100.0.",
+      "en": "Market cap 171568332800 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 33.11%, 52주 고점 대비 -54.66% — 진입 점수 66.0.",
+      "en": "12M price range 33.11%, -54.66% from 52W high — entry score 66.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-09T07:23:31+09:00",
+    "candidatesScreened": 1873,
+    "excludedRecent": 6,
+    "skippedMarketCap": 889,
+    "skippedRedFlags": 310,
+    "noData": 0,
+    "errors": 0
+  }
+}
