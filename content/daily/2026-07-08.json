@@ -3,56 +3,59 @@
   "market": "US",
   "status": "pick",
   "stock": {
-    "symbol": "DHT",
+    "symbol": "DDI",
     "name": {
-      "ko": "DHT Holdings Inc",
-      "en": "DHT Holdings, Inc."
+      "ko": "DoubleDown Interactive Co Ltd ADR",
+      "en": "DoubleDown Interactive Co., Ltd."
     },
-    "exchange": "NYSE",
+    "exchange": "NASDAQ",
     "currency": "USD",
     "profile": {
       "overview": {
-        "ko": "DHT Holdings Inc는 Energy 분야 Oil & Gas Midstream 기업입니다.",
-        "en": "DHT Holdings, Inc., through its subsidiaries, owns and operates crude oil tankers primarily in Monaco, Singapore, Norway, and India. The company also offers technical management services. As of December 15, 2025, it had a fleet of 22 very large crude carriers."
+        "ko": "DoubleDown Interactive Co Ltd ADR는 Communication Services 분야 Electronic Gaming & Multimedia 기업입니다.",
+        "en": "DoubleDown Interactive Co., Ltd. develops and publishes casual games and mobile applications in South Korea, the United States, the United Kingdom, Germany, and internationally. The company operates through Social Casino Games and iGaming segments."
       },
       "sector": {
-        "ko": "Energy",
-        "en": "Energy"
+        "ko": "Communication Services",
+        "en": "Communication Services"
       },
       "industry": {
-        "ko": "Oil & Gas Midstream",
-        "en": "Oil & Gas Midstream"
+        "ko": "Electronic Gaming & Multimedia",
+        "en": "Electronic Gaming & Multimedia"
       }
     }
   },
   "scores": {
-    "composite": 90.5,
-    "growth": 100.0,
-    "valuation": 80.5,
-    "momentum": 90.0,
-    "quality": 83.8,
-    "threshold": 70.0
+    "composite": 81.4,
+    "size": 92.0,
+    "growth": 98.8,
+    "valuation": 83.5,
+    "entry": 57.5,
+    "momentum": 71.9,
+    "quality": 70.3,
+    "threshold": 70.0,
+    "version": 2
   },
   "reasoning": {
     "summary": {
-      "ko": "DHT Holdings Inc(DHT)는 복합 점수 90.5로 임계 70.0를 상회했습니다. 성장·밸류·모멘텀 균형이 양호합니다.",
-      "en": "DHT Holdings, Inc. (DHT) cleared the 70.0 threshold with composite score 90.5; growth, valuation, and momentum align."
+      "ko": "DoubleDown Interactive Co Ltd ADR(DDI)는 v2 복합 점수 81.4로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "DoubleDown Interactive Co., Ltd. (DDI) cleared the 70.0 threshold with v2 composite 81.4; size, value, cash, and entry align."
     },
     "growth": {
-      "ko": "매출 성장 78.1% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
-      "en": "Revenue growth 78.1% and earnings growth 100.0% yield growth score 100.0."
+      "ko": "매출 12.7% / 이익 48.4% (혼합 28.77%) — 지속 가능 성장 점수 98.8.",
+      "en": "Revenue 12.7% / earnings 48.4% (blended 28.77%) — sustainable growth score 98.8."
     },
     "valuation": {
-      "ko": "PER 8.39, PEG 1.19 기준 밸류 점수 80.5입니다.",
-      "en": "At P/E 8.39 and PEG 1.19, valuation score is 80.5."
+      "ko": "PER 4.93, PEG None, FCF수익률 18.22%, PBR 0.57 — 밸류 점수 83.5.",
+      "en": "P/E 4.93, PEG None, FCF yield 18.22%, P/B 0.57 — valuation score 83.5."
     },
     "momentum": {
-      "ko": "6개월 수익률 57.8%, 52주 고점 대비 -13.38% — 모멘텀 점수 90.0.",
-      "en": "6M return 57.8%, -13.38% from 52W high — momentum score 90.0."
+      "ko": "6개월 수익률 27.13% — 보조 모멘텀 점수 71.9.",
+      "en": "6M return 27.13% — auxiliary momentum score 71.9."
     },
     "quality": {
-      "ko": "ROE 28.89%, 영업이익률 기준 품질 점수 83.8입니다.",
-      "en": "ROE 28.89%, operating margin basis — quality score 83.8."
+      "ko": "ROE 12.35%, ROA 8.73%, FCF/순이익 0.9 — 품질 점수 70.3.",
+      "en": "ROE 12.35%, ROA 8.73%, FCF/net income 0.9 — quality score 70.3."
     },
     "risks": [
       {
@@ -67,13 +70,22 @@
         "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
         "en": "10x in five years is a scenario, not a guarantee"
       }
-    ]
+    ],
+    "size": {
+      "ko": "시가총액 561936000 기준 규모 점수 92.0.",
+      "en": "Market cap 561936000 — size score 92.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 77.25%, 52주 고점 대비 -7.43% — 진입 점수 57.5.",
+      "en": "12M price range 77.25%, -7.43% from 52W high — entry score 57.5."
+    }
   },
   "meta": {
-    "generatedAt": "2026-07-08T08:11:39+09:00",
-    "candidatesScreened": 6301,
+    "generatedAt": "2026-07-09T00:12:34+09:00",
+    "candidatesScreened": 6302,
     "excludedRecent": 5,
-    "skippedMarketCap": 1943,
+    "skippedMarketCap": 1949,
+    "skippedRedFlags": 995,
     "noData": 92,
     "errors": 0
   }
