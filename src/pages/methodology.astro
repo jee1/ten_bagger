@@ -36,7 +36,7 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           <li><strong>성장 20%</strong>: 매출·이익 혼합 성장, 20~50% 스위트스팟 (50% 초과 페널티)</li>
           <li><strong>품질 20%</strong>: ROE, 부채비율, 영업이익률, FCF/순이익, ROA</li>
           <li><strong>진입 10%</strong>: 12개월 가격대·52주 고점 대비 (고점 근접 페널티)</li>
-          <li><strong>모멘텀 10%</strong>: 6개월 수익률 (보조 축, v1 대비 축소)</li>
+          <li><strong>모멘텀 10%</strong>: 6개월 수익률만 사용 (52주 고점 위치는 진입 축으로 이전, v1 대비 축소)</li>
         </ul>
 
         <h2>1차 필터</h2>
@@ -97,7 +97,7 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           <li><strong>Growth 20%</strong>: blended revenue &amp; earnings growth, 20–50% sweet spot (penalty above 50%)</li>
           <li><strong>Quality 20%</strong>: ROE, debt/equity, operating margin, FCF/net income, ROA</li>
           <li><strong>Entry 10%</strong>: 12-month price range and distance from 52-week high</li>
-          <li><strong>Momentum 10%</strong>: 6-month return (auxiliary, reduced vs v1)</li>
+          <li><strong>Momentum 10%</strong>: 6-month return only (52-week high position moved to Entry; reduced vs v1)</li>
         </ul>
 
         <h2>Pre-filter</h2>

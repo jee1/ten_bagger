@@ -55,8 +55,12 @@ from config import (
     MAX_IDEAL_MARKET_CAP_US,
     MIN_MARKET_CAP_KR,
     MIN_MARKET_CAP_US,
+    ENTRY_MID_HIGH_PCT,
+    ENTRY_MID_RANGE_PCT,
     MOMENTUM_DEEP_PULLBACK_SCORE,
     MOMENTUM_DEFAULT_SCORE,
+    MOMENTUM_DAMPEN_WEIGHT,
+    MOMENTUM_FLOOR,
     MOMENTUM_HIGH_WEIGHT,
     MOMENTUM_LOOKBACK_DAYS,
     MOMENTUM_MIN_HISTORY_DAYS,
@@ -67,6 +71,10 @@ from config import (
     MOMENTUM_RET_BASE,
     MOMENTUM_RET_MULTIPLIER,
     MOMENTUM_RET_WEIGHT,
+    SIZE_IDEAL_BASE,
+    V1_QUALITY_DEBT_WEIGHT,
+    V1_QUALITY_MARGIN_WEIGHT,
+    V1_QUALITY_ROE_WEIGHT,
     PE_BLEND_WEIGHT,
     PE_SCORE_EXCELLENT,
     PE_SCORE_FAIR,
@@ -174,6 +182,19 @@ def _safe_float(value: Any, default: float = 0.0) -> float:
         return default
 
 
+def _optional_float(value: Any) -> float | None:
+    """Parse a float, returning None when missing/invalid (not a defaulted zero)."""
+    if value is None:
+        return None
+    try:
+        f = float(value)
+        if math.isnan(f) or math.isinf(f):
+            return None
+        return f
+    except (TypeError, ValueError):
+        return None
+
+
 def load_universe(market: str) -> list[UniverseSymbol]:
     path = UNIVERSE_DIR / ("kr.json" if market == "KR" else "us.json")
     raw = json.loads(path.read_text(encoding="utf-8"))
@@ -219,17 +240,23 @@ def passes_market_cap_filter(
 
 
 def passes_red_flags(info: dict[str, Any]) -> bool:
-    """Hard filters for distressed balance sheets (Epic #23)."""
-    book_value = _safe_float(info.get("bookValue"))
-    price_to_book = _safe_float(info.get("priceToBook"))
-    if book_value <= 0 and price_to_book <= 0:
+    """Hard filters for distressed balance sheets (Epic #23).
+
+    Missing book/P/B fields are not treated as negative equity — only explicit
+    negative values fail. Dual-negative cash flow requires both fields present.
+    """
+    book_value = _optional_float(info.get("bookValue"))
+    price_to_book = _optional_float(info.get("priceToBook"))
+    if book_value is not None and book_value < 0:
+        return False
+    if price_to_book is not None and price_to_book < 0:
         return False
 
-    free_cashflow = _safe_float(info.get("freeCashflow"), default=float("nan"))
-    operating_cashflow = _safe_float(info.get("operatingCashflow"), default=float("nan"))
+    free_cashflow = _optional_float(info.get("freeCashflow"))
+    operating_cashflow = _optional_float(info.get("operatingCashflow"))
     if (
-        not math.isnan(free_cashflow)
-        and not math.isnan(operating_cashflow)
+        free_cashflow is not None
+        and operating_cashflow is not None
         and free_cashflow < 0
         and operating_cashflow < 0
     ):
@@ -244,7 +271,7 @@ def _score_size(meta: UniverseSymbol, info: dict[str, Any], market: str) -> tupl
     if cap <= 0:
         base = 50.0
     elif cap <= ideal:
-        base = 100.0
+        base = SIZE_IDEAL_BASE
     elif cap <= ideal * 2:
         base = 75.0
     elif cap <= ideal * 5:
@@ -439,7 +466,7 @@ def _score_momentum(hist: pd.DataFrame) -> tuple[float, dict[str, Any]]:
     from_high = (latest / high_52w - 1) * 100 if high_52w else 0
 
     ret_score = _clamp(MOMENTUM_RET_BASE + ret_6m * MOMENTUM_RET_MULTIPLIER)
-    score = _clamp(ret_score * 0.65 + 35.0)
+    score = _clamp(ret_score * MOMENTUM_DAMPEN_WEIGHT + MOMENTUM_FLOOR)
     return score, {
         "six_month_return_pct": round(ret_6m, 2),
         "from_52w_high_pct": round(from_high, 2),
@@ -466,9 +493,9 @@ def _score_entry(hist: pd.DataFrame) -> tuple[float, dict[str, Any]]:
 
     if range_pct >= ENTRY_NEAR_HIGH_PCT:
         range_score = ENTRY_NEAR_HIGH_SCORE
-    elif range_pct >= 60:
+    elif range_pct >= ENTRY_MID_HIGH_PCT:
         range_score = ENTRY_MID_HIGH_SCORE
-    elif range_pct >= 30:
+    elif range_pct >= ENTRY_MID_RANGE_PCT:
         range_score = ENTRY_MID_RANGE_SCORE
     else:
         range_score = ENTRY_NEAR_LOW_SCORE
@@ -512,7 +539,9 @@ def _score_quality_v1(info: dict[str, Any]) -> tuple[float, dict[str, Any]]:
     margin_score = _clamp(QUALITY_MARGIN_BASE + margin_pct * QUALITY_MARGIN_MULTIPLIER)
 
     score = _clamp(
-        roe_score * 0.45 + debt_score * 0.25 + margin_score * 0.30
+        roe_score * V1_QUALITY_ROE_WEIGHT
+        + debt_score * V1_QUALITY_DEBT_WEIGHT
+        + margin_score * V1_QUALITY_MARGIN_WEIGHT
     )
     return score, {
         "roe_pct": round(roe_pct, 2),

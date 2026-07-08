@@ -87,9 +87,18 @@ def test_score_size_small_cap_scores_higher():
 
 def test_score_size_ideal_cap_gets_max_band():
     meta = UniverseSymbol("M", "m", "Mid", "NASDAQ", "USD")
-    info = {"marketCap": MAX_IDEAL_MARKET_CAP_US}
+    info = {"marketCap": MAX_IDEAL_MARKET_CAP_US, "numberOfAnalystOpinions": 2}
     score, _ = _score_size(meta, info, "US")
     assert score == 100.0
+
+
+def test_score_size_low_coverage_beats_high_coverage_at_ideal_cap():
+    meta = UniverseSymbol("M", "m", "Mid", "NASDAQ", "USD")
+    low = {"marketCap": MAX_IDEAL_MARKET_CAP_US, "numberOfAnalystOpinions": 2}
+    high = {"marketCap": MAX_IDEAL_MARKET_CAP_US, "numberOfAnalystOpinions": 20}
+    low_score, _ = _score_size(meta, low, "US")
+    high_score, _ = _score_size(meta, high, "US")
+    assert low_score > high_score
 
 
 def test_score_quality_positive_roe_and_roa():
@@ -130,8 +139,21 @@ def test_passes_red_flags_negative_equity():
     assert passes_red_flags({"bookValue": -1, "priceToBook": -1}) is False
 
 
+def test_passes_red_flags_negative_book_value_alone():
+    assert passes_red_flags({"bookValue": -5, "priceToBook": 1.2}) is False
+
+
+def test_passes_red_flags_missing_equity_fields_pass():
+    assert passes_red_flags({}) is True
+    assert passes_red_flags({"freeCashflow": 10, "operatingCashflow": 20}) is True
+
+
 def test_passes_red_flags_dual_negative_cashflow():
     assert passes_red_flags({"freeCashflow": -1, "operatingCashflow": -1, "bookValue": 10}) is False
+
+
+def test_passes_red_flags_clean_pass():
+    assert passes_red_flags({"bookValue": 10, "priceToBook": 1.5, "freeCashflow": 5, "operatingCashflow": 8}) is True
 
 
 def test_composite_threshold_is_documented():
