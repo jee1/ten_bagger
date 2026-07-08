@@ -1,0 +1,80 @@
+{
+  "date": "2026-07-08",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "DHT",
+    "name": {
+      "ko": "DHT Holdings Inc",
+      "en": "DHT Holdings, Inc."
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "DHT Holdings Inc는 Energy 분야 Oil & Gas Midstream 기업입니다.",
+        "en": "DHT Holdings, Inc., through its subsidiaries, owns and operates crude oil tankers primarily in Monaco, Singapore, Norway, and India. The company also offers technical management services. As of December 15, 2025, it had a fleet of 22 very large crude carriers."
+      },
+      "sector": {
+        "ko": "Energy",
+        "en": "Energy"
+      },
+      "industry": {
+        "ko": "Oil & Gas Midstream",
+        "en": "Oil & Gas Midstream"
+      }
+    }
+  },
+  "scores": {
+    "composite": 90.5,
+    "growth": 100.0,
+    "valuation": 80.5,
+    "momentum": 90.0,
+    "quality": 83.8,
+    "threshold": 70.0
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "DHT Holdings Inc(DHT)는 복합 점수 90.5로 임계 70.0를 상회했습니다. 성장·밸류·모멘텀 균형이 양호합니다.",
+      "en": "DHT Holdings, Inc. (DHT) cleared the 70.0 threshold with composite score 90.5; growth, valuation, and momentum align."
+    },
+    "growth": {
+      "ko": "매출 성장 78.1% / 이익 성장 100.0% 수준으로 성장 점수 100.0입니다.",
+      "en": "Revenue growth 78.1% and earnings growth 100.0% yield growth score 100.0."
+    },
+    "valuation": {
+      "ko": "PER 8.39, PEG 1.19 기준 밸류 점수 80.5입니다.",
+      "en": "At P/E 8.39 and PEG 1.19, valuation score is 80.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 57.8%, 52주 고점 대비 -13.38% — 모멘텀 점수 90.0.",
+      "en": "6M return 57.8%, -13.38% from 52W high — momentum score 90.0."
+    },
+    "quality": {
+      "ko": "ROE 28.89%, 영업이익률 기준 품질 점수 83.8입니다.",
+      "en": "ROE 28.89%, operating margin basis — quality score 83.8."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ]
+  },
+  "meta": {
+    "generatedAt": "2026-07-08T08:11:39+09:00",
+    "candidatesScreened": 6301,
+    "excludedRecent": 5,
+    "skippedMarketCap": 1943,
+    "noData": 92,
+    "errors": 0
+  }
+}
