@@ -13,8 +13,10 @@ export type Manifest = SchemaManifest;
 
 export interface DailyReasoning {
   summary: LocalizedText;
+  size?: LocalizedText;
   growth: LocalizedText;
   valuation: LocalizedText;
+  entry?: LocalizedText;
   momentum: LocalizedText;
   quality?: LocalizedText;
   risks: LocalizedText[];
@@ -36,11 +38,14 @@ export interface DailyStockProfile {
 
 export interface DailyScores {
   composite: number;
+  size?: number;
   growth: number;
   valuation: number;
+  entry?: number;
   momentum: number;
   quality: number;
   threshold: number;
+  version?: number;
 }
 
 export interface DailyMeta {
@@ -48,6 +53,7 @@ export interface DailyMeta {
   candidatesScreened: number;
   excludedRecent: number;
   skippedMarketCap?: number;
+  skippedRedFlags?: number;
   noData?: number;
   errors?: number;
 }

@@ -69,6 +69,12 @@ const displayOverview = profileOverview
           <div class="value">{entry.scores.composite.toFixed(1)}</div>
           <div class="label">{label('composite', lang)}</div>
         </div>
+        {entry.scores.size != null && (
+          <div class="score-item">
+            <div class="value">{entry.scores.size.toFixed(1)}</div>
+            <div class="label">{label('size', lang)}</div>
+          </div>
+        )}
         <div class="score-item">
           <div class="value">{entry.scores.growth.toFixed(1)}</div>
           <div class="label">{label('growth', lang)}</div>
@@ -77,6 +83,12 @@ const displayOverview = profileOverview
           <div class="value">{entry.scores.valuation.toFixed(1)}</div>
           <div class="label">{label('valuation', lang)}</div>
         </div>
+        {entry.scores.entry != null && (
+          <div class="score-item">
+            <div class="value">{entry.scores.entry.toFixed(1)}</div>
+            <div class="label">{label('entry', lang)}</div>
+          </div>
+        )}
         <div class="score-item">
           <div class="value">{entry.scores.momentum.toFixed(1)}</div>
           <div class="label">{label('momentum', lang)}</div>
@@ -89,10 +101,22 @@ const displayOverview = profileOverview
 
       {detail ? (
         <>
+          {entry.reasoning.size && (
+            <>
+              <h2 class="section-title">{label('size', lang)}</h2>
+              <p>{t(entry.reasoning.size, lang)}</p>
+            </>
+          )}
           <h2 class="section-title">{label('growth', lang)}</h2>
           <p>{t(entry.reasoning.growth, lang)}</p>
           <h2 class="section-title">{label('valuation', lang)}</h2>
           <p>{t(entry.reasoning.valuation, lang)}</p>
+          {entry.reasoning.entry && (
+            <>
+              <h2 class="section-title">{label('entry', lang)}</h2>
+              <p>{t(entry.reasoning.entry, lang)}</p>
+            </>
+          )}
           <h2 class="section-title">{label('momentum', lang)}</h2>
           <p>{t(entry.reasoning.momentum, lang)}</p>
           {entry.reasoning.quality && (
