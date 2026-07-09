@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-10",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "YB",
+    "name": {
+      "ko": "Yuanbao Inc ADR",
+      "en": "Yuanbao Inc."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Yuanbao Inc ADR는 Technology 분야 Software - Application 기업입니다.",
+        "en": "Yuanbao Inc., together with its subsidiaries, provides insurance brokerage and agency licenses services in the People's Republic of China. The company offers medical, critical illness, accident, property, and pet insurance products. Yuanbao Inc."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Software - Application",
+        "en": "Software - Application"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.6,
+    "size": 100.0,
+    "growth": 99.4,
+    "valuation": 67.7,
+    "entry": 59.0,
+    "momentum": 47.0,
+    "quality": 91.1,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Yuanbao Inc ADR(YB)는 v2 복합 점수 80.6로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Yuanbao Inc. (YB) cleared the 70.0 threshold with v2 composite 80.6; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 35.6% / 이익 24.4% (혼합 30.56%) — 지속 가능 성장 점수 99.4.",
+      "en": "Revenue 35.6% / earnings 24.4% (blended 30.56%) — sustainable growth score 99.4."
+    },
+    "valuation": {
+      "ko": "PER 3.47, PEG None, FCF수익률 None%, PBR 1.18 — 밸류 점수 67.7.",
+      "en": "P/E 3.47, PEG None, FCF yield None%, P/B 1.18 — valuation score 67.7."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -20.61% — 보조 모멘텀 점수 47.0.",
+      "en": "6M return -20.61% — auxiliary momentum score 47.0."
+    },
+    "quality": {
+      "ko": "ROE 47.88%, ROA 21.31%, FCF/순이익 None — 품질 점수 91.1.",
+      "en": "ROE 47.88%, ROA 21.31%, FCF/net income None — quality score 91.1."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 668623744 기준 규모 점수 100.0.",
+      "en": "Market cap 668623744 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 18.83%, 52주 고점 대비 -47.88% — 진입 점수 59.0.",
+      "en": "12M price range 18.83%, -47.88% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-10T08:15:22+09:00",
+    "candidatesScreened": 6305,
+    "excludedRecent": 7,
+    "skippedMarketCap": 1947,
+    "skippedRedFlags": 1002,
+    "noData": 93,
+    "errors": 0
+  }
+}
