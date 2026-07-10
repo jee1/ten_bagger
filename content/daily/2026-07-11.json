@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-11",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "204610.KQ",
+    "name": {
+      "ko": "티쓰리",
+      "en": "T3 Entertainment Inc."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "티쓰리는 Communication Services 분야 Electronic Gaming & Multimedia 기업입니다.",
+        "en": "T3 Entertainment Inc. develops games for PCs, mobiles, and consoles in South Korea and internationally. T3 Entertainment Inc."
+      },
+      "sector": {
+        "ko": "Communication Services",
+        "en": "Communication Services"
+      },
+      "industry": {
+        "ko": "Electronic Gaming & Multimedia",
+        "en": "Electronic Gaming & Multimedia"
+      }
+    }
+  },
+  "scores": {
+    "composite": 82.2,
+    "size": 100.0,
+    "growth": 93.7,
+    "valuation": 73.5,
+    "entry": 57.5,
+    "momentum": 98.2,
+    "quality": 72.7,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "티쓰리(204610.KQ)는 v2 복합 점수 82.2로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "T3 Entertainment Inc. (204610.KQ) cleared the 70.0 threshold with v2 composite 82.2; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 37.8% / 이익 34.4% (혼합 36.27%) — 지속 가능 성장 점수 93.7.",
+      "en": "Revenue 37.8% / earnings 34.4% (blended 36.27%) — sustainable growth score 93.7."
+    },
+    "valuation": {
+      "ko": "PER 10.18, PEG None, FCF수익률 8.82%, PBR None — 밸류 점수 73.5.",
+      "en": "P/E 10.18, PEG None, FCF yield 8.82%, P/B None — valuation score 73.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 77.81% — 보조 모멘텀 점수 98.2.",
+      "en": "6M return 77.81% — auxiliary momentum score 98.2."
+    },
+    "quality": {
+      "ko": "ROE 21.73%, ROA 9.8%, FCF/순이익 0.76 — 품질 점수 72.7.",
+      "en": "ROE 21.73%, ROA 9.8%, FCF/net income 0.76 — quality score 72.7."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 154068484096 기준 규모 점수 100.0.",
+      "en": "Market cap 154068484096 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 72.74%, 52주 고점 대비 -15.21% — 진입 점수 57.5.",
+      "en": "12M price range 72.74%, -15.21% from 52W high — entry score 57.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-11T07:19:17+09:00",
+    "candidatesScreened": 1895,
+    "excludedRecent": 8,
+    "skippedMarketCap": 866,
+    "skippedRedFlags": 317,
+    "noData": 0,
+    "errors": 0
+  }
+}
