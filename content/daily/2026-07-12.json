@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-12",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "HG",
+    "name": {
+      "ko": "Hamilton Insurance Group Ltd",
+      "en": "Hamilton Insurance Group, Ltd."
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Hamilton Insurance Group Ltd는 Financial Services 분야 Insurance - Reinsurance 기업입니다.",
+        "en": "Hamilton Insurance Group, Ltd., through its subsidiaries, operates as specialty insurance and reinsurance company in Bermuda and internationally. It operates Hamilton Global Specialty, Hamilton Select, and Hamilton Re underwriting platforms."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Insurance - Reinsurance",
+        "en": "Insurance - Reinsurance"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.4,
+    "size": 75.0,
+    "growth": 98.5,
+    "valuation": 83.5,
+    "entry": 36.5,
+    "momentum": 77.3,
+    "quality": 86.1,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Hamilton Insurance Group Ltd(HG)는 v2 복합 점수 80.4로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Hamilton Insurance Group, Ltd. (HG) cleared the 70.0 threshold with v2 composite 80.4; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 0.0% / 이익 70.1% (혼합 31.54%) — 지속 가능 성장 점수 98.5.",
+      "en": "Revenue 0.0% / earnings 70.1% (blended 31.54%) — sustainable growth score 98.5."
+    },
+    "valuation": {
+      "ko": "PER 5.68, PEG None, FCF수익률 15.37%, PBR 1.26 — 밸류 점수 83.5.",
+      "en": "P/E 5.68, PEG None, FCF yield 15.37%, P/B 1.26 — valuation score 83.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 37.54% — 보조 모멘텀 점수 77.3.",
+      "en": "6M return 37.54% — auxiliary momentum score 77.3."
+    },
+    "quality": {
+      "ko": "ROE 33.74%, ROA 6.03%, FCF/순이익 0.84 — 품질 점수 86.1.",
+      "en": "ROE 33.74%, ROA 6.03%, FCF/net income 0.84 — quality score 86.1."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 3434257408 기준 규모 점수 75.0.",
+      "en": "Market cap 3434257408 — size score 75.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 100.0%, 52주 고점 대비 0.0% — 진입 점수 36.5.",
+      "en": "12M price range 100.0%, 0.0% from 52W high — entry score 36.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-12T07:41:07+09:00",
+    "candidatesScreened": 6296,
+    "excludedRecent": 9,
+    "skippedMarketCap": 1950,
+    "skippedRedFlags": 990,
+    "noData": 94,
+    "errors": 0
+  }
+}
