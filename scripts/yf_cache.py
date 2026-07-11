@@ -7,12 +7,12 @@ import logging
 import re
 import threading
 import time
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable, TypeVar
+from typing import Any
 
 import pandas as pd
 import yfinance as yf
-
 from config import (
     CACHE_DIR,
     CACHE_TTL_SECONDS,
@@ -25,7 +25,6 @@ from config import (
 logger = logging.getLogger(__name__)
 
 _SAFE_SYMBOL = re.compile(r"[^A-Za-z0-9._-]+")
-T = TypeVar("T")
 _api_lock = threading.Lock()
 _last_api_at = 0.0
 
@@ -65,7 +64,7 @@ def _throttle_before_request() -> None:
         _last_api_at = time.time()
 
 
-def _with_retry(label: str, fn: Callable[[], T]) -> T:
+def _with_retry[T](label: str, fn: Callable[[], T]) -> T:
     last_exc: Exception | None = None
     for attempt in range(YF_MAX_RETRIES):
         try:

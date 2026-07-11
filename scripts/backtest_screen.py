@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import json
 import statistics
-import sys
 
 from screen import screen_market
 
@@ -19,7 +18,11 @@ def _median_cap(results) -> float | None:
 
 
 def _avg_fcf_yield(results) -> float | None:
-    yields = [r.metrics.get("fcf_yield_pct") for r in results if r.metrics.get("fcf_yield_pct") is not None]
+    yields = [
+        r.metrics.get("fcf_yield_pct")
+        for r in results
+        if r.metrics.get("fcf_yield_pct") is not None
+    ]
     if not yields:
         return None
     return round(statistics.mean(yields), 2)

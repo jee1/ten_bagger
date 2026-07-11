@@ -96,8 +96,19 @@ jobs:
             echo "No content changes"
           else
             git commit -m "chore: daily report $(TZ=Asia/Seoul date +%F)"
-            git pull --rebase origin main
-            git push
+            max_attempts=3
+            for attempt in $(seq 1 $max_attempts); do
+              if git pull --rebase origin main && git push; then
+                echo "Push succeeded on attempt $attempt"
+                exit 0
+              fi
+              echo "Push attempt $attempt failed"
+              if [ "$attempt" -lt "$max_attempts" ]; then
+                sleep $((attempt * 5))
+              fi
+            done
+            echo "::error title=Push failed::Could not push after $max_attempts attempts"
+            exit 1
           fi
 
       - name: Upload Pages artifact

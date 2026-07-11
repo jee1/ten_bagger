@@ -7,9 +7,15 @@ import json
 import logging
 import sys
 from datetime import date, timedelta
-
-from config import COMPOSITE_THRESHOLD, DAILY_DIR, DUPLICATE_BAN_DAYS, SCORE_VERSION, market_for_date
 from profile import build_stock_profile
+
+from config import (
+    COMPOSITE_THRESHOLD,
+    DAILY_DIR,
+    DUPLICATE_BAN_DAYS,
+    SCORE_VERSION,
+    market_for_date,
+)
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
 from time_utils import now_kst

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import pytest
-
 import yf_cache
 from config import YF_RATE_LIMIT_DELAY
 

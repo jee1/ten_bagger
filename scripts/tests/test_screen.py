@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import pandas as pd
 import pytest
-
 from config import (
+    BM_EXCELLENT,
     COMPOSITE_THRESHOLD,
+    FCF_SCORE_EXCELLENT,
+    FCF_YIELD_EXCELLENT,
     MAX_GROWTH_PCT,
     MAX_IDEAL_MARKET_CAP_US,
     MIN_MARKET_CAP_KR,
@@ -15,9 +17,12 @@ from config import (
 )
 from screen import (
     _clip_growth_pct,
+    _composite_v2,
     _score_entry,
+    _score_fcf_yield,
     _score_growth,
     _score_pe_peg,
+    _score_price_to_book,
     _score_quality,
     _score_size,
     _score_valuation,
@@ -153,7 +158,12 @@ def test_passes_red_flags_dual_negative_cashflow():
 
 
 def test_passes_red_flags_clean_pass():
-    assert passes_red_flags({"bookValue": 10, "priceToBook": 1.5, "freeCashflow": 5, "operatingCashflow": 8}) is True
+    assert (
+        passes_red_flags(
+            {"bookValue": 10, "priceToBook": 1.5, "freeCashflow": 5, "operatingCashflow": 8}
+        )
+        is True
+    )
 
 
 def test_composite_threshold_is_documented():
@@ -162,3 +172,59 @@ def test_composite_threshold_is_documented():
 
 def test_score_version_default_is_v2():
     assert SCORE_VERSION == 2
+
+
+def _entry_hist_with_range_pct(range_pct: float) -> pd.DataFrame:
+    """Build 260-day history where twelve-month range position ~= range_pct."""
+    dates = pd.date_range("2025-01-01", periods=260, freq="B")
+    low, high = 50.0, 100.0
+    latest = low + (high - low) * (range_pct / 100.0)
+    close = [low] * 200 + [high] * 40 + [latest] * 20
+    return pd.DataFrame({"Close": close}, index=dates)
+
+
+def test_score_entry_near_high_band():
+    near_high, near_metrics = _score_entry(_entry_hist_with_range_pct(85.0))
+    mid, _ = _score_entry(_entry_hist_with_range_pct(45.0))
+    assert near_metrics["twelve_month_range_pct"] >= 80.0
+    assert near_high < mid
+
+
+def test_score_entry_mid_range_band():
+    score, metrics = _score_entry(_entry_hist_with_range_pct(45.0))
+    assert 30.0 <= metrics["twelve_month_range_pct"] < 60.0
+    assert score >= 60.0
+
+
+def test_score_entry_near_low_band():
+    score, metrics = _score_entry(_entry_hist_with_range_pct(10.0))
+    assert metrics["twelve_month_range_pct"] < 30.0
+    assert score >= 55.0
+
+
+def test_composite_at_threshold():
+    score = _composite_v2(70.0, 70.0, 70.0, 70.0, 70.0, 70.0)
+    assert score == pytest.approx(70.0)
+    assert score >= COMPOSITE_THRESHOLD
+
+
+def test_composite_just_below_threshold():
+    score = _composite_v2(69.0, 69.0, 69.0, 69.0, 69.0, 69.0)
+    assert score == pytest.approx(69.0)
+    assert score < COMPOSITE_THRESHOLD
+
+
+def test_score_fcf_yield_excellent_tier():
+    meta = UniverseSymbol("T", "t", "Test", "NASDAQ", "USD")
+    cap = 500_000_000
+    fcf = cap * (FCF_YIELD_EXCELLENT / 100.0)
+    score, metrics = _score_fcf_yield({"freeCashflow": fcf, "marketCap": cap}, meta)
+    assert metrics["fcf_yield_pct"] == pytest.approx(FCF_YIELD_EXCELLENT)
+    assert score == FCF_SCORE_EXCELLENT
+
+
+def test_score_price_to_book_excellent_tier():
+    pb = 1.0 / BM_EXCELLENT
+    score, metrics = _score_price_to_book({"priceToBook": pb})
+    assert metrics["book_to_market"] == pytest.approx(BM_EXCELLENT, rel=1e-2)
+    assert score >= 85.0
