@@ -23,8 +23,11 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Lint Python (pre-commit)
-        run: pip install pre-commit && pre-commit run --all-files
+      - name: Lint Python (ruff)
+        run: |
+          pip install "ruff==0.12.0"
+          ruff check scripts/ --config scripts/ruff.toml
+          ruff format --check scripts/ --config scripts/ruff.toml
 
       - name: Run Python tests
         run: cd scripts && python -m pytest tests/ -q
