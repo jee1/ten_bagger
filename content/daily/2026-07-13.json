@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-13",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "03473K.KS",
+    "name": {
+      "ko": "SK우",
+      "en": "SK Inc."
+    },
+    "exchange": "KOSPI",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "SK우는 Industrials 분야 Conglomerates 기업입니다.",
+        "en": "SK Inc., together with its subsidiaries, engages in petroleum refining, telecommunications, wholesale and retail, chemicals, construction, and other businesses in Korea."
+      },
+      "sector": {
+        "ko": "Industrials",
+        "en": "Industrials"
+      },
+      "industry": {
+        "ko": "Conglomerates",
+        "en": "Conglomerates"
+      }
+    }
+  },
+  "scores": {
+    "composite": 78.3,
+    "size": 100.0,
+    "growth": 99.9,
+    "valuation": 65.8,
+    "entry": 57.5,
+    "momentum": 100.0,
+    "quality": 55.8,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "SK우(03473K.KS)는 v2 복합 점수 78.3로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "SK Inc. (03473K.KS) cleared the 70.0 threshold with v2 composite 78.3; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 18.9% / 이익 43.3% (혼합 29.88%) — 지속 가능 성장 점수 99.9.",
+      "en": "Revenue 18.9% / earnings 43.3% (blended 29.88%) — sustainable growth score 99.9."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 2021.96%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 2021.96%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 82.45% — 보조 모멘텀 점수 100.0.",
+      "en": "6M return 82.45% — auxiliary momentum score 100.0."
+    },
+    "quality": {
+      "ko": "ROE 11.91%, ROA 1.24%, FCF/순이익 1.31 — 품질 점수 55.8.",
+      "en": "ROE 11.91%, ROA 1.24%, FCF/net income 1.31 — quality score 55.8."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 211168355000 기준 규모 점수 100.0.",
+      "en": "Market cap 211168355000 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 68.87%, 52주 고점 대비 -22.05% — 진입 점수 57.5.",
+      "en": "12M price range 68.87%, -22.05% from 52W high — entry score 57.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-13T07:05:52+09:00",
+    "candidatesScreened": 1894,
+    "excludedRecent": 10,
+    "skippedMarketCap": 866,
+    "skippedRedFlags": 316,
+    "noData": 0,
+    "errors": 0
+  }
+}
