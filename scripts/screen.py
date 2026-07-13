@@ -7,11 +7,9 @@ import logging
 import math
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
-from pathlib import Path
 from typing import Any
 
 import pandas as pd
-
 from config import (
     ANALYST_COVERAGE_BONUS,
     ANALYST_LOW_COVERAGE_MAX,
@@ -26,7 +24,9 @@ from config import (
     ENTRY_AT_HIGH_RECOVERY_SCORE,
     ENTRY_DEFAULT_SCORE,
     ENTRY_LOOKBACK_DAYS,
+    ENTRY_MID_HIGH_PCT,
     ENTRY_MID_HIGH_SCORE,
+    ENTRY_MID_RANGE_PCT,
     ENTRY_MID_RANGE_SCORE,
     ENTRY_NEAR_HIGH_PCT,
     ENTRY_NEAR_HIGH_SCORE,
@@ -55,11 +55,9 @@ from config import (
     MAX_IDEAL_MARKET_CAP_US,
     MIN_MARKET_CAP_KR,
     MIN_MARKET_CAP_US,
-    ENTRY_MID_HIGH_PCT,
-    ENTRY_MID_RANGE_PCT,
+    MOMENTUM_DAMPEN_WEIGHT,
     MOMENTUM_DEEP_PULLBACK_SCORE,
     MOMENTUM_DEFAULT_SCORE,
-    MOMENTUM_DAMPEN_WEIGHT,
     MOMENTUM_FLOOR,
     MOMENTUM_HIGH_WEIGHT,
     MOMENTUM_LOOKBACK_DAYS,
@@ -71,10 +69,6 @@ from config import (
     MOMENTUM_RET_BASE,
     MOMENTUM_RET_MULTIPLIER,
     MOMENTUM_RET_WEIGHT,
-    SIZE_IDEAL_BASE,
-    V1_QUALITY_DEBT_WEIGHT,
-    V1_QUALITY_MARGIN_WEIGHT,
-    V1_QUALITY_ROE_WEIGHT,
     PE_BLEND_WEIGHT,
     PE_SCORE_EXCELLENT,
     PE_SCORE_FAIR,
@@ -112,7 +106,11 @@ from config import (
     QUALITY_ROE_WEIGHT,
     SCORE_VERSION,
     SCREEN_WORKERS,
+    SIZE_IDEAL_BASE,
     UNIVERSE_DIR,
+    V1_QUALITY_DEBT_WEIGHT,
+    V1_QUALITY_MARGIN_WEIGHT,
+    V1_QUALITY_ROE_WEIGHT,
     V1_WEIGHT_GROWTH,
     V1_WEIGHT_MOMENTUM,
     V1_WEIGHT_QUALITY,
@@ -264,7 +262,9 @@ def passes_red_flags(info: dict[str, Any]) -> bool:
     return True
 
 
-def _score_size(meta: UniverseSymbol, info: dict[str, Any], market: str) -> tuple[float, dict[str, Any]]:
+def _score_size(
+    meta: UniverseSymbol, info: dict[str, Any], market: str
+) -> tuple[float, dict[str, Any]]:
     cap = _resolve_market_cap(meta, info)
     ideal = MAX_IDEAL_MARKET_CAP_KR if market == "KR" else MAX_IDEAL_MARKET_CAP_US
 
@@ -308,7 +308,10 @@ def _blended_growth_pct(info: dict[str, Any]) -> tuple[float, float, float]:
 def _score_growth_v1(info: dict[str, Any]) -> tuple[float, dict[str, Any]]:
     rev_pct, earn_pct, blended = _blended_growth_pct(info)
     score = _clamp(GROWTH_BASE_SCORE + blended * GROWTH_SCORE_MULTIPLIER)
-    return score, {"revenue_growth_pct": round(rev_pct, 2), "earnings_growth_pct": round(earn_pct, 2)}
+    return score, {
+        "revenue_growth_pct": round(rev_pct, 2),
+        "earnings_growth_pct": round(earn_pct, 2),
+    }
 
 
 def _score_growth(info: dict[str, Any]) -> tuple[float, dict[str, Any]]:
@@ -418,9 +421,7 @@ def _score_valuation(info: dict[str, Any], meta: UniverseSymbol) -> tuple[float,
     fcf_score, fcf_m = _score_fcf_yield(info, meta)
     pb_score, pb_m = _score_price_to_book(info)
     score = _clamp(
-        pe_score * VAL_PE_PEG_WEIGHT
-        + fcf_score * VAL_FCF_WEIGHT
-        + pb_score * VAL_PB_WEIGHT
+        pe_score * VAL_PE_PEG_WEIGHT + fcf_score * VAL_FCF_WEIGHT + pb_score * VAL_PB_WEIGHT
     )
     return score, {**pe_m, **fcf_m, **pb_m}
 
@@ -507,9 +508,7 @@ def _score_entry(hist: pd.DataFrame) -> tuple[float, dict[str, Any]]:
     else:
         recovery_score = MOMENTUM_DEEP_PULLBACK_SCORE
 
-    score = _clamp(
-        range_score * ENTRY_RANGE_WEIGHT + recovery_score * ENTRY_RECOVERY_WEIGHT
-    )
+    score = _clamp(range_score * ENTRY_RANGE_WEIGHT + recovery_score * ENTRY_RECOVERY_WEIGHT)
     return score, {
         "twelve_month_range_pct": round(range_pct, 2),
         "from_52w_high_pct": round(from_high, 2),
@@ -792,7 +791,8 @@ def build_reasoning(result: ScoreResult) -> dict[str, Any]:
     if result.score_version >= 2:
         summary_ko = (
             f"{result.meta.name_ko}({result.symbol})는 v2 복합 점수 {result.composite}로 "
-            f"임계 {COMPOSITE_THRESHOLD}를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다."
+            f"임계 {COMPOSITE_THRESHOLD}를 상회했습니다. "
+            "소형·가치·현금·진입 타이밍이 균형을 이룹니다."
         )
         summary_en = (
             f"{result.meta.name_en} ({result.symbol}) cleared the {COMPOSITE_THRESHOLD} "
@@ -818,13 +818,12 @@ def build_reasoning(result: ScoreResult) -> dict[str, Any]:
             f"12개월 가격대 {range_pct}%, 52주 고점 대비 {from_high}% — 진입 점수 {result.entry}."
         )
         entry_en = (
-            f"12M price range {range_pct}%, {from_high}% from 52W high — entry score {result.entry}."
+            f"12M price range {range_pct}%, {from_high}% from 52W high — "
+            f"entry score {result.entry}."
         )
         momentum_ko = f"6개월 수익률 {ret6}% — 보조 모멘텀 점수 {result.momentum}."
         momentum_en = f"6M return {ret6}% — auxiliary momentum score {result.momentum}."
-        quality_ko = (
-            f"ROE {roe}%, ROA {roa}%, FCF/순이익 {fcf_ni} — 품질 점수 {result.quality}."
-        )
+        quality_ko = f"ROE {roe}%, ROA {roa}%, FCF/순이익 {fcf_ni} — 품질 점수 {result.quality}."
         quality_en = (
             f"ROE {roe}%, ROA {roa}%, FCF/net income {fcf_ni} — quality score {result.quality}."
         )
@@ -838,13 +837,19 @@ def build_reasoning(result: ScoreResult) -> dict[str, Any]:
             f"threshold with composite score {result.composite}."
         )
         growth_ko = f"매출 성장 {rev}% / 이익 성장 {earn}% — 성장 점수 {result.growth}."
-        growth_en = f"Revenue growth {rev}% and earnings growth {earn}% — growth score {result.growth}."
+        growth_en = (
+            f"Revenue growth {rev}% and earnings growth {earn}% — growth score {result.growth}."
+        )
         valuation_ko = f"PER {pe}, PEG {peg} — 밸류 점수 {result.valuation}."
         valuation_en = f"P/E {pe}, PEG {peg} — valuation score {result.valuation}."
         size_ko = ""
         size_en = ""
-        entry_ko = f"6개월 수익률 {ret6}%, 52주 고점 대비 {from_high}% — 모멘텀 점수 {result.momentum}."
-        entry_en = f"6M return {ret6}%, {from_high}% from 52W high — momentum score {result.momentum}."
+        entry_ko = (
+            f"6개월 수익률 {ret6}%, 52주 고점 대비 {from_high}% — 모멘텀 점수 {result.momentum}."
+        )
+        entry_en = (
+            f"6M return {ret6}%, {from_high}% from 52W high — momentum score {result.momentum}."
+        )
         momentum_ko = entry_ko
         momentum_en = entry_en
         quality_ko = f"ROE {roe}% — 품질 점수 {result.quality}."

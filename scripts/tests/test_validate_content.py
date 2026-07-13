@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from validate_content import load_validator
 
-from config import SCHEMA_PATH
-
 
 def test_schema_validator_loads():
     validator = load_validator()

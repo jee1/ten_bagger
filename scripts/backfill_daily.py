@@ -5,10 +5,9 @@ from __future__ import annotations
 
 import json
 import re
-import sys
+from profile import build_stock_profile
 
 from config import COMPOSITE_THRESHOLD, DAILY_DIR, MAX_GROWTH_PCT
-from profile import build_stock_profile
 from sync_manifest import sync_manifest
 from yf_cache import get_ticker_info
 
@@ -44,7 +43,6 @@ def backfill_entry(entry: dict) -> dict:
         scores = entry.get("scores", {})
         _fix_clipped_growth_reasoning(entry)
         if "quality" not in reasoning and scores:
-            roe = reasoning.get("growth", {}).get("ko", "")
             reasoning["quality"] = {
                 "ko": f"품질 점수 {scores.get('quality', 0)}입니다.",
                 "en": f"Quality score is {scores.get('quality', 0)}.",

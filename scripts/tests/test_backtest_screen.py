@@ -63,3 +63,67 @@ def test_snapshot_passes_score_version_and_summarizes_top():
     assert data["median_market_cap_top"] == 500_000_000
     assert data["avg_fcf_yield_top"] == 7.0
     assert [item["symbol"] for item in data["top_symbols"]] == ["AAA", "BBB"]
+
+
+def test_snapshot_v2_golden_structure():
+    """Regression snapshot: v2 US summary shape with fixed mock results."""
+    results = [
+        _fake_result("AAA", 90.0, 400_000_000, 8.0),
+        _fake_result("BBB", 85.0, 600_000_000, 6.0),
+    ]
+    stats = MagicMock(screened=50, passed_threshold=2, skipped_red_flags=3)
+
+    with patch("backtest_screen.screen_market", return_value=(results, stats)):
+        data = snapshot("US", 2, 2)
+
+    assert data == {
+        "version": 2,
+        "market": "US",
+        "screened": 50,
+        "passed_threshold": 2,
+        "skipped_red_flags": 3,
+        "median_market_cap_top": 500_000_000,
+        "avg_fcf_yield_top": 7.0,
+        "top_symbols": [
+            {
+                "symbol": "AAA",
+                "composite": 90.0,
+                "size": 80.0,
+                "growth": 70.0,
+                "valuation": 75.0,
+                "entry": 60.0,
+                "market_cap": 400_000_000,
+                "fcf_yield_pct": 8.0,
+            },
+            {
+                "symbol": "BBB",
+                "composite": 85.0,
+                "size": 80.0,
+                "growth": 70.0,
+                "valuation": 75.0,
+                "entry": 60.0,
+                "market_cap": 600_000_000,
+                "fcf_yield_pct": 6.0,
+            },
+        ],
+    }
+
+
+def test_snapshot_v1_vs_v2_score_versions():
+    v1_stats = MagicMock(screened=10, passed_threshold=1, skipped_red_flags=0)
+    v2_stats = MagicMock(screened=10, passed_threshold=1, skipped_red_flags=2)
+    pick = _fake_result("ZZZ", 88.0, 300_000_000, 5.0)
+
+    with patch("backtest_screen.screen_market") as mock_screen:
+        mock_screen.side_effect = [
+            ([pick], v1_stats),
+            ([pick], v2_stats),
+        ]
+        v1 = snapshot("KR", 1, 1)
+        v2 = snapshot("KR", 2, 1)
+
+    assert v1["version"] == 1
+    assert v2["version"] == 2
+    assert v2["skipped_red_flags"] == 2
+    assert mock_screen.call_args_list[0].kwargs["score_version"] == 1
+    assert mock_screen.call_args_list[1].kwargs["score_version"] == 2
