@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-18",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "NUTX",
+    "name": {
+      "ko": "Nutex Health Inc",
+      "en": "Nutex Health Inc."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Nutex Health Inc는 Healthcare 분야 Medical Care Facilities 기업입니다.",
+        "en": "Nutex Health Inc. operates as a healthcare services and operations company in the United States. It operates through three segments: Hospital, Population Health Management (PHM), and Real Estate."
+      },
+      "sector": {
+        "ko": "Healthcare",
+        "en": "Healthcare"
+      },
+      "industry": {
+        "ko": "Medical Care Facilities",
+        "en": "Medical Care Facilities"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.9,
+    "size": 92.0,
+    "growth": 85.6,
+    "valuation": 79.7,
+    "entry": 57.5,
+    "momentum": 57.4,
+    "quality": 93.0,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Nutex Health Inc(NUTX)는 v2 복합 점수 80.9로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Nutex Health Inc. (NUTX) cleared the 70.0 threshold with v2 composite 80.9; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 2.2% / 이익 95.9% (혼합 44.36%) — 지속 가능 성장 점수 85.6.",
+      "en": "Revenue 2.2% / earnings 95.9% (blended 44.36%) — sustainable growth score 85.6."
+    },
+    "valuation": {
+      "ko": "PER 11.92, PEG None, FCF수익률 15.05%, PBR 3.27 — 밸류 점수 79.7.",
+      "en": "P/E 11.92, PEG None, FCF yield 15.05%, P/B 3.27 — valuation score 79.7."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -0.75% — 보조 모멘텀 점수 57.4.",
+      "en": "6M return -0.75% — auxiliary momentum score 57.4."
+    },
+    "quality": {
+      "ko": "ROE 53.65%, ROA 28.59%, FCF/순이익 1.75 — 품질 점수 93.0.",
+      "en": "ROE 53.65%, ROA 28.59%, FCF/net income 1.75 — quality score 93.0."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1121520640 기준 규모 점수 92.0.",
+      "en": "Market cap 1121520640 — size score 92.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 70.98%, 52주 고점 대비 -17.07% — 진입 점수 57.5.",
+      "en": "12M price range 70.98%, -17.07% from 52W high — entry score 57.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-18T07:45:52+09:00",
+    "candidatesScreened": 6305,
+    "excludedRecent": 15,
+    "skippedMarketCap": 1941,
+    "skippedRedFlags": 986,
+    "noData": 94,
+    "errors": 0
+  }
+}
