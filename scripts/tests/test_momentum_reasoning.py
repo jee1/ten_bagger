@@ -76,7 +76,7 @@ def test_score_symbol_skips_low_us_cap(monkeypatch):
     meta = UniverseSymbol("SMALL", "소형", "Small Inc", "NASDAQ", "USD")
 
     monkeypatch.setattr(
-        "screen.get_ticker_info",
+        "screening.core.get_ticker_info",
         lambda _symbol: {
             "symbol": "SMALL",
             "shortName": "Small Inc",
@@ -95,7 +95,7 @@ def test_score_symbol_skips_low_us_cap(monkeypatch):
         },
     )
     monkeypatch.setattr(
-        "screen.get_ticker_history",
+        "screening.core.get_ticker_history",
         lambda _symbol, period="1y": pd.DataFrame({"Close": [1.0] * 40}),
     )
 
@@ -106,7 +106,7 @@ def test_score_symbol_skips_red_flags(monkeypatch):
     meta = UniverseSymbol("BAD", "나쁨", "Bad Inc", "NASDAQ", "USD")
 
     monkeypatch.setattr(
-        "screen.get_ticker_info",
+        "screening.core.get_ticker_info",
         lambda _symbol: {
             "symbol": "BAD",
             "shortName": "Bad Inc",
@@ -116,7 +116,7 @@ def test_score_symbol_skips_red_flags(monkeypatch):
         },
     )
     monkeypatch.setattr(
-        "screen.get_ticker_history",
+        "screening.core.get_ticker_history",
         lambda _symbol, period="1y": pd.DataFrame({"Close": [1.0] * 40}),
     )
 
