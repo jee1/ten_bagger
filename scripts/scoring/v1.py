@@ -42,6 +42,7 @@ from config import (
     V1_WEIGHT_QUALITY,
     V1_WEIGHT_VALUATION,
 )
+
 from scoring.common import _blended_growth_pct, _clamp, _safe_float
 from scoring.valuation import _score_pe_peg
 

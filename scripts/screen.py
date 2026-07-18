@@ -9,14 +9,6 @@ working.
 from __future__ import annotations
 
 from reasoning import build_reasoning
-from screening.core import (
-    ScreenStats,
-    load_universe,
-    passes_market_cap_filter,
-    passes_red_flags,
-    score_symbol,
-    screen_market,
-)
 from scoring.common import (
     _blended_growth_pct,
     _clamp,
@@ -44,6 +36,14 @@ from scoring.valuation import (
     _score_pe_peg,
     _score_price_to_book,
     _score_valuation,
+)
+from screening.core import (
+    ScreenStats,
+    load_universe,
+    passes_market_cap_filter,
+    passes_red_flags,
+    score_symbol,
+    screen_market,
 )
 
 __all__ = [
