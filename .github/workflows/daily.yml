@@ -131,6 +131,8 @@ jobs:
     needs: [generate-and-deploy, deploy]
     if: failure()
     runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - name: Create failure issue
         env:
@@ -154,3 +156,11 @@ jobs:
             gh issue create --repo "${{ github.repository }}" --title "$TITLE" --body "$BODY"
           fi
           echo "::error title=Daily Ten Bagger failed::Issue opened/updated. Re-run via workflow_dispatch."
+
+      - name: Notify Slack (optional)
+        if: always() && env.SLACK_WEBHOOK_URL != ''
+        run: |
+          TITLE="Daily Ten Bagger failed — $(TZ=Asia/Seoul date +%F)"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          PAYLOAD=$(printf '{"text":"🚨 %s\\n%s"}' "$TITLE" "$RUN_URL")
+          curl -sf -X POST -H 'Content-Type: application/json' --data "$PAYLOAD" "$SLACK_WEBHOOK_URL"
