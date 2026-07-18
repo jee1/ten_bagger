@@ -1,6 +1,15 @@
 /**
  * App-facing content types. Base shapes come from JSON Schema codegen;
  * pick/no_pick branches use stricter optional fields for Astro templates.
+ *
+ * NOTE: `SchemaDailyEntry`'s generated type carries a top-level index
+ * signature (`[k: string]: unknown`), which makes TS collapse indexed access
+ * into its nested optional object properties (e.g. `SchemaDailyEntry['stock']`)
+ * down to `{}`. That rules out deriving DailyStock/DailyScores/DailyMeta via
+ * indexing — they stay hand-written, kept honest by the active
+ * `_DailyEntrySchemaCheck` assertion below (a generic-constraint check, not a
+ * plain conditional type, so it fails to *compile* — not just silently
+ * evaluate to `never` — the moment DailyEntry drifts from the schema).
  */
 import type {
   DailyEntry as SchemaDailyEntry,
@@ -58,12 +67,19 @@ export interface DailyMeta {
   errors?: number;
 }
 
-export interface DailyEntry extends Omit<SchemaDailyEntry, 'stock' | 'scores' | 'reasoning' | 'meta'> {
+export type DailyEntry = {
+  date: string;
+  market: 'KR' | 'US';
+  status: 'pick' | 'no_pick';
   stock?: DailyStock;
   scores?: DailyScores;
   reasoning?: DailyReasoning;
   meta?: DailyMeta;
-}
+};
 
-/** Ensures hand-written DailyEntry stays compatible with schema codegen. */
-export type _DailyEntrySchemaCheck = DailyEntry extends SchemaDailyEntry ? true : never;
+/**
+ * Fails to compile (not just silently evaluate to `never`) if DailyEntry
+ * stops structurally matching the generated schema type.
+ */
+type AssertExtends<T extends U, U> = T;
+export type _DailyEntrySchemaCheck = AssertExtends<DailyEntry, SchemaDailyEntry>;

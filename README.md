@@ -53,6 +53,16 @@ pre-commit run --all-files   # ruff (CI에서도 실행, pip install pre-commit 
 3. 로컬 재현: `build_universe.py` → `generate_daily.py` → `validate_content.py`
 4. `git pull --rebase` 후 push 충돌 시 `content/daily/`·`manifest.json` 수동 병합
 
+실패 시 항상 GitHub Issue가 열리며(`ci-failure` 라벨), 아래 시크릿을 설정하면 Slack 알림도 즉시 옵니다.
+
+### Slack 알림 설정 (선택)
+
+1. Slack에서 [Incoming Webhook](https://api.slack.com/messaging/webhooks)을 만들어 Webhook URL 발급
+2. GitHub 저장소 **Settings → Secrets and variables → Actions → New repository secret**
+3. 이름 `SLACK_WEBHOOK_URL`, 값에 Webhook URL 입력 후 저장
+
+시크릿이 없으면 `notify-failure` job의 Slack 스텝은 조용히 건너뜁니다 (Issue 생성은 항상 동작).
+
 ## 배포 (GitHub Pages)
 
 1. GitHub 저장소 생성 후 push
