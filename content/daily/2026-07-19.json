@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-19",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "064850.KQ",
+    "name": {
+      "ko": "에프앤가이드",
+      "en": "FnGuide Inc."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "에프앤가이드는 Financial Services 분야 Financial Data & Stock Exchanges 기업입니다.",
+        "en": "FnGuide Inc. engages in development and provision of programs related to securities investment information and financial information."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Financial Data & Stock Exchanges",
+        "en": "Financial Data & Stock Exchanges"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.9,
+    "size": 100.0,
+    "growth": 75.1,
+    "valuation": 64.7,
+    "entry": 66.0,
+    "momentum": 100.0,
+    "quality": 75.6,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "에프앤가이드(064850.KQ)는 v2 복합 점수 77.9로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "FnGuide Inc. (064850.KQ) cleared the 70.0 threshold with v2 composite 77.9; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 16.5% / 이익 100.0% (혼합 54.08%) — 지속 가능 성장 점수 75.1.",
+      "en": "Revenue 16.5% / earnings 100.0% (blended 54.08%) — sustainable growth score 75.1."
+    },
+    "valuation": {
+      "ko": "PER 6.76, PEG None, FCF수익률 3.32%, PBR None — 밸류 점수 64.7.",
+      "en": "P/E 6.76, PEG None, FCF yield 3.32%, P/B None — valuation score 64.7."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 143.66% — 보조 모멘텀 점수 100.0.",
+      "en": "6M return 143.66% — auxiliary momentum score 100.0."
+    },
+    "quality": {
+      "ko": "ROE 20.09%, ROA 9.16%, FCF/순이익 0.61 — 품질 점수 75.6.",
+      "en": "ROE 20.09%, ROA 9.16%, FCF/net income 0.61 — quality score 75.6."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 241899044864 기준 규모 점수 100.0.",
+      "en": "Market cap 241899044864 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 53.47%, 52주 고점 대비 -35.56% — 진입 점수 66.0.",
+      "en": "12M price range 53.47%, -35.56% from 52W high — entry score 66.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-19T07:06:41+09:00",
+    "candidatesScreened": 1878,
+    "excludedRecent": 16,
+    "skippedMarketCap": 879,
+    "skippedRedFlags": 312,
+    "noData": 0,
+    "errors": 0
+  }
+}
