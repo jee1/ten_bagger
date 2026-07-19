@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-20",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "JOF",
+    "name": {
+      "ko": "Japan Smaller Capitalization Closed Fund",
+      "en": "Japan Smaller Capitalization Closed Fund"
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Japan Smaller Capitalization Closed Fund는 Financial Services 분야 Asset Management 기업입니다.",
+        "en": "Japan Smaller Capitalization Fund, Inc. is a closed-ended equity mutual fund launched by Nomura Asset Management U.S.A. Inc."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Asset Management",
+        "en": "Asset Management"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.1,
+    "size": 100.0,
+    "growth": 93.3,
+    "valuation": 67.7,
+    "entry": 57.5,
+    "momentum": 60.0,
+    "quality": 89.0,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Japan Smaller Capitalization Closed Fund(JOF)는 v2 복합 점수 80.1로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Japan Smaller Capitalization Closed Fund (JOF) cleared the 70.0 threshold with v2 composite 80.1; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 42.3% / 이익 0.0% (혼합 23.27%) — 지속 가능 성장 점수 93.3.",
+      "en": "Revenue 42.3% / earnings 0.0% (blended 23.27%) — sustainable growth score 93.3."
+    },
+    "valuation": {
+      "ko": "PER 2.22, PEG None, FCF수익률 None%, PBR 0.81 — 밸류 점수 67.7.",
+      "en": "P/E 2.22, PEG None, FCF yield None%, P/B 0.81 — valuation score 67.7."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 4.3% — 보조 모멘텀 점수 60.0.",
+      "en": "6M return 4.3% — auxiliary momentum score 60.0."
+    },
+    "quality": {
+      "ko": "ROE 43.52%, ROA 0.54%, FCF/순이익 None — 품질 점수 89.0.",
+      "en": "ROE 43.52%, ROA 0.54%, FCF/net income None — quality score 89.0."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 317906272 기준 규모 점수 100.0.",
+      "en": "Market cap 317906272 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 70.93%, 52주 고점 대비 -8.34% — 진입 점수 57.5.",
+      "en": "12M price range 70.93%, -8.34% from 52W high — entry score 57.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-20T07:44:23+09:00",
+    "candidatesScreened": 6296,
+    "excludedRecent": 17,
+    "skippedMarketCap": 1966,
+    "skippedRedFlags": 980,
+    "noData": 104,
+    "errors": 0
+  }
+}
