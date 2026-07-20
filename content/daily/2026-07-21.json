@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-21",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "339950.KQ",
+    "name": {
+      "ko": "아이비김영",
+      "en": "Ibkimyoung Co., Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "아이비김영는 Financial Services 분야 Shell Companies 기업입니다.",
+        "en": "Ibkimyoung Co., Ltd. engages in the operation of academies in South Korea. It also develops, produces, and sells educational solutions and content."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Shell Companies",
+        "en": "Shell Companies"
+      }
+    }
+  },
+  "scores": {
+    "composite": 78.9,
+    "size": 100.0,
+    "growth": 81.5,
+    "valuation": 73.5,
+    "entry": 47.0,
+    "momentum": 89.3,
+    "quality": 77.9,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "아이비김영(339950.KQ)는 v2 복합 점수 78.9로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Ibkimyoung Co., Ltd. (339950.KQ) cleared the 70.0 threshold with v2 composite 78.9; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 6.3% / 이익 100.0% (혼합 48.47%) — 지속 가능 성장 점수 81.5.",
+      "en": "Revenue 6.3% / earnings 100.0% (blended 48.47%) — sustainable growth score 81.5."
+    },
+    "valuation": {
+      "ko": "PER 5.0, PEG None, FCF수익률 31.45%, PBR None — 밸류 점수 73.5.",
+      "en": "P/E 5.0, PEG None, FCF yield 31.45%, P/B None — valuation score 73.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 60.63% — 보조 모멘텀 점수 89.3.",
+      "en": "6M return 60.63% — auxiliary momentum score 89.3."
+    },
+    "quality": {
+      "ko": "ROE 38.55%, ROA 10.43%, FCF/순이익 1.71 — 품질 점수 77.9.",
+      "en": "ROE 38.55%, ROA 10.43%, FCF/net income 1.71 — quality score 77.9."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 116214898688 기준 규모 점수 100.0.",
+      "en": "Market cap 116214898688 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 86.55%, 52주 고점 대비 -5.96% — 진입 점수 47.0.",
+      "en": "12M price range 86.55%, -5.96% from 52W high — entry score 47.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-21T07:22:27+09:00",
+    "candidatesScreened": 1855,
+    "excludedRecent": 18,
+    "skippedMarketCap": 900,
+    "skippedRedFlags": 303,
+    "noData": 0,
+    "errors": 3
+  }
+}
