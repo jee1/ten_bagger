@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-22",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "GCT",
+    "name": {
+      "ko": "Gigacloud Technology Inc",
+      "en": "GigaCloud Technology Inc."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Gigacloud Technology Inc는 Technology 분야 Software - Infrastructure 기업입니다.",
+        "en": "GigaCloud Technology Inc. provides end-to-end B2B ecommerce solutions for large parcel merchandise in the United States and internationally. The company offers GigaCloud Marketplace that integrates product discovery to payments and logistics tools into one easy-to-use platform."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Software - Infrastructure",
+        "en": "Software - Infrastructure"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.0,
+    "size": 100.0,
+    "growth": 88.3,
+    "valuation": 83.4,
+    "entry": 66.0,
+    "momentum": 56.1,
+    "quality": 71.5,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Gigacloud Technology Inc(GCT)는 v2 복합 점수 80.0로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "GigaCloud Technology Inc. (GCT) cleared the 70.0 threshold with v2 composite 80.0; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 32.2% / 이익 53.2% (혼합 41.65%) — 지속 가능 성장 점수 88.3.",
+      "en": "Revenue 32.2% / earnings 53.2% (blended 41.65%) — sustainable growth score 88.3."
+    },
+    "valuation": {
+      "ko": "PER 9.74, PEG 0.27, FCF수익률 5.81%, PBR 2.76 — 밸류 점수 83.4.",
+      "en": "P/E 9.74, PEG 0.27, FCF yield 5.81%, P/B 2.76 — valuation score 83.4."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -3.24% — 보조 모멘텀 점수 56.1.",
+      "en": "6M return -3.24% — auxiliary momentum score 56.1."
+    },
+    "quality": {
+      "ko": "ROE 32.14%, ROA 8.57%, FCF/순이익 0.56 — 품질 점수 71.5.",
+      "en": "ROE 32.14%, ROA 8.57%, FCF/net income 0.56 — quality score 71.5."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1435256448 기준 규모 점수 100.0.",
+      "en": "Market cap 1435256448 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 56.83%, 52주 고점 대비 -25.69% — 진입 점수 66.0.",
+      "en": "12M price range 56.83%, -25.69% from 52W high — entry score 66.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-22T07:58:22+09:00",
+    "candidatesScreened": 6303,
+    "excludedRecent": 19,
+    "skippedMarketCap": 1964,
+    "skippedRedFlags": 986,
+    "noData": 107,
+    "errors": 0
+  }
+}
