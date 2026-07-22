@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-23",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "036800.KQ",
+    "name": {
+      "ko": "나이스정보통신",
+      "en": "Nice Information & Telecommunication, Inc."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "나이스정보통신는 Technology 분야 Software - Infrastructure 기업입니다.",
+        "en": "Nice Information & Telecommunication, Inc. engages in the payment infrastructure business in South Korea. The company's products portfolio includes wired and wireless credit card checkers, POS, multipad, IC readers, and other products."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Software - Infrastructure",
+        "en": "Software - Infrastructure"
+      }
+    }
+  },
+  "scores": {
+    "composite": 78.2,
+    "size": 100.0,
+    "growth": 92.4,
+    "valuation": 73.5,
+    "entry": 75.0,
+    "momentum": 75.4,
+    "quality": 56.9,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "나이스정보통신(036800.KQ)는 v2 복합 점수 78.2로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Nice Information & Telecommunication, Inc. (036800.KQ) cleared the 70.0 threshold with v2 composite 78.2; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 11.0% / 이익 70.2% (혼합 37.64%) — 지속 가능 성장 점수 92.4.",
+      "en": "Revenue 11.0% / earnings 70.2% (blended 37.64%) — sustainable growth score 92.4."
+    },
+    "valuation": {
+      "ko": "PER 5.08, PEG None, FCF수익률 19.33%, PBR None — 밸류 점수 73.5.",
+      "en": "P/E 5.08, PEG None, FCF yield 19.33%, P/B None — valuation score 73.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 33.91% — 보조 모멘텀 점수 75.4.",
+      "en": "6M return 33.91% — auxiliary momentum score 75.4."
+    },
+    "quality": {
+      "ko": "ROE 12.28%, ROA 3.07%, FCF/순이익 1.0 — 품질 점수 56.9.",
+      "en": "ROE 12.28%, ROA 3.07%, FCF/net income 1.0 — quality score 56.9."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 253779345408 기준 규모 점수 100.0.",
+      "en": "Market cap 253779345408 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 59.05%, 52주 고점 대비 -16.4% — 진입 점수 75.0.",
+      "en": "12M price range 59.05%, -16.4% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-23T07:22:43+09:00",
+    "candidatesScreened": 1861,
+    "excludedRecent": 20,
+    "skippedMarketCap": 893,
+    "skippedRedFlags": 306,
+    "noData": 0,
+    "errors": 0
+  }
+}
