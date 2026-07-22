@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 
 import jsonschema
+
 from config import DAILY_DIR, MANIFEST_PATH, SCHEMA_PATH
 from sync_manifest import collect_daily_dates
 

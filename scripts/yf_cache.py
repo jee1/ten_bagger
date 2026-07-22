@@ -13,6 +13,7 @@ from typing import Any
 
 import pandas as pd
 import yfinance as yf
+
 from config import (
     CACHE_DIR,
     CACHE_TTL_SECONDS,

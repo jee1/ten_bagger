@@ -12,7 +12,6 @@ from config import (
     SIZE_IDEAL_BASE,
     UniverseSymbol,
 )
-
 from scoring.common import _clamp, _resolve_market_cap, _safe_float
 
 

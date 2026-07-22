@@ -26,7 +26,6 @@ from config import (
     QUALITY_ROE_MULTIPLIER,
     QUALITY_ROE_WEIGHT,
 )
-
 from scoring.common import _clamp, _safe_float
 
 

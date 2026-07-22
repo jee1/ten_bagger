@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pandas as pd
+
 from config import MAX_GROWTH_PCT, MIN_MARKET_CAP_US, UniverseSymbol
 from screen import (
     ScoreResult,

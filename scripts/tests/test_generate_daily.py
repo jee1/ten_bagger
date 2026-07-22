@@ -6,8 +6,9 @@ import json
 import sys
 from datetime import date
 
-import generate_daily
 import pytest
+
+import generate_daily
 from config import COMPOSITE_THRESHOLD, SCORE_VERSION, UniverseSymbol
 from screen import ScoreResult, ScreenStats
 

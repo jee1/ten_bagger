@@ -43,7 +43,6 @@ from config import (
     VAL_PE_PEG_WEIGHT,
     UniverseSymbol,
 )
-
 from scoring.common import _clamp, _resolve_market_cap, _safe_float
 
 

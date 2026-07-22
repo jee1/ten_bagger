@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 import pandas as pd
+
 from config import (
     MOMENTUM_DAMPEN_WEIGHT,
     MOMENTUM_DEFAULT_SCORE,
@@ -14,7 +15,6 @@ from config import (
     MOMENTUM_RET_BASE,
     MOMENTUM_RET_MULTIPLIER,
 )
-
 from scoring.common import _clamp
 
 
