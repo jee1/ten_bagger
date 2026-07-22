@@ -7,7 +7,8 @@ import type { Lang } from '../lib/i18n';
 
 const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
 const today = getTodayDateString();
-const entry = getDailyEntry(today) ?? getLatestEntry();
+const todayEntry = await getDailyEntry(today);
+const entry = todayEntry ?? await getLatestEntry();
 ---
 
 <Layout title={label('today', lang)} lang={lang}>

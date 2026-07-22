@@ -11,7 +11,7 @@ export function getStaticPaths() {
 
 const { date } = Astro.params;
 const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
-const entry = getDailyEntry(date!);
+const entry = await getDailyEntry(date!);
 
 if (!entry) {
   return Astro.redirect(`${import.meta.env.BASE_URL}archive?lang=${lang}`);
