@@ -14,6 +14,6 @@
 - [x] #36 Daily 실패 알림
 
 ## Phase 3 — 스케일
-- [ ] #37 Content Collections 마이그레이션
-- [ ] #38 yfinance 회복력 강화
-- [ ] #39 build_universe 단위 테스트
+- [x] #37 Content Collections 마이그레이션
+- [x] #38 yfinance 회복력 강화
+- [x] #39 build_universe 단위 테스트

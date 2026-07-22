@@ -55,6 +55,13 @@ pre-commit run --all-files   # ruff (CI에서도 실행, pip install pre-commit 
 
 실패 시 항상 GitHub Issue가 열리며(`ci-failure` 라벨), 아래 시크릿을 설정하면 Slack 알림도 즉시 옵니다.
 
+### yfinance rate limit 대응
+
+Yahoo가 429/rate limit 또는 일시적 네트워크 오류를 반환하면 스크리너는 재시도 후
+`scripts/cache/`의 기존 yfinance 캐시를 TTL이 만료됐더라도 fallback으로 사용합니다.
+캐시가 없거나 손상된 경우에는 실패를 숨기지 않고 CI가 실패하므로, 같은 날짜를
+재실행하거나 로컬에서 캐시를 채운 뒤 다시 실행합니다.
+
 ### Slack 알림 설정 (선택)
 
 1. Slack에서 [Incoming Webhook](https://api.slack.com/messaging/webhooks)을 만들어 Webhook URL 발급

@@ -9,7 +9,7 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
 const kstNow = getKstDate();
 const year = Number(Astro.url.searchParams.get('year')) || kstNow.getFullYear();
 const month = Number(Astro.url.searchParams.get('month')) || kstNow.getMonth() + 1;
-const entries = getEntriesForMonth(year, month);
+const entries = await getEntriesForMonth(year, month);
 ---
 
 <Layout title={label('archive', lang)} lang={lang}>

@@ -44,6 +44,33 @@ def _is_fresh(path: Path) -> bool:
     return age < CACHE_TTL_SECONDS
 
 
+def _read_json(path: Path) -> dict[str, Any] | None:
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        logger.debug("Corrupt yfinance cache ignored: %s", path)
+        return None
+
+
+def _read_info_cache(path: Path) -> dict[str, Any] | None:
+    payload = _read_json(path)
+    return payload if payload else None
+
+
+def _read_history_cache(path: Path) -> pd.DataFrame | None:
+    payload = _read_json(path)
+    if not payload or not payload.get("close"):
+        return None
+    try:
+        index = pd.to_datetime(payload["index"])
+        return pd.DataFrame({"Close": payload["close"]}, index=index)
+    except (KeyError, ValueError):
+        logger.debug("Invalid yfinance history cache ignored: %s", path)
+        return None
+
+
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
@@ -51,7 +78,22 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
 
 def _is_rate_limited(exc: Exception) -> bool:
     message = str(exc).lower()
-    return "too many requests" in message or "rate limit" in message
+    return "429" in message or "too many requests" in message or "rate limit" in message
+
+
+def _is_transient_failure(exc: Exception) -> bool:
+    if isinstance(exc, ConnectionError | TimeoutError):
+        return True
+    message = str(exc).lower()
+    transient_markers = (
+        "connection",
+        "temporar",
+        "timeout",
+        "timed out",
+        "remote end closed",
+        "service unavailable",
+    )
+    return _is_rate_limited(exc) or any(marker in message for marker in transient_markers)
 
 
 def _throttle_before_request() -> None:
@@ -93,15 +135,25 @@ def _with_retry[T](label: str, fn: Callable[[], T]) -> T:
 def get_ticker_info(symbol: str) -> dict[str, Any]:
     path = _cache_path(symbol, "info")
     if _is_fresh(path):
-        try:
-            return json.loads(path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            logger.debug("Stale corrupt cache for %s info", symbol)
+        cached = _read_info_cache(path)
+        if cached is not None:
+            return cached
 
     def _fetch() -> dict[str, Any]:
         return yf.Ticker(symbol).info or {}
 
-    info = _with_retry(f"yfinance info {symbol}", _fetch)
+    try:
+        info = _with_retry(f"yfinance info {symbol}", _fetch)
+    except Exception as exc:
+        stale = _read_info_cache(path)
+        if stale is not None and _is_transient_failure(exc):
+            logger.warning(
+                "Using stale yfinance info cache for %s after fetch failure: %s",
+                symbol,
+                exc,
+            )
+            return stale
+        raise
     if info:
         _write_json(path, info)
     return info
@@ -111,18 +163,25 @@ def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
     kind = f"hist_{period.replace('/', '_')}"
     path = _cache_path(symbol, kind)
     if _is_fresh(path):
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-            if payload.get("close"):
-                index = pd.to_datetime(payload["index"])
-                return pd.DataFrame({"Close": payload["close"]}, index=index)
-        except (json.JSONDecodeError, KeyError, ValueError):
-            logger.debug("Stale corrupt cache for %s history", symbol)
+        cached = _read_history_cache(path)
+        if cached is not None:
+            return cached
 
     def _fetch() -> pd.DataFrame:
         return yf.Ticker(symbol).history(period=period)
 
-    hist = _with_retry(f"yfinance history {symbol}", _fetch)
+    try:
+        hist = _with_retry(f"yfinance history {symbol}", _fetch)
+    except Exception as exc:
+        stale = _read_history_cache(path)
+        if stale is not None and _is_transient_failure(exc):
+            logger.warning(
+                "Using stale yfinance history cache for %s after fetch failure: %s",
+                symbol,
+                exc,
+            )
+            return stale
+        raise
     if not hist.empty:
         _write_json(
             path,
