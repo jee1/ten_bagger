@@ -8,7 +8,6 @@ import json
 from typing import Any
 
 import FinanceDataReader as fdr
-
 from config import UNIVERSE_DIR
 
 

@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Any
 
 import pandas as pd
-
 from config import (
     ENTRY_AT_HIGH_RECOVERY_SCORE,
     ENTRY_DEFAULT_SCORE,
@@ -25,6 +24,7 @@ from config import (
     MOMENTUM_RECOVERY_LOW,
     MOMENTUM_RECOVERY_SCORE,
 )
+
 from scoring.common import _clamp
 
 

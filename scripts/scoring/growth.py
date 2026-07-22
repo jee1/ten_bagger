@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from config import GROWTH_PENALTY_ABOVE, GROWTH_SWEET_HIGH, GROWTH_SWEET_LOW, GROWTH_SWEET_PEAK
+
 from scoring.common import _blended_growth_pct
 
 

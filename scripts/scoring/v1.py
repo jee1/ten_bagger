@@ -9,7 +9,6 @@ from __future__ import annotations
 from typing import Any
 
 import pandas as pd
-
 from config import (
     GROWTH_BASE_SCORE,
     GROWTH_SCORE_MULTIPLIER,
@@ -43,6 +42,7 @@ from config import (
     V1_WEIGHT_QUALITY,
     V1_WEIGHT_VALUATION,
 )
+
 from scoring.common import _blended_growth_pct, _clamp, _safe_float
 from scoring.valuation import _score_pe_peg
 
