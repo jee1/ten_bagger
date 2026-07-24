@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-25",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "192080.KS",
+    "name": {
+      "ko": "더블유게임즈",
+      "en": "DoubleUGames Co., Ltd."
+    },
+    "exchange": "KOSPI",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "더블유게임즈는 Communication Services 분야 Electronic Gaming & Multimedia 기업입니다.",
+        "en": "DoubleUGames Co., Ltd. develops and services mobile games worldwide. It offers DoubleDown Casino; DoubleU Casino, a social casino game; Take5 Slots, a multiplayer slot room game; DoubleU Bingo; and Undead World."
+      },
+      "sector": {
+        "ko": "Communication Services",
+        "en": "Communication Services"
+      },
+      "industry": {
+        "ko": "Electronic Gaming & Multimedia",
+        "en": "Electronic Gaming & Multimedia"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.6,
+    "size": 92.0,
+    "growth": 84.0,
+    "valuation": 73.5,
+    "entry": 75.0,
+    "momentum": 69.5,
+    "quality": 71.0,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "더블유게임즈(192080.KS)는 v2 복합 점수 77.6로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "DoubleUGames Co., Ltd. (192080.KS) cleared the 70.0 threshold with v2 composite 77.6; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 26.6% / 이익 69.8% (혼합 46.04%) — 지속 가능 성장 점수 84.0.",
+      "en": "Revenue 26.6% / earnings 69.8% (blended 46.04%) — sustainable growth score 84.0."
+    },
+    "valuation": {
+      "ko": "PER 5.69, PEG None, FCF수익률 14.66%, PBR None — 밸류 점수 73.5.",
+      "en": "P/E 5.69, PEG None, FCF yield 14.66%, P/B None — valuation score 73.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 22.55% — 보조 모멘텀 점수 69.5.",
+      "en": "6M return 22.55% — auxiliary momentum score 69.5."
+    },
+    "quality": {
+      "ko": "ROE 12.36%, ROA 8.2%, FCF/순이익 1.12 — 품질 점수 71.0.",
+      "en": "ROE 12.36%, ROA 8.2%, FCF/net income 1.12 — quality score 71.0."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1172230766592 기준 규모 점수 92.0.",
+      "en": "Market cap 1172230766592 — size score 92.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 49.45%, 52주 고점 대비 -18.5% — 진입 점수 75.0.",
+      "en": "12M price range 49.45%, -18.5% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-25T07:22:44+09:00",
+    "candidatesScreened": 1867,
+    "excludedRecent": 22,
+    "skippedMarketCap": 886,
+    "skippedRedFlags": 309,
+    "noData": 0,
+    "errors": 0
+  }
+}
