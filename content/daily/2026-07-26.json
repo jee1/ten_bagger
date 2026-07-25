@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-26",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "TEI",
+    "name": {
+      "ko": "Templeton Emerging Markets Income Closed Fund",
+      "en": "Templeton Emerging Markets Income Fund"
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Templeton Emerging Markets Income Closed Fund는 Financial Services 분야 Asset Management 기업입니다.",
+        "en": "Templeton Emerging Markets Income Fund is a closed-ended fixed income mutual fund launched by Franklin Resources, Inc. It is managed by Franklin Advisers, Inc. The fund invests in the fixed income markets of emerging market countries across the globe."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Asset Management",
+        "en": "Asset Management"
+      }
+    }
+  },
+  "scores": {
+    "composite": 84.4,
+    "size": 100.0,
+    "growth": 81.7,
+    "valuation": 80.0,
+    "entry": 59.0,
+    "momentum": 100.0,
+    "quality": 86.0,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Templeton Emerging Markets Income Closed Fund(TEI)는 v2 복합 점수 84.4로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Templeton Emerging Markets Income Fund (TEI) cleared the 70.0 threshold with v2 composite 84.4; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 6.0% / 이익 100.0% (혼합 48.3%) — 지속 가능 성장 점수 81.7.",
+      "en": "Revenue 6.0% / earnings 100.0% (blended 48.3%) — sustainable growth score 81.7."
+    },
+    "valuation": {
+      "ko": "PER 3.29, PEG None, FCF수익률 5.52%, PBR 0.97 — 밸류 점수 80.0.",
+      "en": "P/E 3.29, PEG None, FCF yield 5.52%, P/B 0.97 — valuation score 80.0."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 nan% — 보조 모멘텀 점수 100.0.",
+      "en": "6M return nan% — auxiliary momentum score 100.0."
+    },
+    "quality": {
+      "ko": "ROE 32.05%, ROA 6.16%, FCF/순이익 0.18 — 품질 점수 86.0.",
+      "en": "ROE 32.05%, ROA 6.16%, FCF/net income 0.18 — quality score 86.0."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 310290688 기준 규모 점수 100.0.",
+      "en": "Market cap 310290688 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 nan%, 52주 고점 대비 nan% — 진입 점수 59.0.",
+      "en": "12M price range nan%, nan% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-26T07:48:02+09:00",
+    "candidatesScreened": 6292,
+    "excludedRecent": 23,
+    "skippedMarketCap": 1980,
+    "skippedRedFlags": 975,
+    "noData": 104,
+    "errors": 0
+  }
+}
