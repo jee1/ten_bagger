@@ -1,0 +1,92 @@
+{
+  "date": "2026-07-29",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "178920.KS",
+    "name": {
+      "ko": "PI첨단소재",
+      "en": "PI Advanced Materials Co., Ltd."
+    },
+    "exchange": "KOSPI",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "PI첨단소재는 Basic Materials 분야 Specialty Chemicals 기업입니다.",
+        "en": "PI Advanced Materials Co., Ltd. engages in the manufacture and sale of polyimide-based materials in South Korea. It offers PI film, and PI varnish and power/mold products for use in IT, electric vehicles, display, semiconductor, and advance industrials."
+      },
+      "sector": {
+        "ko": "Basic Materials",
+        "en": "Basic Materials"
+      },
+      "industry": {
+        "ko": "Specialty Chemicals",
+        "en": "Specialty Chemicals"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.3,
+    "size": 100.0,
+    "growth": 92.8,
+    "valuation": 73.5,
+    "entry": 59.0,
+    "momentum": 67.5,
+    "quality": 63.4,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "PI첨단소재(178920.KS)는 v2 복합 점수 77.3로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "PI Advanced Materials Co., Ltd. (178920.KS) cleared the 70.0 threshold with v2 composite 77.3; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 0.0% / 이익 82.6% (혼합 37.17%) — 지속 가능 성장 점수 92.8.",
+      "en": "Revenue 0.0% / earnings 82.6% (blended 37.17%) — sustainable growth score 92.8."
+    },
+    "valuation": {
+      "ko": "PER 9.77, PEG None, FCF수익률 12.68%, PBR None — 밸류 점수 73.5.",
+      "en": "P/E 9.77, PEG None, FCF yield 12.68%, P/B None — valuation score 73.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 18.79% — 보조 모멘텀 점수 67.5.",
+      "en": "6M return 18.79% — auxiliary momentum score 67.5."
+    },
+    "quality": {
+      "ko": "ROE 10.21%, ROA 6.18%, FCF/순이익 1.91 — 품질 점수 63.4.",
+      "en": "ROE 10.21%, ROA 6.18%, FCF/net income 1.91 — quality score 63.4."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 529768448000 기준 규모 점수 100.0.",
+      "en": "Market cap 529768448000 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 20.16%, 52주 고점 대비 -42.27% — 진입 점수 59.0.",
+      "en": "12M price range 20.16%, -42.27% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-29T07:20:45+09:00",
+    "candidatesScreened": 1834,
+    "excludedRecent": 25,
+    "skippedMarketCap": 917,
+    "skippedRedFlags": 297,
+    "noData": 0,
+    "errors": 0
+  }
+}
