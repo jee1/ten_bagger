@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-01",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "066620.KQ",
+    "name": {
+      "ko": "국보디자인",
+      "en": "Kukbo Design Co., Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "국보디자인는 Industrials 분야 Consulting Services 기업입니다.",
+        "en": "Kukbo Design Co., Ltd. operates as an interior design company in South Korea and internationally. It undertakes design works for office, renovation, hotel, commercial, and retail projects."
+      },
+      "sector": {
+        "ko": "Industrials",
+        "en": "Industrials"
+      },
+      "industry": {
+        "ko": "Consulting Services",
+        "en": "Consulting Services"
+      }
+    }
+  },
+  "scores": {
+    "composite": 76.8,
+    "size": 100.0,
+    "growth": 94.8,
+    "valuation": 65.8,
+    "entry": 75.0,
+    "momentum": 60.1,
+    "quality": 64.6,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "국보디자인(066620.KQ)는 v2 복합 점수 76.8로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Kukbo Design Co., Ltd. (066620.KQ) cleared the 70.0 threshold with v2 composite 76.8; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 0.2% / 이익 78.0% (혼합 35.21%) — 지속 가능 성장 점수 94.8.",
+      "en": "Revenue 0.2% / earnings 78.0% (blended 35.21%) — sustainable growth score 94.8."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 79.76%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 79.76%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 4.55% — 보조 모멘텀 점수 60.1.",
+      "en": "6M return 4.55% — auxiliary momentum score 60.1."
+    },
+    "quality": {
+      "ko": "ROE 15.49%, ROA 6.23%, FCF/순이익 2.72 — 품질 점수 64.6.",
+      "en": "ROE 15.49%, ROA 6.23%, FCF/net income 2.72 — quality score 64.6."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 155633205248 기준 규모 점수 100.0.",
+      "en": "Market cap 155633205248 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 52.95%, 52주 고점 대비 -11.88% — 진입 점수 75.0.",
+      "en": "12M price range 52.95%, -11.88% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-01T07:21:36+09:00",
+    "candidatesScreened": 1824,
+    "excludedRecent": 28,
+    "skippedMarketCap": 924,
+    "skippedRedFlags": 291,
+    "noData": 0,
+    "errors": 0
+  }
+}
