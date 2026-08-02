@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-03",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "408920.KQ",
+    "name": {
+      "ko": "메쎄이상",
+      "en": "SK Securities ACPC No.7 Special Purpose Acquisition Company"
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "메쎄이상는 Industrials 분야 Specialty Business Services 기업입니다.",
+        "en": "Messe eSang Co.,Ltd operates as an exhibition organizer company in Korea."
+      },
+      "sector": {
+        "ko": "Industrials",
+        "en": "Industrials"
+      },
+      "industry": {
+        "ko": "Specialty Business Services",
+        "en": "Specialty Business Services"
+      }
+    }
+  },
+  "scores": {
+    "composite": 76.6,
+    "size": 100.0,
+    "growth": 86.4,
+    "valuation": 65.8,
+    "entry": 75.0,
+    "momentum": 48.2,
+    "quality": 77.6,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "메쎄이상(408920.KQ)는 v2 복합 점수 76.6로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "SK Securities ACPC No.7 Special Purpose Acquisition Company (408920.KQ) cleared the 70.0 threshold with v2 composite 76.6; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 25.8% / 이익 65.3% (혼합 43.58%) — 지속 가능 성장 점수 86.4.",
+      "en": "Revenue 25.8% / earnings 65.3% (blended 43.58%) — sustainable growth score 86.4."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 13.77%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 13.77%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -18.33% — 보조 모멘텀 점수 48.2.",
+      "en": "6M return -18.33% — auxiliary momentum score 48.2."
+    },
+    "quality": {
+      "ko": "ROE 23.55%, ROA 12.89%, FCF/순이익 0.99 — 품질 점수 77.6.",
+      "en": "ROE 23.55%, ROA 12.89%, FCF/net income 0.99 — quality score 77.6."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 124539002880 기준 규모 점수 100.0.",
+      "en": "Market cap 124539002880 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 37.12%, 52주 고점 대비 -20.65% — 진입 점수 75.0.",
+      "en": "12M price range 37.12%, -20.65% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-03T07:12:27+09:00",
+    "candidatesScreened": 1824,
+    "excludedRecent": 29,
+    "skippedMarketCap": 924,
+    "skippedRedFlags": 291,
+    "noData": 0,
+    "errors": 0
+  }
+}
