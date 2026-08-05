@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-06",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "CBL",
+    "name": {
+      "ko": "CBL & Associates Properties  Inc.",
+      "en": "CBL & Associates Properties, Inc."
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "CBL & Associates Properties  Inc.는 Real Estate 분야 REIT - Retail 기업입니다.",
+        "en": "CBL & Associates Properties, Inc. owns and manages a national portfolio of market-dominant properties located in dynamic and growing communities."
+      },
+      "sector": {
+        "ko": "Real Estate",
+        "en": "Real Estate"
+      },
+      "industry": {
+        "ko": "REIT - Retail",
+        "en": "REIT - Retail"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.3,
+    "size": 100.0,
+    "growth": 83.3,
+    "valuation": 76.0,
+    "entry": 47.0,
+    "momentum": 90.8,
+    "quality": 79.4,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "CBL & Associates Properties  Inc.(CBL)는 v2 복합 점수 80.3로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "CBL & Associates Properties, Inc. (CBL) cleared the 70.0 threshold with v2 composite 80.3; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 3.0% / 이익 100.0% (혼합 46.65%) — 지속 가능 성장 점수 83.3.",
+      "en": "Revenue 3.0% / earnings 100.0% (blended 46.65%) — sustainable growth score 83.3."
+    },
+    "valuation": {
+      "ko": "PER 10.21, PEG None, FCF수익률 11.13%, PBR 4.41 — 밸류 점수 76.0.",
+      "en": "P/E 10.21, PEG None, FCF yield 11.13%, P/B 4.41 — valuation score 76.0."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 63.55% — 보조 모멘텀 점수 90.8.",
+      "en": "6M return 63.55% — auxiliary momentum score 90.8."
+    },
+    "quality": {
+      "ko": "ROE 51.41%, ROA 3.65%, FCF/순이익 1.14 — 품질 점수 79.4.",
+      "en": "ROE 51.41%, ROA 3.65%, FCF/net income 1.14 — quality score 79.4."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1753639424 기준 규모 점수 100.0.",
+      "en": "Market cap 1753639424 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 89.95%, 52주 고점 대비 -5.63% — 진입 점수 47.0.",
+      "en": "12M price range 89.95%, -5.63% from 52W high — entry score 47.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-06T08:05:36+09:00",
+    "candidatesScreened": 6310,
+    "excludedRecent": 29,
+    "skippedMarketCap": 1945,
+    "skippedRedFlags": 986,
+    "noData": 105,
+    "errors": 0
+  }
+}
