@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-08",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "EVER",
+    "name": {
+      "ko": "EverQuote  Inc.",
+      "en": "EverQuote, Inc."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "EverQuote  Inc.는 Communication Services 분야 Internet Content & Information 기업입니다.",
+        "en": "EverQuote, Inc. operates an online marketplace for insurance shopping in the United States. The company provides automotive, and home and renters insurance, as well as campaign management tools."
+      },
+      "sector": {
+        "ko": "Communication Services",
+        "en": "Communication Services"
+      },
+      "industry": {
+        "ko": "Internet Content & Information",
+        "en": "Internet Content & Information"
+      }
+    }
+  },
+  "scores": {
+    "composite": 81.8,
+    "size": 92.0,
+    "growth": 99.7,
+    "valuation": 76.2,
+    "entry": 47.0,
+    "momentum": 79.7,
+    "quality": 81.5,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "EverQuote  Inc.(EVER)는 v2 복합 점수 81.8로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "EverQuote, Inc. (EVER) cleared the 70.0 threshold with v2 composite 81.8; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 24.6% / 이익 35.9% (혼합 29.69%) — 지속 가능 성장 점수 99.7.",
+      "en": "Revenue 24.6% / earnings 35.9% (blended 29.69%) — sustainable growth score 99.7."
+    },
+    "valuation": {
+      "ko": "PER 8.37, PEG None, FCF수익률 6.94%, PBR 3.78 — 밸류 점수 76.2.",
+      "en": "P/E 8.37, PEG None, FCF yield 6.94%, P/B 3.78 — valuation score 76.2."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 42.12% — 보조 모멘텀 점수 79.7.",
+      "en": "6M return 42.12% — auxiliary momentum score 79.7."
+    },
+    "quality": {
+      "ko": "ROE 53.61%, ROA 17.83%, FCF/순이익 0.55 — 품질 점수 81.5.",
+      "en": "ROE 53.61%, ROA 17.83%, FCF/net income 0.55 — quality score 81.5."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 906014016 기준 규모 점수 92.0.",
+      "en": "Market cap 906014016 — size score 92.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 84.12%, 52주 고점 대비 -7.75% — 진입 점수 47.0.",
+      "en": "12M price range 84.12%, -7.75% from 52W high — entry score 47.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-08T07:32:32+09:00",
+    "candidatesScreened": 6316,
+    "excludedRecent": 28,
+    "skippedMarketCap": 1863,
+    "skippedRedFlags": 996,
+    "noData": 109,
+    "errors": 0
+  }
+}
