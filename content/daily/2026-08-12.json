@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-12",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "SENEA",
+    "name": {
+      "ko": "Seneca Foods Corporation Class A",
+      "en": "Seneca Foods Corporation"
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Seneca Foods Corporation Class A는 Consumer Defensive 분야 Packaged Foods 기업입니다.",
+        "en": "Seneca Foods Corporation provides packaged fruits and vegetables in the United States and internationally."
+      },
+      "sector": {
+        "ko": "Consumer Defensive",
+        "en": "Consumer Defensive"
+      },
+      "industry": {
+        "ko": "Packaged Foods",
+        "en": "Packaged Foods"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.6,
+    "size": 100.0,
+    "growth": 95.2,
+    "valuation": 88.0,
+    "entry": 36.5,
+    "momentum": 85.9,
+    "quality": 61.8,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Seneca Foods Corporation Class A(SENEA)는 v2 복합 점수 80.6로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Seneca Foods Corporation (SENEA) cleared the 70.0 threshold with v2 composite 80.6; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 36.2% / 이익 33.1% (혼합 34.8%) — 지속 가능 성장 점수 95.2.",
+      "en": "Revenue 36.2% / earnings 33.1% (blended 34.8%) — sustainable growth score 95.2."
+    },
+    "valuation": {
+      "ko": "PER 10.65, PEG 0.83, FCF수익률 11.07%, PBR 1.65 — 밸류 점수 88.0.",
+      "en": "P/E 10.65, PEG 0.83, FCF yield 11.07%, P/B 1.65 — valuation score 88.0."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 54.15% — 보조 모멘텀 점수 85.9.",
+      "en": "6M return 54.15% — auxiliary momentum score 85.9."
+    },
+    "quality": {
+      "ko": "ROE 16.82%, ROA 8.28%, FCF/순이익 1.16 — 품질 점수 61.8.",
+      "en": "ROE 16.82%, ROA 8.28%, FCF/net income 1.16 — quality score 61.8."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1248607616 기준 규모 점수 100.0.",
+      "en": "Market cap 1248607616 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 100.0%, 52주 고점 대비 0.0% — 진입 점수 36.5.",
+      "en": "12M price range 100.0%, 0.0% from 52W high — entry score 36.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-12T07:39:28+09:00",
+    "candidatesScreened": 6319,
+    "excludedRecent": 28,
+    "skippedMarketCap": 1871,
+    "skippedRedFlags": 996,
+    "noData": 110,
+    "errors": 0
+  }
+}
