@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-16",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "AII",
+    "name": {
+      "ko": "American Integrity Insurance Group Inc",
+      "en": "American Integrity Insurance Group, Inc."
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "American Integrity Insurance Group Inc는 Financial Services 분야 Insurance - Property & Casualty 기업입니다.",
+        "en": "American Integrity Insurance Group, Inc., together with its subsidiaries, operates as an insurance company in the United States."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Insurance - Property & Casualty",
+        "en": "Insurance - Property & Casualty"
+      }
+    }
+  },
+  "scores": {
+    "composite": 83.6,
+    "size": 100.0,
+    "growth": 96.6,
+    "valuation": 83.5,
+    "entry": 36.5,
+    "momentum": 79.6,
+    "quality": 84.0,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "American Integrity Insurance Group Inc(AII)는 v2 복합 점수 83.6로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "American Integrity Insurance Group, Inc. (AII) cleared the 70.0 threshold with v2 composite 83.6; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 54.6% / 이익 7.4% (혼합 33.36%) — 지속 가능 성장 점수 96.6.",
+      "en": "Revenue 54.6% / earnings 7.4% (blended 33.36%) — sustainable growth score 96.6."
+    },
+    "valuation": {
+      "ko": "PER 5.67, PEG None, FCF수익률 58.91%, PBR 1.27 — 밸류 점수 83.5.",
+      "en": "P/E 5.67, PEG None, FCF yield 58.91%, P/B 1.27 — valuation score 83.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 42.04% — 보조 모멘텀 점수 79.6.",
+      "en": "6M return 42.04% — auxiliary momentum score 79.6."
+    },
+    "quality": {
+      "ko": "ROE 26.24%, ROA 4.69%, FCF/순이익 3.14 — 품질 점수 84.0.",
+      "en": "ROE 26.24%, ROA 4.69%, FCF/net income 3.14 — quality score 84.0."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 470046336 기준 규모 점수 100.0.",
+      "en": "Market cap 470046336 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 90.32%, 52주 고점 대비 -3.3% — 진입 점수 36.5.",
+      "en": "12M price range 90.32%, -3.3% from 52W high — entry score 36.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-16T07:13:25+09:00",
+    "candidatesScreened": 6323,
+    "excludedRecent": 27,
+    "skippedMarketCap": 1943,
+    "skippedRedFlags": 999,
+    "noData": 111,
+    "errors": 0
+  }
+}
