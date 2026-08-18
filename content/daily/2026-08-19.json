@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-19",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "052400.KQ",
+    "name": {
+      "ko": "코나아이",
+      "en": "Kona I Co.,Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "코나아이는 Technology 분야 Semiconductors 기업입니다.",
+        "en": "Kona I Co.,Ltd. provides solutions and platforms for the financial technology market in South Korea and internationally."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Semiconductors",
+        "en": "Semiconductors"
+      }
+    }
+  },
+  "scores": {
+    "composite": 78.4,
+    "size": 100.0,
+    "growth": 95.5,
+    "valuation": 65.8,
+    "entry": 59.0,
+    "momentum": 39.9,
+    "quality": 90.1,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "코나아이(052400.KQ)는 v2 복합 점수 78.4로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Kona I Co.,Ltd. (052400.KQ) cleared the 70.0 threshold with v2 composite 78.4; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 25.9% / 이익 45.0% (혼합 34.5%) — 지속 가능 성장 점수 95.5.",
+      "en": "Revenue 25.9% / earnings 45.0% (blended 34.5%) — sustainable growth score 95.5."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 22.39%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 22.39%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -34.37% — 보조 모멘텀 점수 39.9.",
+      "en": "6M return -34.37% — auxiliary momentum score 39.9."
+    },
+    "quality": {
+      "ko": "ROE 38.97%, ROA 12.79%, FCF/순이익 1.26 — 품질 점수 90.1.",
+      "en": "ROE 38.97%, ROA 12.79%, FCF/net income 1.26 — quality score 90.1."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 541105061888 기준 규모 점수 100.0.",
+      "en": "Market cap 541105061888 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 13.13%, 52주 고점 대비 -42.71% — 진입 점수 59.0.",
+      "en": "12M price range 13.13%, -42.71% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-19T06:40:44+09:00",
+    "candidatesScreened": 1900,
+    "excludedRecent": 27,
+    "skippedMarketCap": 850,
+    "skippedRedFlags": 312,
+    "noData": 0,
+    "errors": 0
+  }
+}
