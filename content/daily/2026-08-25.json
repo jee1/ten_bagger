@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-25",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "100030.KQ",
+    "name": {
+      "ko": "인지소프트",
+      "en": "Inzisoft Co.,Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "인지소프트는 Technology 분야 Software - Application 기업입니다.",
+        "en": "Inzisoft Co.,Ltd. engages in the development and sale of software solutions for financial sector in South Korea. It offers electronic documents, such as format editor, form and electronic document management server, and electronic document creator."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Software - Application",
+        "en": "Software - Application"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.5,
+    "size": 100.0,
+    "growth": 80.5,
+    "valuation": 65.8,
+    "entry": 75.0,
+    "momentum": 54.8,
+    "quality": 84.8,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "인지소프트(100030.KQ)는 v2 복합 점수 77.5로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Inzisoft Co.,Ltd. (100030.KQ) cleared the 70.0 threshold with v2 composite 77.5; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 8.1% / 이익 100.0% (혼합 49.45%) — 지속 가능 성장 점수 80.5.",
+      "en": "Revenue 8.1% / earnings 100.0% (blended 49.45%) — sustainable growth score 80.5."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 8.78%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 8.78%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -5.75% — 보조 모멘텀 점수 54.8.",
+      "en": "6M return -5.75% — auxiliary momentum score 54.8."
+    },
+    "quality": {
+      "ko": "ROE 44.67%, ROA 2.3%, FCF/순이익 0.15 — 품질 점수 84.8.",
+      "en": "ROE 44.67%, ROA 2.3%, FCF/net income 0.15 — quality score 84.8."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 51756662784 기준 규모 점수 100.0.",
+      "en": "Market cap 51756662784 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 53.79%, 52주 고점 대비 -14.67% — 진입 점수 75.0.",
+      "en": "12M price range 53.79%, -14.67% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-25T06:45:01+09:00",
+    "candidatesScreened": 1886,
+    "excludedRecent": 26,
+    "skippedMarketCap": 866,
+    "skippedRedFlags": 341,
+    "noData": 0,
+    "errors": 0
+  }
+}
