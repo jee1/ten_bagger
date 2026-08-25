@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-26",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "ITRN",
+    "name": {
+      "ko": "Ituran Location and Control Ltd",
+      "en": "Ituran Location and Control Ltd."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Ituran Location and Control Ltd는 Technology 분야 Scientific & Technical Instruments 기업입니다.",
+        "en": "Ituran Location and Control Ltd., together with its subsidiaries, provides location-based telematics services and machine-to-machine telematics products in Israel, Brazil, and internationally. It operates in two segments, Telematics Services and Telematics Products."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Scientific & Technical Instruments",
+        "en": "Scientific & Technical Instruments"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.4,
+    "size": 100.0,
+    "growth": 94.7,
+    "valuation": 66.5,
+    "entry": 75.0,
+    "momentum": 64.1,
+    "quality": 79.8,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Ituran Location and Control Ltd(ITRN)는 v2 복합 점수 80.4로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Ituran Location and Control Ltd. (ITRN) cleared the 70.0 threshold with v2 composite 80.4; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 20.7% / 이익 29.6% (혼합 24.7%) — 지속 가능 성장 점수 94.7.",
+      "en": "Revenue 20.7% / earnings 29.6% (blended 24.7%) — sustainable growth score 94.7."
+    },
+    "valuation": {
+      "ko": "PER 15.88, PEG 3.41, FCF수익률 6.14%, PBR 4.64 — 밸류 점수 66.5.",
+      "en": "P/E 15.88, PEG 3.41, FCF yield 6.14%, P/B 4.64 — valuation score 66.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 12.17% — 보조 모멘텀 점수 64.1.",
+      "en": "6M return 12.17% — auxiliary momentum score 64.1."
+    },
+    "quality": {
+      "ko": "ROE 30.19%, ROA 13.89%, FCF/순이익 0.97 — 품질 점수 79.8.",
+      "en": "ROE 30.19%, ROA 13.89%, FCF/net income 0.97 — quality score 79.8."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1014325632 기준 규모 점수 100.0.",
+      "en": "Market cap 1014325632 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 58.47%, 52주 고점 대비 -22.12% — 진입 점수 75.0.",
+      "en": "12M price range 58.47%, -22.12% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-26T07:20:20+09:00",
+    "candidatesScreened": 6329,
+    "excludedRecent": 26,
+    "skippedMarketCap": 1891,
+    "skippedRedFlags": 1005,
+    "noData": 116,
+    "errors": 0
+  }
+}
