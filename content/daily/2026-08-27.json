@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-27",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "143240.KQ",
+    "name": {
+      "ko": "사람인",
+      "en": "Saramin Co.,Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "사람인는 Industrials 분야 Staffing & Employment Services 기업입니다.",
+        "en": "Saramin Co.,Ltd. operates as a recruitment company in South Korea. The company offers Saramin, a career matching platform; Jumpit, an employment platform for developers; recruitment consulting; and HR research services."
+      },
+      "sector": {
+        "ko": "Industrials",
+        "en": "Industrials"
+      },
+      "industry": {
+        "ko": "Staffing & Employment Services",
+        "en": "Staffing & Employment Services"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.3,
+    "size": 100.0,
+    "growth": 95.7,
+    "valuation": 62.2,
+    "entry": 36.5,
+    "momentum": 70.1,
+    "quality": 84.7,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "사람인(143240.KQ)는 v2 복합 점수 77.3로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Saramin Co.,Ltd. (143240.KQ) cleared the 70.0 threshold with v2 composite 77.3; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 11.7% / 이익 62.0% (혼합 34.34%) — 지속 가능 성장 점수 95.7.",
+      "en": "Revenue 11.7% / earnings 62.0% (blended 34.34%) — sustainable growth score 95.7."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 6.62%, PBR None — 밸류 점수 62.2.",
+      "en": "P/E None, PEG None, FCF yield 6.62%, P/B None — valuation score 62.2."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 23.84% — 보조 모멘텀 점수 70.1.",
+      "en": "6M return 23.84% — auxiliary momentum score 70.1."
+    },
+    "quality": {
+      "ko": "ROE 43.74%, ROA 4.89%, FCF/순이익 0.12 — 품질 점수 84.7.",
+      "en": "ROE 43.74%, ROA 4.89%, FCF/net income 0.12 — quality score 84.7."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 180263206912 기준 규모 점수 100.0.",
+      "en": "Market cap 180263206912 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 91.97%, 52주 고점 대비 -2.44% — 진입 점수 36.5.",
+      "en": "12M price range 91.97%, -2.44% from 52W high — entry score 36.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-27T09:45:38+09:00",
+    "candidatesScreened": 1901,
+    "excludedRecent": 26,
+    "skippedMarketCap": 853,
+    "skippedRedFlags": 348,
+    "noData": 0,
+    "errors": 0
+  }
+}
