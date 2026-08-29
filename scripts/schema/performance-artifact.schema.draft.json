@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ten-bagger.local/schemas/performance-artifact.schema.draft.json",
+  "title": "PerformanceArtifactDraft",
+  "$comment": "DRAFT — not enforced until #63+. Field semantics follow ADR-0002 (entry=next session after pickDate; exit=horizon close; survivorshipFlag) and ADR-0003 (H20/H60; benchmarkId KR-KOSPI | US-SPX).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "market",
+    "pickDate",
+    "symbol",
+    "horizonDays",
+    "benchmarkId"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0-draft"
+    },
+    "market": {
+      "type": "string",
+      "enum": ["KR", "US"]
+    },
+    "pickDate": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "symbol": { "type": "string", "minLength": 1 },
+    "horizonDays": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Forward window length; concrete windows in ADR-0003"
+    },
+    "benchmarkId": {
+      "type": "string",
+      "description": "ADR-0003 ids: KR-KOSPI or US-SPX (unless a superseding ADR changes them)"
+    },
+    "entryPrice": { "type": "number" },
+    "exitPrice": { "type": "number" },
+    "forwardReturn": { "type": "number" },
+    "benchmarkReturn": { "type": "number" },
+    "survivorshipFlag": {
+      "type": "string",
+      "enum": ["listed", "delisted", "unknown"],
+      "description": "Handling rules owned by ADR-0002"
+    },
+    "asOfDate": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    }
+  }
+}

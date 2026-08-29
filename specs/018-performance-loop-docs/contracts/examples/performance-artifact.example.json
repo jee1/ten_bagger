@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "market": "US",
+  "pickDate": "2026-08-28",
+  "symbol": "AAPL",
+  "horizonDays": 20,
+  "benchmarkId": "US-SPX",
+  "entryPrice": 100.0,
+  "exitPrice": 102.0,
+  "forwardReturn": 0.02,
+  "benchmarkReturn": 0.01,
+  "survivorshipFlag": "listed",
+  "asOfDate": "2026-08-29"
+}

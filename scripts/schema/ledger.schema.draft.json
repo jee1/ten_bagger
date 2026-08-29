@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ten-bagger.local/schemas/ledger.schema.draft.json",
+  "title": "PerformanceLedgerDraft",
+  "$comment": "DRAFT — not enforced by validate:content / gen:types until #63+. Additive to daily pick JSON; does not replace content/daily/*.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "market", "asOfDate", "entries"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0-draft"
+    },
+    "market": {
+      "type": "string",
+      "enum": ["KR", "US"]
+    },
+    "asOfDate": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "Ledger snapshot date (PIT). Must not imply future prices."
+    },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ledgerEntry" }
+    }
+  },
+  "$defs": {
+    "ledgerEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pickDate", "symbol", "status"],
+      "properties": {
+        "pickDate": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "symbol": { "type": "string", "minLength": 1 },
+        "status": { "type": "string", "enum": ["pick", "no_pick"] },
+        "scoreVersion": {
+          "type": "string",
+          "description": "e.g. v2; v3 only after GO ADR"
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
