@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-23",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "439260.KS",
+    "name": {
+      "ko": "대한조선",
+      "en": "Daehan Shipbuilding Co., Ltd."
+    },
+    "exchange": "KOSPI",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "대한조선는 Industrials 분야 Aerospace & Defense 기업입니다.",
+        "en": "Daehan Shipbuilding Co., Ltd. provides ship construction and repair services. It develops crude oil tankers, product carriers, shuttle tankers, container carriers, and bulk carriers."
+      },
+      "sector": {
+        "ko": "Industrials",
+        "en": "Industrials"
+      },
+      "industry": {
+        "ko": "Aerospace & Defense",
+        "en": "Aerospace & Defense"
+      }
+    }
+  },
+  "scores": {
+    "composite": 79.8,
+    "size": 100.0,
+    "growth": 99.2,
+    "valuation": 73.5,
+    "entry": 59.0,
+    "momentum": 39.5,
+    "quality": 83.9,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "대한조선(439260.KS)는 v2 복합 점수 79.8로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Daehan Shipbuilding Co., Ltd. (439260.KS) cleared the 70.0 threshold with v2 composite 79.8; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 19.7% / 이익 44.4% (혼합 30.82%) — 지속 가능 성장 점수 99.2.",
+      "en": "Revenue 19.7% / earnings 44.4% (blended 30.82%) — sustainable growth score 99.2."
+    },
+    "valuation": {
+      "ko": "PER 6.4, PEG None, FCF수익률 10.75%, PBR None — 밸류 점수 73.5.",
+      "en": "P/E 6.4, PEG None, FCF yield 10.75%, P/B None — valuation score 73.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -35.03% — 보조 모멘텀 점수 39.5.",
+      "en": "6M return -35.03% — auxiliary momentum score 39.5."
+    },
+    "quality": {
+      "ko": "ROE 34.23%, ROA 14.27%, FCF/순이익 0.67 — 품질 점수 83.9.",
+      "en": "ROE 34.23%, ROA 14.27%, FCF/net income 0.67 — quality score 83.9."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1868252053504 기준 규모 점수 100.0.",
+      "en": "Market cap 1868252053504 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 8.85%, 52주 고점 대비 -54.03% — 진입 점수 59.0.",
+      "en": "12M price range 8.85%, -54.03% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-23T06:38:28+09:00",
+    "candidatesScreened": 1884,
+    "excludedRecent": 26,
+    "skippedMarketCap": 867,
+    "skippedRedFlags": 325,
+    "noData": 0,
+    "errors": 0
+  }
+}

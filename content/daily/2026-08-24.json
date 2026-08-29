@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-24",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "DDI",
+    "name": {
+      "ko": "DoubleDown Interactive Co Ltd ADR",
+      "en": "DoubleDown Interactive Co., Ltd."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "DoubleDown Interactive Co Ltd ADR는 Communication Services 분야 Electronic Gaming & Multimedia 기업입니다.",
+        "en": "DoubleDown Interactive Co., Ltd. develops and publishes casual games and mobile applications in South Korea, the United States, the United Kingdom, Germany, and internationally. The company operates through Social Casino Games and iGaming segments."
+      },
+      "sector": {
+        "ko": "Communication Services",
+        "en": "Communication Services"
+      },
+      "industry": {
+        "ko": "Electronic Gaming & Multimedia",
+        "en": "Electronic Gaming & Multimedia"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.4,
+    "size": 92.0,
+    "growth": 98.9,
+    "valuation": 83.5,
+    "entry": 36.5,
+    "momentum": 83.7,
+    "quality": 69.5,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "DoubleDown Interactive Co Ltd ADR(DDI)는 v2 복합 점수 80.4로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "DoubleDown Interactive Co., Ltd. (DDI) cleared the 70.0 threshold with v2 composite 80.4; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 11.2% / 이익 50.5% (혼합 28.89%) — 지속 가능 성장 점수 98.9.",
+      "en": "Revenue 11.2% / earnings 50.5% (blended 28.89%) — sustainable growth score 98.9."
+    },
+    "valuation": {
+      "ko": "PER 5.12, PEG None, FCF수익률 15.22%, PBR 0.63 — 밸류 점수 83.5.",
+      "en": "P/E 5.12, PEG None, FCF yield 15.22%, P/B 0.63 — valuation score 83.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 49.88% — 보조 모멘텀 점수 83.7.",
+      "en": "6M return 49.88% — auxiliary momentum score 83.7."
+    },
+    "quality": {
+      "ko": "ROE 13.13%, ROA 8.73%, FCF/순이익 0.78 — 품질 점수 69.5.",
+      "en": "ROE 13.13%, ROA 8.73%, FCF/net income 0.78 — quality score 69.5."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 638743872 기준 규모 점수 92.0.",
+      "en": "Market cap 638743872 — size score 92.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 99.36%, 52주 고점 대비 -0.23% — 진입 점수 36.5.",
+      "en": "12M price range 99.36%, -0.23% from 52W high — entry score 36.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-24T07:14:42+09:00",
+    "candidatesScreened": 6322,
+    "excludedRecent": 26,
+    "skippedMarketCap": 1886,
+    "skippedRedFlags": 999,
+    "noData": 116,
+    "errors": 0
+  }
+}
