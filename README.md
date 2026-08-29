@@ -99,6 +99,14 @@ npm run gen:types:check   # CI와 동일한 drift 검사
 
 선정 방법은 사이트의 **Methodology / 선정 방법** 페이지를 참고하세요.
 
+## Architecture (Performance Loop / Score v3)
+
+Before changing measurement, ledger, or Score v3 behavior, read the engineering
+package: [`docs/architecture/README.md`](docs/architecture/README.md) (Epic #74
+docs gate). Public Methodology stays the reader-facing score explanation;
+architecture docs govern engineering decisions. Score v2 selection stays frozen
+until the merge-gate ADR allows GO.
+
 ## 면책
 
 본 프로젝트는 투자 권유가 아닙니다. 모든 투자 결정과 손실은 본인 책임입니다.

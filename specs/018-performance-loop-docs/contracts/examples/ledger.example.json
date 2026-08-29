@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "market": "KR",
+  "asOfDate": "2026-08-29",
+  "entries": [
+    {
+      "pickDate": "2026-08-28",
+      "symbol": "005930.KS",
+      "status": "pick",
+      "scoreVersion": "v2"
+    }
+  ]
+}

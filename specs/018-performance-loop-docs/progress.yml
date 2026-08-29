@@ -1,0 +1,33 @@
+feature: 018-performance-loop-docs
+branch: 018-performance-loop-docs
+status: executed
+updated: 2026-08-29
+phases:
+  1_setup: complete
+  2_foundational: complete
+  3_us1_c4_context_container: complete
+  4_us2_adrs: complete
+  5_us3_arc42_risks_mapping: complete
+  6_us4_c4_component: complete
+  7_draft_schemas: complete
+  8_polish_gate: complete
+checkpoints:
+  user_approved_all_phases: true
+  note: "User requested Phase 모두 진행; self-attestation on architecture-gate.md"
+github:
+  comments_posted:
+    - 74
+    - 75
+    - 63
+    - 64
+    - 66
+    - 67
+deliverables:
+  - docs/architecture/README.md
+  - docs/architecture/c4/{context,container,component}.md
+  - docs/architecture/arc42.md
+  - docs/architecture/risks.md
+  - docs/architecture/glossary.md
+  - docs/architecture/adr/0001-0004
+  - scripts/schema/*.draft.json
+  - specs/018-performance-loop-docs/issue-mapping.md
