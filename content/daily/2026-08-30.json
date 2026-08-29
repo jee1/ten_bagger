@@ -1,0 +1,92 @@
+{
+  "date": "2026-08-30",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "MCY",
+    "name": {
+      "ko": "Mercury General Corporation",
+      "en": "Mercury General Corporation"
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Mercury General Corporation는 Financial Services 분야 Insurance - Property & Casualty 기업입니다.",
+        "en": "Mercury General Corporation, together with its subsidiaries, engages in writing personal automobile insurance in the United States. It also writes homeowners, commercial automobile, commercial property, mechanical protection, and umbrella insurance products."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Insurance - Property & Casualty",
+        "en": "Insurance - Property & Casualty"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.4,
+    "size": 63.0,
+    "growth": 96.2,
+    "valuation": 88.0,
+    "entry": 57.5,
+    "momentum": 64.6,
+    "quality": 87.6,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Mercury General Corporation(MCY)는 v2 복합 점수 80.4로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Mercury General Corporation (MCY) cleared the 70.0 threshold with v2 composite 80.4; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 13.8% / 이익 58.3% (혼합 33.83%) — 지속 가능 성장 점수 96.2.",
+      "en": "Revenue 13.8% / earnings 58.3% (blended 33.83%) — sustainable growth score 96.2."
+    },
+    "valuation": {
+      "ko": "PER 6.07, PEG 1.11, FCF수익률 20.05%, PBR 2.01 — 밸류 점수 88.0.",
+      "en": "P/E 6.07, PEG 1.11, FCF yield 20.05%, P/B 2.01 — valuation score 88.0."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 13.2% — 보조 모멘텀 점수 64.6.",
+      "en": "6M return 13.2% — auxiliary momentum score 64.6."
+    },
+    "quality": {
+      "ko": "ROE 38.99%, ROA 7.57%, FCF/순이익 1.22 — 품질 점수 87.6.",
+      "en": "ROE 38.99%, ROA 7.57%, FCF/net income 1.22 — quality score 87.6."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 5703367168 기준 규모 점수 63.0.",
+      "en": "Market cap 5703367168 — size score 63.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 77.15%, 52주 고점 대비 -7.33% — 진입 점수 57.5.",
+      "en": "12M price range 77.15%, -7.33% from 52W high — entry score 57.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-08-30T08:55:07+09:00",
+    "candidatesScreened": 6318,
+    "excludedRecent": 27,
+    "skippedMarketCap": 1955,
+    "skippedRedFlags": 992,
+    "noData": 116,
+    "errors": 0
+  }
+}
