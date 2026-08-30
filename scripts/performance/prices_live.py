@@ -19,7 +19,7 @@ def _history_to_bars(hist: pd.DataFrame) -> pd.DataFrame:
     out = hist.reset_index()
     date_col = "Date" if "Date" in out.columns else out.columns[0]
     out = out.rename(columns={date_col: "date"})
-    out["date"] = pd.to_datetime(out["date"]).dt.strftime("%Y-%m-%d")
+    out["date"] = pd.to_datetime(out["date"], utc=True).dt.strftime("%Y-%m-%d")
     cols = ["date", "Open", "High", "Low", "Close"]
     for optional in ("Adj Open", "Adj Close"):
         if optional in out.columns:

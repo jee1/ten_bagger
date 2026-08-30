@@ -64,9 +64,14 @@ def _read_history_cache(path: Path) -> pd.DataFrame | None:
     if not payload or not payload.get("close"):
         return None
     try:
-        index = pd.to_datetime(payload["index"])
-        return pd.DataFrame({"Close": payload["close"]}, index=index)
-    except (KeyError, ValueError):
+        # utc=True: US DST (and mixed offsets in cached ISO strings) otherwise raise
+        index = pd.to_datetime(payload["index"], utc=True)
+        data: dict[str, list[float]] = {"Close": payload["close"]}
+        for src, col in (("open", "Open"), ("high", "High"), ("low", "Low")):
+            if src in payload:
+                data[col] = payload[src]
+        return pd.DataFrame(data, index=index)
+    except (KeyError, TypeError, ValueError):
         logger.debug("Invalid yfinance history cache ignored: %s", path)
         return None
 
@@ -183,11 +188,12 @@ def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
             return stale
         raise
     if not hist.empty:
-        _write_json(
-            path,
-            {
-                "index": [d.isoformat() for d in hist.index.to_pydatetime()],
-                "close": [float(v) for v in hist["Close"].tolist()],
-            },
-        )
+        payload: dict[str, Any] = {
+            "index": [d.isoformat() for d in hist.index.to_pydatetime()],
+            "close": [float(v) for v in hist["Close"].tolist()],
+        }
+        for src, key in (("Open", "open"), ("High", "high"), ("Low", "low")):
+            if src in hist.columns:
+                payload[key] = [float(v) for v in hist[src].tolist()]
+        _write_json(path, payload)
     return hist

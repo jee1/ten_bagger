@@ -77,7 +77,35 @@ def test_get_ticker_history_uses_stale_cache_after_transient_failure(monkeypatch
     hist = yf_cache.get_ticker_history("TEST")
 
     assert hist["Close"].tolist() == [12.5]
-    assert hist.index[0] == pd.Timestamp("2026-07-20T00:00:00")
+    assert pd.Timestamp(hist.index[0]).strftime("%Y-%m-%d") == "2026-07-20"
+
+
+def test_read_history_cache_mixed_tz_offsets(tmp_path):
+    """US DST transitions produce mixed offsets in cached ISO index strings."""
+    path = tmp_path / "US_hist_10y.json"
+    path.write_text(
+        json.dumps(
+            {
+                "index": [
+                    "2026-03-07T00:00:00-05:00",
+                    "2026-03-10T00:00:00-04:00",
+                ],
+                "open": [10.0, 11.0],
+                "high": [10.5, 11.5],
+                "low": [9.5, 10.5],
+                "close": [10.2, 11.2],
+            }
+        ),
+        encoding="utf-8",
+    )
+    hist = yf_cache._read_history_cache(path)
+    assert hist is not None
+    assert hist["Open"].tolist() == [10.0, 11.0]
+    assert hist["Close"].tolist() == [10.2, 11.2]
+    assert list(pd.Timestamp(t).strftime("%Y-%m-%d") for t in hist.index) == [
+        "2026-03-07",
+        "2026-03-10",
+    ]
 
 
 def test_get_ticker_info_raises_without_usable_stale_cache(monkeypatch, tmp_path):
