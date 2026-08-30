@@ -33,9 +33,10 @@ authorize weight or pick-logic changes.
    - [0002 Forward-return price basis](./adr/0002-forward-return-price-basis.md)
    - [0003 Walk-forward windows & benchmarks](./adr/0003-walk-forward-windows-benchmarks.md)
    - [0004 Score v3 merge gate](./adr/0004-score-v3-merge-gate.md)
-7. Draft schemas (not enforced yet):
-   - `scripts/schema/ledger.schema.draft.json`
-   - `scripts/schema/performance-artifact.schema.draft.json`
+7. Promoted schemas (enforced by validate:content / gen:types, #63):
+   - `scripts/schema/ledger.schema.json`
+   - `scripts/schema/performance-bundle.schema.json`
+   - Writers: `scripts/regenerate_ledger.py` (`npm run regenerate:ledger`)
 8. Spec tracking:
    - [Issue mapping #63–#73](../../specs/018-performance-loop-docs/issue-mapping.md)
    - [Architecture gate checklist](../../specs/018-performance-loop-docs/checklists/architecture-gate.md)

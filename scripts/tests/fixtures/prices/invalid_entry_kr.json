@@ -1,0 +1,8 @@
+{
+  "symbol": "INVALID.KR",
+  "bars": [
+    {"date": "2026-01-02", "Open": 10.0, "Close": 10.5},
+    {"date": "2026-01-03", "Open": 0.0, "Close": 0.0},
+    {"date": "2026-01-06", "Open": 12.0, "Close": 13.0}
+  ]
+}

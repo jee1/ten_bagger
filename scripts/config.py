@@ -8,9 +8,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT_DIR = ROOT / "content"
 DAILY_DIR = CONTENT_DIR / "daily"
+LEDGER_DIR = CONTENT_DIR / "ledger"
+PERFORMANCE_DIR = CONTENT_DIR / "performance"
 MANIFEST_PATH = CONTENT_DIR / "manifest.json"
 UNIVERSE_DIR = Path(__file__).resolve().parent / "universe"
-SCHEMA_PATH = Path(__file__).resolve().parent / "schema" / "daily-entry.schema.json"
+SCHEMA_DIR = Path(__file__).resolve().parent / "schema"
+SCHEMA_PATH = SCHEMA_DIR / "daily-entry.schema.json"
+LEDGER_SCHEMA_PATH = SCHEMA_DIR / "ledger.schema.json"
+PERFORMANCE_BUNDLE_SCHEMA_PATH = SCHEMA_DIR / "performance-bundle.schema.json"
 CACHE_DIR = Path(__file__).resolve().parent / "cache"
 CACHE_TTL_SECONDS = 43_200  # 12 hours
 

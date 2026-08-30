@@ -17,24 +17,25 @@ const BANNER = `/* eslint-disable */
  */
 `;
 
+const SCHEMAS = [
+  'daily-entry.schema.json',
+  'manifest.schema.json',
+  'ledger.schema.json',
+  'performance-bundle.schema.json',
+];
+
 async function buildTypes() {
-  const daily = await compileFromFile(join(schemaDir, 'daily-entry.schema.json'), {
-    bannerComment: '',
-    additionalProperties: false,
-    enableConstEnums: true,
-  });
+  const chunks = [];
+  for (const name of SCHEMAS) {
+    const compiled = await compileFromFile(join(schemaDir, name), {
+      bannerComment: '',
+      additionalProperties: false,
+      enableConstEnums: true,
+    });
+    chunks.push(compiled.replace(/^\/\*[\s\S]*?\*\/\s*/u, '').trim());
+  }
 
-  const manifest = await compileFromFile(join(schemaDir, 'manifest.schema.json'), {
-    bannerComment: '',
-    additionalProperties: false,
-    enableConstEnums: true,
-  });
-
-  const body = [daily, manifest]
-    .map((chunk) => chunk.replace(/^\/\*[\s\S]*?\*\/\s*/u, '').trim())
-    .join('\n\n');
-
-  return `${BANNER}${body}\n`;
+  return `${BANNER}${chunks.join('\n\n')}\n`;
 }
 
 async function main() {
