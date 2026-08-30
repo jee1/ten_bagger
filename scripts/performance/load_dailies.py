@@ -23,9 +23,7 @@ def _require_ledger_contract(data: object, path_name: str) -> dict:
     if status == "pick":
         stock = data.get("stock")
         if not isinstance(stock, dict) or not stock.get("symbol"):
-            raise ValueError(
-                f"invalid daily JSON: {path_name}: pick requires stock.symbol"
-            )
+            raise ValueError(f"invalid daily JSON: {path_name}: pick requires stock.symbol")
     return data
 
 

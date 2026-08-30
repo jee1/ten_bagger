@@ -6,12 +6,11 @@ from __future__ import annotations
 import argparse
 import sys
 from collections.abc import Callable
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
-
 from config import (
     DAILY_DIR,
     LEDGER_DIR,
@@ -125,7 +124,7 @@ def build_market_snapshots(
         "runMeta": {
             "provider": provider_label,
             "priceAdjustment": price_adjustment,
-            "generatedAt": datetime.now(timezone.utc).isoformat(),
+            "generatedAt": datetime.now(UTC).isoformat(),
             "asOfDate": as_of_date,
         },
         "measurements": measurements,
@@ -215,9 +214,7 @@ def main(argv: list[str] | None = None) -> int:
 
     parts = []
     for market, info in summary["markets"].items():
-        parts.append(
-            f"{market}: {info['entries']} entries, {info['measurements']} measurements"
-        )
+        parts.append(f"{market}: {info['entries']} entries, {info['measurements']} measurements")
     print(
         f"regenerate ok asOfDate={as_of} "
         + "; ".join(parts)

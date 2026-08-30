@@ -21,9 +21,7 @@ def trading_sessions(bars: pd.DataFrame) -> list[str]:
     return sorted(dates.unique().tolist())
 
 
-def session_horizon_exit(
-    sessions: list[str], entry_session: str, n: int
-) -> str | None:
+def session_horizon_exit(sessions: list[str], entry_session: str, n: int) -> str | None:
     """Nth trading session after entry session (n=20 → H20 exit session)."""
     if entry_session not in sessions:
         return None

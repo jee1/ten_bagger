@@ -3,12 +3,9 @@
 from __future__ import annotations
 
 import json
-import subprocess
-import sys
 from pathlib import Path
 
 import pytest
-
 import regenerate_ledger
 from tests.fixtures.price_loader import load_price_fixture
 
@@ -76,9 +73,9 @@ def test_missing_date_daily_fails_run(tmp_path):
 
 
 def test_atomic_replace_validation_failure_leaves_prior(tmp_path):
+    from config import LEDGER_SCHEMA_PATH
     from performance.write_atomic import atomic_replace
     from validate_content import load_validator
-    from config import LEDGER_SCHEMA_PATH
 
     ledger_dir = tmp_path / "ledger"
     ledger_dir.mkdir()
@@ -119,7 +116,7 @@ def test_success_path_writes_schema_valid_outputs(tmp_path, monkeypatch):
         regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
     )
 
-    rc = regenerate_ledger.regenerate(
+    regenerate_ledger.regenerate(
         as_of_date="2026-02-10",
         markets=("KR",),
         daily_dir=daily_dir,

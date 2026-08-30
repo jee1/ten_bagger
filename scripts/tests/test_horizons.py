@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import pandas as pd
-
 from performance.horizons import (
     calendar_horizon_exit,
     calendar_horizon_target,

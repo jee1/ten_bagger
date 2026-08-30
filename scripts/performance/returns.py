@@ -184,11 +184,7 @@ def measure_pick_horizon(
         exit_session = session_horizon_exit(sessions, entry_session, n)
         if exit_session is None:
             if len(sessions) - 1 - sessions.index(entry_session) < n:
-                incomplete_reason = (
-                    "horizon_beyond_asof"
-                    if surv == "listed"
-                    else "missing_exit"
-                )
+                incomplete_reason = "horizon_beyond_asof" if surv == "listed" else "missing_exit"
             else:
                 incomplete_reason = "missing_exit"
         elif exit_session > as_of_date:
@@ -196,13 +192,9 @@ def measure_pick_horizon(
             exit_session = None
     elif horizon_id in ("1M", "3M", "6M", "1Y", "3Y", "5Y"):
         target = calendar_horizon_target(pick_date, horizon_id)
-        exit_session = calendar_horizon_exit(
-            sessions, pick_date, horizon_id, as_of_date
-        )
+        exit_session = calendar_horizon_exit(sessions, pick_date, horizon_id, as_of_date)
         if exit_session is None:
-            incomplete_reason = (
-                "horizon_beyond_asof" if target > as_of_date else "missing_exit"
-            )
+            incomplete_reason = "horizon_beyond_asof" if target > as_of_date else "missing_exit"
         elif exit_session > as_of_date:
             incomplete_reason = "horizon_beyond_asof"
             exit_session = None

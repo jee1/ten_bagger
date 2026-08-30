@@ -7,10 +7,8 @@ from __future__ import annotations
 
 import json
 import math
-from pathlib import Path
 
 import pytest
-
 from performance.horizons import HORIZON_IDS, calendar_horizon_target
 from performance.pit_prices import filter_session_bars, prefer_adjusted
 from performance.returns import measure_all_horizons, measure_pick_horizon
@@ -382,7 +380,16 @@ def test_second_regenerate_identical(tmp_path, monkeypatch):
 
     original_build = regenerate_ledger.build_market_snapshots
 
-    def fake_build(*, dailies, market, as_of_date, price_provider, benchmark_provider, provider_label, price_adjustment):  # noqa: E501
+    def fake_build(
+        *,
+        dailies,
+        market,
+        as_of_date,
+        price_provider,
+        benchmark_provider,
+        provider_label,
+        price_adjustment,
+    ):  # noqa: E501
         ledger, perf = original_build(
             dailies=dailies,
             market=market,

@@ -86,9 +86,7 @@ def main() -> int:
         errors_found += 1
         print(f"manifest: {err}")
 
-    ledger_n, ledger_err = _validate_dir(
-        LEDGER_DIR, load_validator(LEDGER_SCHEMA_PATH), "ledger"
-    )
+    ledger_n, ledger_err = _validate_dir(LEDGER_DIR, load_validator(LEDGER_SCHEMA_PATH), "ledger")
     perf_n, perf_err = _validate_dir(
         PERFORMANCE_DIR,
         load_validator(PERFORMANCE_BUNDLE_SCHEMA_PATH),

@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import pandas as pd
+from yf_cache import get_ticker_history
 
 from performance.pit_prices import filter_session_bars
-from yf_cache import get_ticker_history
 
 BENCHMARK_SYMBOLS = {
     "KR-KOSPI": "^KS11",

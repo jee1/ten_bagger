@@ -20,7 +20,7 @@ def atomic_replace(
         raise ValueError("validators length must match writes")
     temps: list[tuple[Path, Path]] = []
     try:
-        for (path, data), validator in zip(writes.items(), validators):
+        for (path, data), validator in zip(writes.items(), validators, strict=True):
             errors = sorted(validator.iter_errors(data), key=lambda e: e.path)
             if errors:
                 err = errors[0]
