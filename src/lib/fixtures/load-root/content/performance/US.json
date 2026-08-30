@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "0.1.0",
+  "market": "US",
+  "asOfDate": "2026-08-27",
+  "runMeta": {
+    "provider": "fixture",
+    "priceAdjustment": "adjusted_preferred",
+    "generatedAt": "2026-08-27T00:00:00Z",
+    "asOfDate": "2026-08-27"
+  },
+  "measurements": [
+    {
+      "market": "US",
+      "pickDate": "2026-01-06",
+      "symbol": "XYZ",
+      "horizonId": "H20",
+      "benchmarkId": "US-SPX",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
+      "survivorshipFlag": "listed",
+      "asOfDate": "2026-08-27",
+      "forwardReturn": 0.1,
+      "benchmarkReturn": 0.05
+    }
+  ]
+}

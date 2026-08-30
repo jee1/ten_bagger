@@ -16,7 +16,8 @@
     "validate:content": "cd scripts && python sync_manifest.py && python validate_content.py",
     "gen:types": "node scripts/gen_types.mjs",
     "gen:types:check": "node scripts/gen_types.mjs --check",
-    "check": "npm run gen:types:check && astro check"
+    "check": "npm run gen:types:check && astro check",
+    "test:performance-ui": "node --experimental-strip-types --test src/lib/performanceAggregate.test.ts src/lib/performanceLoad.test.ts"
   },
   "dependencies": {
     "astro": "^7.1.3"

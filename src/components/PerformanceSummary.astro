@@ -1,0 +1,133 @@
+---
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+import type { MarketPerformanceView } from '../lib/performanceAggregate';
+
+interface Props {
+  lang: Lang;
+  view: MarketPerformanceView;
+}
+
+const { lang, view } = Astro.props;
+const series = view.cumulative;
+
+function pct(n: number | null | undefined): string {
+  if (n == null || Number.isNaN(n)) return '—';
+  return `${(n * 100).toFixed(2)}%`;
+}
+
+const points = series?.points ?? [];
+const w = 320;
+const h = 80;
+const pad = 4;
+let svgPortfolio = '';
+let svgBench = '';
+if (points.length >= 2) {
+  const ys = points.map((p) => p.portfolioCumulative);
+  const bys = points.map((p) => p.benchmarkCumulative).filter((v): v is number => v != null);
+  const all = [...ys, ...bys];
+  const minY = Math.min(...all, 0);
+  const maxY = Math.max(...all, 0);
+  const span = maxY - minY || 1;
+  const xAt = (i: number) => pad + (i / (points.length - 1)) * (w - 2 * pad);
+  const yAt = (v: number) => h - pad - ((v - minY) / span) * (h - 2 * pad);
+  svgPortfolio = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${xAt(i)},${yAt(p.portfolioCumulative)}`).join(' ');
+  const benchPts = points
+    .map((p, i) => (p.benchmarkCumulative == null ? null : [i, p.benchmarkCumulative] as const))
+    .filter((x): x is readonly [number, number] => x != null);
+  if (benchPts.length >= 2) {
+    svgBench = benchPts
+      .map(([i, v], j) => `${j === 0 ? 'M' : 'L'}${xAt(i)},${yAt(v)}`)
+      .join(' ');
+  }
+}
+---
+
+<article class="card">
+  <h2>{label('performanceCumulative', lang)}</h2>
+  {view.asOfDate && (
+    <p class="muted">{label('performanceAsOf', lang)}: {view.asOfDate}</p>
+  )}
+  <p>{label('performanceHypothetical', lang)}</p>
+  <p class="muted">{label('performanceEqualWeight', lang)}</p>
+  <p class="muted">{label('performanceIndexNote', lang)}</p>
+  <p class="muted">
+    {view.market === 'KR'
+      ? label('performanceBenchmarkIdKR', lang)
+      : label('performanceBenchmarkIdUS', lang)}
+  </p>
+
+  {series ? (
+    <>
+      <p>
+        <strong>{label('performancePortfolio', lang)}:</strong> {pct(series.finalPortfolioReturn)}
+        {' · '}
+        <strong>{label('performanceBenchmark', lang)}:</strong>{' '}
+        {series.excessClaimAllowed
+          ? pct(series.finalBenchmarkReturn)
+          : label('performanceBenchmarkUnavailable', lang)}
+        <span class="muted"> ({series.horizonId})</span>
+      </p>
+      {view.hasSurvivorshipCaveat && (
+        <p class="muted">{label('performanceSurvivorshipCaveat', lang)}</p>
+      )}
+
+      {points.length >= 2 && (
+        <svg
+          class="perf-spark"
+          viewBox={`0 0 ${w} ${h}`}
+          width="100%"
+          height={h}
+          role="img"
+          aria-hidden="true"
+        >
+          {svgPortfolio && <path d={svgPortfolio} fill="none" stroke="var(--accent)" stroke-width="2" />}
+          {svgBench && <path d={svgBench} fill="none" stroke="var(--muted)" stroke-width="1.5" />}
+        </svg>
+      )}
+
+      <table class="perf-table">
+        <caption class="muted">{label('performanceCumulative', lang)}</caption>
+        <thead>
+          <tr>
+            <th>{label('performanceTableDate', lang)}</th>
+            <th>{label('performanceTableSymbol', lang)}</th>
+            <th>{label('performanceTablePortfolio', lang)}</th>
+            <th>{label('performanceTableBench', lang)}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {points.map((p) => (
+            <tr>
+              <td>{p.pickDate}</td>
+              <td>{p.symbol}</td>
+              <td>{pct(p.portfolioCumulative)}</td>
+              <td>{pct(p.benchmarkCumulative)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  ) : (
+    <p class="muted">{label('performanceHorizonUnavailable', lang)}</p>
+  )}
+</article>
+
+<style>
+  .perf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  .perf-table th,
+  .perf-table td {
+    border-bottom: 1px solid var(--border);
+    padding: 0.4rem 0.5rem;
+    text-align: left;
+  }
+  .perf-spark {
+    margin-top: 0.75rem;
+    display: block;
+  }
+</style>

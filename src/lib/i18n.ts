@@ -42,6 +42,66 @@ export const labels = {
   companyProfile: { ko: '회사 소개', en: 'Company profile' } satisfies LocalizedText,
   sector: { ko: '섹터', en: 'Sector' } satisfies LocalizedText,
   industry: { ko: '산업', en: 'Industry' } satisfies LocalizedText,
+  performance: { ko: '성과', en: 'Performance' } satisfies LocalizedText,
+  performanceCumulative: {
+    ko: '누적 성과',
+    en: 'Cumulative performance',
+  } satisfies LocalizedText,
+  performanceAsOf: { ko: '기준일', en: 'As of' } satisfies LocalizedText,
+  performanceHypothetical: {
+    ko: '실제 펀드가 아닌 가상 포트폴리오입니다.',
+    en: 'This is a hypothetical portfolio, not a fund.',
+  } satisfies LocalizedText,
+  performanceEqualWeight: {
+    ko: '동일가중: 완료된 선정일마다 같은 비중으로 복리합니다(없음 날 제외).',
+    en: 'Equal weight: compound completed pick days only (no_pick days excluded).',
+  } satisfies LocalizedText,
+  performanceIndexNote: {
+    ko: '벤치마크는 지수 대리 지표이며 거래 가능한 상품이 아닙니다.',
+    en: 'The benchmark is an index proxy and is not a tradable product.',
+  } satisfies LocalizedText,
+  performanceBenchmarkIdKR: { ko: '벤치마크: KOSPI (KR-KOSPI)', en: 'Benchmark: KOSPI (KR-KOSPI)' } satisfies LocalizedText,
+  performanceBenchmarkIdUS: { ko: '벤치마크: S&P 500 (US-SPX)', en: 'Benchmark: S&P 500 (US-SPX)' } satisfies LocalizedText,
+  performanceBenchmarkUnavailable: {
+    ko: '벤치마크 데이터를 사용할 수 없습니다.',
+    en: 'Benchmark data is unavailable.',
+  } satisfies LocalizedText,
+  performanceSurvivorshipCaveat: {
+    ko: '일부 종목은 상장폐지되었거나 생존 상태가 불확실합니다.',
+    en: 'Some names are delisted or have uncertain survivorship status.',
+  } satisfies LocalizedText,
+  performanceEmptyTitle: {
+    ko: '표시할 성과 데이터가 없습니다',
+    en: 'No performance data to show',
+  } satisfies LocalizedText,
+  performanceEmptyBody: {
+    ko: '이 시장에 게시된 성과 측정값이 아직 없습니다.',
+    en: 'No published performance measurements are available for this market yet.',
+  } satisfies LocalizedText,
+  performanceHorizonUnavailable: {
+    ko: '아직 사용할 수 없음',
+    en: 'Not yet available',
+  } satisfies LocalizedText,
+  performanceHorizons: { ko: '기간별 성과', en: 'Horizons' } satisfies LocalizedText,
+  performanceSecondaryHorizons: {
+    ko: '엔지니어링 기간 (H20 / H60)',
+    en: 'Engineering horizons (H20 / H60)',
+  } satisfies LocalizedText,
+  performanceMarket: { ko: '시장', en: 'Market' } satisfies LocalizedText,
+  horizon1M: { ko: '1개월', en: '1M' } satisfies LocalizedText,
+  horizon3M: { ko: '3개월', en: '3M' } satisfies LocalizedText,
+  horizon6M: { ko: '6개월', en: '6M' } satisfies LocalizedText,
+  horizon1Y: { ko: '1년', en: '1Y' } satisfies LocalizedText,
+  horizonH20: { ko: 'H20', en: 'H20' } satisfies LocalizedText,
+  horizonH60: { ko: 'H60', en: 'H60' } satisfies LocalizedText,
+  performancePortfolio: { ko: '포트폴리오', en: 'Portfolio' } satisfies LocalizedText,
+  performanceBenchmark: { ko: '벤치마크', en: 'Benchmark' } satisfies LocalizedText,
+  performanceAvgPick: { ko: '평균 픽', en: 'Avg pick' } satisfies LocalizedText,
+  performanceAvgBench: { ko: '평균 벤치', en: 'Avg bench' } satisfies LocalizedText,
+  performanceTableDate: { ko: '날짜', en: 'Date' } satisfies LocalizedText,
+  performanceTableSymbol: { ko: '종목', en: 'Symbol' } satisfies LocalizedText,
+  performanceTablePortfolio: { ko: '포트폴리오', en: 'Portfolio' } satisfies LocalizedText,
+  performanceTableBench: { ko: '벤치', en: 'Bench' } satisfies LocalizedText,
 } as const;
 
 export function t(text: LocalizedText, lang: Lang): string {

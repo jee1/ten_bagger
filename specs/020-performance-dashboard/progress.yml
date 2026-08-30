@@ -1,0 +1,21 @@
+feature: 020-performance-dashboard
+status: executed
+updated: 2026-08-30
+phase: complete
+completed_phases:
+  - setup
+  - foundational
+  - us1
+  - us2
+  - us3
+  - us4
+  - us5
+  - polish
+  - review
+notes:
+  - "User authorized auto-advance all phase checkpoints + review loop"
+  - "test:performance-ui 7/7; npm run check clean"
+  - "build OK with/without content/performance"
+  - "checklist-review.md Verdict PASS (pass 2)"
+  - "Ruling: loadPerformanceBundle uses process.cwd() (Astro bundle relocates import.meta.url)"
+  - "Ruling: REVIEW gates auto-approved per continuous-execute instruction"
