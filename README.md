@@ -56,6 +56,35 @@ pre-commit run --all-files   # ruff (CI에서도 실행, pip install pre-commit 
 
 실패 시 항상 GitHub Issue가 열리며(`ci-failure` 라벨), 아래 시크릿을 설정하면 Slack 알림도 즉시 옵니다.
 
+### Issue hygiene (실패 Issue 정리)
+
+Daily 실패 Issue는 사람이 분류·종료한다. 자동 종료·캘린더 기준 stale 처리는 없다.
+
+**Close policy**
+
+| 분류 | 조치 |
+|------|------|
+| resolved | 같은 날짜 **D** Daily가 복구되면 종료 |
+| unreproducible / superseded | 명시적 사유를 남기고 종료 |
+| still active | 재실패·원인 미확인·간헐 실패면 유지 |
+
+간헐적 성공만으로 `resolved` 종료하지 않는다. 종료 시 Actions run 링크는 유지한다.
+과거 백로그 #13, #51, #55, #57, #61은 이미 정리됨 — 재오픈하지 않는다.
+
+**Cause tags** — 신규 Issue triage 후 `cause-*`를 **정확히 하나** 붙인다 (역사 Issue 소급 의무 없음). Daily 실패 Issue에는 `ci-failure`도 유지한다. 원인이 바뀌면 기존 `cause-*`를 교체하고 이전 원인은 본문/댓글에 남긴다.
+
+| 라벨 | 의미 | 대응 |
+|------|------|------|
+| `cause-rate-limit` | provider 429/throttle | 재실행·캐시 → [yfinance rate limit](#yfinance-rate-limit-대응) |
+| `cause-push-conflict` | git push 충돌 | 위 런북 4단계 (`content/daily/`·`manifest.json` 병합) |
+| `cause-data` | 데이터 누락·손상·검증 실패 | 로그·로컬 재현으로 원인 확인 |
+| `cause-unknown` | triage 후에도 불명 | Issue 유지·추가 조사 |
+
+**같은 날짜 중복** — 제목: `Daily Ten Bagger failed — YYYY-MM-DD` (KST).
+같은 제목의 **열린** Issue가 있으면 새 Issue를 열지 말고 새 run URL을 댓글로 남긴다.
+날짜 D에 대해 이전 Issue가 **이미 닫혀** 있으면 새 Issue를 열어도 된다.
+검색/댓글이 실패하면 실패를 숨기지 않기 위해 두 번째 Issue가 생길 수 있다 (fail-open).
+
 ### yfinance rate limit 대응
 
 Yahoo가 429/rate limit 또는 일시적 네트워크 오류를 반환하면 스크리너는 재시도 후

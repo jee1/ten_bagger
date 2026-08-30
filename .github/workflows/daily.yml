@@ -140,8 +140,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TITLE="Daily Ten Bagger failed — $(TZ=Asia/Seoul date +%F)"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           BODY=$(cat <<EOF
-          Daily workflow failed. See [Actions run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+          Daily workflow failed. See [Actions run](${RUN_URL}).
 
           **Recovery**
           1. Open the run log above
@@ -149,14 +150,29 @@ jobs:
           3. Local: \`build_universe.py\` → \`generate_daily.py\` → \`validate_content.py\`
           EOF
           )
+          # Open-only title match; optional one cheap retry on empty/null
           EXISTING=$(gh issue list --repo "${{ github.repository }}" --search "$TITLE in:title" --state open --json number --jq '.[0].number' || true)
+          if [ -z "$EXISTING" ] || [ "$EXISTING" = "null" ]; then
+            sleep 1
+            EXISTING=$(gh issue list --repo "${{ github.repository }}" --search "$TITLE in:title" --state open --json number --jq '.[0].number' || true)
+          fi
+
+          COMMENTED=0
           if [ -n "$EXISTING" ] && [ "$EXISTING" != "null" ]; then
-            gh issue comment "$EXISTING" --repo "${{ github.repository }}" --body "Failed again: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          else
+            if gh issue comment "$EXISTING" --repo "${{ github.repository }}" --body "Failed again: ${RUN_URL}"; then
+              COMMENTED=1
+            fi
+          fi
+
+          # Fail-open: if search empty/null or comment failed, still attempt create (may duplicate)
+          STATUS=0
+          if [ "$COMMENTED" -eq 0 ]; then
             gh issue create --repo "${{ github.repository }}" --title "$TITLE" --body "$BODY" --label "ci-failure" || \
-            gh issue create --repo "${{ github.repository }}" --title "$TITLE" --body "$BODY"
+            gh issue create --repo "${{ github.repository }}" --title "$TITLE" --body "$BODY" || \
+            STATUS=$?
           fi
           echo "::error title=Daily Ten Bagger failed::Issue opened/updated. Re-run via workflow_dispatch."
+          exit "$STATUS"
 
       - name: Notify Slack (optional)
         if: always() && env.SLACK_WEBHOOK_URL != ''

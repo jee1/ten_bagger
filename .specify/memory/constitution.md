@@ -1,29 +1,19 @@
 <!--
 Sync Impact Report
 ==================
-Version change: N/A → 1.0.0
-Modified principles: N/A (initial ratification)
-Added sections:
-  - Core Principles (I–V)
-  - Technology Stack
-  - Development Workflow
-  - Quality Gates
-  - Governance
+Version change: 1.0.0 → 1.0.0 (revalidated 2026-08-30; no amendment)
+Modified principles: None
+Added sections: None
 Removed sections: None
 Templates requiring updates:
-  - .specify/templates/plan-template.md ✅ updated (Constitution Check
-    principle rows bound to I–V)
-  - .specify/templates/spec-template.md ✅ compatible (no principle-specific
-    hardcoding; reproducibility / look-ahead already covered by FR patterns)
-  - .specify/templates/tasks-template.md ✅ compatible ([TDD]/[REVIEW]
-    markers cover validation and merge-gate review work)
+  - .specify/templates/plan-template.md ✅ aligned (Constitution Check I–V)
+  - .specify/templates/spec-template.md ✅ compatible
+  - .specify/templates/tasks-template.md ✅ compatible
   - .specify/templates/checklist-template.md ✅ compatible
   - .specify/templates/commands/*.md ✅ N/A (directory does not exist)
-  - README.md ✅ updated (Architecture section links constitution)
+  - README.md ✅ links `.specify/memory/constitution.md`
 Follow-up TODOs:
-  - None deferred; principles derived from README + docs/architecture ADRs
-    0001–0004 and specs/018-performance-loop-docs. Amend via governance if
-    product intent differs.
+  - None. Revalidated before specs for Epic #74 Phase 0 hygiene (#65).
 -->
 
 # Ten Bagger Daily Constitution

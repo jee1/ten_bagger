@@ -1,0 +1,12 @@
+# specs/021-stale-failure-hygiene/progress.yml
+feature: stale-failure-hygiene
+created: 2026-08-30
+current_phase: done
+phases:
+  constitution: { status: done, updated: 2026-08-30 }
+  specify:      { status: done, updated: 2026-08-30 }
+  brainstorm:   { status: done, updated: 2026-08-30 }
+  plan:         { status: done, updated: 2026-08-30 }
+  tasks:        { status: done, updated: 2026-08-30 }
+  execute:      { status: done, updated: 2026-08-30 }
+  review:       { status: done, updated: 2026-08-30 }
