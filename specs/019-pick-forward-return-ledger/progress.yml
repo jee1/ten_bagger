@@ -1,0 +1,12 @@
+# specs/019-pick-forward-return-ledger/progress.yml
+feature: pick-forward-return-ledger
+created: 2026-08-29
+current_phase: review
+phases:
+  constitution: { status: done, updated: 2026-08-29 }
+  specify:      { status: done, updated: 2026-08-29 }
+  brainstorm:   { status: done, updated: 2026-08-30, sessions: 5, note: saturated-confirmation-only }
+  plan:         { status: done, updated: 2026-08-30 }
+  tasks:        { status: done, updated: 2026-08-30, count: 40 }
+  execute:      { status: done, updated: 2026-08-30, note: auto-all-phases-T001-T040, tests: 86 }
+  review:       { status: done, updated: 2026-08-30, rounds: 2, verdict: CLEAN }

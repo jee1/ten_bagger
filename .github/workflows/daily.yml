@@ -60,6 +60,7 @@ jobs:
             yf-cache-${{ runner.os }}-
 
       - name: Generate daily report
+        # Must not write content/ledger/** or content/performance/** (#63 isolation).
         run: |
           TARGET="${{ github.event.inputs.date }}"
           if [ -z "$TARGET" ]; then

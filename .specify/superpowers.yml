@@ -1,0 +1,21 @@
+# Superpowers detection status (managed by superspec commands)
+last_checked: 2026-08-29T17:43:00+09:00
+skills:
+  brainstorming:
+    detected: true
+    path: ~/.agents/skills/brainstorming/SKILL.md
+  writing-plans:
+    detected: true
+    path: ~/.agents/skills/writing-plans/SKILL.md
+  executing-plans:
+    detected: true
+    path: ~/.agents/skills/executing-plans/SKILL.md
+  subagent-driven-development:
+    detected: true
+    path: ~/.agents/skills/subagent-driven-development/SKILL.md
+  test-driven-development:
+    detected: true
+    path: ~/.agents/skills/test-driven-development/SKILL.md
+  requesting-code-review:
+    detected: true
+    path: ~/.agents/skills/requesting-code-review/SKILL.md
