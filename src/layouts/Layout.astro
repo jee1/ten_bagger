@@ -42,6 +42,7 @@ const enUrl = `${Astro.url.pathname}?${enParams}`;
           <a href={`${base}?lang=${lang}`}>{label('today', lang)}</a>
           <a href={`${base}archive?lang=${lang}`}>{label('archive', lang)}</a>
           <a href={`${base}methodology?lang=${lang}`}>{label('methodology', lang)}</a>
+          <a href={`${base}performance?lang=${lang}`}>{label('performance', lang)}</a>
           <div class="lang-toggle">
             <a href={koUrl} class:list={{ active: lang === 'ko' }}>KO</a>
             <a href={enUrl} class:list={{ active: lang === 'en' }}>EN</a>

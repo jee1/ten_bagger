@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PerformanceEmpty from '../components/PerformanceEmpty.astro';
+import PerformanceSummary from '../components/PerformanceSummary.astro';
+import HorizonCards from '../components/HorizonCards.astro';
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+import { loadPerformanceBundle, type Market } from '../lib/performanceLoad';
+import { aggregateMarket } from '../lib/performanceAggregate';
+
+const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
+const marketParam = Astro.url.searchParams.get('market');
+const market: Market = marketParam === 'US' ? 'US' : 'KR';
+const base = import.meta.env.BASE_URL;
+
+const bundle = loadPerformanceBundle(market);
+const view = aggregateMarket(bundle, market);
+
+const krHref = `${base}performance?lang=${lang}&market=KR`;
+const usHref = `${base}performance?lang=${lang}&market=US`;
+---
+
+<Layout title={label('performance', lang)} lang={lang}>
+  <div class="market-switch">
+    <span class="muted">{label('performanceMarket', lang)}:</span>
+    <a href={krHref} class:list={{ active: market === 'KR' }}>{label('marketKR', lang)}</a>
+    <a href={usHref} class:list={{ active: market === 'US' }}>{label('marketUS', lang)}</a>
+  </div>
+
+  {view.pageEmpty ? (
+    <PerformanceEmpty lang={lang} />
+  ) : (
+    <>
+      <PerformanceSummary lang={lang} view={view} />
+      <HorizonCards lang={lang} horizons={view.horizons} />
+      {view.empty && (
+        <p class="muted">{label('performanceHorizonUnavailable', lang)}</p>
+      )}
+    </>
+  )}
+</Layout>
+
+<style>
+  .market-switch {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .market-switch a.active {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+</style>

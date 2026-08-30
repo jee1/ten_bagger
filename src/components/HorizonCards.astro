@@ -1,0 +1,105 @@
+---
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+import type { HorizonSummary } from '../lib/performanceAggregate';
+
+interface Props {
+  lang: Lang;
+  horizons: HorizonSummary[];
+}
+
+const { lang, horizons } = Astro.props;
+const presentation = horizons.filter((h) => h.tier === 'presentation');
+const secondary = horizons.filter((h) => h.tier === 'secondary');
+
+const horizonLabelKey = {
+  '1M': 'horizon1M',
+  '3M': 'horizon3M',
+  '6M': 'horizon6M',
+  '1Y': 'horizon1Y',
+  H20: 'horizonH20',
+  H60: 'horizonH60',
+} as const;
+
+function horizonLabel(id: string): keyof typeof horizonLabelKey {
+  return (id in horizonLabelKey ? id : '1M') as keyof typeof horizonLabelKey;
+}
+
+function pct(n: number | null | undefined): string {
+  if (n == null || Number.isNaN(n)) return '—';
+  return `${(n * 100).toFixed(2)}%`;
+}
+---
+
+<section class="card">
+  <h2>{label('performanceHorizons', lang)}</h2>
+  <div class="horizon-grid">
+    {presentation.map((h) => (
+      <div class="horizon-card">
+        <h3>{label(horizonLabelKey[horizonLabel(h.horizonId)], lang)}</h3>
+        {h.available ? (
+          <>
+            <p>{label('performanceAvgPick', lang)}: {pct(h.avgPickReturn)}</p>
+            <p>
+              {label('performanceAvgBench', lang)}:{' '}
+              {h.excessClaimAllowed ? pct(h.avgBenchReturn) : label('performanceBenchmarkUnavailable', lang)}
+            </p>
+            {h.survivorshipCaveat && (
+              <p class="muted">{label('performanceSurvivorshipCaveat', lang)}</p>
+            )}
+          </>
+        ) : (
+          <p class="muted">{label('performanceHorizonUnavailable', lang)}</p>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <h3 class="secondary-heading">{label('performanceSecondaryHorizons', lang)}</h3>
+  <div class="horizon-grid secondary">
+    {secondary.map((h) => (
+      <div class="horizon-card muted-card">
+        <h4>{label(horizonLabelKey[horizonLabel(h.horizonId)], lang)}</h4>
+        {h.available ? (
+          <>
+            <p>{label('performanceAvgPick', lang)}: {pct(h.avgPickReturn)}</p>
+            <p>
+              {label('performanceAvgBench', lang)}:{' '}
+              {h.excessClaimAllowed ? pct(h.avgBenchReturn) : label('performanceBenchmarkUnavailable', lang)}
+            </p>
+          </>
+        ) : (
+          <p class="muted">{label('performanceHorizonUnavailable', lang)}</p>
+        )}
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .horizon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .horizon-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+  }
+  .horizon-card h3,
+  .horizon-card h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+  }
+  .secondary-heading {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: var(--muted);
+  }
+  .muted-card {
+    opacity: 0.85;
+  }
+</style>

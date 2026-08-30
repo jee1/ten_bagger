@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "0.1.0",
+  "market": "KR",
+  "asOfDate": "2026-08-28",
+  "runMeta": {
+    "provider": "fixture",
+    "priceAdjustment": "adjusted_preferred",
+    "generatedAt": "2026-08-28T00:00:00Z",
+    "asOfDate": "2026-08-28"
+  },
+  "measurements": [
+    {
+      "market": "KR",
+      "pickDate": "2026-01-05",
+      "symbol": "AAA",
+      "horizonId": "H20",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
+      "survivorshipFlag": "listed",
+      "asOfDate": "2026-08-28",
+      "forwardReturn": 0.1,
+      "benchmarkReturn": 0.05
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-02-05",
+      "symbol": "BBB",
+      "horizonId": "H20",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
+      "survivorshipFlag": "listed",
+      "asOfDate": "2026-08-28",
+      "forwardReturn": 0.2,
+      "benchmarkReturn": 0.0
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-01-05",
+      "symbol": "AAA",
+      "horizonId": "1M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
+      "survivorshipFlag": "listed",
+      "asOfDate": "2026-08-28",
+      "forwardReturn": 0.05,
+      "benchmarkReturn": 0.02
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-02-05",
+      "symbol": "BBB",
+      "horizonId": "1M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
+      "survivorshipFlag": "listed",
+      "asOfDate": "2026-08-28",
+      "forwardReturn": 0.15,
+      "benchmarkReturn": 0.01
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-01-05",
+      "symbol": "AAA",
+      "horizonId": "3M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
+      "survivorshipFlag": "listed",
+      "asOfDate": "2026-08-28",
+      "forwardReturn": 0.08,
+      "benchmarkReturn": 0.03
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-01-05",
+      "symbol": "AAA",
+      "horizonId": "6M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkCompletionStatus": "incomplete",
+      "benchmarkIncompleteReason": "horizon_beyond_asof",
+      "survivorshipFlag": "listed",
+      "asOfDate": "2026-08-28"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-01-05",
+      "symbol": "AAA",
+      "horizonId": "H60",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
+      "survivorshipFlag": "listed",
+      "asOfDate": "2026-08-28",
+      "forwardReturn": 0.12,
+      "benchmarkReturn": 0.04
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-03-05",
+      "symbol": "CCC",
+      "horizonId": "H20",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "delisted",
+      "asOfDate": "2026-08-28",
+      "forwardReturn": 0.05,
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    }
+  ]
+}
