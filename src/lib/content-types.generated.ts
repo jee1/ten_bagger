@@ -4,8 +4,6 @@
  * Regenerate: npm run gen:types
  */
 export type DailyEntry = {
-  [k: string]: unknown;
-} & {
   date: string;
   market: "KR" | "US";
   status: "pick" | "no_pick";
@@ -86,8 +84,6 @@ export interface LedgerEntry {
 }
 
 export type PerformanceMeasurement = {
-  [k: string]: unknown;
-} & {
   market: "KR" | "US";
   pickDate: string;
   symbol: string;
