@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from performance.returns import BENCHMARK_IDS
+
 from walk_forward.measure import WALK_FORWARD_HORIZONS
 
 GO_EVIDENCE_MIN_PICK_DAYS = 20
@@ -17,9 +18,7 @@ def _horizon_metrics(
     market: str,
 ) -> dict[str, Any]:
     rows = [
-        m
-        for m in measurements
-        if m.get("horizonId") == horizon_id and m.get("market") == market
+        m for m in measurements if m.get("horizonId") == horizon_id and m.get("market") == market
     ]
     complete = [m for m in rows if m.get("completionStatus") == "complete"]
     sample_count = len(complete)

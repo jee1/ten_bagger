@@ -7,14 +7,13 @@ import subprocess
 import sys
 from pathlib import Path
 
-import pytest
 from config import DAILY_DIR, WALK_FORWARD_SCHEMA_PATH
 from validate_content import load_validator
 from walk_forward.config import load_run_config
+from walk_forward.execute import execute_run
 from walk_forward.folds import build_decision_sessions, generate_rolling_folds
 from walk_forward.pit_screen import pit_screen_day
-from walk_forward.report import build_report, serialize_report
-from walk_forward.execute import execute_run
+from walk_forward.report import serialize_report
 
 SCRIPTS_DIR = Path(__file__).resolve().parents[1]
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "walk_forward"

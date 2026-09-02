@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from datetime import date, timedelta
+from datetime import date
 from typing import Any
 
 from config import DUPLICATE_BAN_DAYS, market_for_date
+
 from walk_forward.config import RunConfig
 from walk_forward.pit_screen import pit_screen_day
 

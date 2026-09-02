@@ -9,6 +9,7 @@ from typing import Any
 import pandas as pd
 from performance.returns import BENCHMARK_IDS, measure_pick_horizon
 from tests.fixtures.price_loader import load_price_fixture
+
 from walk_forward.config import RunConfig
 from walk_forward.ledger_loader import load_performance_index, lookup_measurement
 
@@ -65,9 +66,7 @@ def measure_oos_picks(
                     run_intent=run_config.runIntent,
                 )
                 if row is None:
-                    measurements.append(
-                        _missing_measurement_row(pick, horizon_id, as_of_date)
-                    )
+                    measurements.append(_missing_measurement_row(pick, horizon_id, as_of_date))
                 else:
                     measurements.append(row)
         return measurements

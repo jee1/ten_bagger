@@ -61,7 +61,8 @@ def test_generate_rolling_folds_step_advances_calendar():
     )
     folds = generate_rolling_folds(VALID_FOLD_SPEC, sessions)
     assert folds[0]["trainSessions"][0] != folds[1]["trainSessions"][0]
-    assert folds[1]["trainSessions"][0] == folds[0]["trainSessions"][VALID_FOLD_SPEC["stepSessions"]]
+    step = VALID_FOLD_SPEC["stepSessions"]
+    assert folds[1]["trainSessions"][0] == folds[0]["trainSessions"][step]
 
 
 def test_generate_rolling_folds_fails_when_less_than_two():

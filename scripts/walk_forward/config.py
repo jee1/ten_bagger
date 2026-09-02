@@ -27,7 +27,10 @@ class RunConfig:
 
 
 def _validate_run_config(data: dict[str, Any]) -> None:
-    if data.get("runIntent") == "go_evidence" and data.get("measurementSource") == "fixture-recompute":
+    if (
+        data.get("runIntent") == "go_evidence"
+        and data.get("measurementSource") == "fixture-recompute"
+    ):
         raise ValueError(
             "go_evidence requires measurementSource=ledger; fixture-recompute is not allowed"
         )
@@ -64,7 +67,9 @@ def load_run_config(path: Path | str) -> RunConfig:
         foldSpec=dict(data["foldSpec"]),
         weightOverrides=data.get("weightOverrides"),
         ledgerDir=Path(data["ledgerDir"]) if data.get("ledgerDir") else LEDGER_DIR,
-        performanceDir=Path(data["performanceDir"]) if data.get("performanceDir") else PERFORMANCE_DIR,
+        performanceDir=(
+            Path(data["performanceDir"]) if data.get("performanceDir") else PERFORMANCE_DIR
+        ),
         outputDir=Path(data["outputDir"]) if data.get("outputDir") else WALK_FORWARD_DIR,
     )
 
