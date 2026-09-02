@@ -142,8 +142,8 @@ export type WalkForwardReport = {
   coverage: CoverageBlock;
 };
 export type FoldStatus = "complete" | "incomplete_horizon" | "skipped_empty_train";
-export type HorizonId = "H20" | "H60";
-export type BenchmarkId = "KR-KOSPI" | "US-SPX";
+export type WalkForwardHorizonId = "H20" | "H60";
+export type WalkForwardBenchmarkId = "KR-KOSPI" | "US-SPX";
 
 export interface FoldSpec {
   mode: "rolling";
@@ -167,8 +167,8 @@ export interface DateRange {
   end: string;
 }
 export interface HorizonMetrics {
-  horizonId: HorizonId;
-  benchmarkId: BenchmarkId;
+  horizonId: WalkForwardHorizonId;
+  benchmarkId: WalkForwardBenchmarkId;
   market?: "KR" | "US";
   pickReturnMean?: number | null;
   hitRate?: number | null;

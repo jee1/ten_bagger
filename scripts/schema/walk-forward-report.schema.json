@@ -84,15 +84,15 @@
       "type": "string",
       "enum": ["complete", "incomplete_horizon", "skipped_empty_train"]
     },
-    "horizonId": { "type": "string", "enum": ["H20", "H60"] },
-    "benchmarkId": { "type": "string", "enum": ["KR-KOSPI", "US-SPX"] },
+    "walkForwardHorizonId": { "type": "string", "enum": ["H20", "H60"] },
+    "walkForwardBenchmarkId": { "type": "string", "enum": ["KR-KOSPI", "US-SPX"] },
     "horizonMetrics": {
       "type": "object",
       "additionalProperties": false,
       "required": ["horizonId", "benchmarkId", "status"],
       "properties": {
-        "horizonId": { "$ref": "#/$defs/horizonId" },
-        "benchmarkId": { "$ref": "#/$defs/benchmarkId" },
+        "horizonId": { "$ref": "#/$defs/walkForwardHorizonId" },
+        "benchmarkId": { "$ref": "#/$defs/walkForwardBenchmarkId" },
         "market": { "type": "string", "enum": ["KR", "US"] },
         "pickReturnMean": { "type": ["number", "null"] },
         "hitRate": { "type": ["number", "null"] },
