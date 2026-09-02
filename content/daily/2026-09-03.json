@@ -1,0 +1,92 @@
+{
+  "date": "2026-09-03",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "147830.KQ",
+    "name": {
+      "ko": "제룡산업",
+      "en": "Cheryong Industrial Co.,Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "제룡산업는 Industrials 분야 Electrical Equipment & Parts 기업입니다.",
+        "en": "Cheryong Industrial Co.,Ltd. manufactures and sells transmission and distribution materials, underground cable materials, communication equipment, and railway materials in South Korea."
+      },
+      "sector": {
+        "ko": "Industrials",
+        "en": "Industrials"
+      },
+      "industry": {
+        "ko": "Electrical Equipment & Parts",
+        "en": "Electrical Equipment & Parts"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.3,
+    "size": 100.0,
+    "growth": 93.3,
+    "valuation": 65.8,
+    "entry": 59.0,
+    "momentum": 53.6,
+    "quality": 79.8,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "제룡산업(147830.KQ)는 v2 복합 점수 77.3로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Cheryong Industrial Co.,Ltd. (147830.KQ) cleared the 70.0 threshold with v2 composite 77.3; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 66.8% / 이익 0.0% (혼합 36.74%) — 지속 가능 성장 점수 93.3.",
+      "en": "Revenue 66.8% / earnings 0.0% (blended 36.74%) — sustainable growth score 93.3."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 13.28%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 13.28%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -8.03% — 보조 모멘텀 점수 53.6.",
+      "en": "6M return -8.03% — auxiliary momentum score 53.6."
+    },
+    "quality": {
+      "ko": "ROE 23.19%, ROA 9.95%, FCF/순이익 0.84 — 품질 점수 79.8.",
+      "en": "ROE 23.19%, ROA 9.95%, FCF/net income 0.84 — quality score 79.8."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 129467383808 기준 규모 점수 100.0.",
+      "en": "Market cap 129467383808 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 17.42%, 52주 고점 대비 -50.76% — 진입 점수 59.0.",
+      "en": "12M price range 17.42%, -50.76% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-03T08:18:27+09:00",
+    "candidatesScreened": 1901,
+    "excludedRecent": 27,
+    "skippedMarketCap": 851,
+    "skippedRedFlags": 356,
+    "noData": 0,
+    "errors": 0
+  }
+}
