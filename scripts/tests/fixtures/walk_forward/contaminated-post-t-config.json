@@ -1,0 +1,14 @@
+{
+  "runIntent": "exploratory",
+  "measurementSource": "fixture-recompute",
+  "candidateId": "score-v2-baseline",
+  "markets": ["KR"],
+  "foldSpec": {
+    "mode": "rolling",
+    "trainSessions": 4,
+    "oosSessions": 2,
+    "stepSessions": 2,
+    "startDate": "2026-01-01",
+    "endDate": "2026-02-10"
+  }
+}

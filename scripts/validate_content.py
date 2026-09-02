@@ -15,6 +15,8 @@ from config import (
     PERFORMANCE_BUNDLE_SCHEMA_PATH,
     PERFORMANCE_DIR,
     SCHEMA_PATH,
+    WALK_FORWARD_DIR,
+    WALK_FORWARD_SCHEMA_PATH,
 )
 from sync_manifest import collect_daily_dates
 
@@ -92,7 +94,12 @@ def main() -> int:
         load_validator(PERFORMANCE_BUNDLE_SCHEMA_PATH),
         "performance",
     )
-    errors_found += ledger_err + perf_err
+    wf_n, wf_err = _validate_dir(
+        WALK_FORWARD_DIR,
+        load_validator(WALK_FORWARD_SCHEMA_PATH),
+        "walk-forward",
+    )
+    errors_found += ledger_err + perf_err + wf_err
 
     if errors_found:
         print(f"Validation failed: {errors_found} error(s)")
@@ -104,6 +111,8 @@ def main() -> int:
         extras.append(f"{ledger_n} ledger")
     if perf_n:
         extras.append(f"{perf_n} performance")
+    if wf_n:
+        extras.append(f"{wf_n} walk-forward")
     extra_msg = f" + {', '.join(extras)}" if extras else ""
     print(f"Validated {count} daily file(s) and manifest{extra_msg}")
     return 0

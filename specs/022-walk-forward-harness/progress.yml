@@ -1,0 +1,17 @@
+feature: 022-walk-forward-harness
+created: 2026-08-31
+current_phase: review
+phases:
+  constitution: { status: done, updated: 2026-08-31 }
+  specify: { status: done, updated: 2026-08-31 }
+  brainstorm: { status: done, updated: 2026-09-01 }
+  plan: { status: done, updated: 2026-09-01 }
+  tasks: { status: done, updated: 2026-09-01 }
+  execute: { status: done, updated: 2026-09-01 }
+  review: { status: done, updated: 2026-09-01 }
+notes:
+  - "Constitution amended to v1.0.1 (walk-forward PIT + smoke gates)"
+  - "Issue #66; Epic #74 Phase 1; ADRs 0001–0004"
+  - "Git branch retained: feature/performance-point-in-time-walk-forward-harness"
+  - "Execute 2026-09-01: T001–T040 complete; 120 tests green"
+  - "Review 2026-09-01: PASS after Important fixes (deterministic generatedAt, weightOverrides reject, US benchmark, ledger corrupt hint)"

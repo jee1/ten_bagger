@@ -1,0 +1,18 @@
+[
+  {
+    "symbol": "GOOD.KR",
+    "name_ko": "양호",
+    "name_en": "Good Inc",
+    "exchange": "KRX",
+    "currency": "KRW",
+    "market_cap": 100000000000
+  },
+  {
+    "symbol": "LOOKAHEAD.KR",
+    "name_ko": "미래",
+    "name_en": "Lookahead Inc",
+    "exchange": "KRX",
+    "currency": "KRW",
+    "market_cap": 100000000000
+  }
+]
