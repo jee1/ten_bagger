@@ -1,8 +1,13 @@
 <!--
 Sync Impact Report
 ==================
-Version change: 1.0.0 → 1.0.0 (revalidated 2026-08-30; no amendment)
-Modified principles: None
+Version change: 1.0.0 → 1.0.1
+Modified principles:
+  - II. Point-in-Time Measurement (No Look-Ahead) — clarified walk-forward
+    evaluation MUST honor the same asOfDate / no look-ahead rules as ledger
+    measurement (Issue #66 hook)
+  - Quality Gates / Deployment Gates — added walk-forward harness smoke +
+    reproducible OOS artifact requirements
 Added sections: None
 Removed sections: None
 Templates requiring updates:
@@ -11,9 +16,9 @@ Templates requiring updates:
   - .specify/templates/tasks-template.md ✅ compatible
   - .specify/templates/checklist-template.md ✅ compatible
   - .specify/templates/commands/*.md ✅ N/A (directory does not exist)
-  - README.md ✅ links `.specify/memory/constitution.md`
+  - README.md ✅ links `.specify/memory/constitution.md` (no principle rename)
 Follow-up TODOs:
-  - None. Revalidated before specs for Epic #74 Phase 0 hygiene (#65).
+  - None. Amended ahead of specs/022 walk-forward harness (Issue #66).
 -->
 
 # Ten Bagger Daily Constitution
@@ -39,6 +44,11 @@ the documented decision or measurement `asOfDate`. Entry/exit price basis,
 survivorship flags, and horizon definitions MUST follow the active ADRs
 (currently 0002 and 0003). Quiet omission of delisted or gapped symbols is
 FORBIDDEN; every measured symbol MUST record a survivorship label.
+
+Walk-forward and screening-validation jobs (Epic #74 / Issue #66) MUST apply
+the same point-in-time cut: at each fold decision date `t`, feature inputs and
+candidate selection MUST NOT use data observed after `t`. OOS evaluation MUST
+use only outcomes that would have been measurable after `t` under ADR 0002.
 
 **Rationale**: Look-ahead and survivorship bias make performance claims
 untrustworthy and invalidate Score merge evidence.
@@ -138,6 +148,9 @@ pipeline:
   `npm run gen:types:check`; Astro surfaces via `npm run check`
 - [x] **TDD discipline**: REQUIRED for tasks marked `[TDD]` — RED-GREEN-REFACTOR;
   OPTIONAL elsewhere when change is docs-only
+- [x] **Walk-forward smoke**: REQUIRED for walk-forward harness changes —
+  offline fixture smoke that proves no look-ahead and emits a minimal OOS
+  report (Issue #66)
 
 ### Review Requirements
 
@@ -155,6 +168,9 @@ pipeline:
 - [ ] All review items resolved
 - [ ] Constitution compliance verified (Principles I–V)
 - [ ] Score weight changes: ADR 0004 GO evidence linked; otherwise NO-GO
+- [ ] Walk-forward / OOS claim changes: reproducible report artifact (or
+      documented provider assumptions) and PIT assumptions documented in
+      Methodology or the active spec
 - [ ] Public disclaimer and KR/US bilingual expectations preserved when UI copy
       changes
 
@@ -187,4 +203,4 @@ Any amendment requires:
 Check table for Principles I–V. Tasks that alter live selection or measurement
 contracts MUST not be marked complete without that check passing.
 
-**Version**: 1.0.0 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-08-29
+**Version**: 1.0.1 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-08-31

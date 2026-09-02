@@ -10,7 +10,7 @@ Labels follow spec Q4 / `contracts/issue-labels.md`.
 | [#63](https://github.com/jee1/ten_bagger/issues/63) | blocked-on-docs | Ledger / measurement storage — needs ADR 0001 + draft schemas |
 | [#64](https://github.com/jee1/ten_bagger/issues/64) | blocked-on-docs | Performance presentation — needs package + ADR contracts |
 | [#65](https://github.com/jee1/ten_bagger/issues/65) | informed | May proceed in parallel; informed by architecture package |
-| [#66](https://github.com/jee1/ten_bagger/issues/66) | blocked-on-docs | Walk-forward jobs — ADR 0002/0003 |
+| [#66](https://github.com/jee1/ten_bagger/issues/66) | ready (docs gate done) | Walk-forward jobs — ADR 0002/0003; spec `022-walk-forward-harness` |
 | [#67](https://github.com/jee1/ten_bagger/issues/67) | blocked-on-docs | Merge-gate plumbing — ADR 0004 |
 | [#68](https://github.com/jee1/ten_bagger/issues/68) | blocked-on-docs-and-measurement | Score v3 factor — analysis OK; **no weight PR** until GO |
 | [#69](https://github.com/jee1/ten_bagger/issues/69) | blocked-on-docs-and-measurement | Score v3 factor — same as #68 |

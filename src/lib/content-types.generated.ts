@@ -121,3 +121,67 @@ export interface RunMeta {
   generatedAt: string;
   asOfDate: string;
 }
+
+export type WalkForwardReport = {
+  schemaVersion: "0.1.0";
+  runId: string;
+  runIntent: "exploratory" | "go_evidence";
+  measurementSource: "ledger" | "fixture-recompute";
+  /**
+   * SHA-256 of canonical run config JSON; no secrets
+   */
+  configHash: string;
+  generatedAt: string;
+  candidateId: string;
+  foldSpec: FoldSpec;
+  /**
+   * @minItems 1
+   */
+  folds: [Fold, ...Fold[]];
+  aggregate: AggregateMetrics;
+  coverage: CoverageBlock;
+};
+export type FoldStatus = "complete" | "incomplete_horizon" | "skipped_empty_train";
+export type HorizonId = "H20" | "H60";
+export type BenchmarkId = "KR-KOSPI" | "US-SPX";
+
+export interface FoldSpec {
+  mode: "rolling";
+  trainSessions: number;
+  oosSessions: number;
+  stepSessions: number;
+  startDate: string;
+  endDate: string;
+}
+export interface Fold {
+  foldIndex: number;
+  trainRange: DateRange;
+  oosRange: DateRange;
+  status: FoldStatus;
+  pickDays: number;
+  noPickDays: number;
+  horizons: HorizonMetrics[];
+}
+export interface DateRange {
+  start: string;
+  end: string;
+}
+export interface HorizonMetrics {
+  horizonId: HorizonId;
+  benchmarkId: BenchmarkId;
+  market?: "KR" | "US";
+  pickReturnMean?: number | null;
+  hitRate?: number | null;
+  excessReturnMean?: number | null;
+  status: "complete" | "incomplete";
+  sampleCount?: number;
+}
+export interface AggregateMetrics {
+  horizons: HorizonMetrics[];
+}
+export interface CoverageBlock {
+  oosPickDays: number;
+  noPickDays: number;
+  noPickRatio: number;
+  insufficientCoverage: boolean;
+}

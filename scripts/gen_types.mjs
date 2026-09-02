@@ -22,6 +22,7 @@ const SCHEMAS = [
   'manifest.schema.json',
   'ledger.schema.json',
   'performance-bundle.schema.json',
+  'walk-forward-report.schema.json',
 ];
 
 async function buildTypes() {
