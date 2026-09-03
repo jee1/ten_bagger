@@ -1,0 +1,92 @@
+{
+  "date": "2026-09-04",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "CRMD",
+    "name": {
+      "ko": "CorMedix Inc.",
+      "en": "CorMedix Inc."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "CorMedix Inc.는 Healthcare 분야 Biotechnology 기업입니다.",
+        "en": "CorMedix Inc., a biopharmaceutical company, focuses on developing and commercializing therapeutic products for life-threatening diseases and conditions in the United States."
+      },
+      "sector": {
+        "ko": "Healthcare",
+        "en": "Healthcare"
+      },
+      "industry": {
+        "ko": "Biotechnology",
+        "en": "Biotechnology"
+      }
+    }
+  },
+  "scores": {
+    "composite": 81.6,
+    "size": 92.0,
+    "growth": 70.4,
+    "valuation": 83.5,
+    "entry": 66.0,
+    "momentum": 73.9,
+    "quality": 94.5,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "CorMedix Inc.(CRMD)는 v2 복합 점수 81.6로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "CorMedix Inc. (CRMD) cleared the 70.0 threshold with v2 composite 81.6; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 100.0% / 이익 6.7% (혼합 58.02%) — 지속 가능 성장 점수 70.4.",
+      "en": "Revenue 100.0% / earnings 6.7% (blended 58.02%) — sustainable growth score 70.4."
+    },
+    "valuation": {
+      "ko": "PER 3.89, PEG None, FCF수익률 26.98%, PBR 1.43 — 밸류 점수 83.5.",
+      "en": "P/E 3.89, PEG None, FCF yield 26.98%, P/B 1.43 — valuation score 83.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 31.11% — 보조 모멘텀 점수 73.9.",
+      "en": "6M return 31.11% — auxiliary momentum score 73.9."
+    },
+    "quality": {
+      "ko": "ROE 54.93%, ROA 24.56%, FCF/순이익 0.96 — 품질 점수 94.5.",
+      "en": "ROE 54.93%, ROA 24.56%, FCF/net income 0.96 — quality score 94.5."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 660188416 기준 규모 점수 92.0.",
+      "en": "Market cap 660188416 — size score 92.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 32.46%, 52주 고점 대비 -35.29% — 진입 점수 66.0.",
+      "en": "12M price range 32.46%, -35.29% from 52W high — entry score 66.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-04T08:54:08+09:00",
+    "candidatesScreened": 6328,
+    "excludedRecent": 27,
+    "skippedMarketCap": 1958,
+    "skippedRedFlags": 990,
+    "noData": 116,
+    "errors": 0
+  }
+}
