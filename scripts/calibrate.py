@@ -56,8 +56,7 @@ def _run(args: argparse.Namespace) -> int:
         return 2
     except ImportError as exc:
         print(
-            f"error: walk-forward harness required ({exc}); "
-            "try: npm run walk-forward -- --help",
+            f"error: walk-forward harness required ({exc}); try: npm run walk-forward -- --help",
             file=sys.stderr,
         )
         return 2

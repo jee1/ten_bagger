@@ -113,10 +113,7 @@ def rank_candidates(
         return {"report": report, "path": path, "configHash": cfg_hash}
 
     ranking = rank_candidates_is(cal_config.candidates, run_wf=_wf)
-    rationale = (
-        "IS ranking by H20 excess return mean (desc), "
-        "tie-break isPickDays then candidateId"
-    )
+    rationale = "IS ranking by H20 excess return mean (desc), tie-break isPickDays then candidateId"
     return ranking, rationale
 
 

@@ -70,12 +70,11 @@ def _validate_is_oos_disjoint(
         # Fold generation may fail for tiny windows in dry validation of bad fixtures;
         # fall back to range overlap on calendar endpoints.
         if not (
-            is_spec["endDate"] < oos_spec["startDate"]
-            or oos_spec["endDate"] < is_spec["startDate"]
+            is_spec["endDate"] < oos_spec["startDate"] or oos_spec["endDate"] < is_spec["startDate"]
         ):
             raise ValueError(
                 "IS and OOS fold calendars overlap; decision dates must be disjoint"
-            )
+            ) from None
         return
     overlap = sorted(is_dates & oos_dates)
     if overlap:
@@ -94,10 +93,7 @@ def _validate_payload(data: dict[str, Any]) -> None:
     if mode not in ("search", "baseline-only"):
         raise ValueError('mode must be "search" or "baseline-only"')
 
-    if (
-        package_intent == "go_evidence"
-        and data.get("measurementSourceOos") != "ledger"
-    ):
+    if package_intent == "go_evidence" and data.get("measurementSourceOos") != "ledger":
         raise ValueError(
             "go_evidence requires measurementSourceOos=ledger; "
             "fixture-recompute is not allowed for OOS GO packages"

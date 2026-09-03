@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from calibration.config import load_calibration_config
 from calibration.report import build_report, serialize_report
-from pathlib import Path
 
 FIX = Path(__file__).resolve().parent / "fixtures" / "calibration"
 

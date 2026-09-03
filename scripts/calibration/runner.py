@@ -146,20 +146,14 @@ def execute_calibration(
                 write=write,
             )
 
-        is_ranking, selection_rationale = rank_candidates(
-            cal_config, run_walk_forward=_wf_runner
-        )
-        promotee_specs = select_promotees(
-            is_ranking, cal_config.candidates, cal_config.promoteTopN
-        )
+        is_ranking, selection_rationale = rank_candidates(cal_config, run_walk_forward=_wf_runner)
+        promotee_specs = select_promotees(is_ranking, cal_config.candidates, cal_config.promoteTopN)
         if not promotee_specs:
             incomplete = True
     else:
         promotee_specs = [None]
 
-    oos_intent = (
-        "go_evidence" if cal_config.packageIntent == "go_evidence" else "exploratory"
-    )
+    oos_intent = "go_evidence" if cal_config.packageIntent == "go_evidence" else "exploratory"
     oos_source = cal_config.measurementSourceOos
     oos_evaluations: list[dict[str, Any]] = []
 
@@ -182,7 +176,8 @@ def execute_calibration(
             msg = str(exc)
             if "ledger" in msg.lower() or "missing" in msg.lower():
                 raise ValueError(
-                    f"{msg}; regenerate with: npm run regenerate:ledger -- --as-of-date <YYYY-MM-DD>"
+                    f"{msg}; regenerate with: "
+                    "npm run regenerate:ledger -- --as-of-date <YYYY-MM-DD>"
                 ) from exc
             oos_evaluations.append(
                 {

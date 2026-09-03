@@ -55,7 +55,11 @@ def test_tie_break_pick_days_then_id():
             "coverage": {"oosPickDays": pick_days[candidate.candidateId]},
             "aggregate": {"horizons": [{"horizonId": "H20", "excessReturnMean": 0.05}]},
         }
-        return {"report": report, "path": f"wf/{candidate.candidateId}.json", "configHash": "c" * 64}
+        return {
+            "report": report,
+            "path": f"wf/{candidate.candidateId}.json",
+            "configHash": "c" * 64,
+        }
 
     ranking = rank_candidates_is(cfg.candidates, run_wf=fake_wf)
     ranked_ids = [e["candidateId"] for e in ranking if e["status"] == "ranked"]

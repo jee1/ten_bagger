@@ -8,15 +8,13 @@ import config as live_config
 import pytest
 from calibrate import main as calibrate_main
 from calibration.config import load_calibration_config
-from calibration.report import serialize_report, build_report
+from calibration.report import build_report, serialize_report
 
 FIX = Path(__file__).resolve().parent / "fixtures" / "calibration"
 
 
 def test_dry_run_smoke_search():
-    code = calibrate_main(
-        ["run", "--config", str(FIX / "smoke-search-config.json"), "--dry-run"]
-    )
+    code = calibrate_main(["run", "--config", str(FIX / "smoke-search-config.json"), "--dry-run"])
     assert code == 0
 
 

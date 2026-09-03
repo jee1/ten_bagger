@@ -8,10 +8,9 @@ from typing import Any
 from unittest.mock import patch
 
 import screening.core as screening_core
+from calibration.overrides import apply_candidate_overrides
 from performance.pit_prices import filter_session_bars
 from screening.core import screen_market
-
-from calibration.overrides import apply_candidate_overrides
 
 
 @contextmanager

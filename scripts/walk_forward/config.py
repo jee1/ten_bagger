@@ -36,7 +36,7 @@ def _validate_overrides(data: dict[str, Any]) -> None:
 
     threshold = data.get("thresholdOverride")
     if threshold is not None and (
-        not isinstance(threshold, (int, float)) or isinstance(threshold, bool)
+        not isinstance(threshold, int | float) or isinstance(threshold, bool)
     ):
         raise ValueError("thresholdOverride must be a number or null")
 

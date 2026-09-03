@@ -39,7 +39,7 @@ def validate_weights(weights: dict[str, Any]) -> dict[str, float]:
     out: dict[str, float] = {}
     for key in WEIGHT_KEYS:
         val = weights[key]
-        if not isinstance(val, (int, float)) or isinstance(val, bool):
+        if not isinstance(val, int | float) or isinstance(val, bool):
             raise ValueError(f"{key} must be a finite number")
         fval = float(val)
         if fval != fval:  # NaN
@@ -47,9 +47,7 @@ def validate_weights(weights: dict[str, Any]) -> dict[str, float]:
         out[key] = fval
     total = sum(out.values())
     if abs(total - 1.0) > WEIGHT_SUM_TOLERANCE:
-        raise ValueError(
-            f"weight sum must be 1.0±{WEIGHT_SUM_TOLERANCE}; got {total}"
-        )
+        raise ValueError(f"weight sum must be 1.0±{WEIGHT_SUM_TOLERANCE}; got {total}")
     return out
 
 
@@ -58,7 +56,7 @@ def parse_candidate(raw: dict[str, Any]) -> CandidateSpec:
         raise ValueError("candidateId is required")
     threshold = raw.get("threshold")
     if threshold is not None and (
-        not isinstance(threshold, (int, float)) or isinstance(threshold, bool)
+        not isinstance(threshold, int | float) or isinstance(threshold, bool)
     ):
         raise ValueError(f"threshold must be a number or null for {raw.get('candidateId')}")
     weights_raw = raw.get("weights")
@@ -79,9 +77,7 @@ def parse_candidates(raw_list: list[Any] | None, *, mode: str) -> list[Candidate
     if not raw_list:
         raise ValueError("search mode requires at least one candidate")
     if len(raw_list) > MAX_CANDIDATES:
-        raise ValueError(
-            f"at most {MAX_CANDIDATES} candidates allowed; got {len(raw_list)}"
-        )
+        raise ValueError(f"at most {MAX_CANDIDATES} candidates allowed; got {len(raw_list)}")
     candidates = [parse_candidate(item) for item in raw_list]
     ids = [c.candidateId for c in candidates]
     if len(ids) != len(set(ids)):
