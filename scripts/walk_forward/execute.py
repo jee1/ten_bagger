@@ -16,6 +16,7 @@ from walk_forward.measure import (
     fixture_price_provider,
     measure_oos_picks,
 )
+from walk_forward.pit_screen import bind_pit_fn
 from walk_forward.report import build_report, serialize_report
 from walk_forward.runner import run_folds
 
@@ -69,7 +70,19 @@ def execute_run(
 ) -> dict[str, Any]:
     as_of = run_config.foldSpec["endDate"]
     measure_fn = make_measure_fn(run_config)
-    fold_results = run_folds(run_config, folds, measure_fn, as_of_date=as_of)
+    pit_fn = None
+    if run_config.thresholdOverride is not None or run_config.weightOverrides:
+        pit_fn = bind_pit_fn(
+            threshold_override=run_config.thresholdOverride,
+            weight_overrides=run_config.weightOverrides,
+        )
+    fold_results = run_folds(
+        run_config,
+        folds,
+        measure_fn,
+        pit_fn=pit_fn,
+        as_of_date=as_of,
+    )
     rid = run_id(run_config)
     report = build_report(
         run_config=run_config,

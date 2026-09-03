@@ -185,3 +185,51 @@ export interface CoverageBlock {
   noPickRatio: number;
   insufficientCoverage: boolean;
 }
+
+export interface CalibrationReport {
+  schemaVersion: "0.1.0";
+  runId: string;
+  packageIntent: "exploratory" | "go_evidence";
+  mode: "search" | "baseline-only";
+  configHash: string;
+  generatedAt: string;
+  liveConstantsSnapshot: {
+    compositeThreshold: number;
+    weights: {
+      WEIGHT_SIZE: number;
+      WEIGHT_VALUATION: number;
+      WEIGHT_GROWTH: number;
+      WEIGHT_QUALITY: number;
+      WEIGHT_ENTRY: number;
+      WEIGHT_MOMENTUM: number;
+    };
+  };
+  isRanking: IsRankingEntry[];
+  selectionRationale: string;
+  oosEvaluations: OosEvaluationEntry[];
+  overallVerdict: "GO" | "NO-GO" | "N/A";
+  failedBullets: string[];
+  mergeCriteriaRef: string;
+}
+export interface IsRankingEntry {
+  candidateId: string;
+  rank: number;
+  isMetricH20ExcessMean: number | null;
+  isPickDays: number;
+  walkForwardReportPath: string;
+  walkForwardConfigHash: string;
+  status: "ranked" | "rejected_invalid" | "failed";
+}
+export interface OosEvaluationEntry {
+  candidateId: string;
+  walkForwardReportPath: string;
+  walkForwardConfigHash: string;
+  oosPickDays: number;
+  noPickRatio: number;
+  h20ExcessReturnMean: number | null;
+  h60ExcessReturnMean: number | null;
+  insufficientCoverage: boolean;
+  contaminationFindings: string[];
+  verdict: "GO" | "NO-GO";
+  failedBullets: string[];
+}
