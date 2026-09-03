@@ -1,24 +1,28 @@
 <!--
 Sync Impact Report
 ==================
-Version change: 1.0.0 → 1.0.1
+Version change: 1.0.1 → 1.1.0
 Modified principles:
-  - II. Point-in-Time Measurement (No Look-Ahead) — clarified walk-forward
-    evaluation MUST honor the same asOfDate / no look-ahead rules as ledger
-    measurement (Issue #66 hook)
-  - Quality Gates / Deployment Gates — added walk-forward harness smoke +
-    reproducible OOS artifact requirements
+  - IV. Score Freeze Until Merge Gate — expanded to cover live
+    COMPOSITE_THRESHOLD and Score v2 weight constants; requires IS-only
+    candidate search with OOS GO/NO-GO via walk-forward (#66); live config
+    changes only after GO + explicit merge PR; calibration report required
+    (Issue #67 hook)
+  - Quality Gates / Deployment Gates — threshold/weight calibration packages
+    MUST cite ADR 0004, walk-forward OOS artifacts, and documented merge
+    criteria; NO-GO if IS/OOS separation or coverage floors fail
 Added sections: None
 Removed sections: None
 Templates requiring updates:
-  - .specify/templates/plan-template.md ✅ aligned (Constitution Check I–V)
+  - .specify/templates/plan-template.md ✅ aligned (Constitution Check I–V;
+    Principle IV notes cover threshold/weight)
   - .specify/templates/spec-template.md ✅ compatible
   - .specify/templates/tasks-template.md ✅ compatible
   - .specify/templates/checklist-template.md ✅ compatible
   - .specify/templates/commands/*.md ✅ N/A (directory does not exist)
   - README.md ✅ links `.specify/memory/constitution.md` (no principle rename)
 Follow-up TODOs:
-  - None. Amended ahead of specs/022 walk-forward harness (Issue #66).
+  - None. Amended ahead of specs/023 threshold·weight GO/NO-GO (Issue #67).
 -->
 
 # Ten Bagger Daily Constitution
@@ -66,16 +70,35 @@ contracts (ADR 0001).
 
 ### IV. Score Freeze Until Merge Gate
 
-Live selection behavior (Score v2) MUST remain frozen until ADR 0004 GO criteria
-are met and an explicit merge PR is approved. Factor or weight experiments MAY
-proceed as analysis only. GO MUST require walk-forward OOS evidence (H20
-primary, H60 reported), strictly positive average excess return vs the market
-benchmark on H20, no unresolved look-ahead/contamination findings, and
-reproducible artifacts (or documented provider assumptions). NO-GO applies if
-any GO bullet fails or coverage is below the documented floor.
+Live selection behavior — including Score v2 factor weights and the live
+composite threshold (`COMPOSITE_THRESHOLD`) — MUST remain frozen until ADR 0004
+GO criteria are met and an explicit merge PR is approved.
+
+Threshold and weight **calibration** (Epic #74 / Issue #67) MAY proceed as
+analysis only under these rules:
+
+1. Candidate search and ranking MUST use **in-sample (IS)** folds or windows
+   only; OOS segments MUST NOT be used to choose the winning candidate.
+2. GO / NO-GO MUST be decided on held-out **walk-forward OOS** evidence produced
+   by the #66 harness (H20 primary, H60 reported), including `no_pick` ratio /
+   coverage and excess return vs market benchmarks per ADR 0003–0004.
+3. A reproducible **calibration report** MUST accompany any GO claim (candidates
+   tried, IS selection rationale, OOS metrics, GO or NO-GO verdict with
+   documented merge criteria).
+4. Live selection constants (threshold and/or weights) MUST change only after
+   GO and only via an explicit config merge PR; analysis artifacts MUST remain
+   additive and MUST NOT rewrite historical `content/daily` picks.
+
+GO MUST require walk-forward OOS evidence (H20 primary, H60 reported), strictly
+positive average excess return vs the market benchmark on H20, no unresolved
+look-ahead/contamination findings, and reproducible artifacts (or documented
+provider assumptions). NO-GO applies if any GO bullet fails, coverage is below
+the documented floor, IS/OOS separation is violated, or the calibration report
+is incomplete.
 
 **Rationale**: Prevents overfitting and silent degradation of the public daily
-picks.
+picks; keeps heuristic threshold/weight changes behind the same evidence gate
+as Score v3.
 
 ### V. Schema Contracts and Validation Discipline
 
@@ -131,8 +154,8 @@ pipeline:
   plan approval
 - Implementation plans MUST pass a constitution compliance check (all five
   principles)
-- Phase checkpoints that change live pick semantics or Score weights REQUIRE
-  explicit human approval and, for weights, ADR 0004 GO
+- Phase checkpoints that change live pick semantics, Score weights, or the
+  composite threshold REQUIRE explicit human approval and ADR 0004 GO
 - Docs gate for Performance Loop: read `docs/architecture/README.md` before
   changing ledger, measurement, or Score v3 behavior
 
@@ -151,6 +174,9 @@ pipeline:
 - [x] **Walk-forward smoke**: REQUIRED for walk-forward harness changes —
   offline fixture smoke that proves no look-ahead and emits a minimal OOS
   report (Issue #66)
+- [x] **Calibration evidence**: REQUIRED for threshold/weight GO packages —
+  reproducible calibration report + walk-forward OOS artifacts with explicit
+  GO or NO-GO (Issue #67)
 
 ### Review Requirements
 
@@ -160,14 +186,16 @@ pipeline:
 - [x] **Security review**: OPTIONAL for routine content/docs; REQUIRED when
   adding secrets handling, webhooks, or external write paths
 - [x] **Performance / measurement review**: REQUIRED for Score weight,
-  walk-forward, or ledger changes — cite ADR 0002–0004 and four-axis risks
+  composite threshold, walk-forward, or ledger changes — cite ADR 0002–0004
+  and four-axis risks; verify IS/OOS separation for calibration
 
 ### Deployment Gates
 
 - [ ] All required tests for the touched surface pass
 - [ ] All review items resolved
 - [ ] Constitution compliance verified (Principles I–V)
-- [ ] Score weight changes: ADR 0004 GO evidence linked; otherwise NO-GO
+- [ ] Score weight or composite threshold changes: ADR 0004 GO evidence and
+      calibration report linked; otherwise NO-GO
 - [ ] Walk-forward / OOS claim changes: reproducible report artifact (or
       documented provider assumptions) and PIT assumptions documented in
       Methodology or the active spec
@@ -203,4 +231,4 @@ Any amendment requires:
 Check table for Principles I–V. Tasks that alter live selection or measurement
 contracts MUST not be marked complete without that check passing.
 
-**Version**: 1.0.1 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-08-31
+**Version**: 1.1.0 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-09-02

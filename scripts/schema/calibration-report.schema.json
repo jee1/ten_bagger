@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ten-bagger.local/schema/calibration-report.schema.json",
+  "title": "CalibrationReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "packageIntent",
+    "mode",
+    "configHash",
+    "generatedAt",
+    "liveConstantsSnapshot",
+    "isRanking",
+    "selectionRationale",
+    "oosEvaluations",
+    "overallVerdict",
+    "failedBullets",
+    "mergeCriteriaRef"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "0.1.0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "packageIntent": {
+      "type": "string",
+      "enum": ["exploratory", "go_evidence"]
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["search", "baseline-only"]
+    },
+    "configHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "liveConstantsSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["compositeThreshold", "weights"],
+      "properties": {
+        "compositeThreshold": { "type": "number" },
+        "weights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "WEIGHT_SIZE",
+            "WEIGHT_VALUATION",
+            "WEIGHT_GROWTH",
+            "WEIGHT_QUALITY",
+            "WEIGHT_ENTRY",
+            "WEIGHT_MOMENTUM"
+          ],
+          "properties": {
+            "WEIGHT_SIZE": { "type": "number" },
+            "WEIGHT_VALUATION": { "type": "number" },
+            "WEIGHT_GROWTH": { "type": "number" },
+            "WEIGHT_QUALITY": { "type": "number" },
+            "WEIGHT_ENTRY": { "type": "number" },
+            "WEIGHT_MOMENTUM": { "type": "number" }
+          }
+        }
+      }
+    },
+    "isRanking": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/isRankingEntry" }
+    },
+    "selectionRationale": { "type": "string" },
+    "oosEvaluations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/oosEvaluationEntry" }
+    },
+    "overallVerdict": {
+      "type": "string",
+      "enum": ["GO", "NO-GO", "N/A"]
+    },
+    "failedBullets": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "mergeCriteriaRef": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "isRankingEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateId",
+        "rank",
+        "isMetricH20ExcessMean",
+        "isPickDays",
+        "walkForwardReportPath",
+        "walkForwardConfigHash",
+        "status"
+      ],
+      "properties": {
+        "candidateId": { "type": "string" },
+        "rank": { "type": "integer", "minimum": 1 },
+        "isMetricH20ExcessMean": { "type": ["number", "null"] },
+        "isPickDays": { "type": "integer", "minimum": 0 },
+        "walkForwardReportPath": { "type": "string" },
+        "walkForwardConfigHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ranked", "rejected_invalid", "failed"]
+        }
+      }
+    },
+    "oosEvaluationEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateId",
+        "walkForwardReportPath",
+        "walkForwardConfigHash",
+        "oosPickDays",
+        "noPickRatio",
+        "h20ExcessReturnMean",
+        "h60ExcessReturnMean",
+        "insufficientCoverage",
+        "contaminationFindings",
+        "verdict",
+        "failedBullets"
+      ],
+      "properties": {
+        "candidateId": { "type": "string" },
+        "walkForwardReportPath": { "type": "string" },
+        "walkForwardConfigHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "oosPickDays": { "type": "integer", "minimum": 0 },
+        "noPickRatio": { "type": "number", "minimum": 0, "maximum": 1 },
+        "h20ExcessReturnMean": { "type": ["number", "null"] },
+        "h60ExcessReturnMean": { "type": ["number", "null"] },
+        "insufficientCoverage": { "type": "boolean" },
+        "contaminationFindings": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "verdict": { "type": "string", "enum": ["GO", "NO-GO"] },
+        "failedBullets": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

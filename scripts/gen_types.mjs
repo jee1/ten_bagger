@@ -23,6 +23,7 @@ const SCHEMAS = [
   'ledger.schema.json',
   'performance-bundle.schema.json',
   'walk-forward-report.schema.json',
+  'calibration-report.schema.json',
 ];
 
 async function buildTypes() {

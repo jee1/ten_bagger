@@ -8,6 +8,8 @@ from pathlib import Path
 
 import jsonschema
 from config import (
+    CALIBRATION_DIR,
+    CALIBRATION_SCHEMA_PATH,
     DAILY_DIR,
     LEDGER_DIR,
     LEDGER_SCHEMA_PATH,
@@ -99,7 +101,12 @@ def main() -> int:
         load_validator(WALK_FORWARD_SCHEMA_PATH),
         "walk-forward",
     )
-    errors_found += ledger_err + perf_err + wf_err
+    cal_n, cal_err = _validate_dir(
+        CALIBRATION_DIR,
+        load_validator(CALIBRATION_SCHEMA_PATH),
+        "calibration",
+    )
+    errors_found += ledger_err + perf_err + wf_err + cal_err
 
     if errors_found:
         print(f"Validation failed: {errors_found} error(s)")
@@ -113,6 +120,8 @@ def main() -> int:
         extras.append(f"{perf_n} performance")
     if wf_n:
         extras.append(f"{wf_n} walk-forward")
+    if cal_n:
+        extras.append(f"{cal_n} calibration")
     extra_msg = f" + {', '.join(extras)}" if extras else ""
     print(f"Validated {count} daily file(s) and manifest{extra_msg}")
     return 0

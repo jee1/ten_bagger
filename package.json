@@ -19,7 +19,9 @@
     "check": "npm run gen:types:check && astro check",
     "test:performance-ui": "node --experimental-strip-types --test src/lib/performanceAggregate.test.ts src/lib/performanceLoad.test.ts",
     "walk-forward": "cd scripts && python walk_forward.py",
-    "walk-forward:smoke": "cd scripts && python -m pytest tests/test_walk_forward_smoke.py -q"
+    "walk-forward:smoke": "cd scripts && python -m pytest tests/test_walk_forward_smoke.py -q",
+    "calibrate": "cd scripts && python calibrate.py",
+    "calibrate:smoke": "cd scripts && python -m pytest tests/test_calibration_smoke.py -q"
   },
   "dependencies": {
     "astro": "^7.1.3"

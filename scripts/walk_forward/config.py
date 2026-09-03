@@ -21,9 +21,24 @@ class RunConfig:
     markets: list[str]
     foldSpec: dict[str, Any]
     weightOverrides: dict[str, Any] | None = None
+    thresholdOverride: float | None = None
     ledgerDir: Path | None = None
     performanceDir: Path | None = None
     outputDir: Path | None = None
+
+
+def _validate_overrides(data: dict[str, Any]) -> None:
+    from calibration.candidates import validate_weights
+
+    overrides = data.get("weightOverrides")
+    if overrides not in (None, {}):
+        validate_weights(overrides)
+
+    threshold = data.get("thresholdOverride")
+    if threshold is not None and (
+        not isinstance(threshold, (int, float)) or isinstance(threshold, bool)
+    ):
+        raise ValueError("thresholdOverride must be a number or null")
 
 
 def _validate_run_config(data: dict[str, Any]) -> None:
@@ -46,11 +61,7 @@ def _validate_run_config(data: dict[str, Any]) -> None:
     if not data.get("candidateId"):
         raise ValueError("candidateId is required")
 
-    overrides = data.get("weightOverrides")
-    if overrides not in (None, {}):
-        raise ValueError(
-            "weightOverrides are not supported in v1; use candidateId score-v2-baseline only"
-        )
+    _validate_overrides(data)
 
 
 def load_run_config(path: Path | str) -> RunConfig:
@@ -59,13 +70,19 @@ def load_run_config(path: Path | str) -> RunConfig:
     data = json.loads(config_path.read_text(encoding="utf-8"))
     _validate_run_config(data)
 
+    weight_overrides = data.get("weightOverrides")
+    if weight_overrides == {}:
+        weight_overrides = None
+
+    threshold = data.get("thresholdOverride")
     return RunConfig(
         runIntent=data["runIntent"],
         measurementSource=data["measurementSource"],
         candidateId=data["candidateId"],
         markets=list(data["markets"]),
         foldSpec=dict(data["foldSpec"]),
-        weightOverrides=data.get("weightOverrides"),
+        weightOverrides=weight_overrides,
+        thresholdOverride=float(threshold) if threshold is not None else None,
         ledgerDir=Path(data["ledgerDir"]) if data.get("ledgerDir") else LEDGER_DIR,
         performanceDir=(
             Path(data["performanceDir"]) if data.get("performanceDir") else PERFORMANCE_DIR
@@ -82,6 +99,7 @@ def config_hash(cfg: RunConfig) -> str:
         "markets": sorted(cfg.markets),
         "measurementSource": cfg.measurementSource,
         "runIntent": cfg.runIntent,
+        "thresholdOverride": cfg.thresholdOverride,
         "weightOverrides": cfg.weightOverrides,
     }
     if cfg.ledgerDir is not None:

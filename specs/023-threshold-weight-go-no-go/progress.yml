@@ -1,0 +1,16 @@
+feature: 023-threshold-weight-go-no-go
+created: 2026-09-02
+current_phase: review
+phases:
+  constitution: { status: done, updated: 2026-09-02 }
+  specify: { status: done, updated: 2026-09-02 }
+  brainstorm: { status: done, updated: 2026-09-02, sessions: 2 }
+  plan: { status: done, updated: 2026-09-03 }
+  tasks: { status: done, updated: 2026-09-03 }
+  execute: { status: done, updated: 2026-09-03 }
+  review: { status: done, updated: 2026-09-03 }
+notes:
+  - "Execute 2026-09-03: T001–T051 complete; calibration CLI + WF analysis overrides"
+  - "Review iter1 FAIL (baseline-only GO PR hint); iter2 PASS after _print_pr_hint fix + regression test"
+  - "Tests: npm run test:python green; calibrate:smoke green; COMPOSITE_THRESHOLD=70.0 frozen"
+  - "Issue #67; constitution v1.1.0"

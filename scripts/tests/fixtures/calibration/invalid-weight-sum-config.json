@@ -1,0 +1,38 @@
+{
+  "packageIntent": "exploratory",
+  "mode": "search",
+  "markets": ["KR"],
+  "promoteTopN": 1,
+  "measurementSourceIs": "fixture-recompute",
+  "measurementSourceOos": "fixture-recompute",
+  "isFoldSpec": {
+    "mode": "rolling",
+    "trainSessions": 4,
+    "oosSessions": 2,
+    "stepSessions": 2,
+    "startDate": "2026-01-01",
+    "endDate": "2026-02-28"
+  },
+  "oosFoldSpec": {
+    "mode": "rolling",
+    "trainSessions": 4,
+    "oosSessions": 2,
+    "stepSessions": 2,
+    "startDate": "2026-03-01",
+    "endDate": "2026-04-30"
+  },
+  "candidates": [
+    {
+      "candidateId": "invalid-weight-sum",
+      "threshold": null,
+      "weights": {
+        "WEIGHT_SIZE": 0.15,
+        "WEIGHT_VALUATION": 0.25,
+        "WEIGHT_GROWTH": 0.20,
+        "WEIGHT_QUALITY": 0.20,
+        "WEIGHT_ENTRY": 0.10,
+        "WEIGHT_MOMENTUM": 0.20
+      }
+    }
+  ]
+}

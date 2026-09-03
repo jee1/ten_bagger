@@ -50,12 +50,57 @@ def test_load_run_config_rejects_more_than_four_candidates(tmp_path):
         load_run_config(path)
 
 
-def test_load_run_config_rejects_weight_overrides(tmp_path):
-    bad = {**BASE_CONFIG, "weightOverrides": {"WEIGHT_SIZE": 0.2}}
-    path = tmp_path / "bad.json"
+VALID_WEIGHT_OVERRIDES = {
+    "WEIGHT_SIZE": 0.15,
+    "WEIGHT_VALUATION": 0.20,
+    "WEIGHT_GROWTH": 0.20,
+    "WEIGHT_QUALITY": 0.25,
+    "WEIGHT_ENTRY": 0.10,
+    "WEIGHT_MOMENTUM": 0.10,
+}
+
+
+def test_load_run_config_accepts_valid_weight_and_threshold_overrides(tmp_path):
+    good = {
+        **BASE_CONFIG,
+        "weightOverrides": VALID_WEIGHT_OVERRIDES,
+        "thresholdOverride": 75.0,
+    }
+    path = tmp_path / "ok-overrides.json"
+    path.write_text(json.dumps(good), encoding="utf-8")
+    cfg = load_run_config(path)
+    assert cfg.weightOverrides == VALID_WEIGHT_OVERRIDES
+    assert cfg.thresholdOverride == 75.0
+
+
+def test_load_run_config_rejects_bad_weight_sum(tmp_path):
+    bad = {
+        **BASE_CONFIG,
+        "weightOverrides": {**VALID_WEIGHT_OVERRIDES, "WEIGHT_SIZE": 0.99},
+    }
+    path = tmp_path / "bad-sum.json"
     path.write_text(json.dumps(bad), encoding="utf-8")
-    with pytest.raises(ValueError, match="weightOverrides"):
+    with pytest.raises(ValueError, match="sum|weight"):
         load_run_config(path)
+
+
+def test_config_hash_includes_overrides(tmp_path):
+    path = tmp_path / "base.json"
+    path.write_text(json.dumps(BASE_CONFIG), encoding="utf-8")
+    cfg_base = load_run_config(path)
+    path2 = tmp_path / "ovr.json"
+    path2.write_text(
+        json.dumps(
+            {
+                **BASE_CONFIG,
+                "weightOverrides": VALID_WEIGHT_OVERRIDES,
+                "thresholdOverride": 75.0,
+            }
+        ),
+        encoding="utf-8",
+    )
+    cfg_ovr = load_run_config(path2)
+    assert config_hash(cfg_base) != config_hash(cfg_ovr)
 
 
 def test_load_run_config_rejects_non_rolling_fold_mode(tmp_path):
