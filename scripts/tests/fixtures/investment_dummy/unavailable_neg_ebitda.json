@@ -1,0 +1,13 @@
+{
+  "id": "unavailable_neg_ebitda",
+  "description": "Non-positive EBITDA → status=unavailable",
+  "prior_total_assets": 100.0,
+  "current_total_assets": 120.0,
+  "prior_ebitda": 20.0,
+  "current_ebitda": -5.0,
+  "expected": {
+    "status": "unavailable",
+    "investment_dummy": false,
+    "reason": "non_positive_ebitda"
+  }
+}

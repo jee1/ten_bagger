@@ -1,0 +1,15 @@
+{
+  "id": "both_negative_hit",
+  "description": "Both growths negative; asset decline milder than EBITDA → hit",
+  "prior_total_assets": 100.0,
+  "current_total_assets": 90.0,
+  "prior_ebitda": 20.0,
+  "current_ebitda": 10.0,
+  "expected": {
+    "status": "available",
+    "asset_growth_pct": -10.0,
+    "ebitda_growth_pct": -50.0,
+    "spread_pct": 40.0,
+    "investment_dummy": true
+  }
+}

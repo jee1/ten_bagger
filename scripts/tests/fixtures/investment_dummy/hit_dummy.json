@@ -1,0 +1,15 @@
+{
+  "id": "hit_dummy",
+  "description": "Asset growth exceeds EBITDA growth → investment_dummy=true",
+  "prior_total_assets": 100.0,
+  "current_total_assets": 130.0,
+  "prior_ebitda": 20.0,
+  "current_ebitda": 22.0,
+  "expected": {
+    "status": "available",
+    "asset_growth_pct": 30.0,
+    "ebitda_growth_pct": 10.0,
+    "spread_pct": 20.0,
+    "investment_dummy": true
+  }
+}

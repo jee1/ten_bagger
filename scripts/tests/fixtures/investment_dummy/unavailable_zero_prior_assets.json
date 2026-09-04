@@ -1,0 +1,13 @@
+{
+  "id": "unavailable_zero_prior_assets",
+  "description": "Zero prior assets → status=unavailable",
+  "prior_total_assets": 0.0,
+  "current_total_assets": 50.0,
+  "prior_ebitda": 10.0,
+  "current_ebitda": 12.0,
+  "expected": {
+    "status": "unavailable",
+    "investment_dummy": false,
+    "reason": "zero_prior_assets"
+  }
+}

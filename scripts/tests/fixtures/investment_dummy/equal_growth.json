@@ -1,0 +1,15 @@
+{
+  "id": "equal_growth",
+  "description": "Equal growth → investment_dummy=false (strict inequality)",
+  "prior_total_assets": 100.0,
+  "current_total_assets": 120.0,
+  "prior_ebitda": 25.0,
+  "current_ebitda": 30.0,
+  "expected": {
+    "status": "available",
+    "asset_growth_pct": 20.0,
+    "ebitda_growth_pct": 20.0,
+    "spread_pct": 0.0,
+    "investment_dummy": false
+  }
+}
