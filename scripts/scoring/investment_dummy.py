@@ -8,8 +8,9 @@ Measurement-gated until ADR 0004 GO (Issue #68 / Epic #74).
 from __future__ import annotations
 
 import math
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Literal, Mapping
+from typing import TYPE_CHECKING, Any, Literal
 
 if TYPE_CHECKING:
     from scoring.models import ScoreResult
@@ -176,11 +177,7 @@ def apply_investment_dummy_adjustment(
         enabled = ENABLE_INVESTMENT_DUMMY_CANDIDATE
 
     composite_before = float(result.composite)
-    applied = bool(
-        enabled
-        and metric.status == "available"
-        and metric.investment_dummy is True
-    )
+    applied = bool(enabled and metric.status == "available" and metric.investment_dummy is True)
     soft_penalty = float(INVESTMENT_DUMMY_SOFT_PENALTY) if applied else 0.0
     label = "investment_dummy" if applied else None
     composite_after = composite_before - soft_penalty

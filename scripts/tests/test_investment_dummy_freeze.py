@@ -44,12 +44,7 @@ def test_passes_red_flags_negative_equity():
 
 
 def test_passes_red_flags_dual_negative_cashflow():
-    assert (
-        passes_red_flags(
-            {"freeCashflow": -1, "operatingCashflow": -1, "bookValue": 10}
-        )
-        is False
-    )
+    assert passes_red_flags({"freeCashflow": -1, "operatingCashflow": -1, "bookValue": 10}) is False
 
 
 def test_passes_red_flags_clean_pass():

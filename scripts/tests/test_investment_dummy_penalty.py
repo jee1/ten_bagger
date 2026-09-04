@@ -5,8 +5,9 @@ from __future__ import annotations
 import inspect
 from unittest.mock import patch
 
-import config as live_config
 import pytest
+
+import config as live_config
 from config import SCORE_VERSION, UniverseSymbol
 from scoring.investment_dummy import (
     InvestmentDummyMetric,
@@ -144,12 +145,7 @@ def test_enabled_defaults_to_config_flag_off():
 
 def test_hard_red_flags_still_fail_independently():
     assert passes_red_flags({"bookValue": -1, "priceToBook": -1}) is False
-    assert (
-        passes_red_flags(
-            {"freeCashflow": -1, "operatingCashflow": -1, "bookValue": 10}
-        )
-        is False
-    )
+    assert passes_red_flags({"freeCashflow": -1, "operatingCashflow": -1, "bookValue": 10}) is False
 
 
 def test_apply_does_not_call_passes_red_flags():
@@ -203,9 +199,7 @@ def test_build_reasoning_adds_investment_dummy_risk_only_when_applied():
 
     clean = _score(composite=80.0, metrics={"revenue_growth_pct": 20})
     reasoning_clean = build_reasoning(clean)
-    risk_text = " ".join(
-        f"{r.get('ko', '')} {r.get('en', '')}" for r in reasoning_clean["risks"]
-    )
+    risk_text = " ".join(f"{r.get('ko', '')} {r.get('en', '')}" for r in reasoning_clean["risks"])
     assert "investment_dummy" not in risk_text.lower()
     assert "자산 성장" not in risk_text
 

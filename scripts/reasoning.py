@@ -123,7 +123,10 @@ def build_reasoning(result: ScoreResult) -> dict[str, Any]:
         reasoning["risks"].append(
             {
                 "ko": "자산 성장이 EBITDA 성장을 상회(investment_dummy) — 투자 효율 저하 리스크",
-                "en": "Asset growth exceeds EBITDA growth (investment_dummy) — investment-efficiency risk",
+                "en": (
+                    "Asset growth exceeds EBITDA growth (investment_dummy) "
+                    "— investment-efficiency risk"
+                ),
             }
         )
     return reasoning
