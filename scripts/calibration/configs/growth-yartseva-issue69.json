@@ -1,0 +1,82 @@
+{
+  "packageIntent": "exploratory",
+  "mode": "search",
+  "markets": [
+    "KR"
+  ],
+  "promoteTopN": 1,
+  "compareToLiveBaseline": true,
+  "measurementSourceIs": "fixture-recompute",
+  "measurementSourceOos": "fixture-recompute",
+  "isFoldSpec": {
+    "mode": "rolling",
+    "trainSessions": 4,
+    "oosSessions": 2,
+    "stepSessions": 2,
+    "startDate": "2026-01-01",
+    "endDate": "2026-02-28"
+  },
+  "oosFoldSpec": {
+    "mode": "rolling",
+    "trainSessions": 4,
+    "oosSessions": 2,
+    "stepSessions": 2,
+    "startDate": "2026-03-01",
+    "endDate": "2026-04-30"
+  },
+  "candidates": [
+    {
+      "candidateId": "growth_shrink_05_vq",
+      "threshold": null,
+      "notes": "GROWTH 0.15 (-0.05); +0.025 Valuation, +0.025 Quality",
+      "weights": {
+        "WEIGHT_SIZE": 0.15,
+        "WEIGHT_VALUATION": 0.275,
+        "WEIGHT_GROWTH": 0.15,
+        "WEIGHT_QUALITY": 0.225,
+        "WEIGHT_ENTRY": 0.1,
+        "WEIGHT_MOMENTUM": 0.1
+      }
+    },
+    {
+      "candidateId": "growth_shrink_10_vq",
+      "threshold": null,
+      "notes": "GROWTH 0.10 (-0.10); +0.05 Valuation, +0.05 Quality",
+      "weights": {
+        "WEIGHT_SIZE": 0.15,
+        "WEIGHT_VALUATION": 0.3,
+        "WEIGHT_GROWTH": 0.1,
+        "WEIGHT_QUALITY": 0.25,
+        "WEIGHT_ENTRY": 0.1,
+        "WEIGHT_MOMENTUM": 0.1
+      }
+    },
+    {
+      "candidateId": "growth_shrink_10_vqs",
+      "threshold": null,
+      "notes": "GROWTH 0.10 (-0.10); +0.04 V, +0.04 Q, +0.02 Size",
+      "weights": {
+        "WEIGHT_SIZE": 0.17,
+        "WEIGHT_VALUATION": 0.29,
+        "WEIGHT_GROWTH": 0.1,
+        "WEIGHT_QUALITY": 0.24,
+        "WEIGHT_ENTRY": 0.1,
+        "WEIGHT_MOMENTUM": 0.1
+      }
+    },
+    {
+      "candidateId": "growth_shrink_15_vq",
+      "threshold": null,
+      "notes": "GROWTH 0.05 (-0.15); +0.075 Valuation, +0.075 Quality",
+      "weights": {
+        "WEIGHT_SIZE": 0.15,
+        "WEIGHT_VALUATION": 0.325,
+        "WEIGHT_GROWTH": 0.05,
+        "WEIGHT_QUALITY": 0.275,
+        "WEIGHT_ENTRY": 0.1,
+        "WEIGHT_MOMENTUM": 0.1
+      }
+    }
+  ],
+  "notes": "Issue #69 default growth-reallocation grid; analysis-only"
+}

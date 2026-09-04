@@ -1,6 +1,6 @@
 # Merge Criteria: Threshold & Score v2 Weight Changes (Issue #67)
 
-**Authority**: ADR 0004 + constitution Principle IV (v1.1.0)  
+**Authority**: ADR 0004 + constitution Principle IV (v1.2.0)  
 **Canonical eng doc target**: `docs/architecture/threshold-weight-merge-criteria.md`  
 (implementers copy/sync this content there).
 
@@ -58,3 +58,15 @@ candidate: **do not** open a live config PR. Frozen `COMPOSITE_THRESHOLD` and
 - Treating baseline-only “GO on frozen constants” as permission to change them  
 - Optuna / unbounded search  
 - Silent renormalization of invalid weight vectors
+
+## Addendum: Issue #69 / Score v3 growth-weight reallocation
+
+Same **hard GO bullets** as Issue #67 above. Analysis and calibration reports  
+alone never change live selection.
+
+Until ADR 0004 GO: **analysis-only**; live `WEIGHT_*`, `COMPOSITE_THRESHOLD`,  
+and `SCORE_VERSION=2` remain frozen.
+
+On GO: an explicit config PR may set `SCORE_VERSION=3` together with the  
+approved top-level `WEIGHT_*` vector (no separate feature flag; no auto-edit  
+from calibration). Reviewers re-check the hard bullets before merge.
