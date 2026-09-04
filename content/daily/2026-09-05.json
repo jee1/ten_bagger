@@ -1,0 +1,92 @@
+{
+  "date": "2026-09-05",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "002780.KS",
+    "name": {
+      "ko": "진흥기업",
+      "en": "ChinHung International, Inc."
+    },
+    "exchange": "KOSPI",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "진흥기업는 Industrials 분야 Engineering & Construction 기업입니다.",
+        "en": "ChinHung International, Inc. engages in the civil engineering, architectural work, and construction business in Korea. The company constructs roads, bridges, railways, and ports."
+      },
+      "sector": {
+        "ko": "Industrials",
+        "en": "Industrials"
+      },
+      "industry": {
+        "ko": "Engineering & Construction",
+        "en": "Engineering & Construction"
+      }
+    }
+  },
+  "scores": {
+    "composite": 78.8,
+    "size": 100.0,
+    "growth": 88.7,
+    "valuation": 65.8,
+    "entry": 36.5,
+    "momentum": 100.0,
+    "quality": 79.9,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "진흥기업(002780.KS)는 v2 복합 점수 78.8로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "ChinHung International, Inc. (002780.KS) cleared the 70.0 threshold with v2 composite 78.8; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 35.9% / 이익 47.8% (혼합 41.25%) — 지속 가능 성장 점수 88.7.",
+      "en": "Revenue 35.9% / earnings 47.8% (blended 41.25%) — sustainable growth score 88.7."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 12.95%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 12.95%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 977.13% — 보조 모멘텀 점수 100.0.",
+      "en": "6M return 977.13% — auxiliary momentum score 100.0."
+    },
+    "quality": {
+      "ko": "ROE 43.39%, ROA 7.37%, FCF/순이익 0.53 — 품질 점수 79.9.",
+      "en": "ROE 43.39%, ROA 7.37%, FCF/net income 0.53 — quality score 79.9."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 114614272000 기준 규모 점수 100.0.",
+      "en": "Market cap 114614272000 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 100.0%, 52주 고점 대비 0.0% — 진입 점수 36.5.",
+      "en": "12M price range 100.0%, 0.0% from 52W high — entry score 36.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-05T08:06:39+09:00",
+    "candidatesScreened": 1907,
+    "excludedRecent": 27,
+    "skippedMarketCap": 845,
+    "skippedRedFlags": 357,
+    "noData": 0,
+    "errors": 0
+  }
+}
