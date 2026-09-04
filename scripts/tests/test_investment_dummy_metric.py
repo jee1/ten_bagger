@@ -7,7 +7,6 @@ import math
 from pathlib import Path
 
 import pytest
-
 from scoring.investment_dummy import compute_investment_dummy_metric
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "investment_dummy"

@@ -5,9 +5,8 @@ from __future__ import annotations
 import inspect
 from unittest.mock import patch
 
-import pytest
-
 import config as live_config
+import pytest
 from config import SCORE_VERSION, UniverseSymbol
 from scoring.investment_dummy import (
     InvestmentDummyMetric,
