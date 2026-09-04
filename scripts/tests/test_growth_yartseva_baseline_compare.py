@@ -32,7 +32,16 @@ def test_compare_to_live_baseline_appends_baseline_row(tmp_path):
 
     call_labels: list[str] = []
 
-    def fake_run(cal_config, candidate, *, fold_spec, run_intent, measurement_source, label, write=True):
+    def fake_run(
+        cal_config,
+        candidate,
+        *,
+        fold_spec,
+        run_intent,
+        measurement_source,
+        label,
+        write=True,
+    ):
         call_labels.append(label)
         cid = candidate.candidateId if candidate else LIVE_BASELINE_CANDIDATE_ID
         report = _fake_wf_report(candidate_id=cid)
@@ -67,7 +76,16 @@ def test_compare_false_skips_baseline_append(tmp_path):
 
     labels: list[str] = []
 
-    def fake_run(cal_config, candidate, *, fold_spec, run_intent, measurement_source, label, write=True):
+    def fake_run(
+        cal_config,
+        candidate,
+        *,
+        fold_spec,
+        run_intent,
+        measurement_source,
+        label,
+        write=True,
+    ):
         labels.append(label)
         cid = candidate.candidateId if candidate else LIVE_BASELINE_CANDIDATE_ID
         return _fake_wf_report(candidate_id=cid), f"{cid}.json", "b" * 64

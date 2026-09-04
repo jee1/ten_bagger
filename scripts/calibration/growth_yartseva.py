@@ -110,9 +110,7 @@ def validate_growth_reallocation_candidate(weights: dict[str, Any]) -> dict[str,
             f"reallocation; got {growth}"
         )
     if growth < MIN_WEIGHT_GROWTH:
-        raise ValueError(
-            f"WEIGHT_GROWTH must be >= {MIN_WEIGHT_GROWTH} floor; got {growth}"
-        )
+        raise ValueError(f"WEIGHT_GROWTH must be >= {MIN_WEIGHT_GROWTH} floor; got {growth}")
     for key in _FROZEN:
         if abs(out[key] - LIVE_WEIGHTS[key]) > WEIGHT_SUM_TOLERANCE:
             raise ValueError(

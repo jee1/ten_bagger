@@ -102,9 +102,7 @@ def _should_append_live_baseline(
     """True when side-by-side baseline OOS is requested and not already evaluated."""
     if not compare_to_live_baseline:
         return False
-    return not any(
-        e.get("candidateId") == LIVE_BASELINE_CANDIDATE_ID for e in promotee_evaluations
-    )
+    return not any(e.get("candidateId") == LIVE_BASELINE_CANDIDATE_ID for e in promotee_evaluations)
 
 
 def _print_pr_hint(

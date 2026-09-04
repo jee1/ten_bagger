@@ -6,7 +6,6 @@ from copy import deepcopy
 from pathlib import Path
 
 import pytest
-
 from calibration.growth_yartseva import (
     DEFAULT_CANDIDATES,
     LIVE_WEIGHT_GROWTH,
@@ -19,10 +18,7 @@ from calibration.growth_yartseva import (
 
 FIX = Path(__file__).resolve().parent / "fixtures" / "calibration"
 COMMITTED = (
-    Path(__file__).resolve().parents[1]
-    / "calibration"
-    / "configs"
-    / "growth-yartseva-issue69.json"
+    Path(__file__).resolve().parents[1] / "calibration" / "configs" / "growth-yartseva-issue69.json"
 )
 
 
