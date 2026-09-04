@@ -28,6 +28,10 @@ COMPOSITE_THRESHOLD = 70.0
 DUPLICATE_BAN_DAYS = 30
 SCREEN_WORKERS = 2
 
+# Score v3 candidate — investment dummy (Issue #68); live path default OFF
+INVESTMENT_DUMMY_SOFT_PENALTY = 15.0
+ENABLE_INVESTMENT_DUMMY_CANDIDATE = False
+
 # Minimum market cap for pre-screen (when cap data is available).
 MIN_MARKET_CAP_KR = 50_000_000_000  # 500억 KRW
 MIN_MARKET_CAP_US = 300_000_000  # $300M USD

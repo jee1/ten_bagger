@@ -39,6 +39,22 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           <li><strong>모멘텀 10%</strong>: 6개월 수익률만 사용 (52주 고점 위치는 진입 축으로 이전, v1 대비 축소)</li>
         </ul>
 
+        <h2>Score v3 후보 (측정 게이트)</h2>
+        <p>
+          아래는 라이브 Score v2 가중치(%)가 아닙니다. ADR 0004 GO와 성과 측정 검증 전까지
+          Score v3 <strong>후보</strong> 팩터로만 문서화합니다 (Issue #68 · Epic #74 Phase 2).
+        </p>
+        <p>
+          Yartseva(2025)를 참고한 <strong>투자 더미(investment dummy)</strong>:
+          총자산 YoY 성장률이 EBITDA YoY 성장률을 초과하면(자산 성장 &gt; EBITDA 성장)
+          후보 경로에서 소프트 페널티와 red-flag <strong>라벨</strong>을 부여합니다.
+          유니버스 하드 제외가 아니며, 기존 red flag(자본잠식·이중 음수 CF)를 대체하지 않습니다.
+        </p>
+        <p>
+          v1에서는 금융·자산집약 섹터 carve-out을 두지 않습니다(알려진 한계).
+          기본 라이브 일일 스크리닝의 가중치·임계값에는 반영되지 않습니다.
+        </p>
+
         <h2>1차 필터</h2>
         <p>
           한국 종목은 시가총액 500억 원 미만을 제외합니다(상장 목록에 시총이 없으면 포함).
@@ -99,6 +115,24 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           <li><strong>Entry 10%</strong>: 12-month price range and distance from 52-week high</li>
           <li><strong>Momentum 10%</strong>: 6-month return only (52-week high position moved to Entry; reduced vs v1)</li>
         </ul>
+
+        <h2>Score v3 candidates (gated)</h2>
+        <p>
+          The following is <strong>not</strong> a live Score v2 weight percentage.
+          Until ADR 0004 GO and measurement validation, it is documented only as a
+          Score v3 <strong>gated candidate</strong> (Issue #68 · Epic #74 Phase 2).
+        </p>
+        <p>
+          Informed by Yartseva (2025), the <strong>investment dummy</strong> flags names where
+          year-over-year total-asset growth exceeds year-over-year EBITDA growth.
+          On the candidate path only, that yields a soft score penalty plus a visible
+          red-flag <strong>label</strong>—not a hard universe exclude, and additive with
+          existing red flags (negative book equity; dual negative FCF/OCF).
+        </p>
+        <p>
+          v1 applies no sector carve-outs for financials or other asset-heavy industries
+          (known limitation). Default live daily screening weights and thresholds stay unchanged.
+        </p>
 
         <h2>Pre-filter</h2>
         <p>

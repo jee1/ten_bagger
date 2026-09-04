@@ -1,0 +1,22 @@
+feature: 024-investment-dummy-asset-ebitda
+created: 2026-09-04
+current_phase: review
+phases:
+  constitution: { status: done, updated: 2026-09-04 }
+  specify: { status: done, updated: 2026-09-04 }
+  brainstorm: { status: done, updated: 2026-09-04, sessions: 3 }
+  plan: { status: done, updated: 2026-09-04 }
+  tasks: { status: done, updated: 2026-09-04 }
+  execute: { status: done, updated: 2026-09-04 }
+  review: { status: done, updated: 2026-09-04 }
+notes:
+  - "Constitution v1.1.0 validated as-is for Issue #68 pipeline (Principle IV Score Freeze)"
+  - "Issue #68; Epic #74; measurement-gated — no live weight merge until ADR 0004 GO"
+  - "Brainstorm 2026-09-04: 3 sessions (unattended); Q1–Q5 Resolved; Status=Brainstormed (ready for plan)"
+  - "Decisions: BOTH soft penalty≥15+label; YoY assets>EBITDA; analysis-only default OFF; no sector carve-outs; missing=unavailable"
+  - "Plan 2026-09-04: plan.md + research.md + data-model.md + quickstart.md + contracts/ written; setup-plan.sh naming skip; all constitution PASS; NEEDS CLARIFICATION=none"
+  - "Tasks 2026-09-04: tasks.md T001–T027; phases Setup→Foundational→US1→US2→US3/Polish; auto-approve checkpoints; no auto-commits; current_phase=execute"
+  - "Phase 1–2 complete 2026-09-04: T001–T007 done; stub+fixtures+config constants; freeze tests green; compute/apply still NotImplementedError; no passes_red_flags / COMPOSITE_THRESHOLD / WEIGHT_* edits"
+  - "Phase 4 US2 complete 2026-09-04: T015–T021 done; apply_investment_dummy_adjustment + maybe_apply helper; soft penalty 15 + label gated by ENABLE_INVESTMENT_DUMMY_CANDIDATE (default False); reasoning risk only when applied; freeze+metric+penalty pytest green; live path unwired"
+  - "Phase 5 polish complete 2026-09-04: T022–T027 done; npm run test:python 181 passed; flag False; no content/daily rewrites; SC-003/SC-005 freeze+Methodology self-review PASS (no Critical); current_phase=review"
+  - "Review 2026-09-04: /speckit.superspec.review PASS — no Critical/Important≥80; Suggestions only (additive red_flag_labels test; optional unavailable null); freeze audit OK; checklist-review.md written; review=done"

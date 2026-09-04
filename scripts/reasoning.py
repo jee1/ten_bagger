@@ -116,4 +116,17 @@ def build_reasoning(result: ScoreResult) -> dict[str, Any]:
     if result.score_version >= 2:
         reasoning["size"] = {"ko": size_ko, "en": size_en}
         reasoning["entry"] = {"ko": entry_ko, "en": entry_en}
+
+    # Candidate-path soft label only — live picks never set this while flag is OFF.
+    labels = m.get("red_flag_labels") or []
+    if "investment_dummy" in labels:
+        reasoning["risks"].append(
+            {
+                "ko": "자산 성장이 EBITDA 성장을 상회(investment_dummy) — 투자 효율 저하 리스크",
+                "en": (
+                    "Asset growth exceeds EBITDA growth (investment_dummy) "
+                    "— investment-efficiency risk"
+                ),
+            }
+        )
     return reasoning
