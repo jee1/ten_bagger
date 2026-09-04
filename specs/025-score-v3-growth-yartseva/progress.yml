@@ -1,0 +1,12 @@
+# specs/025-score-v3-growth-yartseva/progress.yml
+feature: score-v3-growth-yartseva
+created: 2026-09-05
+current_phase: review
+phases:
+  constitution: { status: done, updated: 2026-09-05 }
+  specify:      { status: done, updated: 2026-09-05 }
+  brainstorm:   { status: done, updated: 2026-09-05, sessions: 3 }
+  plan:         { status: done, updated: 2026-09-05 }
+  tasks:        { status: done, updated: 2026-09-05 }
+  execute:      { status: done, updated: 2026-09-05 }
+  review:       { status: done, updated: 2026-09-05, iterations: 2, verdict: passed }

@@ -1,28 +1,27 @@
 <!--
 Sync Impact Report
 ==================
-Version change: 1.0.1 → 1.1.0
+Version change: 1.1.0 → 1.2.0
 Modified principles:
-  - IV. Score Freeze Until Merge Gate — expanded to cover live
-    COMPOSITE_THRESHOLD and Score v2 weight constants; requires IS-only
-    candidate search with OOS GO/NO-GO via walk-forward (#66); live config
-    changes only after GO + explicit merge PR; calibration report required
-    (Issue #67 hook)
-  - Quality Gates / Deployment Gates — threshold/weight calibration packages
-    MUST cite ADR 0004, walk-forward OOS artifacts, and documented merge
-    criteria; NO-GO if IS/OOS separation or coverage floors fail
+  - IV. Score Freeze Until Merge Gate — expanded to cover Score v3
+    growth-weight reallocation candidate packages (Issue #69 / Yartseva):
+    analysis-only candidate grids that shrink WEIGHT_GROWTH and
+    redistribute to Valuation/Quality/Size MUST reuse #67 IS search +
+    #66 walk-forward OOS go_evidence; live SCORE_VERSION / WEIGHT_*
+    change only after GO + explicit merge PR; Methodology updates for
+    adopted v3 MUST stay reader-facing and measurement-gated until GO
 Added sections: None
 Removed sections: None
 Templates requiring updates:
-  - .specify/templates/plan-template.md ✅ aligned (Constitution Check I–V;
-    Principle IV notes cover threshold/weight)
+  - .specify/templates/plan-template.md ✅ compatible (Constitution Check
+    I–V; Principle IV notes cover Score v3 growth candidates)
   - .specify/templates/spec-template.md ✅ compatible
   - .specify/templates/tasks-template.md ✅ compatible
   - .specify/templates/checklist-template.md ✅ compatible
   - .specify/templates/commands/*.md ✅ N/A (directory does not exist)
-  - README.md ✅ links `.specify/memory/constitution.md` (no principle rename)
+  - README.md ✅ no principle rename; links constitution unchanged
 Follow-up TODOs:
-  - None. Amended ahead of specs/023 threshold·weight GO/NO-GO (Issue #67).
+  - None. Amended ahead of specs/025 Score v3 growth Yartseva (Issue #69).
 -->
 
 # Ten Bagger Daily Constitution
@@ -74,7 +73,7 @@ Live selection behavior — including Score v2 factor weights and the live
 composite threshold (`COMPOSITE_THRESHOLD`) — MUST remain frozen until ADR 0004
 GO criteria are met and an explicit merge PR is approved.
 
-Threshold and weight **calibration** (Epic #74 / Issue #67) MAY proceed as
+Threshold and weight **calibration** (Epic #74 / Issues #67, #69) MAY proceed as
 analysis only under these rules:
 
 1. Candidate search and ranking MUST use **in-sample (IS)** folds or windows
@@ -85,9 +84,18 @@ analysis only under these rules:
 3. A reproducible **calibration report** MUST accompany any GO claim (candidates
    tried, IS selection rationale, OOS metrics, GO or NO-GO verdict with
    documented merge criteria).
-4. Live selection constants (threshold and/or weights) MUST change only after
-   GO and only via an explicit config merge PR; analysis artifacts MUST remain
-   additive and MUST NOT rewrite historical `content/daily` picks.
+4. Live selection constants (threshold and/or weights, including
+   `SCORE_VERSION`) MUST change only after GO and only via an explicit config
+   merge PR; analysis artifacts MUST remain additive and MUST NOT rewrite
+   historical `content/daily` picks.
+
+**Score v3 growth-weight reallocation** (Issue #69 / Yartseva alignment)
+packages that shrink `WEIGHT_GROWTH` and redistribute mass to Valuation,
+Quality, and/or Size MUST follow the same rules: define an explicit candidate
+grid, rank on IS only, decide GO/NO-GO on walk-forward OOS `go_evidence`, and
+keep live `WEIGHT_*` / `SCORE_VERSION` frozen until GO + merge PR. Methodology
+copy describing adopted v3 weights MUST remain gated (candidate vs live) until
+that merge.
 
 GO MUST require walk-forward OOS evidence (H20 primary, H60 reported), strictly
 positive average excess return vs the market benchmark on H20, no unresolved
@@ -97,8 +105,8 @@ the documented floor, IS/OOS separation is violated, or the calibration report
 is incomplete.
 
 **Rationale**: Prevents overfitting and silent degradation of the public daily
-picks; keeps heuristic threshold/weight changes behind the same evidence gate
-as Score v3.
+picks; keeps heuristic threshold/weight and Score v3 factor changes behind the
+same evidence gate.
 
 ### V. Schema Contracts and Validation Discipline
 
@@ -176,7 +184,8 @@ pipeline:
   report (Issue #66)
 - [x] **Calibration evidence**: REQUIRED for threshold/weight GO packages —
   reproducible calibration report + walk-forward OOS artifacts with explicit
-  GO or NO-GO (Issue #67)
+  GO or NO-GO (Issue #67); REQUIRED for Score v3 growth-weight candidate
+  packages (Issue #69) using the same evidence shape
 
 ### Review Requirements
 
@@ -187,15 +196,16 @@ pipeline:
   adding secrets handling, webhooks, or external write paths
 - [x] **Performance / measurement review**: REQUIRED for Score weight,
   composite threshold, walk-forward, or ledger changes — cite ADR 0002–0004
-  and four-axis risks; verify IS/OOS separation for calibration
+  and four-axis risks; verify IS/OOS separation for calibration and Score v3
+  growth-weight candidates
 
 ### Deployment Gates
 
 - [ ] All required tests for the touched surface pass
 - [ ] All review items resolved
 - [ ] Constitution compliance verified (Principles I–V)
-- [ ] Score weight or composite threshold changes: ADR 0004 GO evidence and
-      calibration report linked; otherwise NO-GO
+- [ ] Score weight, Score version, or composite threshold changes: ADR 0004 GO
+      evidence and calibration report linked; otherwise NO-GO
 - [ ] Walk-forward / OOS claim changes: reproducible report artifact (or
       documented provider assumptions) and PIT assumptions documented in
       Methodology or the active spec
@@ -231,4 +241,4 @@ Any amendment requires:
 Check table for Principles I–V. Tasks that alter live selection or measurement
 contracts MUST not be marked complete without that check passing.
 
-**Version**: 1.1.0 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-09-02
+**Version**: 1.2.0 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-09-05

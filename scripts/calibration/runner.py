@@ -24,6 +24,8 @@ from calibration.verdict import overall_verdict, verdict_from_oos_report
 
 # Guard: never use the snapshot screen comparator for GO evidence (FR-017 / FR-026).
 
+LIVE_BASELINE_CANDIDATE_ID = "score-v2-baseline"
+
 
 def _candidate_to_wf_config(
     cal_config: CalibrationRunConfig,
@@ -33,7 +35,7 @@ def _candidate_to_wf_config(
     run_intent: str,
     measurement_source: str,
 ) -> RunConfig:
-    cid = candidate.candidateId if candidate else "score-v2-baseline"
+    cid = candidate.candidateId if candidate else LIVE_BASELINE_CANDIDATE_ID
     return RunConfig(
         runIntent=run_intent,
         measurementSource=measurement_source,
@@ -93,20 +95,44 @@ def _run_walk_forward_for_candidate(
     return report, rel_path, cfg_hash
 
 
+def _should_append_live_baseline(
+    compare_to_live_baseline: bool,
+    promotee_evaluations: list[dict[str, Any]],
+) -> bool:
+    """True when side-by-side baseline OOS is requested and not already evaluated."""
+    if not compare_to_live_baseline:
+        return False
+    return not any(
+        e.get("candidateId") == LIVE_BASELINE_CANDIDATE_ID for e in promotee_evaluations
+    )
+
+
 def _print_pr_hint(
     report: dict[str, Any],
     *,
     go: bool,
     mode: str,
     package_intent: str,
+    compare_to_live_baseline: bool = False,
 ) -> None:
     if go and mode == "search" and package_intent == "go_evidence":
-        print(
-            "GO: do not auto-edit scripts/config.py. "
-            "Open an explicit PR linking this calibration report and "
-            "walk-forward go_evidence artifacts; cite "
-            "docs/architecture/threshold-weight-merge-criteria.md"
-        )
+        if compare_to_live_baseline:
+            # Issue #69 growth-reallocation adoption path
+            print(
+                "GO: do not auto-edit scripts/config.py. "
+                "Open an explicit PR with SCORE_VERSION=3 and approved weights, "
+                "linking this calibration report and "
+                "walk-forward go_evidence artifacts; cite "
+                "docs/architecture/threshold-weight-merge-criteria.md"
+            )
+        else:
+            # Issue #67 threshold/weight calibration — version bump not implied
+            print(
+                "GO: do not auto-edit scripts/config.py. "
+                "Open an explicit PR linking this calibration report and "
+                "walk-forward go_evidence artifacts; cite "
+                "docs/architecture/threshold-weight-merge-criteria.md"
+            )
         print(f"calibration report runId={report.get('runId')}")
     elif go and mode == "baseline-only":
         print(
@@ -172,7 +198,7 @@ def execute_calibration(
             raise
         except Exception as exc:
             incomplete = True
-            cid = candidate.candidateId if candidate else "score-v2-baseline"
+            cid = candidate.candidateId if candidate else LIVE_BASELINE_CANDIDATE_ID
             msg = str(exc)
             if "ledger" in msg.lower() or "missing" in msg.lower():
                 raise ValueError(
@@ -196,7 +222,7 @@ def execute_calibration(
             )
             continue
 
-        cid = candidate.candidateId if candidate else "score-v2-baseline"
+        cid = candidate.candidateId if candidate else LIVE_BASELINE_CANDIDATE_ID
         entry = verdict_from_oos_report(
             wf_report,
             candidate_id=cid,
@@ -206,11 +232,58 @@ def execute_calibration(
         )
         oos_evaluations.append(entry)
 
+    # Overall GO/NO-GO from promotees only; baseline row is side-by-side comparison.
     overall, failed = overall_verdict(
         oos_evaluations,
         package_intent=cal_config.packageIntent,
         incomplete=incomplete,
     )
+
+    if _should_append_live_baseline(cal_config.compareToLiveBaseline, oos_evaluations):
+        try:
+            wf_report, path, cfg_hash = _run_walk_forward_for_candidate(
+                cal_config,
+                None,
+                fold_spec=cal_config.oosFoldSpec,
+                run_intent=oos_intent if oos_source == "ledger" else "exploratory",
+                measurement_source=oos_source,
+                label="oos-baseline",
+                write=write,
+            )
+        except ImportError:
+            raise
+        except Exception as exc:
+            msg = str(exc)
+            if "ledger" in msg.lower() or "missing" in msg.lower():
+                raise ValueError(
+                    f"{msg}; regenerate with: "
+                    "npm run regenerate:ledger -- --as-of-date <YYYY-MM-DD>"
+                ) from exc
+            oos_evaluations.append(
+                {
+                    "candidateId": LIVE_BASELINE_CANDIDATE_ID,
+                    "walkForwardReportPath": "",
+                    "walkForwardConfigHash": "0" * 64,
+                    "oosPickDays": 0,
+                    "noPickRatio": 0.0,
+                    "h20ExcessReturnMean": None,
+                    "h60ExcessReturnMean": None,
+                    "insufficientCoverage": True,
+                    "contaminationFindings": [f"evaluation_failed:{exc}"],
+                    "verdict": "NO-GO",
+                    "failedBullets": ["evaluation_failed"],
+                }
+            )
+        else:
+            oos_evaluations.append(
+                verdict_from_oos_report(
+                    wf_report,
+                    candidate_id=LIVE_BASELINE_CANDIDATE_ID,
+                    walk_forward_report_path=path,
+                    walk_forward_config_hash=cfg_hash,
+                    package_intent=cal_config.packageIntent,
+                )
+            )
 
     run_id = config_hash(cal_config)[:16]
     generated_at = f"{cal_config.oosFoldSpec['endDate']}T23:59:59Z"
@@ -250,6 +323,7 @@ def execute_calibration(
             go=(overall == "GO"),
             mode=cal_config.mode,
             package_intent=cal_config.packageIntent,
+            compare_to_live_baseline=cal_config.compareToLiveBaseline,
         )
 
     if cal_config.packageIntent == "go_evidence" and overall == "NO-GO":

@@ -29,6 +29,7 @@ class CalibrationRunConfig:
     performanceDir: Path
     outputDir: Path
     walkForwardOutputDir: Path
+    compareToLiveBaseline: bool = False
 
 
 def _validate_fold_spec(name: str, fold_spec: dict[str, Any]) -> None:
@@ -135,6 +136,9 @@ def load_calibration_config(path: Path | str) -> CalibrationRunConfig:
         raise ValueError("promoteTopN must be >= 1")
 
     is_spec = dict(data.get("isFoldSpec") or data["oosFoldSpec"])
+    compare_raw = data.get("compareToLiveBaseline", False)
+    if not isinstance(compare_raw, bool):
+        raise ValueError("compareToLiveBaseline must be a boolean")
     return CalibrationRunConfig(
         packageIntent=data["packageIntent"],
         mode=mode,
@@ -155,6 +159,7 @@ def load_calibration_config(path: Path | str) -> CalibrationRunConfig:
         walkForwardOutputDir=Path(data["walkForwardOutputDir"])
         if data.get("walkForwardOutputDir")
         else WALK_FORWARD_DIR,
+        compareToLiveBaseline=compare_raw,
     )
 
 
@@ -176,6 +181,7 @@ def config_hash(cfg: CalibrationRunConfig) -> str:
         "oosFoldSpec": cfg.oosFoldSpec,
         "packageIntent": cfg.packageIntent,
         "promoteTopN": cfg.promoteTopN,
+        "compareToLiveBaseline": cfg.compareToLiveBaseline,
     }
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()

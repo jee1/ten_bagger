@@ -76,3 +76,28 @@ def test_baseline_only_go_stdout_does_not_suggest_config_pr(capsys):
     out = capsys.readouterr().out
     assert "Open an explicit PR" not in out
     assert "freeze evidence only" in out
+
+
+def test_search_go_hint_score_v3_only_when_compare_baseline(capsys):
+    from calibration.runner import _print_pr_hint
+
+    _print_pr_hint(
+        {"runId": "y"},
+        go=True,
+        mode="search",
+        package_intent="go_evidence",
+        compare_to_live_baseline=False,
+    )
+    out_default = capsys.readouterr().out
+    assert "Open an explicit PR" in out_default
+    assert "SCORE_VERSION=3" not in out_default
+
+    _print_pr_hint(
+        {"runId": "z"},
+        go=True,
+        mode="search",
+        package_intent="go_evidence",
+        compare_to_live_baseline=True,
+    )
+    out_growth = capsys.readouterr().out
+    assert "SCORE_VERSION=3" in out_growth

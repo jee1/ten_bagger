@@ -42,13 +42,21 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <h2>Score v3 후보 (측정 게이트)</h2>
         <p>
           아래는 라이브 Score v2 가중치(%)가 아닙니다. ADR 0004 GO와 성과 측정 검증 전까지
-          Score v3 <strong>후보</strong> 팩터로만 문서화합니다 (Issue #68 · Epic #74 Phase 2).
+          Score v3 <strong>후보</strong> 팩터로만 문서화합니다 (Issue #68 · #69 · Epic #74 Phase 2).
         </p>
         <p>
           Yartseva(2025)를 참고한 <strong>투자 더미(investment dummy)</strong>:
           총자산 YoY 성장률이 EBITDA YoY 성장률을 초과하면(자산 성장 &gt; EBITDA 성장)
           후보 경로에서 소프트 페널티와 red-flag <strong>라벨</strong>을 부여합니다.
           유니버스 하드 제외가 아니며, 기존 red flag(자본잠식·이중 음수 CF)를 대체하지 않습니다.
+        </p>
+        <p>
+          같은 Yartseva(2025) 연구에서 trailing(후행) 성장의 예측력이 약하다는 점에 맞춰,
+          Issue #69 후보 그리드는 <strong>WEIGHT_GROWTH</strong>를 줄이고 여분을 Valuation·Quality·Size에
+          재배분합니다(기본 그리드에서 Entry/Momentum으로는 재배분하지 않음). Growth 팩터 자체는
+          유지하며, <code>WEIGHT_GROWTH</code> 하한은 0.05입니다. ADR 0004 GO 전까지 측정 게이트이며
+          라이브 Score v2 가중치는 변하지 않습니다. GO 채택 경로에서는 명시적 설정 PR로만
+          <code>SCORE_VERSION=3</code>과 승인된 상위 <code>WEIGHT_*</code>를 반영합니다.
         </p>
         <p>
           v1에서는 금융·자산집약 섹터 carve-out을 두지 않습니다(알려진 한계).
@@ -120,7 +128,7 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <p>
           The following is <strong>not</strong> a live Score v2 weight percentage.
           Until ADR 0004 GO and measurement validation, it is documented only as a
-          Score v3 <strong>gated candidate</strong> (Issue #68 · Epic #74 Phase 2).
+          Score v3 <strong>gated candidate</strong> (Issue #68 · #69 · Epic #74 Phase 2).
         </p>
         <p>
           Informed by Yartseva (2025), the <strong>investment dummy</strong> flags names where
@@ -128,6 +136,15 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           On the candidate path only, that yields a soft score penalty plus a visible
           red-flag <strong>label</strong>—not a hard universe exclude, and additive with
           existing red flags (negative book equity; dual negative FCF/OCF).
+        </p>
+        <p>
+          Also following Yartseva (2025)—that trailing growth has weak predictive power—
+          the Issue #69 candidate grid <strong>shrinks <code>WEIGHT_GROWTH</code></strong> and
+          redistributes the freed mass to Valuation, Quality, and/or Size (Entry/Momentum do not
+          receive redistributed Growth mass in the default grid). The Growth factor itself remains;
+          <code>WEIGHT_GROWTH</code> stays at least 0.05. This stays measurement-gated until ADR 0004 GO;
+          live Score v2 weights are unchanged. On GO, adoption is only via an explicit config PR that
+          sets <code>SCORE_VERSION=3</code> and the approved top-level <code>WEIGHT_*</code> vector.
         </p>
         <p>
           v1 applies no sector carve-outs for financials or other asset-heavy industries

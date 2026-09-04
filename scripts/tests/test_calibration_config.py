@@ -16,9 +16,16 @@ def test_load_smoke_search_config():
     assert cfg.mode == "search"
     assert cfg.packageIntent == "exploratory"
     assert len(cfg.candidates) == 3
+    assert cfg.compareToLiveBaseline is False
     h1 = config_hash(cfg)
     h2 = config_hash(cfg)
     assert h1 == h2 and len(h1) == 64
+
+
+def test_compare_to_live_baseline_optional_true():
+    cfg = load_calibration_config(FIX / "growth-yartseva-smoke-config.json")
+    assert cfg.compareToLiveBaseline is True
+    assert len(cfg.candidates) == 4
 
 
 def test_rejects_overlapping_is_oos():
