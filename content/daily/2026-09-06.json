@@ -1,0 +1,194 @@
+{
+  "date": "2026-09-06",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "CBL",
+    "name": {
+      "ko": "CBL & Associates Properties  Inc.",
+      "en": "CBL & Associates Properties, Inc."
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "CBL & Associates Properties  Inc.는 Real Estate 분야 REIT - Retail 기업입니다.",
+        "en": "CBL & Associates Properties, Inc. is headquartered in Chattanooga, TN, CBL Properties owns and manages a national portfolio of market-dominant properties located in dynamic and growing communities."
+      },
+      "sector": {
+        "ko": "Real Estate",
+        "en": "Real Estate"
+      },
+      "industry": {
+        "ko": "REIT - Retail",
+        "en": "REIT - Retail"
+      }
+    }
+  },
+  "scores": {
+    "composite": 81.0,
+    "size": 100.0,
+    "growth": 82.8,
+    "valuation": 79.7,
+    "entry": 47.0,
+    "momentum": 82.8,
+    "quality": 82.8,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "CBL & Associates Properties  Inc.(CBL)는 v2 복합 점수 81.0로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "CBL & Associates Properties, Inc. (CBL) cleared the 70.0 threshold with v2 composite 81.0; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 4.0% / 이익 100.0% (혼합 47.2%) — 지속 가능 성장 점수 82.8.",
+      "en": "Revenue 4.0% / earnings 100.0% (blended 47.2%) — sustainable growth score 82.8."
+    },
+    "valuation": {
+      "ko": "PER 7.92, PEG None, FCF수익률 13.3%, PBR 3.98 — 밸류 점수 79.7.",
+      "en": "P/E 7.92, PEG None, FCF yield 13.3%, P/B 3.98 — valuation score 79.7."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 48.08% — 보조 모멘텀 점수 82.8.",
+      "en": "6M return 48.08% — auxiliary momentum score 82.8."
+    },
+    "quality": {
+      "ko": "ROE 61.93%, ROA 3.86%, FCF/순이익 1.06 — 품질 점수 82.8.",
+      "en": "ROE 61.93%, ROA 3.86%, FCF/net income 1.06 — quality score 82.8."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1701232768 기준 규모 점수 100.0.",
+      "en": "Market cap 1701232768 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 84.69%, 52주 고점 대비 -8.44% — 진입 점수 47.0.",
+      "en": "12M price range 84.69%, -8.44% from 52W high — entry score 47.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-06T08:34:22+09:00",
+    "candidatesScreened": 6319,
+    "excludedRecent": 27,
+    "skippedMarketCap": 1912,
+    "skippedRedFlags": 988,
+    "noData": 119,
+    "errors": 19
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "CBL",
+      "name": {
+        "ko": "CBL & Associates Properties  Inc.",
+        "en": "CBL & Associates Properties, Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 81.0,
+        "size": 100.0,
+        "growth": 82.8,
+        "valuation": 79.7,
+        "entry": 47.0,
+        "momentum": 82.8,
+        "quality": 82.8,
+        "version": 2
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "UFCS",
+      "name": {
+        "ko": "United Fire Group Inc",
+        "en": "United Fire Group, Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.8,
+        "size": 100.0,
+        "growth": 99.7,
+        "valuation": 84.3,
+        "entry": 36.5,
+        "momentum": 85.3,
+        "quality": 62.9,
+        "version": 2
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "YB",
+      "name": {
+        "ko": "Yuanbao Inc ADR",
+        "en": "Yuanbao Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.4,
+        "size": 100.0,
+        "growth": 99.4,
+        "valuation": 67.7,
+        "entry": 59.0,
+        "momentum": 45.1,
+        "quality": 91.1,
+        "version": 2
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "EPAC",
+      "name": {
+        "ko": "Enerpac Tool Group Corp.",
+        "en": "Enerpac Tool Group Corp."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 79.7,
+        "size": 100.0,
+        "growth": 92.1,
+        "valuation": 72.0,
+        "entry": 75.0,
+        "momentum": 58.2,
+        "quality": 74.8,
+        "version": 2
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "GLAD",
+      "name": {
+        "ko": "Gladstone Capital Corp",
+        "en": "Gladstone Capital Corporation"
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 79.5,
+        "size": 100.0,
+        "growth": 91.8,
+        "valuation": 77.2,
+        "entry": 75.0,
+        "momentum": 67.0,
+        "quality": 63.3,
+        "version": 2
+      }
+    }
+  ]
+}
