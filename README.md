@@ -129,6 +129,18 @@ npm run gen:types:check   # CI와 동일한 drift 검사
 
 선정 방법은 사이트의 **Methodology / 선정 방법** 페이지를 참고하세요.
 
+## RSS 구독 (Issue #73)
+
+일일 pick을 피드 리더로 구독할 수 있습니다 (이메일 digest는 별도 설계, 현재 미제공).
+
+1. 피드 URL: `https://<host>/ten_bagger/rss.xml`  
+   - 로컬/커스텀 base: `{SITE}{BASE_PATH}rss.xml` (기본 `BASE_PATH=/ten_bagger/`)
+2. Feedly, NetNewsWire, Inoreader 등에서 위 URL을 추가합니다.
+3. 형식: RSS 2.0 · 최근 30개 시장일 · `pick`/`no_pick` 포함 · 한·영 병기
+
+개발 중 확인: `npm run dev` 후 `/ten_bagger/rss.xml` (또는 설정한 base) 접속.
+단위 테스트: `npm run test:rss`
+
 ## Architecture (Performance Loop / Score v3)
 
 Governing principles: [`.specify/memory/constitution.md`](.specify/memory/constitution.md).
