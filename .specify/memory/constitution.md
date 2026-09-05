@@ -1,27 +1,27 @@
 <!--
 Sync Impact Report
 ==================
-Version change: 1.1.0 → 1.2.0
+Version change: 1.2.0 → 1.3.0
 Modified principles:
   - IV. Score Freeze Until Merge Gate — expanded to cover Score v3
-    growth-weight reallocation candidate packages (Issue #69 / Yartseva):
-    analysis-only candidate grids that shrink WEIGHT_GROWTH and
-    redistribute to Valuation/Quality/Size MUST reuse #67 IS search +
-    #66 walk-forward OOS go_evidence; live SCORE_VERSION / WEIGHT_*
-    change only after GO + explicit merge PR; Methodology updates for
-    adopted v3 MUST stay reader-facing and measurement-gated until GO
+    rate/macro gate candidate packages (Issue #70 / Yartseva):
+    analysis-only Fed (or documented) hike-regime dummy that may raise
+    composite threshold and/or tighten size band; OOS on/off comparison
+    via #66/#67 evidence; live SCORE_VERSION / COMPOSITE_THRESHOLD /
+    size filters change only after GO + explicit merge PR; Methodology
+    stays gated-candidate until GO; complex macro factor zoo forbidden
 Added sections: None
 Removed sections: None
 Templates requiring updates:
   - .specify/templates/plan-template.md ✅ compatible (Constitution Check
-    I–V; Principle IV notes cover Score v3 growth candidates)
+    I–V; Principle IV notes cover #70 macro gate candidates)
   - .specify/templates/spec-template.md ✅ compatible
   - .specify/templates/tasks-template.md ✅ compatible
   - .specify/templates/checklist-template.md ✅ compatible
   - .specify/templates/commands/*.md ✅ N/A (directory does not exist)
   - README.md ✅ no principle rename; links constitution unchanged
 Follow-up TODOs:
-  - None. Amended ahead of specs/025 Score v3 growth Yartseva (Issue #69).
+  - None. Amended ahead of specs/026 Score v3 macro/rate gate (Issue #70).
 -->
 
 # Ten Bagger Daily Constitution
@@ -97,6 +97,17 @@ keep live `WEIGHT_*` / `SCORE_VERSION` frozen until GO + merge PR. Methodology
 copy describing adopted v3 weights MUST remain gated (candidate vs live) until
 that merge.
 
+**Score v3 rate/macro gate** (Issue #70 / Yartseva alignment) packages that
+apply a simple hike-regime dummy (e.g. Fed hiking phase) to raise
+`COMPOSITE_THRESHOLD` and/or tighten size-band filters MUST follow the same
+rules: define an explicit on/off (and optional gate-variant) candidate set,
+compare OOS with gate off vs on via #66/#67 evidence, keep live threshold /
+size filters / `SCORE_VERSION` frozen until GO + merge PR, and forbid a
+complex macro factor zoo. Methodology MUST treat the gate as a gated
+candidate until GO. Explicit **wontfix** with written rationale satisfies
+Issue #70 acceptance when measurement shows NO-GO or the team declines the
+optional Phase 2 gate — still without silent live changes.
+
 GO MUST require walk-forward OOS evidence (H20 primary, H60 reported), strictly
 positive average excess return vs the market benchmark on H20, no unresolved
 look-ahead/contamination findings, and reproducible artifacts (or documented
@@ -105,8 +116,8 @@ the documented floor, IS/OOS separation is violated, or the calibration report
 is incomplete.
 
 **Rationale**: Prevents overfitting and silent degradation of the public daily
-picks; keeps heuristic threshold/weight and Score v3 factor changes behind the
-same evidence gate.
+picks; keeps heuristic threshold/weight, Score v3 factor, and macro-gate
+changes behind the same evidence gate.
 
 ### V. Schema Contracts and Validation Discipline
 
@@ -185,7 +196,8 @@ pipeline:
 - [x] **Calibration evidence**: REQUIRED for threshold/weight GO packages —
   reproducible calibration report + walk-forward OOS artifacts with explicit
   GO or NO-GO (Issue #67); REQUIRED for Score v3 growth-weight candidate
-  packages (Issue #69) using the same evidence shape
+  packages (Issue #69) and rate/macro gate candidate packages (Issue #70)
+  using the same evidence shape (on/off OOS comparison for #70)
 
 ### Review Requirements
 
@@ -195,17 +207,18 @@ pipeline:
 - [x] **Security review**: OPTIONAL for routine content/docs; REQUIRED when
   adding secrets handling, webhooks, or external write paths
 - [x] **Performance / measurement review**: REQUIRED for Score weight,
-  composite threshold, walk-forward, or ledger changes — cite ADR 0002–0004
-  and four-axis risks; verify IS/OOS separation for calibration and Score v3
-  growth-weight candidates
+  composite threshold, walk-forward, ledger, or macro-gate changes — cite
+  ADR 0002–0004 and four-axis risks; verify IS/OOS separation for calibration,
+  Score v3 growth-weight, and rate/macro gate candidates
 
 ### Deployment Gates
 
 - [ ] All required tests for the touched surface pass
 - [ ] All review items resolved
 - [ ] Constitution compliance verified (Principles I–V)
-- [ ] Score weight, Score version, or composite threshold changes: ADR 0004 GO
-      evidence and calibration report linked; otherwise NO-GO
+- [ ] Score weight, Score version, composite threshold, or size-band gate
+      changes: ADR 0004 GO evidence and calibration report linked; otherwise
+      NO-GO
 - [ ] Walk-forward / OOS claim changes: reproducible report artifact (or
       documented provider assumptions) and PIT assumptions documented in
       Methodology or the active spec
@@ -241,4 +254,4 @@ Any amendment requires:
 Check table for Principles I–V. Tasks that alter live selection or measurement
 contracts MUST not be marked complete without that check passing.
 
-**Version**: 1.2.0 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-09-05
+**Version**: 1.3.0 | **Ratified**: 2026-08-29 | **Last Amended**: 2026-09-05
