@@ -42,5 +42,5 @@ ids/lengths implementers must use unless superseded.
 - **Positive**: Stable contract for dashboards and merge gate.
 - **Negative**: Index proxy ≠ investable ETF; document as benchmark not tradable
   twin.
-- **Follow-up**: Dual-source (#71) may add a fifth ADR; does not change H20/H60
-  unless superseded.
+- **Follow-up**: Dual-source landed as [ADR 0005](./0005-data-dual-source.md)
+  (#71); does not change H20/H60 unless superseded.

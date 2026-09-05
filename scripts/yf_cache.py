@@ -1,4 +1,8 @@
-"""Disk cache for yfinance info/history to reduce API calls."""
+"""Disk cache for yfinance info/history to reduce API calls.
+
+Price history cascade (ADR 0005): yfinance → retry → stale yf cache → Stooq → raise.
+Fundamentals (info) remain yfinance + stale only.
+"""
 
 from __future__ import annotations
 
@@ -169,25 +173,24 @@ def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
     path = _cache_path(symbol, kind)
     if _is_fresh(path):
         cached = _read_history_cache(path)
-        if cached is not None:
+        if cached is not None and not cached.empty:
             return cached
 
     def _fetch() -> pd.DataFrame:
         return yf.Ticker(symbol).history(period=period)
 
+    hist: pd.DataFrame | None = None
+    primary_exc: Exception | None = None
     try:
         hist = _with_retry(f"yfinance history {symbol}", _fetch)
+        if hist is None or hist.empty:
+            primary_exc = RuntimeError(f"yfinance returned empty history for {symbol}")
+            hist = None
     except Exception as exc:
-        stale = _read_history_cache(path)
-        if stale is not None and _is_transient_failure(exc):
-            logger.warning(
-                "Using stale yfinance history cache for %s after fetch failure: %s",
-                symbol,
-                exc,
-            )
-            return stale
-        raise
-    if not hist.empty:
+        primary_exc = exc
+        hist = None
+
+    if hist is not None and not hist.empty:
         payload: dict[str, Any] = {
             "index": [d.isoformat() for d in hist.index.to_pydatetime()],
             "close": [float(v) for v in hist["Close"].tolist()],
@@ -196,4 +199,50 @@ def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
             if src in hist.columns:
                 payload[key] = [float(v) for v in hist[src].tolist()]
         _write_json(path, payload)
-    return hist
+        return hist
+
+    stale = _read_history_cache(path)
+    if stale is not None and not stale.empty:
+        logger.warning(
+            "Using stale yfinance history cache for %s after primary miss: %s",
+            symbol,
+            primary_exc,
+        )
+        return stale
+
+    # ADR 0005: Stooq secondary (provider-keyed cache)
+    import stooq_prices
+
+    stooq_kind = f"{kind}_stooq"
+    stooq_path = _cache_path(symbol, stooq_kind)
+    if _is_fresh(stooq_path):
+        cached_s = _read_history_cache(stooq_path)
+        if cached_s is not None and not cached_s.empty:
+            logger.info("Using fresh Stooq cache for %s (provider=stooq)", symbol)
+            return cached_s
+
+    try:
+        hist_s = stooq_prices.fetch_history(symbol, period=period)
+    except Exception as stooq_exc:
+        logger.warning(
+            "Stooq secondary failed for %s after primary miss (%s): %s",
+            symbol,
+            primary_exc,
+            stooq_exc,
+        )
+        if primary_exc is not None:
+            raise primary_exc from stooq_exc
+        raise
+
+    if not hist_s.empty:
+        payload_s: dict[str, Any] = {
+            "index": [d.isoformat() for d in hist_s.index.to_pydatetime()],
+            "close": [float(v) for v in hist_s["Close"].tolist()],
+            "provider": "stooq",
+        }
+        for src, key in (("Open", "open"), ("High", "high"), ("Low", "low")):
+            if src in hist_s.columns:
+                payload_s[key] = [float(v) for v in hist_s[src].tolist()]
+        _write_json(stooq_path, payload_s)
+        logger.info("provider=stooq served history for %s", symbol)
+    return hist_s

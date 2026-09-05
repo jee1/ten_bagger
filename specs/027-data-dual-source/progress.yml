@@ -1,0 +1,16 @@
+# specs/027-data-dual-source/progress.yml
+feature: data-dual-source
+created: 2026-09-05
+current_phase: review
+github_issue: 71
+phases:
+  constitution: { status: done, updated: 2026-09-05 }
+  specify:      { status: done, updated: 2026-09-05 }
+  brainstorm:   { status: done, updated: 2026-09-05, sessions: 1, note: "all-recommendations Q1-Q6; saturated" }
+  plan:         { status: done, updated: 2026-09-05 }
+  tasks:        { status: done, updated: 2026-09-05, count: 20 }
+  execute:      { status: done, updated: 2026-09-05, note: "T001-T018; 224 pytest" }
+  review:       { status: done, updated: 2026-09-05, iterations: 1, verdict: passed }
+notes:
+  - "Canonical Speckit complete; no commit/push"
+  - "ADR 0005 + Stooq cascade in get_ticker_history"

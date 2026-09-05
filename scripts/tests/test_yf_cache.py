@@ -120,3 +120,87 @@ def test_get_ticker_info_raises_without_usable_stale_cache(monkeypatch, tmp_path
 
     with pytest.raises(RuntimeError, match="Too Many Requests"):
         yf_cache.get_ticker_info("TEST")
+
+
+def test_get_ticker_history_uses_stooq_when_no_stale(monkeypatch, tmp_path):
+    class FailingTicker:
+        def history(self, period: str = "1y") -> pd.DataFrame:
+            raise RuntimeError("429 Too Many Requests")
+
+    stooq_calls = {"n": 0}
+
+    def fake_stooq(symbol: str, period: str = "1y") -> pd.DataFrame:
+        stooq_calls["n"] += 1
+        idx = pd.to_datetime(["2026-07-21"], utc=True)
+        return pd.DataFrame({"Close": [99.0], "Open": [98.0]}, index=idx)
+
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache, "YF_MAX_RETRIES", 1)
+    monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: FailingTicker())
+    monkeypatch.setattr("stooq_prices.fetch_history", fake_stooq)
+
+    hist = yf_cache.get_ticker_history("TEST")
+    assert stooq_calls["n"] == 1
+    assert hist["Close"].tolist() == [99.0]
+    assert (tmp_path / "TEST_hist_1y_stooq.json").exists()
+
+
+def test_get_ticker_history_stale_before_stooq(monkeypatch, tmp_path):
+    path = tmp_path / "TEST_hist_1y.json"
+    path.write_text(
+        json.dumps({"index": ["2026-07-20T00:00:00"], "close": [12.5]}),
+        encoding="utf-8",
+    )
+    old_time = time.time() - 10_000
+    os.utime(path, (old_time, old_time))
+
+    class FailingTicker:
+        def history(self, period: str = "1y") -> pd.DataFrame:
+            raise TimeoutError("temporary timeout")
+
+    def boom_stooq(*_a, **_k):
+        raise AssertionError("Stooq must not run when stale cache exists")
+
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache, "CACHE_TTL_SECONDS", 1)
+    monkeypatch.setattr(yf_cache, "YF_MAX_RETRIES", 1)
+    monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: FailingTicker())
+    monkeypatch.setattr("stooq_prices.fetch_history", boom_stooq)
+
+    hist = yf_cache.get_ticker_history("TEST")
+    assert hist["Close"].tolist() == [12.5]
+
+
+def test_get_ticker_history_empty_primary_tries_stooq(monkeypatch, tmp_path):
+    class EmptyTicker:
+        def history(self, period: str = "1y") -> pd.DataFrame:
+            return pd.DataFrame()
+
+    def fake_stooq(symbol: str, period: str = "1y") -> pd.DataFrame:
+        idx = pd.to_datetime(["2026-08-01"], utc=True)
+        return pd.DataFrame({"Close": [7.0]}, index=idx)
+
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache, "YF_MAX_RETRIES", 1)
+    monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: EmptyTicker())
+    monkeypatch.setattr("stooq_prices.fetch_history", fake_stooq)
+
+    hist = yf_cache.get_ticker_history("TEST")
+    assert hist["Close"].tolist() == [7.0]
+
+
+def test_get_ticker_history_raises_when_primary_and_stooq_fail(monkeypatch, tmp_path):
+    class FailingTicker:
+        def history(self, period: str = "1y") -> pd.DataFrame:
+            raise RuntimeError("429 Too Many Requests")
+
+    def fail_stooq(*_a, **_k):
+        raise RuntimeError("stooq down")
+
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache, "YF_MAX_RETRIES", 1)
+    monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: FailingTicker())
+    monkeypatch.setattr("stooq_prices.fetch_history", fail_stooq)
+
+    with pytest.raises(RuntimeError, match="Too Many Requests"):
+        yf_cache.get_ticker_history("TEST")

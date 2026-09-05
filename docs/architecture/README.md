@@ -33,6 +33,7 @@ authorize weight or pick-logic changes.
    - [0002 Forward-return price basis](./adr/0002-forward-return-price-basis.md)
    - [0003 Walk-forward windows & benchmarks](./adr/0003-walk-forward-windows-benchmarks.md)
    - [0004 Score v3 merge gate](./adr/0004-score-v3-merge-gate.md)
+   - [0005 Market-data dual-source (prices / Stooq)](./adr/0005-data-dual-source.md) ([#71](https://github.com/jee1/ten_bagger/issues/71))
 7. Walk-forward PIT assumptions ([#66](./pit-walk-forward-assumptions.md))
 8. Threshold / weight merge criteria ([#67](./threshold-weight-merge-criteria.md))
 9. Promoted schemas (enforced by validate:content / gen:types, #63):
