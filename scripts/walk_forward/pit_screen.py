@@ -11,6 +11,7 @@ import screening.core as screening_core
 from calibration.overrides import apply_candidate_overrides
 from performance.pit_prices import filter_session_bars
 from screening.core import screen_market
+from top_n import select_pick
 
 
 @contextmanager
@@ -47,9 +48,11 @@ def pit_screen_day(
             exclude_symbols,
             score_version=score_version,
         )
-    if not results:
+    # screen_market may include below-threshold scores (#72); pick is threshold-gated
+    pick = select_pick(results)
+    if pick is None:
         return None, True
-    return results[0].symbol, False
+    return pick.symbol, False
 
 
 def bind_pit_fn(

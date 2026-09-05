@@ -25,6 +25,7 @@ CACHE_TTL_SECONDS = 43_200  # 12 hours
 
 SCORE_VERSION = 2
 COMPOSITE_THRESHOLD = 70.0
+TOP_N = 5  # Product Top-N archive (Issue #72); pick remains single
 DUPLICATE_BAN_DAYS = 30
 SCREEN_WORKERS = 2
 

@@ -42,6 +42,11 @@ export const labels = {
   companyProfile: { ko: '회사 소개', en: 'Company profile' } satisfies LocalizedText,
   sector: { ko: '섹터', en: 'Sector' } satisfies LocalizedText,
   industry: { ko: '산업', en: 'Industry' } satisfies LocalizedText,
+  topCandidates: { ko: '당일 Top-5 후보', en: "Today's Top-5 candidates" } satisfies LocalizedText,
+  topCandidatesHelp: {
+    ko: '투명성을 위한 순위·축 점수입니다. 추가 추천이 아닙니다. 일 1픽 규칙은 그대로입니다.',
+    en: 'Ranking and axis scores for transparency — not extra picks. One published pick per day still applies.',
+  } satisfies LocalizedText,
   performance: { ko: '성과', en: 'Performance' } satisfies LocalizedText,
   performanceCumulative: {
     ko: '누적 성과',

@@ -1,0 +1,17 @@
+# specs/028-product-top-n/progress.yml
+feature: product-top-n
+created: 2026-09-05
+current_phase: done
+github_issue: 72
+phases:
+  constitution: { status: done, updated: 2026-09-05 }
+  specify:      { status: done, updated: 2026-09-05 }
+  brainstorm:   { status: done, updated: 2026-09-05, sessions: 1, note: "all-recommendations Q1-Q6; saturated" }
+  plan:         { status: done, updated: 2026-09-05 }
+  tasks:        { status: done, updated: 2026-09-05, count: 25 }
+  execute:      { status: done, updated: 2026-09-06, note: "T001-T025; 232 pytest; check 0 errors" }
+  review:       { status: done, updated: 2026-09-06, iterations: 1, verdict: passed }
+notes:
+  - "Epic #74 Phase 4 Issue #72"
+  - "screen_market keeps all scored; select_pick for threshold; topCandidates N=5"
+  - "No commit/push unless asked"

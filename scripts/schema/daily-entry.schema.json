@@ -69,6 +69,11 @@
         "noData": { "type": "integer", "minimum": 0 },
         "errors": { "type": "integer", "minimum": 0 }
       }
+    },
+    "topCandidates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/topNCandidate" },
+      "description": "Optional Top-N (max 5 enforced in validate_content semantic checks)"
     }
   },
   "allOf": [
@@ -90,6 +95,44 @@
       "properties": {
         "ko": { "type": "string" },
         "en": { "type": "string" }
+      }
+    },
+    "topNScores": {
+      "title": "TopNScores",
+      "type": "object",
+      "required": [
+        "composite",
+        "size",
+        "growth",
+        "valuation",
+        "entry",
+        "momentum",
+        "quality"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "composite": { "type": "number" },
+        "size": { "type": "number" },
+        "growth": { "type": "number" },
+        "valuation": { "type": "number" },
+        "entry": { "type": "number" },
+        "momentum": { "type": "number" },
+        "quality": { "type": "number" },
+        "version": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "topNCandidate": {
+      "title": "TopNCandidate",
+      "type": "object",
+      "required": ["rank", "symbol", "name", "exchange", "currency", "scores"],
+      "additionalProperties": false,
+      "properties": {
+        "rank": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "symbol": { "type": "string", "minLength": 1 },
+        "name": { "$ref": "#/$defs/localizedText" },
+        "exchange": { "type": "string" },
+        "currency": { "enum": ["KRW", "USD"] },
+        "scores": { "$ref": "#/$defs/topNScores" }
       }
     }
   }

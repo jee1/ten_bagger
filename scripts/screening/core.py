@@ -33,6 +33,7 @@ from scoring.v1 import (
     _score_valuation_v1,
 )
 from scoring.valuation import _score_valuation
+from top_n import rank_key
 from yf_cache import get_ticker_history, get_ticker_info
 
 logger = logging.getLogger(__name__)
@@ -226,11 +227,12 @@ def screen_market(
             if status == "no_data" or scored is None:
                 stats.no_data += 1
                 continue
+            results.append(scored)
             if scored.composite >= COMPOSITE_THRESHOLD:
-                results.append(scored)
                 stats.passed_threshold += 1
 
-    results.sort(key=lambda r: r.composite, reverse=True)
+    # Product Top-N (#72): keep all scored; pick still threshold-gated via select_pick
+    results.sort(key=rank_key)
     logger.info(
         "Screen %s v%d: screened=%d passed=%d no_data=%d errors=%d skipped_mcap=%d skipped_red=%d",
         market,

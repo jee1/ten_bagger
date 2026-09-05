@@ -48,11 +48,33 @@ export type DailyEntry = {
     noData?: number;
     errors?: number;
   };
+  /**
+   * Optional Top-N (max 5 enforced in validate_content semantic checks)
+   */
+  topCandidates?: TopNCandidate[];
 };
 
 export interface LocalizedText {
   ko: string;
   en: string;
+}
+export interface TopNCandidate {
+  rank: number;
+  symbol: string;
+  name: LocalizedText;
+  exchange: string;
+  currency: "KRW" | "USD";
+  scores: TopNScores;
+}
+export interface TopNScores {
+  composite: number;
+  size: number;
+  growth: number;
+  valuation: number;
+  entry: number;
+  momentum: number;
+  quality: number;
+  version?: number;
 }
 
 export interface Manifest {
