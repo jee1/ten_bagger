@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 
 import pytest
-
 from scoring.macro_rate_gate import (
     clear_regime_cache,
     load_fed_hike_regime,
