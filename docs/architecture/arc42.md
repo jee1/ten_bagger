@@ -23,7 +23,8 @@ are the reader’s responsibility.
 ## 2. Constraints
 
 - Git JSON is the system of record (no app DB)
-- Single primary market-data provider today (dual-source optional later, #71)
+- Primary market-data provider: yfinance; price dual-source cascade per
+  [ADR 0005](./adr/0005-data-dual-source.md) (#71: Stooq secondary)
 - CI must fail visibly (Issues mandatory; Slack optional)
 - Korean + English site copy; architecture package English + KO glossary
 - Docs-gate path allowlist: no incidental scoring refactors
@@ -90,6 +91,7 @@ diagrams.
 | [0002](./adr/0002-forward-return-price-basis.md) | Forward-return basis / survivorship |
 | [0003](./adr/0003-walk-forward-windows-benchmarks.md) | Windows / benchmarks |
 | [0004](./adr/0004-score-v3-merge-gate.md) | Score v3 GO/NO-GO |
+| [0005](./adr/0005-data-dual-source.md) | Market-data dual-source (prices / Stooq) |
 
 ## 10. Quality requirements
 
@@ -102,7 +104,7 @@ diagrams.
 ## 11. Risks and technical debt
 
 See [risks.md](./risks.md) (four-axis check). Known debt: draft schemas unwired;
-dual-source unresolved; index benchmarks are proxies.
+price dual-source via [ADR 0005](./adr/0005-data-dual-source.md); index benchmarks are proxies.
 
 ## 12. Glossary
 
