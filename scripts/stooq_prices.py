@@ -6,7 +6,7 @@ import csv
 import io
 import logging
 from collections.abc import Callable
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any
 from urllib.error import URLError
 from urllib.request import Request, urlopen
@@ -52,7 +52,7 @@ def _period_cutoff(period: str) -> datetime | None:
     days = _PERIOD_DAYS.get(period, _PERIOD_DAYS["1y"])
     if period == "max":
         return None
-    return datetime.now(timezone.utc) - timedelta(days=days)
+    return datetime.now(UTC) - timedelta(days=days)
 
 
 def parse_stooq_csv(text: str) -> pd.DataFrame | None:
@@ -126,9 +126,7 @@ def fetch_history(
     if cutoff is not None:
         hist = hist[hist.index >= pd.Timestamp(cutoff)]
     if hist.empty:
-        raise RuntimeError(
-            f"Stooq history empty after period filter {period} for {stooq_sym}"
-        )
+        raise RuntimeError(f"Stooq history empty after period filter {period} for {stooq_sym}")
     logger.info(
         "provider=stooq history for %s (stooq=%s, period=%s)",
         symbol,

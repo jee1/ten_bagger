@@ -5,7 +5,6 @@ from __future__ import annotations
 import pytest
 import stooq_prices
 
-
 SAMPLE_CSV = """Date,Open,High,Low,Close,Volume
 2026-07-01,10.0,11.0,9.5,10.5,1000
 2026-07-02,10.5,11.5,10.0,11.0,1100
