@@ -42,7 +42,8 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <h2>Score v3 후보 (측정 게이트)</h2>
         <p>
           아래는 라이브 Score v2 가중치(%)가 아닙니다. ADR 0004 GO와 성과 측정 검증 전까지
-          Score v3 <strong>후보</strong> 팩터로만 문서화합니다 (Issue #68 · #69 · Epic #74 Phase 2).
+          Score v3 <strong>후보</strong> 팩터로만 문서화합니다
+          (Issue #68 · #69 · #70 · Epic #74 Phase 2).
         </p>
         <p>
           Yartseva(2025)를 참고한 <strong>투자 더미(investment dummy)</strong>:
@@ -57,6 +58,14 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           유지하며, <code>WEIGHT_GROWTH</code> 하한은 0.05입니다. ADR 0004 GO 전까지 측정 게이트이며
           라이브 Score v2 가중치는 변하지 않습니다. GO 채택 경로에서는 명시적 설정 PR로만
           <code>SCORE_VERSION=3</code>과 승인된 상위 <code>WEIGHT_*</code>를 반영합니다.
+        </p>
+        <p>
+          금리 인상기 멀티배거 연수익률 약화를 반영하는 Issue #70
+          <strong>금리/매크로 게이트</strong> 후보: 커밋된 Fed 인상 국면 dummy로
+          복합 임계값 상향(+5) 또는 최소 시총 밴드 축소(×1.5)를 후보 경로에서만 적용합니다.
+          KR·US 모두 v1에서는 동일 글로벌 Fed dummy를 쓰며, 한국은행(BOK) 전용 시계열은 보류입니다.
+          복잡한 매크로 팩터 집합은 범위 밖입니다. ADR 0004 GO 전까지 라이브 임계값·시총 필터는
+          변하지 않으며, GO/NO-GO/wontfix는 #66/#67 OOS on/off 비교로 기록합니다.
         </p>
         <p>
           v1에서는 금융·자산집약 섹터 carve-out을 두지 않습니다(알려진 한계).
@@ -128,7 +137,8 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <p>
           The following is <strong>not</strong> a live Score v2 weight percentage.
           Until ADR 0004 GO and measurement validation, it is documented only as a
-          Score v3 <strong>gated candidate</strong> (Issue #68 · #69 · Epic #74 Phase 2).
+          Score v3 <strong>gated candidate</strong>
+          (Issue #68 · #69 · #70 · Epic #74 Phase 2).
         </p>
         <p>
           Informed by Yartseva (2025), the <strong>investment dummy</strong> flags names where
@@ -145,6 +155,14 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           <code>WEIGHT_GROWTH</code> stays at least 0.05. This stays measurement-gated until ADR 0004 GO;
           live Score v2 weights are unchanged. On GO, adoption is only via an explicit config PR that
           sets <code>SCORE_VERSION=3</code> and the approved top-level <code>WEIGHT_*</code> vector.
+        </p>
+        <p>
+          Issue #70 <strong>rate/macro gate</strong> candidate (Yartseva: weaker multibagger
+          annual returns in hiking regimes): a committed Fed hiking-phase dummy may raise the
+          composite threshold (+5) or tighten minimum market-cap floors (×1.5) on the candidate
+          path only. KR and US share the same global Fed dummy in v1; a BOK-specific series is
+          deferred. No macro factor zoo. Live threshold/size filters stay frozen until ADR 0004 GO;
+          GO / NO-GO / wontfix is recorded via #66/#67 OOS on/off comparison.
         </p>
         <p>
           v1 applies no sector carve-outs for financials or other asset-heavy industries

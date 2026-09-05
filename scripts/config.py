@@ -32,6 +32,12 @@ SCREEN_WORKERS = 2
 INVESTMENT_DUMMY_SOFT_PENALTY = 15.0
 ENABLE_INVESTMENT_DUMMY_CANDIDATE = False
 
+# Score v3 candidate — rate/macro gate (Issue #70); live path default OFF
+ENABLE_MACRO_RATE_GATE_CANDIDATE = False
+THRESHOLD_HIKE_DELTA = 5.0
+SIZE_TIGHTEN_MIN_MCAP_MULT = 1.5
+FED_HIKE_REGIME_PATH = Path(__file__).resolve().parent / "data" / "fed_hike_regime.json"
+
 # Minimum market cap for pre-screen (when cap data is available).
 MIN_MARKET_CAP_KR = 50_000_000_000  # 500억 KRW
 MIN_MARKET_CAP_US = 300_000_000  # $300M USD
