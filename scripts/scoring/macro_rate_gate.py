@@ -185,11 +185,7 @@ def effective_selection_knobs(
     min_us = int(MIN_MARKET_CAP_US)
     gate_applied = False
 
-    if (
-        enabled
-        and signal.status == "available"
-        and signal.hike_regime
-    ):
+    if enabled and signal.status == "available" and signal.hike_regime:
         gate_applied = True
         if variant == "threshold_raise":
             threshold = float(COMPOSITE_THRESHOLD) + float(THRESHOLD_HIKE_DELTA)
