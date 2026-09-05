@@ -60,8 +60,12 @@ def test_generate_daily_writes_pick_and_syncs_manifest(content_dirs, monkeypatch
     daily_dir, manifest_path = content_dirs
     stats = _fake_stats()
     pick = _fake_pick("AAPL")
+    runner = _fake_pick("MSFT")
+    runner.composite = 60.0  # below threshold near-miss
 
-    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex: ([pick], stats))
+    monkeypatch.setattr(
+        generate_daily, "screen_market", lambda _m, _ex: ([pick, runner], stats)
+    )
     monkeypatch.setattr(generate_daily, "get_ticker_info", lambda _s: {"longName": "Apple Inc"})
     monkeypatch.setattr(generate_daily, "build_stock_profile", lambda *_a, **_k: None)
     monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-08"])
@@ -76,6 +80,10 @@ def test_generate_daily_writes_pick_and_syncs_manifest(content_dirs, monkeypatch
     assert entry["scores"]["composite"] == 76.5
     assert entry["scores"]["threshold"] == COMPOSITE_THRESHOLD
     assert entry["market"] == "US"  # even day (8th)
+    assert entry["topCandidates"][0]["symbol"] == "AAPL"
+    assert entry["topCandidates"][0]["rank"] == 1
+    assert len(entry["topCandidates"]) == 2
+    assert entry["topCandidates"][1]["symbol"] == "MSFT"
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     assert "2026-07-08" in manifest["dates"]
@@ -95,9 +103,27 @@ def test_generate_daily_writes_no_pick(content_dirs, monkeypatch):
     assert entry["market"] == "KR"  # odd day (9th)
     assert entry["scores"]["composite"] == 0
     assert entry["meta"]["candidatesScreened"] == 10
+    assert "topCandidates" not in entry
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     assert manifest["dates"] == ["2026-07-09"]
+
+
+def test_generate_daily_no_pick_with_near_miss_top_n(content_dirs, monkeypatch):
+    daily_dir, _manifest = content_dirs
+    stats = _fake_stats(passed_threshold=0)
+    near = _fake_pick("NEAR")
+    near.composite = 55.0
+
+    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex: ([near], stats))
+    monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-09"])
+
+    assert generate_daily.main() == 0
+    entry = json.loads((daily_dir / "2026-07-09.json").read_text(encoding="utf-8"))
+    assert entry["status"] == "no_pick"
+    assert "topCandidates" in entry
+    assert entry["topCandidates"][0]["symbol"] == "NEAR"
+    assert entry["topCandidates"][0]["scores"]["composite"] == 55.0
 
 
 def test_recent_pick_symbols_excludes_recent_picks(content_dirs, monkeypatch):

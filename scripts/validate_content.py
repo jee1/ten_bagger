@@ -21,6 +21,7 @@ from config import (
     WALK_FORWARD_SCHEMA_PATH,
 )
 from sync_manifest import collect_daily_dates
+from top_n_validate import validate_top_candidates
 
 
 def load_validator(
@@ -85,6 +86,10 @@ def main() -> int:
             for err in errors:
                 loc = ".".join(str(p) for p in err.path) or "(root)"
                 print(f"  - {loc}: {err.message}")
+        for msg in validate_top_candidates(data):
+            errors_found += 1
+            print(f"{path.name}:")
+            print(f"  - topCandidates: {msg}")
 
     for err in validate_manifest():
         errors_found += 1

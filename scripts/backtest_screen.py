@@ -29,6 +29,7 @@ def _avg_fcf_yield(results) -> float | None:
 
 
 def snapshot(market: str, version: int, limit: int) -> dict:
+    # Full ranked scored list (may include below-threshold); aligns with product Top-N (#72)
     results, stats = screen_market(market, set(), score_version=version)
     top = results[:limit]
     return {

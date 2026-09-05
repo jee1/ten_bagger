@@ -57,6 +57,26 @@ export interface DailyScores {
   version?: number;
 }
 
+export interface TopNScores {
+  composite: number;
+  size: number;
+  growth: number;
+  valuation: number;
+  entry: number;
+  momentum: number;
+  quality: number;
+  version?: number;
+}
+
+export interface TopNCandidate {
+  rank: number;
+  symbol: string;
+  name: LocalizedText;
+  exchange: string;
+  currency: 'KRW' | 'USD';
+  scores: TopNScores;
+}
+
 export interface DailyMeta {
   generatedAt: string;
   candidatesScreened: number;
@@ -75,6 +95,7 @@ export type DailyEntry = {
   scores?: DailyScores;
   reasoning?: DailyReasoning;
   meta?: DailyMeta;
+  topCandidates?: TopNCandidate[];
 };
 
 /**

@@ -1,7 +1,7 @@
 ---
 import { label, shortText, t } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
-import type { DailyEntry } from '../lib/types';
+import type { DailyEntry, TopNCandidate } from '../lib/types';
 
 interface Props {
   entry: DailyEntry;
@@ -19,6 +19,20 @@ const displayOverview = profileOverview
     ? profileOverview
     : shortText(profileOverview)
   : '';
+const topCandidates = entry.topCandidates;
+
+function axisRows(c: TopNCandidate) {
+  const s = c.scores;
+  return [
+    { key: 'composite' as const, value: s.composite },
+    { key: 'size' as const, value: s.size },
+    { key: 'growth' as const, value: s.growth },
+    { key: 'valuation' as const, value: s.valuation },
+    { key: 'entry' as const, value: s.entry },
+    { key: 'momentum' as const, value: s.momentum },
+    { key: 'quality' as const, value: s.quality },
+  ];
+}
 ---
 
 <article class="card">
@@ -137,4 +151,62 @@ const displayOverview = profileOverview
       )}
     </>
   ) : null}
+
+  {topCandidates && topCandidates.length > 0 && (
+    <details class="top-n">
+      <summary>{label('topCandidates', lang)}</summary>
+      <p class="muted top-n-help">{label('topCandidatesHelp', lang)}</p>
+      <ol class="top-n-list">
+        {topCandidates.map((c) => (
+          <li>
+            <div class="top-n-head">
+              <strong>#{c.rank}</strong>
+              <span>{c.symbol}</span>
+              <span class="muted">{t(c.name, lang)} · {c.exchange}</span>
+            </div>
+            <div class="score-grid top-n-scores">
+              {axisRows(c).map((row) => (
+                <div class="score-item">
+                  <div class="value">{row.value.toFixed(1)}</div>
+                  <div class="label">{label(row.key, lang)}</div>
+                </div>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )}
 </article>
+
+<style>
+  .top-n {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .top-n summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .top-n-help {
+    margin: 0.5rem 0 0.75rem;
+    font-size: 0.9rem;
+  }
+  .top-n-list {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .top-n-list > li {
+    margin-bottom: 1rem;
+  }
+  .top-n-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+  }
+  .top-n-scores {
+    margin: 0.35rem 0 0;
+  }
+</style>

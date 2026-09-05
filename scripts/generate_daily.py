@@ -19,6 +19,7 @@ from config import (
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
 from time_utils import now_kst
+from top_n import build_top_candidates, select_pick
 from yf_cache import get_ticker_info
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -49,9 +50,9 @@ def recent_pick_symbols(days: int, before: date) -> set[str]:
     return symbols
 
 
-def build_no_pick(target: str, market: str, stats) -> dict:
+def build_no_pick(target: str, market: str, stats, top_candidates=None) -> dict:
     now = now_kst().isoformat(timespec="seconds")
-    return {
+    entry = {
         "date": target,
         "market": market,
         "status": "no_pick",
@@ -76,9 +77,12 @@ def build_no_pick(target: str, market: str, stats) -> dict:
             "errors": stats.errors,
         },
     }
+    if top_candidates:
+        entry["topCandidates"] = top_candidates
+    return entry
 
 
-def build_pick(target: str, market: str, result, stats) -> dict:
+def build_pick(target: str, market: str, result, stats, top_candidates=None) -> dict:
     now = now_kst().isoformat(timespec="seconds")
     stock: dict = {
         "symbol": result.symbol,
@@ -95,7 +99,7 @@ def build_pick(target: str, market: str, result, stats) -> dict:
     if profile:
         stock["profile"] = profile
 
-    return {
+    entry = {
         "date": target,
         "market": market,
         "status": "pick",
@@ -122,6 +126,9 @@ def build_pick(target: str, market: str, result, stats) -> dict:
             "errors": stats.errors,
         },
     }
+    if top_candidates:
+        entry["topCandidates"] = top_candidates
+    return entry
 
 
 def main() -> int:
@@ -132,19 +139,21 @@ def main() -> int:
     excluded_symbols = recent_pick_symbols(DUPLICATE_BAN_DAYS, before)
 
     candidates, stats = screen_market(market, excluded_symbols)
+    pick = select_pick(candidates)
+    top_candidates = build_top_candidates(candidates)
     logger.info(
         "Daily %s market=%s pick=%s screened=%d errors=%d",
         target,
         market,
-        candidates[0].symbol if candidates else "none",
+        pick.symbol if pick else "none",
         stats.screened,
         stats.errors,
     )
 
-    if candidates:
-        entry = build_pick(target, market, candidates[0], stats)
+    if pick:
+        entry = build_pick(target, market, pick, stats, top_candidates)
     else:
-        entry = build_no_pick(target, market, stats)
+        entry = build_no_pick(target, market, stats, top_candidates)
 
     DAILY_DIR.mkdir(parents=True, exist_ok=True)
     out_path = DAILY_DIR / f"{target}.json"
