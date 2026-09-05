@@ -35,9 +35,7 @@ def validate_top_candidates(entry: dict[str, Any]) -> list[str]:
         rank = row.get("rank")
         symbol = row.get("symbol")
         if rank != i + 1:
-            errors.append(
-                f"topCandidates[{i}].rank must be {i + 1}, got {rank!r}"
-            )
+            errors.append(f"topCandidates[{i}].rank must be {i + 1}, got {rank!r}")
         if isinstance(rank, int):
             ranks.append(rank)
         if not isinstance(symbol, str) or not symbol:
@@ -49,9 +47,7 @@ def validate_top_candidates(entry: dict[str, Any]) -> list[str]:
 
     expected_ranks = list(range(1, n + 1))
     if ranks and sorted(ranks) != expected_ranks:
-        errors.append(
-            f"topCandidates ranks must be contiguous 1..{n}, got {sorted(ranks)}"
-        )
+        errors.append(f"topCandidates ranks must be contiguous 1..{n}, got {sorted(ranks)}")
 
     if entry.get("status") == "pick":
         stock = entry.get("stock") or {}
@@ -60,8 +56,7 @@ def validate_top_candidates(entry: dict[str, Any]) -> list[str]:
             rank1_symbol = rows[0].get("symbol")
             if pick_symbol and rank1_symbol != pick_symbol:
                 errors.append(
-                    f"pick symbol {pick_symbol!r} must equal topCandidates rank1 "
-                    f"{rank1_symbol!r}"
+                    f"pick symbol {pick_symbol!r} must equal topCandidates rank1 {rank1_symbol!r}"
                 )
 
     return errors

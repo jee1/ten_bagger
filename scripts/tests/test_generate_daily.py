@@ -63,9 +63,7 @@ def test_generate_daily_writes_pick_and_syncs_manifest(content_dirs, monkeypatch
     runner = _fake_pick("MSFT")
     runner.composite = 60.0  # below threshold near-miss
 
-    monkeypatch.setattr(
-        generate_daily, "screen_market", lambda _m, _ex: ([pick, runner], stats)
-    )
+    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex: ([pick, runner], stats))
     monkeypatch.setattr(generate_daily, "get_ticker_info", lambda _s: {"longName": "Apple Inc"})
     monkeypatch.setattr(generate_daily, "build_stock_profile", lambda *_a, **_k: None)
     monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-08"])
