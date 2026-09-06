@@ -4,8 +4,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import config as live_config
 import pytest
+
+import config as live_config
 from calibrate import main as calibrate_main
 from calibration.config import load_calibration_config
 from calibration.report import build_report, serialize_report
@@ -116,8 +117,8 @@ def test_score_v3_search_go_evidence_config_dry_run():
 
 
 def test_preflight_blocks_search_go_when_not_ready(tmp_path, capsys):
-    from calibration.config import CalibrationRunConfig
     from calibration.candidates import CandidateSpec
+    from calibration.config import CalibrationRunConfig
     from calibration.runner import execute_calibration
 
     perf = tmp_path / "performance"
