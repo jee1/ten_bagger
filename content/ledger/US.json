@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "0.1.0",
+  "market": "US",
+  "asOfDate": "2026-09-05",
+  "entries": [
+    {
+      "pickDate": "2026-07-04",
+      "symbol": "CSTM",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-06",
+      "symbol": "ECPG",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-08",
+      "symbol": "DDI",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-10",
+      "symbol": "YB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-12",
+      "symbol": "HG",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-14",
+      "symbol": "ZVRA",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-16",
+      "symbol": "SLDE",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-18",
+      "symbol": "NUTX",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-20",
+      "symbol": "JOF",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-22",
+      "symbol": "GCT",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-24",
+      "symbol": "AUPH",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-26",
+      "symbol": "TEI",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-30",
+      "symbol": "EPAC",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-02",
+      "symbol": "UVE",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-04",
+      "symbol": "UFCS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-06",
+      "symbol": "CBL",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-08",
+      "symbol": "EVER",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-10",
+      "symbol": "HBB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-12",
+      "symbol": "SENEA",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-14",
+      "symbol": "ZVRA",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-16",
+      "symbol": "AII",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-18",
+      "symbol": "SENEB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-22",
+      "symbol": "GCT",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-24",
+      "symbol": "DDI",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-26",
+      "symbol": "ITRN",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-28",
+      "symbol": "SBC",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-30",
+      "symbol": "MCY",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-02",
+      "symbol": "UVE",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-04",
+      "symbol": "CRMD",
+      "status": "pick",
+      "scoreVersion": "2"
+    }
+  ]
+}

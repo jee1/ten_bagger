@@ -53,8 +53,8 @@ Symbols picked within the prior `DUPLICATE_BAN_DAYS` (30 calendar days) are excl
 
 | `runIntent` | `measurementSource` | Behavior |
 |-------------|---------------------|------|
-| `go_evidence` | `ledger` (required) | Read `content/performance/` measurements; missing rows fail with regenerate hint |
-| `exploratory` | `fixture-recompute` or `ledger` | Offline fixtures or ledger lookup |
+| `go_evidence` | `ledger` (required) | Pick source = committed `content/daily/` (no live re-screen unless analysis overrides); returns from `content/performance/`. Missing rows fail with regenerate hint. Fold `complete` requires **H20** measurements complete; H60 may remain incomplete and is reported only (ADR 0003). |
+| `exploratory` | `fixture-recompute` or `ledger` | Offline fixtures or ledger lookup; overrides use PIT re-screen |
 
 ## Artifacts
 

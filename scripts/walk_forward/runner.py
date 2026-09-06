@@ -99,10 +99,11 @@ def run_folds(
         measurements = measure_fn(picks, run_config, as_of) if picks else []
         oos_end = _parse_iso(fold["oosRange"]["end"])
         incomplete_oos = oos_end > _parse_iso(as_of)
+        # ADR 0003/0004: H20 is primary GO horizon; H60 is reported only.
         incomplete_meas = any(
             m.get("completionStatus") != "complete"
             for m in measurements
-            if m.get("horizonId") in ("H20", "H60")
+            if m.get("horizonId") == "H20"
         )
         if incomplete_oos or (picks and incomplete_meas):
             status = "incomplete_horizon"

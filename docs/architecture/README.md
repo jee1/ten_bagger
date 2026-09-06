@@ -36,6 +36,7 @@ authorize weight or pick-logic changes.
    - [0005 Market-data dual-source (prices / Stooq)](./adr/0005-data-dual-source.md) ([#71](https://github.com/jee1/ten_bagger/issues/71))
 7. Walk-forward PIT assumptions ([#66](./pit-walk-forward-assumptions.md))
 8. Threshold / weight merge criteria ([#67](./threshold-weight-merge-criteria.md))
+8b. [Phase 2 measurement note](./074-phase2-measurement-note.md) — baseline `go_evidence` GO (freeze-only; Score v3 not live)
 9. Promoted schemas (enforced by validate:content / gen:types, #63):
    - `scripts/schema/ledger.schema.json`
    - `scripts/schema/performance-bundle.schema.json`

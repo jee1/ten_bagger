@@ -1,0 +1,18 @@
+{
+  "packageIntent": "go_evidence",
+  "mode": "baseline-only",
+  "markets": ["KR", "US"],
+  "promoteTopN": 1,
+  "compareToLiveBaseline": false,
+  "measurementSourceIs": "ledger",
+  "measurementSourceOos": "ledger",
+  "oosFoldSpec": {
+    "mode": "rolling",
+    "trainSessions": 5,
+    "oosSessions": 5,
+    "stepSessions": 3,
+    "startDate": "2026-07-03",
+    "endDate": "2026-08-04"
+  },
+  "candidates": []
+}

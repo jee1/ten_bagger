@@ -1,0 +1,349 @@
+{
+  "schemaVersion": "0.1.0",
+  "runId": "72d35b76ef94d934",
+  "runIntent": "go_evidence",
+  "measurementSource": "ledger",
+  "configHash": "72d35b76ef94d934456223af7967bc97c479acb195a5c846b51d7f065b63708a",
+  "generatedAt": "2026-08-04T23:59:59Z",
+  "candidateId": "score-v2-baseline",
+  "foldSpec": {
+    "mode": "rolling",
+    "trainSessions": 5,
+    "oosSessions": 5,
+    "stepSessions": 3,
+    "startDate": "2026-07-03",
+    "endDate": "2026-08-04"
+  },
+  "folds": [
+    {
+      "foldIndex": 0,
+      "trainRange": {
+        "start": "2026-07-03",
+        "end": "2026-07-09"
+      },
+      "oosRange": {
+        "start": "2026-07-10",
+        "end": "2026-07-16"
+      },
+      "status": "complete",
+      "pickDays": 5,
+      "noPickDays": 0,
+      "horizons": [
+        {
+          "horizonId": "H20",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": 0.18110849016600644,
+          "hitRate": 1.0,
+          "excessReturnMean": 0.18311040290982747,
+          "status": "complete",
+          "sampleCount": 2
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        },
+        {
+          "horizonId": "H20",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": -0.02745799340808444,
+          "hitRate": 0.3333333333333333,
+          "excessReturnMean": -0.05945861405984345,
+          "status": "complete",
+          "sampleCount": 3
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        }
+      ]
+    },
+    {
+      "foldIndex": 1,
+      "trainRange": {
+        "start": "2026-07-08",
+        "end": "2026-07-14"
+      },
+      "oosRange": {
+        "start": "2026-07-15",
+        "end": "2026-07-21"
+      },
+      "status": "complete",
+      "pickDays": 5,
+      "noPickDays": 0,
+      "horizons": [
+        {
+          "horizonId": "H20",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": 0.09035773581944861,
+          "hitRate": 0.6666666666666666,
+          "excessReturnMean": 0.0700667405836507,
+          "status": "complete",
+          "sampleCount": 3
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        },
+        {
+          "horizonId": "H20",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": 0.08753027403938352,
+          "hitRate": 1.0,
+          "excessReturnMean": 0.05135003723966819,
+          "status": "complete",
+          "sampleCount": 2
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        }
+      ]
+    },
+    {
+      "foldIndex": 2,
+      "trainRange": {
+        "start": "2026-07-13",
+        "end": "2026-07-17"
+      },
+      "oosRange": {
+        "start": "2026-07-20",
+        "end": "2026-07-24"
+      },
+      "status": "complete",
+      "pickDays": 5,
+      "noPickDays": 0,
+      "horizons": [
+        {
+          "horizonId": "H20",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": 0.08711985446107859,
+          "hitRate": 0.5,
+          "excessReturnMean": 0.09540579964076346,
+          "status": "complete",
+          "sampleCount": 2
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        },
+        {
+          "horizonId": "H20",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": 0.1841227484669924,
+          "hitRate": 1.0,
+          "excessReturnMean": 0.15670186728075491,
+          "status": "complete",
+          "sampleCount": 3
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        }
+      ]
+    },
+    {
+      "foldIndex": 3,
+      "trainRange": {
+        "start": "2026-07-16",
+        "end": "2026-07-22"
+      },
+      "oosRange": {
+        "start": "2026-07-23",
+        "end": "2026-07-29"
+      },
+      "status": "complete",
+      "pickDays": 4,
+      "noPickDays": 1,
+      "horizons": [
+        {
+          "horizonId": "H20",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": 0.1860131890671859,
+          "hitRate": 1.0,
+          "excessReturnMean": 0.07558343788074512,
+          "status": "complete",
+          "sampleCount": 3
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        },
+        {
+          "horizonId": "H20",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": 0.07110532700764315,
+          "hitRate": 1.0,
+          "excessReturnMean": 0.04583005798588944,
+          "status": "complete",
+          "sampleCount": 1
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        }
+      ]
+    },
+    {
+      "foldIndex": 4,
+      "trainRange": {
+        "start": "2026-07-21",
+        "end": "2026-07-27"
+      },
+      "oosRange": {
+        "start": "2026-07-28",
+        "end": "2026-08-03"
+      },
+      "status": "complete",
+      "pickDays": 4,
+      "noPickDays": 1,
+      "horizons": [
+        {
+          "horizonId": "H20",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": 3.0529549834559933,
+          "hitRate": 0.6666666666666666,
+          "excessReturnMean": 2.9606581586766096,
+          "status": "complete",
+          "sampleCount": 3
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "KR-KOSPI",
+          "market": "KR",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        },
+        {
+          "horizonId": "H20",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": 0.03665936813133663,
+          "hitRate": 1.0,
+          "excessReturnMean": 0.0032064683918839945,
+          "status": "complete",
+          "sampleCount": 1
+        },
+        {
+          "horizonId": "H60",
+          "benchmarkId": "US-SPX",
+          "market": "US",
+          "pickReturnMean": null,
+          "hitRate": null,
+          "excessReturnMean": null,
+          "status": "incomplete",
+          "sampleCount": 0
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "horizons": [
+      {
+        "horizonId": "H20",
+        "benchmarkId": "KR-KOSPI",
+        "market": "KR",
+        "pickReturnMean": 0.8095718780216964,
+        "hitRate": 0.7692307692307693,
+        "excessReturnMean": 0.7596890320403229,
+        "status": "complete",
+        "sampleCount": 13
+      },
+      {
+        "horizonId": "H60",
+        "benchmarkId": "KR-KOSPI",
+        "market": "KR",
+        "pickReturnMean": null,
+        "hitRate": null,
+        "excessReturnMean": null,
+        "status": "incomplete",
+        "sampleCount": 0
+      },
+      {
+        "horizonId": "H20",
+        "benchmarkId": "US-SPX",
+        "market": "US",
+        "pickReturnMean": 0.07528195083944707,
+        "hitRate": 0.8,
+        "excessReturnMean": 0.04434663605198442,
+        "status": "complete",
+        "sampleCount": 10
+      },
+      {
+        "horizonId": "H60",
+        "benchmarkId": "US-SPX",
+        "market": "US",
+        "pickReturnMean": null,
+        "hitRate": null,
+        "excessReturnMean": null,
+        "status": "incomplete",
+        "sampleCount": 0
+      }
+    ]
+  },
+  "coverage": {
+    "oosPickDays": 23,
+    "noPickDays": 2,
+    "noPickRatio": 0.08,
+    "insufficientCoverage": false
+  }
+}

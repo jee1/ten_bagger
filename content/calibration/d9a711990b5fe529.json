@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "0.1.0",
+  "runId": "d9a711990b5fe529",
+  "packageIntent": "go_evidence",
+  "mode": "baseline-only",
+  "configHash": "d9a711990b5fe5296a15b062abfc46c24b20677d1c545e9c61eae4a74d3cc0eb",
+  "generatedAt": "2026-08-04T23:59:59Z",
+  "liveConstantsSnapshot": {
+    "compositeThreshold": 70.0,
+    "weights": {
+      "WEIGHT_SIZE": 0.15,
+      "WEIGHT_VALUATION": 0.25,
+      "WEIGHT_GROWTH": 0.2,
+      "WEIGHT_QUALITY": 0.2,
+      "WEIGHT_ENTRY": 0.1,
+      "WEIGHT_MOMENTUM": 0.1
+    }
+  },
+  "isRanking": [],
+  "selectionRationale": "baseline-only: no IS search; OOS evaluates frozen live constants",
+  "oosEvaluations": [
+    {
+      "candidateId": "score-v2-baseline",
+      "walkForwardReportPath": "walk-forward/72d35b76ef94d934.json",
+      "walkForwardConfigHash": "72d35b76ef94d934456223af7967bc97c479acb195a5c846b51d7f065b63708a",
+      "oosPickDays": 23,
+      "noPickRatio": 0.08,
+      "h20ExcessReturnMean": 0.40201783404615365,
+      "h60ExcessReturnMean": null,
+      "insufficientCoverage": false,
+      "contaminationFindings": [],
+      "verdict": "GO",
+      "failedBullets": []
+    }
+  ],
+  "overallVerdict": "GO",
+  "failedBullets": [],
+  "mergeCriteriaRef": "docs/architecture/threshold-weight-merge-criteria.md"
+}
