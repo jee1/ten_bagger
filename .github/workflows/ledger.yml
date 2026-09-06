@@ -66,6 +66,9 @@ jobs:
             echo "No ledger/performance changes"
           else
             git commit -m "chore: ledger regenerate asOfDate=${{ inputs.asOfDate }}"
+            # sync/validate/build may leave tracked dirt outside ledger/performance;
+            # rebase refuses with unstaged changes (see #96).
+            git restore .
             max_attempts=3
             for attempt in $(seq 1 $max_attempts); do
               if git pull --rebase origin main && git push; then
