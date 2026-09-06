@@ -1,0 +1,194 @@
+{
+  "date": "2026-09-07",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "260970.KQ",
+    "name": {
+      "ko": "에스앤디",
+      "en": "S&D Co., Ltd"
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "에스앤디는 Basic Materials 분야 Chemicals 기업입니다.",
+        "en": "S&D Co., Ltd develops good ingredients and medicare materials in South Korea. The company offers health functional food materials, including Lindera glauca extracts, rice bran extracts, MPG-6/MPGT, RCS, xanthorrhizol, and other materials."
+      },
+      "sector": {
+        "ko": "Basic Materials",
+        "en": "Basic Materials"
+      },
+      "industry": {
+        "ko": "Chemicals",
+        "en": "Chemicals"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.0,
+    "size": 100.0,
+    "growth": 94.6,
+    "valuation": 65.8,
+    "entry": 59.0,
+    "momentum": 57.9,
+    "quality": 74.5,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "에스앤디(260970.KQ)는 v2 복합 점수 77.0로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "S&D Co., Ltd (260970.KQ) cleared the 70.0 threshold with v2 composite 77.0; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 27.3% / 이익 45.2% (혼합 35.36%) — 지속 가능 성장 점수 94.6.",
+      "en": "Revenue 27.3% / earnings 45.2% (blended 35.36%) — sustainable growth score 94.6."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 10.91%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 10.91%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 0.37% — 보조 모멘텀 점수 57.9.",
+      "en": "6M return 0.37% — auxiliary momentum score 57.9."
+    },
+    "quality": {
+      "ko": "ROE 28.68%, ROA 14.52%, FCF/순이익 0.75 — 품질 점수 74.5.",
+      "en": "ROE 28.68%, ROA 14.52%, FCF/net income 0.75 — quality score 74.5."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 156208709632 기준 규모 점수 100.0.",
+      "en": "Market cap 156208709632 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 13.25%, 52주 고점 대비 -57.37% — 진입 점수 59.0.",
+      "en": "12M price range 13.25%, -57.37% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-07T08:00:19+09:00",
+    "candidatesScreened": 1906,
+    "excludedRecent": 28,
+    "skippedMarketCap": 845,
+    "skippedRedFlags": 361,
+    "noData": 0,
+    "errors": 2
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "260970.KQ",
+      "name": {
+        "ko": "에스앤디",
+        "en": "S&D Co., Ltd"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 77.0,
+        "size": 100.0,
+        "growth": 94.6,
+        "valuation": 65.8,
+        "entry": 59.0,
+        "momentum": 57.9,
+        "quality": 74.5,
+        "version": 2
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "069260.KS",
+      "name": {
+        "ko": "TKG휴켐스",
+        "en": "TKG Huchems Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.7,
+        "size": 100.0,
+        "growth": 99.4,
+        "valuation": 73.5,
+        "entry": 75.0,
+        "momentum": 52.8,
+        "quality": 53.5,
+        "version": 2
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "134380.KS",
+      "name": {
+        "ko": "미원화학",
+        "en": "Miwon Chemicals Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.6,
+        "size": 100.0,
+        "growth": 97.7,
+        "valuation": 62.2,
+        "entry": 66.0,
+        "momentum": 55.6,
+        "quality": 71.7,
+        "version": 2
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "439090.KQ",
+      "name": {
+        "ko": "마녀공장",
+        "en": "Manyo Factory Co., Ltd"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.6,
+        "size": 100.0,
+        "growth": 92.5,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 75.5,
+        "quality": 58.3,
+        "version": 2
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "284740.KS",
+      "name": {
+        "ko": "쿠쿠홈시스",
+        "en": "CUCKOO Homesys Co., Ltd"
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.4,
+        "size": 100.0,
+        "growth": 99.2,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 56.0,
+        "quality": 59.9,
+        "version": 2
+      }
+    }
+  ]
+}
