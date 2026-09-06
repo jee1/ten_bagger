@@ -1,0 +1,18 @@
+# specs/029-product-rss-digest/progress.yml
+feature: product-rss-digest
+created: 2026-09-06
+current_phase: done
+github_issue: 73
+phases:
+  constitution: { status: done, updated: 2026-09-06, note: "v1.3.0 revalidated; no amend" }
+  specify:      { status: done, updated: 2026-09-06 }
+  brainstorm:   { status: done, updated: 2026-09-06, sessions: 1, note: "all-recommendations Q1-Q6; saturated" }
+  plan:         { status: done, updated: 2026-09-06 }
+  tasks:        { status: done, updated: 2026-09-06, count: 11 }
+  execute:      { status: done, updated: 2026-09-06, note: "T001-T011; test:rss 6; check 0; build rss.xml" }
+  review:       { status: done, updated: 2026-09-06, iterations: 1, verdict: passed, note: "fixed double-base links" }
+notes:
+  - "Epic #74 Phase 4 Issue #73"
+  - "Kept worktree branch feature/product-rss-digest (SPECIFY_FEATURE=029-product-rss-digest)"
+  - "Email deferred OOS; RSS 2.0 @ {base}rss.xml; window 30; bilingual; no_pick included"
+  - "No commit/push unless asked"
