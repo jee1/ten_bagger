@@ -59,14 +59,17 @@ candidate: **do not** open a live config PR. Frozen `COMPOSITE_THRESHOLD` and
 - Optuna / unbounded search  
 - Silent renormalization of invalid weight vectors
 
-## Addendum: Issue #69 / Score v3 growth-weight reallocation
+## Addendum: Issue #91 / Score v3 search GO vs baseline-only
 
-Same **hard GO bullets** as Issue #67 above. Analysis and calibration reports  
-alone never change live selection.
+Phase 2 **baseline-only** `go_evidence` GO (Epic #74 partial adoption) proves
+frozen Score v2 published picks. It does **not** authorize
+`SCORE_VERSION=3`, live `WEIGHT_*`, `COMPOSITE_THRESHOLD`, or Score v3 gates.
 
-Until ADR 0004 GO: **analysis-only**; live `WEIGHT_*`, `COMPOSITE_THRESHOLD`,  
-and `SCORE_VERSION=2` remain frozen.
+Score v3 live merge requires a separate **search** `packageIntent=go_evidence`
+package (IS-ranked candidates, OOS hard bullets, coverage ≥20) and an explicit
+human config PR. See Issue #91 and
+`specs/030-score-v3-live-merge-go-evidence/`.
 
-On GO: an explicit config PR may set `SCORE_VERSION=3` together with the  
-approved top-level `WEIGHT_*` vector (no separate feature flag; no auto-edit  
-from calibration). Reviewers re-check the hard bullets before merge.
+Counterfactual (override) search may measure missing ledger symbols via
+ADR-aligned **price recompute**, preferring ledger rows when present.
+

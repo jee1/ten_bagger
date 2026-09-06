@@ -1,0 +1,80 @@
+{
+  "packageIntent": "go_evidence",
+  "mode": "search",
+  "markets": ["KR", "US"],
+  "promoteTopN": 1,
+  "compareToLiveBaseline": true,
+  "measurementSourceIs": "ledger",
+  "measurementSourceOos": "ledger",
+  "isFoldSpec": {
+    "mode": "rolling",
+    "trainSessions": 4,
+    "oosSessions": 2,
+    "stepSessions": 2,
+    "startDate": "2026-06-01",
+    "endDate": "2026-07-15"
+  },
+  "oosFoldSpec": {
+    "mode": "rolling",
+    "trainSessions": 6,
+    "oosSessions": 3,
+    "stepSessions": 3,
+    "startDate": "2026-07-16",
+    "endDate": "2026-08-04"
+  },
+  "candidates": [
+    {
+      "candidateId": "growth_shrink_05_vq",
+      "threshold": null,
+      "notes": "Issue #69 GROWTH 0.15; +0.025 V/Q — Score v3 search go_evidence (#91)",
+      "weights": {
+        "WEIGHT_SIZE": 0.15,
+        "WEIGHT_VALUATION": 0.275,
+        "WEIGHT_GROWTH": 0.15,
+        "WEIGHT_QUALITY": 0.225,
+        "WEIGHT_ENTRY": 0.1,
+        "WEIGHT_MOMENTUM": 0.1
+      }
+    },
+    {
+      "candidateId": "growth_shrink_10_vq",
+      "threshold": null,
+      "notes": "Issue #69 GROWTH 0.10; +0.05 V/Q",
+      "weights": {
+        "WEIGHT_SIZE": 0.15,
+        "WEIGHT_VALUATION": 0.3,
+        "WEIGHT_GROWTH": 0.1,
+        "WEIGHT_QUALITY": 0.25,
+        "WEIGHT_ENTRY": 0.1,
+        "WEIGHT_MOMENTUM": 0.1
+      }
+    },
+    {
+      "candidateId": "growth_shrink_10_vqs",
+      "threshold": null,
+      "notes": "Issue #69 GROWTH 0.10; +0.04 V/Q +0.02 Size",
+      "weights": {
+        "WEIGHT_SIZE": 0.17,
+        "WEIGHT_VALUATION": 0.29,
+        "WEIGHT_GROWTH": 0.1,
+        "WEIGHT_QUALITY": 0.24,
+        "WEIGHT_ENTRY": 0.1,
+        "WEIGHT_MOMENTUM": 0.1
+      }
+    },
+    {
+      "candidateId": "growth_shrink_15_vq",
+      "threshold": null,
+      "notes": "Issue #69 GROWTH 0.05; +0.075 V/Q",
+      "weights": {
+        "WEIGHT_SIZE": 0.15,
+        "WEIGHT_VALUATION": 0.325,
+        "WEIGHT_GROWTH": 0.05,
+        "WEIGHT_QUALITY": 0.275,
+        "WEIGHT_ENTRY": 0.1,
+        "WEIGHT_MOMENTUM": 0.1
+      }
+    }
+  ],
+  "notes": "Issue #91 Score v3 search go_evidence (growth grid first). Run readiness first; expect not_ready until H20-complete carve ≥40 pick days. #68/#70 grids follow same pattern."
+}

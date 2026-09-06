@@ -144,6 +144,32 @@ def _print_pr_hint(
         )
 
 
+def _preflight_search_go_evidence(cal_config: CalibrationRunConfig) -> int | None:
+    """Return exit code when search go_evidence is not_ready; else None to continue."""
+    if not (cal_config.mode == "search" and cal_config.packageIntent == "go_evidence"):
+        return None
+    from walk_forward.readiness import assess_search_go_evidence_readiness
+
+    readiness = assess_search_go_evidence_readiness(
+        as_of_date=cal_config.oosFoldSpec["endDate"],
+        markets=cal_config.markets,
+        performance_dir=cal_config.performanceDir,
+    )
+    if readiness["status"] == "ready":
+        return None
+    print(
+        "not_ready: search go_evidence IS/OOS carve ineligible; "
+        "no Score v3 config-change PR implied"
+    )
+    for reason in readiness.get("reasons") or []:
+        print(f"  - {reason}")
+    print(
+        f"h20CompletePickDays={readiness.get('h20CompletePickDays')} "
+        f"asOfDate={readiness.get('asOfDate')}"
+    )
+    return 2
+
+
 def execute_calibration(
     cal_config: CalibrationRunConfig,
     *,
@@ -151,6 +177,10 @@ def execute_calibration(
     json_only: bool = False,
     write: bool = True,
 ) -> int:
+    blocked = _preflight_search_go_evidence(cal_config)
+    if blocked is not None:
+        return blocked
+
     out_dir = output_dir or cal_config.outputDir
     incomplete = False
     is_ranking: list[dict[str, Any]] = []
