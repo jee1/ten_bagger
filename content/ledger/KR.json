@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "0.1.0",
+  "market": "KR",
+  "asOfDate": "2026-09-05",
+  "entries": [
+    {
+      "pickDate": "2026-07-03",
+      "symbol": "005930.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-05",
+      "symbol": "005935.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-07",
+      "symbol": "402340.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-09",
+      "symbol": "187870.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-11",
+      "symbol": "204610.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-13",
+      "symbol": "03473K.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-15",
+      "symbol": "002990.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-17",
+      "symbol": "143240.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-19",
+      "symbol": "064850.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-21",
+      "symbol": "339950.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-23",
+      "symbol": "036800.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-25",
+      "symbol": "192080.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-27",
+      "symbol": "211050.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-29",
+      "symbol": "178920.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-07-31",
+      "symbol": "002780.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-01",
+      "symbol": "066620.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-03",
+      "symbol": "408920.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-05",
+      "symbol": "095570.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-09",
+      "symbol": "187870.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-11",
+      "symbol": "204610.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-15",
+      "symbol": "001060.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-17",
+      "symbol": "002990.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-19",
+      "symbol": "052400.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-21",
+      "symbol": "339950.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-23",
+      "symbol": "439260.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-25",
+      "symbol": "100030.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-27",
+      "symbol": "143240.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-29",
+      "symbol": "211050.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-08-31",
+      "symbol": "214320.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-01",
+      "symbol": "078520.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-03",
+      "symbol": "147830.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-05",
+      "symbol": "002780.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    }
+  ]
+}

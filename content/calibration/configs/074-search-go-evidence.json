@@ -1,0 +1,50 @@
+{
+  "packageIntent": "go_evidence",
+  "mode": "search",
+  "markets": ["KR", "US"],
+  "promoteTopN": 1,
+  "compareToLiveBaseline": true,
+  "measurementSourceIs": "ledger",
+  "measurementSourceOos": "ledger",
+  "isFoldSpec": {
+    "mode": "rolling",
+    "trainSessions": 4,
+    "oosSessions": 2,
+    "stepSessions": 2,
+    "startDate": "2026-07-03",
+    "endDate": "2026-07-17"
+  },
+  "oosFoldSpec": {
+    "mode": "rolling",
+    "trainSessions": 6,
+    "oosSessions": 3,
+    "stepSessions": 3,
+    "startDate": "2026-07-20",
+    "endDate": "2026-08-06"
+  },
+  "candidates": [
+    {
+      "candidateId": "score-v2-baseline",
+      "threshold": null,
+      "weights": null
+    },
+    {
+      "candidateId": "threshold-75",
+      "threshold": 75.0,
+      "weights": null
+    },
+    {
+      "candidateId": "growth_shrink_10_vq",
+      "threshold": null,
+      "notes": "Issue #69 GROWTH 0.10; +0.05 V/Q — counterfactual; expects ledger miss unless pick matches published",
+      "weights": {
+        "WEIGHT_SIZE": 0.15,
+        "WEIGHT_VALUATION": 0.3,
+        "WEIGHT_GROWTH": 0.1,
+        "WEIGHT_QUALITY": 0.25,
+        "WEIGHT_ENTRY": 0.1,
+        "WEIGHT_MOMENTUM": 0.1
+      }
+    }
+  ]
+}

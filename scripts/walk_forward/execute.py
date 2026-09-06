@@ -11,6 +11,7 @@ from performance.write_atomic import atomic_replace
 from validate_content import load_validator
 
 from walk_forward.config import RunConfig, config_hash
+from walk_forward.ledger_picks import ledger_pick_day
 from walk_forward.measure import (
     fixture_benchmark_provider,
     fixture_price_provider,
@@ -72,10 +73,14 @@ def execute_run(
     measure_fn = make_measure_fn(run_config)
     pit_fn = None
     if run_config.thresholdOverride is not None or run_config.weightOverrides:
+        # Counterfactual policy: live PIT re-screen (ledger rows may be missing).
         pit_fn = bind_pit_fn(
             threshold_override=run_config.thresholdOverride,
             weight_overrides=run_config.weightOverrides,
         )
+    elif run_config.measurementSource == "ledger":
+        # Published policy: committed daily picks + performance ledger returns.
+        pit_fn = ledger_pick_day
     fold_results = run_folds(
         run_config,
         folds,
