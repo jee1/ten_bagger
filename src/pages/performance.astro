@@ -10,34 +10,51 @@ import { aggregateMarket } from '../lib/performanceAggregate';
 
 const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
 const marketParam = Astro.url.searchParams.get('market');
-const market: Market = marketParam === 'US' ? 'US' : 'KR';
+const initialMarket: Market = marketParam === 'US' ? 'US' : 'KR';
 const base = import.meta.env.BASE_URL;
 
-const bundle = loadPerformanceBundle(market);
-const view = aggregateMarket(bundle, market);
+const markets: Market[] = ['KR', 'US'];
+const views = markets.map((market) => {
+  const bundle = loadPerformanceBundle(market);
+  return { market, view: aggregateMarket(bundle, market) };
+});
 
 const krHref = `${base}performance?lang=${lang}&market=KR`;
 const usHref = `${base}performance?lang=${lang}&market=US`;
 ---
 
-<Layout title={label('performance', lang)} lang={lang}>
+<Layout title={label('performance', lang)} titleKey="performance" lang={lang}>
   <div class="market-switch">
-    <span class="muted">{label('performanceMarket', lang)}:</span>
-    <a href={krHref} class:list={{ active: market === 'KR' }}>{label('marketKR', lang)}</a>
-    <a href={usHref} class:list={{ active: market === 'US' }}>{label('marketUS', lang)}</a>
+    <span class="muted"><span data-i18n="performanceMarket">{label('performanceMarket', lang)}</span>:</span>
+    <a href={krHref} data-market-link="KR" class:list={{ active: initialMarket === 'KR' }}
+      ><span data-i18n="marketKR">{label('marketKR', lang)}</span></a
+    >
+    <a href={usHref} data-market-link="US" class:list={{ active: initialMarket === 'US' }}
+      ><span data-i18n="marketUS">{label('marketUS', lang)}</span></a
+    >
   </div>
 
-  {view.pageEmpty ? (
-    <PerformanceEmpty lang={lang} />
-  ) : (
-    <>
-      <PerformanceSummary lang={lang} view={view} />
-      <HorizonCards lang={lang} horizons={view.horizons} />
-      {view.empty && (
-        <p class="muted">{label('performanceHorizonUnavailable', lang)}</p>
-      )}
-    </>
-  )}
+  {
+    views.map(({ market, view }) => (
+      <section data-market-panel={market} hidden={market !== initialMarket}>
+        {view.pageEmpty ? (
+          <PerformanceEmpty lang={lang} />
+        ) : (
+          <>
+            <PerformanceSummary lang={lang} view={view} />
+            <HorizonCards lang={lang} horizons={view.horizons} />
+            {view.empty && (
+              <p class="muted">
+                <span data-i18n="performanceHorizonUnavailable">
+                  {label('performanceHorizonUnavailable', lang)}
+                </span>
+              </p>
+            )}
+          </>
+        )}
+      </section>
+    ))
+  }
 </Layout>
 
 <style>
@@ -46,6 +63,7 @@ const usHref = `${base}performance?lang=${lang}&market=US`;
     gap: 0.75rem;
     align-items: center;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
   }
   .market-switch a.active {
     font-weight: 700;

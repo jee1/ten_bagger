@@ -44,32 +44,59 @@ if (points.length >= 2) {
 ---
 
 <article class="card">
-  <h2>{label('performanceCumulative', lang)}</h2>
+  <h2 data-i18n="performanceCumulative">{label('performanceCumulative', lang)}</h2>
   {view.asOfDate && (
-    <p class="muted">{label('performanceAsOf', lang)}: {view.asOfDate}</p>
+    <p class="muted">
+      <span data-i18n="performanceAsOf">{label('performanceAsOf', lang)}</span>: {view.asOfDate}
+    </p>
   )}
-  <p>{label('performanceHypothetical', lang)}</p>
-  <p class="muted">{label('performanceEqualWeight', lang)}</p>
-  <p class="muted">{label('performanceIndexNote', lang)}</p>
+  {view.priceAdjustment && (
+    <p class="muted">
+      <span data-i18n="performancePriceAdjustment">{label('performancePriceAdjustment', lang)}</span>:
+      {' '}
+      <code>{view.priceAdjustment}</code>
+    </p>
+  )}
+  {view.priceBasisValidation === 'incomplete' && (
+    <p class="warn" role="status">
+      <span data-i18n="performancePriceBasisIncomplete"
+        >{label('performancePriceBasisIncomplete', lang)}</span
+      >
+    </p>
+  )}
+  <p data-i18n="performanceHypothetical">{label('performanceHypothetical', lang)}</p>
+  <p class="muted" data-i18n="performanceEqualWeight">{label('performanceEqualWeight', lang)}</p>
+  <p class="muted" data-i18n="performanceIndexNote">{label('performanceIndexNote', lang)}</p>
   <p class="muted">
-    {view.market === 'KR'
-      ? label('performanceBenchmarkIdKR', lang)
-      : label('performanceBenchmarkIdUS', lang)}
+    <span data-i18n-show="ko" hidden={lang !== 'ko' || view.market !== 'KR'}
+      >{label('performanceBenchmarkIdKR', 'ko')}</span
+    >
+    <span data-i18n-show="en" hidden={lang !== 'en' || view.market !== 'KR'}
+      >{label('performanceBenchmarkIdKR', 'en')}</span
+    >
+    <span data-i18n-show="ko" hidden={lang !== 'ko' || view.market !== 'US'}
+      >{label('performanceBenchmarkIdUS', 'ko')}</span
+    >
+    <span data-i18n-show="en" hidden={lang !== 'en' || view.market !== 'US'}
+      >{label('performanceBenchmarkIdUS', 'en')}</span
+    >
   </p>
 
   {series ? (
     <>
       <p>
-        <strong>{label('performancePortfolio', lang)}:</strong> {pct(series.finalPortfolioReturn)}
+        <strong data-i18n="performancePortfolio">{label('performancePortfolio', lang)}</strong>: {pct(series.finalPortfolioReturn)}
         {' · '}
-        <strong>{label('performanceBenchmark', lang)}:</strong>{' '}
+        <strong data-i18n="performanceBenchmark">{label('performanceBenchmark', lang)}</strong>:{' '}
         {series.excessClaimAllowed
           ? pct(series.finalBenchmarkReturn)
-          : label('performanceBenchmarkUnavailable', lang)}
+          : <span data-i18n="performanceBenchmarkUnavailable">{label('performanceBenchmarkUnavailable', lang)}</span>}
         <span class="muted"> ({series.horizonId})</span>
       </p>
       {view.hasSurvivorshipCaveat && (
-        <p class="muted">{label('performanceSurvivorshipCaveat', lang)}</p>
+        <p class="muted" data-i18n="performanceSurvivorshipCaveat"
+          >{label('performanceSurvivorshipCaveat', lang)}</p
+        >
       )}
 
       {points.length >= 2 && (
@@ -87,13 +114,13 @@ if (points.length >= 2) {
       )}
 
       <table class="perf-table">
-        <caption class="muted">{label('performanceCumulative', lang)}</caption>
+        <caption class="muted" data-i18n="performanceCumulative">{label('performanceCumulative', lang)}</caption>
         <thead>
           <tr>
-            <th>{label('performanceTableDate', lang)}</th>
-            <th>{label('performanceTableSymbol', lang)}</th>
-            <th>{label('performanceTablePortfolio', lang)}</th>
-            <th>{label('performanceTableBench', lang)}</th>
+            <th data-i18n="performanceTableDate">{label('performanceTableDate', lang)}</th>
+            <th data-i18n="performanceTableSymbol">{label('performanceTableSymbol', lang)}</th>
+            <th data-i18n="performanceTablePortfolio">{label('performanceTablePortfolio', lang)}</th>
+            <th data-i18n="performanceTableBench">{label('performanceTableBench', lang)}</th>
           </tr>
         </thead>
         <tbody>
@@ -109,7 +136,9 @@ if (points.length >= 2) {
       </table>
     </>
   ) : (
-    <p class="muted">{label('performanceHorizonUnavailable', lang)}</p>
+    <p class="muted" data-i18n="performanceHorizonUnavailable"
+      >{label('performanceHorizonUnavailable', lang)}</p
+    >
   )}
 </article>
 
@@ -129,5 +158,11 @@ if (points.length >= 2) {
   .perf-spark {
     margin-top: 0.75rem;
     display: block;
+  }
+  .warn {
+    color: var(--accent, #b45309);
+    background: color-mix(in srgb, var(--accent, #b45309) 12%, transparent);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
   }
 </style>

@@ -10,6 +10,6 @@ const { lang } = Astro.props;
 ---
 
 <article class="card">
-  <h1>{label('performanceEmptyTitle', lang)}</h1>
-  <p class="muted">{label('performanceEmptyBody', lang)}</p>
+  <h1 data-i18n="performanceEmptyTitle">{label('performanceEmptyTitle', lang)}</h1>
+  <p class="muted" data-i18n="performanceEmptyBody">{label('performanceEmptyBody', lang)}</p>
 </article>

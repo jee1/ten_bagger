@@ -11,17 +11,20 @@ const todayEntry = await getDailyEntry(today);
 const entry = todayEntry ?? await getLatestEntry();
 ---
 
-<Layout title={label('today', lang)} lang={lang}>
-  <p class="muted">{label('tagline', lang)}</p>
+<Layout title={label('today', lang)} titleKey="today" lang={lang}>
+  <p class="muted" data-i18n="tagline">{label('tagline', lang)}</p>
   {entry ? (
     <DailyCard entry={entry} lang={lang} />
   ) : (
     <article class="card">
-      <h1>{label('noPickTitle', lang)}</h1>
+      <h1 data-i18n="noPickTitle">{label('noPickTitle', lang)}</h1>
       <p class="muted">
-        {lang === 'ko'
-          ? '아직 생성된 일일 리포트가 없습니다. 첫 배포 후 이곳에 표시됩니다.'
-          : 'No daily reports yet. They will appear here after the first deployment.'}
+        <span data-i18n-show="ko" hidden={lang !== 'ko'}
+          >아직 생성된 일일 리포트가 없습니다. 첫 배포 후 이곳에 표시됩니다.</span
+        >
+        <span data-i18n-show="en" hidden={lang !== 'en'}
+          >No daily reports yet. They will appear here after the first deployment.</span
+        >
       </p>
     </article>
   )}

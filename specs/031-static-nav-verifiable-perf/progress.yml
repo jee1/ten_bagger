@@ -1,0 +1,19 @@
+# specs/031-static-nav-verifiable-perf/progress.yml
+feature: static-nav-verifiable-perf
+created: 2026-09-06
+current_phase: done
+github_issue: 94
+branch: feature/fix-static-navigation-and-publish-verifiable-per
+phases:
+  constitution: { status: done, updated: 2026-09-06, note: "v1.3.0 revalidated; no amend" }
+  specify:      { status: done, updated: 2026-09-06 }
+  brainstorm:   { status: done, updated: 2026-09-06, sessions: 1, note: "all-recommendations Q1-Q6; saturated" }
+  plan:         { status: done, updated: 2026-09-06 }
+  tasks:        { status: done, updated: 2026-09-06, count: 23 }
+  execute:      { status: done, updated: 2026-09-06, note: "T001-T023; check 0; build 66; performance-ui 12; rss 6" }
+  review:       { status: done, updated: 2026-09-06, iterations: 1, verdict: passed }
+notes:
+  - "Kept worktree branch feature/fix-static-navigation-and-publish-verifiable-per (SPECIFY_FEATURE=031-static-nav-verifiable-perf)"
+  - "Client hydrate + embedded archive/performance variants; ledger.yml Pages deploy"
+  - "price-basis validation 002780 incomplete (documented + UI banner)"
+  - "No commit/push unless asked"

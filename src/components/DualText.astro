@@ -1,0 +1,17 @@
+---
+import type { Lang } from '../lib/i18n';
+import type { LocalizedText } from '../lib/types';
+import { t } from '../lib/i18n';
+
+interface Props {
+  text: LocalizedText;
+  lang: Lang;
+  as?: 'span' | 'p' | 'li' | 'h1' | 'h2';
+}
+
+const { text, lang, as = 'span' } = Astro.props;
+const Tag = as;
+---
+
+<Tag data-i18n-show="ko" hidden={lang !== 'ko'}>{t(text, 'ko')}</Tag>
+<Tag data-i18n-show="en" hidden={lang !== 'en'}>{t(text, 'en')}</Tag>

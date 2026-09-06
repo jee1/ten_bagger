@@ -37,6 +37,7 @@ authorize weight or pick-logic changes.
 7. Walk-forward PIT assumptions ([#66](./pit-walk-forward-assumptions.md))
 8. Threshold / weight merge criteria ([#67](./threshold-weight-merge-criteria.md))
 8b. [Phase 2 measurement note](./074-phase2-measurement-note.md) — baseline `go_evidence` GO (freeze-only; Score v3 not live)
+8c. [Price-basis validation 002780.KS](./price-basis-validation-002780.md) ([#94](https://github.com/jee1/ten_bagger/issues/94)) — status incomplete until adjusted/unit check done
 9. Promoted schemas (enforced by validate:content / gen:types, #63):
    - `scripts/schema/ledger.schema.json`
    - `scripts/schema/performance-bundle.schema.json`

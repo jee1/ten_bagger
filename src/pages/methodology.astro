@@ -6,12 +6,11 @@ import type { Lang } from '../lib/i18n';
 const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
 ---
 
-<Layout title={label('methodology', lang)} lang={lang}>
+<Layout title={label('methodology', lang)} titleKey="methodology" lang={lang}>
   <article class="card">
-    <h1>{label('methodology', lang)}</h1>
+    <h1 data-i18n="methodology">{label('methodology', lang)}</h1>
 
-    {lang === 'ko' ? (
-      <>
+    <div data-i18n-show="ko" hidden={lang !== 'ko'}>
         <h2>목표</h2>
         <p>
           향후 5년 내 시가 10배(텐베거) <strong>가능성</strong>이 높은 종목을 규칙 기반으로 스크리닝하고,
@@ -103,9 +102,8 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
           상장 목록: FinanceDataReader(거래소). 가격·재무: Yahoo Finance (yfinance).
           DB 없이 JSON 파일로 Git에 저장됩니다.
         </p>
-      </>
-    ) : (
-      <>
+    </div>
+    <div data-i18n-show="en" hidden={lang !== 'en'}>
         <h2>Goal</h2>
         <p>
           Screen for stocks with high <strong>potential</strong> for a 10x price move within five years,
@@ -200,7 +198,6 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
         <p>
           Compare v1 vs v2 snapshots: <code>cd scripts && python backtest_screen.py US</code>
         </p>
-      </>
-    )}
+    </div>
   </article>
 </Layout>
