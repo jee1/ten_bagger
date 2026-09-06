@@ -44,6 +44,35 @@ def fixture_benchmark_provider(_as_of_date: str) -> BenchmarkProvider:
     return provider
 
 
+def _has_analysis_overrides(run_config: RunConfig) -> bool:
+    return bool(run_config.weightOverrides) or run_config.thresholdOverride is not None
+
+
+def _recompute_pick_horizons(
+    pick: dict[str, Any],
+    as_of_date: str,
+    price_provider: PriceProvider,
+    benchmark_provider: BenchmarkProvider,
+) -> list[dict[str, Any]]:
+    market = pick["market"]
+    symbol = pick["symbol"]
+    bars = price_provider(symbol, market)
+    bench_id = BENCHMARK_IDS[market]
+    benchmark_bars = benchmark_provider(bench_id)
+    return [
+        measure_pick_horizon(
+            bars=bars,
+            benchmark_bars=benchmark_bars,
+            pick_date=pick["pickDate"],
+            as_of_date=as_of_date,
+            market=market,
+            symbol=symbol,
+            horizon_id=horizon_id,
+        )
+        for horizon_id in WALK_FORWARD_HORIZONS
+    ]
+
+
 def measure_oos_picks(
     picks: list[dict[str, Any]],
     run_config: RunConfig,
@@ -51,45 +80,51 @@ def measure_oos_picks(
     price_provider: PriceProvider,
     benchmark_provider: BenchmarkProvider,
 ) -> list[dict[str, Any]]:
-    """Measure H20/H60 for each OOS pick (fixture-recompute or ledger lookup)."""
+    """Measure H20/H60 for each OOS pick (fixture-recompute or ledger lookup).
+
+    When ``measurementSource=ledger`` and analysis overrides are present, missing
+    ledger rows fall back to ADR-aligned price recompute (#91). Published
+    baseline (no overrides) keeps strict go_evidence ledger behavior.
+    """
     if run_config.measurementSource == "ledger":
         perf_dir = run_config.performanceDir or Path("content/performance")
         index = load_performance_index(perf_dir)
+        allow_recompute = _has_analysis_overrides(run_config)
         measurements: list[dict[str, Any]] = []
         for pick in picks:
+            recomputed: dict[str, dict[str, Any]] | None = None
             for horizon_id in WALK_FORWARD_HORIZONS:
+                soft_intent = "exploratory" if allow_recompute else run_config.runIntent
                 row = lookup_measurement(
                     index,
                     pick_date=pick["pickDate"],
                     symbol=pick["symbol"],
                     horizon_id=horizon_id,
-                    run_intent=run_config.runIntent,
+                    run_intent=soft_intent,
                 )
-                if row is None:
-                    measurements.append(_missing_measurement_row(pick, horizon_id, as_of_date))
-                else:
+                if row is not None:
                     measurements.append(row)
+                    continue
+                if allow_recompute:
+                    if recomputed is None:
+                        recomputed = {
+                            m["horizonId"]: m
+                            for m in _recompute_pick_horizons(
+                                pick, as_of_date, price_provider, benchmark_provider
+                            )
+                        }
+                    measurements.append(recomputed[horizon_id])
+                else:
+                    measurements.append(
+                        _missing_measurement_row(pick, horizon_id, as_of_date)
+                    )
         return measurements
 
     measurements = []
     for pick in picks:
-        market = pick["market"]
-        symbol = pick["symbol"]
-        bars = price_provider(symbol, market)
-        bench_id = BENCHMARK_IDS[market]
-        benchmark_bars = benchmark_provider(bench_id)
-        for horizon_id in WALK_FORWARD_HORIZONS:
-            measurements.append(
-                measure_pick_horizon(
-                    bars=bars,
-                    benchmark_bars=benchmark_bars,
-                    pick_date=pick["pickDate"],
-                    as_of_date=as_of_date,
-                    market=market,
-                    symbol=symbol,
-                    horizon_id=horizon_id,
-                )
-            )
+        measurements.extend(
+            _recompute_pick_horizons(pick, as_of_date, price_provider, benchmark_provider)
+        )
     return measurements
 
 

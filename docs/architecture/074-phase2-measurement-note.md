@@ -31,6 +31,11 @@
 2. H60 still incomplete for all picks (need ~60 sessions post-entry; earliest ~Oct 2026).
 3. Override candidates re-screen → symbols often missing from ledger → go_evidence fail.
 
-## Next
+## Next (Issue #91)
 
-Re-run search `go_evidence` after more daily history (or ledger+price recompute for counterfactuals). Only then open config PR for Score v3.
+Follow-up: [`specs/030-score-v3-live-merge-go-evidence`](../../specs/030-score-v3-live-merge-go-evidence/spec.md).
+
+1. Run **readiness** for search `go_evidence` (disjoint IS/OOS with projected OOS pick days ≥20).
+2. Counterfactual overrides: **ledger prefer + ADR price recompute** on miss (not matching-picks-only).
+3. When ready, run search `go_evidence` (growth grid first; see calibration config under `scripts/calibration/configs/`).
+4. Only on **search** GO (not baseline-only): human PR for `SCORE_VERSION=3` + approved constants.

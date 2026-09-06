@@ -1,0 +1,19 @@
+# specs/030-score-v3-live-merge-go-evidence/progress.yml
+feature: score-v3-live-merge-go-evidence
+created: 2026-09-06
+current_phase: done
+github_issue: 91
+branch: feature/follow-up-score-v3-live-merge-after-search-go_ev
+phases:
+  constitution: { status: done, updated: 2026-09-06, note: "v1.3.0 revalidated; no amend" }
+  specify:      { status: done, updated: 2026-09-06 }
+  brainstorm:   { status: done, updated: 2026-09-06, sessions: 1, note: "all-recommendations Q1-Q6; saturated" }
+  plan:         { status: done, updated: 2026-09-06 }
+  tasks:        { status: done, updated: 2026-09-06, count: 18 }
+  execute:      { status: done, updated: 2026-09-06, note: "T001-T018; 242 pytest; live readiness not_ready 33/40" }
+  review:       { status: done, updated: 2026-09-06, iterations: 1, verdict: passed }
+notes:
+  - "Follow-up to Epic #74 partial adoption (PR #90); live SCORE_VERSION stays 2"
+  - "Counterfactual ledger miss → price recompute; search go_evidence preflight"
+  - "Canonical Speckit complete; no commit/push unless asked"
+  - "External blocker remains: H20-complete pick days < 40 for IS+OOS carve"
