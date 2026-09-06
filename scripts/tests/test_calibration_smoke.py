@@ -4,9 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
-
 import config as live_config
+import pytest
 from calibrate import main as calibrate_main
 from calibration.config import load_calibration_config
 from calibration.report import build_report, serialize_report

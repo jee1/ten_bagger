@@ -73,7 +73,5 @@ def assess_search_go_evidence_readiness(
         "proposedIs": {"startDate": is_dates[0], "endDate": is_dates[-1]},
         "proposedOos": {"startDate": oos_dates[0], "endDate": oos_dates[-1]},
         "projectedOosPickDays": len(oos_dates),
-        "reasons": [
-            f"carve IS={len(is_dates)} OOS={len(oos_dates)} H20-complete pick days"
-        ],
+        "reasons": [f"carve IS={len(is_dates)} OOS={len(oos_dates)} H20-complete pick days"],
     }

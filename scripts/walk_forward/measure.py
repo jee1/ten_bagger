@@ -115,9 +115,7 @@ def measure_oos_picks(
                         }
                     measurements.append(recomputed[horizon_id])
                 else:
-                    measurements.append(
-                        _missing_measurement_row(pick, horizon_id, as_of_date)
-                    )
+                    measurements.append(_missing_measurement_row(pick, horizon_id, as_of_date))
         return measurements
 
     measurements = []
