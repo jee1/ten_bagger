@@ -1,16 +1,21 @@
 ---
 import '../styles/global.css';
-import { label } from '../lib/i18n';
+import { labels, label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
 import Disclaimer from '../components/Disclaimer.astro';
+import { getKstDate } from '../lib/daily';
 
 interface Props {
   title: string;
+  titleKey?: keyof typeof labels;
   lang?: Lang;
 }
 
-const { title, lang = 'ko' } = Astro.props;
+const { title, titleKey, lang = 'ko' } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const kst = getKstDate();
+const defaultYear = kst.getFullYear();
+const defaultMonth = kst.getMonth() + 1;
 
 const koParams = new URLSearchParams(Astro.url.search);
 koParams.set('lang', 'ko');
@@ -18,6 +23,8 @@ const enParams = new URLSearchParams(Astro.url.search);
 enParams.set('lang', 'en');
 const koUrl = `${Astro.url.pathname}?${koParams}`;
 const enUrl = `${Astro.url.pathname}?${enParams}`;
+
+const labelsJson = JSON.stringify(labels);
 ---
 
 <!doctype html>
@@ -25,7 +32,7 @@ const enUrl = `${Astro.url.pathname}?${enParams}`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={label('tagline', lang)} />
+    <meta name="description" content={label('tagline', lang)} data-i18n-attr="content:tagline" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link
       rel="alternate"
@@ -38,20 +45,38 @@ const enUrl = `${Astro.url.pathname}?${enParams}`;
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
     />
-    <title>{title} | {label('siteName', lang)}</title>
+    <title data-page-title-key={titleKey ?? ''}>
+      {title} | {label('siteName', lang)}
+    </title>
+    <script type="application/json" id="i18n-labels" set:html={labelsJson} />
+    <script
+      type="application/json"
+      id="static-nav-defaults"
+      set:html={JSON.stringify({ year: defaultYear, month: defaultMonth })}
+    />
   </head>
   <body>
     <header class="site-header">
       <div class="inner">
-        <a class="brand" href={`${base}?lang=${lang}`}>{label('siteName', lang)}</a>
+        <a class="brand" href={`${base}?lang=${lang}`} data-nav-preserve="lang"
+          ><span data-i18n="siteName">{label('siteName', lang)}</span></a
+        >
         <nav class="nav">
-          <a href={`${base}?lang=${lang}`}>{label('today', lang)}</a>
-          <a href={`${base}archive?lang=${lang}`}>{label('archive', lang)}</a>
-          <a href={`${base}methodology?lang=${lang}`}>{label('methodology', lang)}</a>
-          <a href={`${base}performance?lang=${lang}`}>{label('performance', lang)}</a>
+          <a href={`${base}?lang=${lang}`} data-nav-preserve="lang"
+            ><span data-i18n="today">{label('today', lang)}</span></a
+          >
+          <a href={`${base}archive?lang=${lang}`} data-nav-preserve="lang"
+            ><span data-i18n="archive">{label('archive', lang)}</span></a
+          >
+          <a href={`${base}methodology?lang=${lang}`} data-nav-preserve="lang"
+            ><span data-i18n="methodology">{label('methodology', lang)}</span></a
+          >
+          <a href={`${base}performance?lang=${lang}`} data-nav-preserve="lang"
+            ><span data-i18n="performance">{label('performance', lang)}</span></a
+          >
           <div class="lang-toggle">
-            <a href={koUrl} class:list={{ active: lang === 'ko' }}>KO</a>
-            <a href={enUrl} class:list={{ active: lang === 'en' }}>EN</a>
+            <a href={koUrl} data-lang-link="ko" class:list={{ active: lang === 'ko' }}>KO</a>
+            <a href={enUrl} data-lang-link="en" class:list={{ active: lang === 'en' }}>EN</a>
           </div>
         </nav>
       </div>
@@ -60,5 +85,78 @@ const enUrl = `${Astro.url.pathname}?${enParams}`;
       <slot />
       <Disclaimer lang={lang} />
     </main>
+    <script>
+      import { archiveYmKey, parseStaticNav } from '../lib/staticNav.ts';
+      import type { Lang } from '../lib/i18n.ts';
+
+      type LabelMap = Record<string, { ko: string; en: string }>;
+
+      function readJson<T>(id: string): T {
+        const el = document.getElementById(id);
+        if (!el?.textContent) throw new Error(`missing #${id}`);
+        return JSON.parse(el.textContent) as T;
+      }
+
+      function applyStaticNav() {
+        const labelMap = readJson<LabelMap>('i18n-labels');
+        const defaults = readJson<{ year: number; month: number }>('static-nav-defaults');
+        const state = parseStaticNav(window.location.search, defaults);
+        const lang = state.lang as Lang;
+
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+          const key = el.dataset.i18n;
+          if (!key || !labelMap[key]) return;
+          el.textContent = labelMap[key][lang];
+        });
+
+        document.querySelectorAll<HTMLElement>('[data-i18n-show]').forEach((el) => {
+          el.hidden = el.dataset.i18nShow !== lang;
+        });
+
+        const titleEl = document.querySelector('title');
+        const titleKey = titleEl?.getAttribute('data-page-title-key');
+        if (titleEl && titleKey && labelMap[titleKey] && labelMap.siteName) {
+          titleEl.textContent = `${labelMap[titleKey][lang]} | ${labelMap.siteName[lang]}`;
+        }
+
+        const desc = document.querySelector('meta[name="description"]');
+        if (desc && labelMap.tagline) {
+          desc.setAttribute('content', labelMap.tagline[lang]);
+        }
+
+        document.querySelectorAll<HTMLAnchorElement>('[data-lang-link]').forEach((a) => {
+          a.classList.toggle('active', a.dataset.langLink === lang);
+        });
+
+        document.querySelectorAll<HTMLElement>('[data-market-panel]').forEach((el) => {
+          el.hidden = el.dataset.marketPanel !== state.market;
+        });
+        document.querySelectorAll<HTMLAnchorElement>('[data-market-link]').forEach((a) => {
+          a.classList.toggle('active', a.dataset.marketLink === state.market);
+        });
+
+        const ym = archiveYmKey(state.year, state.month);
+        const panels = document.querySelectorAll<HTMLElement>('[data-archive-ym]');
+        if (panels.length) {
+          let matched = false;
+          panels.forEach((el) => {
+            const on = el.dataset.archiveYm === ym;
+            el.hidden = !on;
+            if (on) matched = true;
+          });
+          if (!matched) {
+            // fall back to last panel (usually current default month baked first)
+            panels.forEach((el, i) => {
+              el.hidden = i !== panels.length - 1;
+            });
+          }
+        }
+      }
+
+      applyStaticNav();
+      window.addEventListener('popstate', applyStaticNav);
+    </script>
   </body>
 </html>

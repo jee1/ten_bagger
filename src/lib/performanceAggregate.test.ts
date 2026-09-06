@@ -62,4 +62,11 @@ describe('aggregateMarket', () => {
     const presentation = view.horizons.filter((h) => h.tier === 'presentation').map((h) => h.horizonId);
     assert.deepEqual(presentation, ['1M', '3M', '6M', '1Y']);
   });
+
+  it('surfaces runMeta.priceAdjustment and incomplete price-basis validation', () => {
+    const view = aggregateMarket(krSample, 'KR');
+    assert.equal(view.priceAdjustment, 'adjusted_preferred');
+    assert.equal(view.priceBasisValidation, 'incomplete');
+    assert.equal(view.cumulativeLabelKind, 'modeled_pick_chain');
+  });
 });

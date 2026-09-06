@@ -38,6 +38,9 @@ export interface HorizonSummary {
   survivorshipCaveat: boolean;
 }
 
+export type PriceBasisValidationStatus = 'complete' | 'incomplete';
+export type CumulativeLabelKind = 'modeled_pick_chain';
+
 export interface MarketPerformanceView {
   market: Market;
   asOfDate: string | null;
@@ -47,6 +50,9 @@ export interface MarketPerformanceView {
   horizons: HorizonSummary[];
   hasSurvivorshipCaveat: boolean;
   benchmarkGapCount: number;
+  priceAdjustment: string | null;
+  priceBasisValidation: PriceBasisValidationStatus;
+  cumulativeLabelKind: CumulativeLabelKind;
 }
 
 const PRESENTATION: HorizonId[] = ['1M', '3M', '6M', '1Y'];
@@ -176,6 +182,9 @@ export function aggregateMarket(
       ],
       hasSurvivorshipCaveat: false,
       benchmarkGapCount: 0,
+      priceAdjustment: null,
+      priceBasisValidation: 'incomplete',
+      cumulativeLabelKind: 'modeled_pick_chain',
     };
   }
 
@@ -202,6 +211,11 @@ export function aggregateMarket(
     (cumulative?.points.some((p) => p.survivorshipFlag !== 'listed') ?? false) ||
     horizons.some((h) => h.available && h.survivorshipCaveat);
 
+  const priceAdjustment =
+    typeof bundle.runMeta?.priceAdjustment === 'string' ? bundle.runMeta.priceAdjustment : null;
+  // v1 ships incomplete until the 002780 validation note is explicitly completed
+  const priceBasisValidation: PriceBasisValidationStatus = 'incomplete';
+
   return {
     market,
     asOfDate: bundle.asOfDate,
@@ -211,5 +225,8 @@ export function aggregateMarket(
     horizons,
     hasSurvivorshipCaveat,
     benchmarkGapCount,
+    priceAdjustment,
+    priceBasisValidation,
+    cumulativeLabelKind: 'modeled_pick_chain',
   };
 }

@@ -26,10 +26,8 @@ const daysInMonth = new Date(year, month, 0).getDate();
 const prev = month === 1 ? { y: year - 1, m: 12 } : { y: year, m: month - 1 };
 const next = month === 12 ? { y: year + 1, m: 1 } : { y: year, m: month + 1 };
 
-const weekdays =
-  lang === 'ko'
-    ? ['일', '월', '화', '수', '목', '금', '토']
-    : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const weekdaysKo = ['일', '월', '화', '수', '목', '금', '토'];
+const weekdaysEn = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const rows: CalendarCell[][] = [];
 let cells: CalendarCell[] = [];
@@ -64,40 +62,53 @@ if (cells.length > 0) {
 ---
 
 <div class="calendar-nav">
-  <a href={`${base}archive?year=${prev.y}&month=${prev.m}&lang=${lang}`}>← {label('prevMonth', lang)}</a>
+  <a href={`${base}archive?year=${prev.y}&month=${prev.m}&lang=${lang}`}
+    >← <span data-i18n="prevMonth">{label('prevMonth', lang)}</span></a
+  >
   <strong>{year}-{String(month).padStart(2, '0')}</strong>
-  <a href={`${base}archive?year=${next.y}&month=${next.m}&lang=${lang}`}>{label('nextMonth', lang)} →</a>
+  <a href={`${base}archive?year=${next.y}&month=${next.m}&lang=${lang}`}
+    ><span data-i18n="nextMonth">{label('nextMonth', lang)}</span> →</a
+  >
 </div>
 
-<table class="calendar" aria-label={label('archive', lang)}>
-  <thead>
-    <tr>
-      {weekdays.map((d) => <th>{d}</th>)}
-    </tr>
-  </thead>
-  <tbody>
-    {
-      rows.map((row) => (
-        <tr>
-          {row.map((cell) =>
-            cell.kind === 'blank' ? (
-              <td class="empty" />
-            ) : cell.kind === 'pick' ? (
-              <td class="has-pick">
-                <a href={`${base}daily/${cell.date}?lang=${lang}`}>{cell.day}</a>
-                <div class="muted" style="font-size:0.7rem">{cell.symbol}</div>
-              </td>
-            ) : cell.kind === 'no-pick' ? (
-              <td class="no-pick">
-                {cell.day}
-                <div>{label('none', lang)}</div>
-              </td>
-            ) : (
-              <td class="empty">{cell.day}</td>
-            ),
-          )}
-        </tr>
-      ))
-    }
-  </tbody>
-</table>
+<div class="calendar-scroll">
+  <table class="calendar" aria-label={label('archive', lang)}>
+    <thead>
+      <tr data-i18n-show="ko" hidden={lang !== 'ko'}>
+        {weekdaysKo.map((d) => (
+          <th>{d}</th>
+        ))}
+      </tr>
+      <tr data-i18n-show="en" hidden={lang !== 'en'}>
+        {weekdaysEn.map((d) => (
+          <th>{d}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((row) => (
+          <tr>
+            {row.map((cell) =>
+              cell.kind === 'blank' ? (
+                <td class="empty" />
+              ) : cell.kind === 'pick' ? (
+                <td class="has-pick">
+                  <a href={`${base}daily/${cell.date}?lang=${lang}`}>{cell.day}</a>
+                  <div class="muted symbol">{cell.symbol}</div>
+                </td>
+              ) : cell.kind === 'no-pick' ? (
+                <td class="no-pick">
+                  {cell.day}
+                  <div data-i18n="none">{label('none', lang)}</div>
+                </td>
+              ) : (
+                <td class="empty">{cell.day}</td>
+              ),
+            )}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

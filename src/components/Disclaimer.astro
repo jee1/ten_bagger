@@ -10,6 +10,9 @@ const { lang } = Astro.props;
 ---
 
 <aside class="disclaimer" role="note">
-  <strong>{lang === 'ko' ? '투자 유의' : 'Disclaimer'}:</strong>
-  {label('disclaimer', lang)}
+  <strong>
+    <span data-i18n-show="ko" hidden={lang !== 'ko'}>투자 유의</span>
+    <span data-i18n-show="en" hidden={lang !== 'en'}>Disclaimer</span>:
+  </strong>
+  <span data-i18n="disclaimer">{label('disclaimer', lang)}</span>
 </aside>

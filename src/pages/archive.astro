@@ -1,23 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Calendar from '../components/Calendar.astro';
-import { getEntriesForMonth, getKstDate } from '../lib/daily';
+import { getAllDates, getEntriesForMonth, getKstDate } from '../lib/daily';
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
+import { archiveYmKey } from '../lib/staticNav';
 
 const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
 const kstNow = getKstDate();
-const year = Number(Astro.url.searchParams.get('year')) || kstNow.getFullYear();
-const month = Number(Astro.url.searchParams.get('month')) || kstNow.getMonth() + 1;
-const entries = await getEntriesForMonth(year, month);
+const defaultYear = kstNow.getFullYear();
+const defaultMonth = kstNow.getMonth() + 1;
+
+const monthKeys = new Set<string>();
+for (const date of getAllDates()) {
+  monthKeys.add(date.slice(0, 7));
+}
+monthKeys.add(archiveYmKey(defaultYear, defaultMonth));
+
+const months = [...monthKeys]
+  .map((ym) => {
+    const [y, m] = ym.split('-').map(Number);
+    return { year: y, month: m, key: ym };
+  })
+  .sort((a, b) => a.key.localeCompare(b.key));
+
+const monthData = await Promise.all(
+  months.map(async ({ year, month, key }) => ({
+    year,
+    month,
+    key,
+    entries: await getEntriesForMonth(year, month),
+  })),
+);
 ---
 
-<Layout title={label('archive', lang)} lang={lang}>
-  <h1>{label('archive', lang)}</h1>
+<Layout title={label('archive', lang)} titleKey="archive" lang={lang}>
+  <h1 data-i18n="archive">{label('archive', lang)}</h1>
   <p class="muted">
-    {lang === 'ko'
-      ? '날짜를 선택하면 해당 일의 텐베거 리포트를 볼 수 있습니다.'
-      : 'Select a date to view that day\'s ten-bagger report.'}
+    <span data-i18n-show="ko" hidden={lang !== 'ko'}
+      >날짜를 선택하면 해당 일의 텐베거 리포트를 볼 수 있습니다.</span
+    >
+    <span data-i18n-show="en" hidden={lang !== 'en'}
+      >Select a date to view that day's ten-bagger report.</span
+    >
   </p>
-  <Calendar year={year} month={month} entries={entries} lang={lang} />
+  {
+    monthData.map(({ year, month, key, entries }) => (
+      <section data-archive-ym={key} hidden={key !== archiveYmKey(defaultYear, defaultMonth)}>
+        <Calendar year={year} month={month} entries={entries} lang={lang} />
+      </section>
+    ))
+  }
 </Layout>

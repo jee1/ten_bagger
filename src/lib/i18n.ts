@@ -49,17 +49,17 @@ export const labels = {
   } satisfies LocalizedText,
   performance: { ko: '성과', en: 'Performance' } satisfies LocalizedText,
   performanceCumulative: {
-    ko: '누적 성과',
-    en: 'Cumulative performance',
+    ko: '누적 성과(모델)',
+    en: 'Cumulative (modeled)',
   } satisfies LocalizedText,
   performanceAsOf: { ko: '기준일', en: 'As of' } satisfies LocalizedText,
   performanceHypothetical: {
-    ko: '실제 펀드가 아닌 가상 포트폴리오입니다.',
-    en: 'This is a hypothetical portfolio, not a fund.',
+    ko: '실제 펀드·복수 보유 포트폴리오가 아닙니다. 완료된 일별 픽 수익률을 순서대로 복리한 가상 수치입니다(보유 기간이 겹칠 수 있음).',
+    en: 'Not a live fund or multi-position portfolio. Hypothetical compounding of completed per-pick returns in sequence (holding windows may overlap).',
   } satisfies LocalizedText,
   performanceEqualWeight: {
-    ko: '동일가중: 완료된 선정일마다 같은 비중으로 복리합니다(없음 날 제외).',
-    en: 'Equal weight: compound completed pick days only (no_pick days excluded).',
+    ko: '픽별 통계: 완료된 선정일만 동일 가중으로 평균·복리합니다(없음 날 제외). 동시 보유 배분 모델이 아닙니다.',
+    en: 'Per-pick stats: equal-weight mean/compound of completed pick days only (no_pick excluded). Not a simultaneous allocation model.',
   } satisfies LocalizedText,
   performanceIndexNote: {
     ko: '벤치마크는 지수 대리 지표이며 거래 가능한 상품이 아닙니다.',
@@ -88,6 +88,7 @@ export const labels = {
     en: 'Not yet available',
   } satisfies LocalizedText,
   performanceHorizons: { ko: '기간별 성과', en: 'Horizons' } satisfies LocalizedText,
+  performanceHorizonSamples: { ko: '완료 표본', en: 'Completed samples' } satisfies LocalizedText,
   performanceSecondaryHorizons: {
     ko: '엔지니어링 기간 (H20 / H60)',
     en: 'Engineering horizons (H20 / H60)',
@@ -99,14 +100,22 @@ export const labels = {
   horizon1Y: { ko: '1년', en: '1Y' } satisfies LocalizedText,
   horizonH20: { ko: 'H20', en: 'H20' } satisfies LocalizedText,
   horizonH60: { ko: 'H60', en: 'H60' } satisfies LocalizedText,
-  performancePortfolio: { ko: '포트폴리오', en: 'Portfolio' } satisfies LocalizedText,
+  performancePortfolio: { ko: '모델 누적', en: 'Modeled cumulative' } satisfies LocalizedText,
   performanceBenchmark: { ko: '벤치마크', en: 'Benchmark' } satisfies LocalizedText,
-  performanceAvgPick: { ko: '평균 픽', en: 'Avg pick' } satisfies LocalizedText,
+  performanceAvgPick: { ko: '평균 픽(픽별)', en: 'Avg pick (per-pick)' } satisfies LocalizedText,
   performanceAvgBench: { ko: '평균 벤치', en: 'Avg bench' } satisfies LocalizedText,
   performanceTableDate: { ko: '날짜', en: 'Date' } satisfies LocalizedText,
   performanceTableSymbol: { ko: '종목', en: 'Symbol' } satisfies LocalizedText,
-  performanceTablePortfolio: { ko: '포트폴리오', en: 'Portfolio' } satisfies LocalizedText,
+  performanceTablePortfolio: { ko: '모델 누적', en: 'Modeled cum.' } satisfies LocalizedText,
   performanceTableBench: { ko: '벤치', en: 'Bench' } satisfies LocalizedText,
+  performancePriceAdjustment: {
+    ko: '가격 기준',
+    en: 'Price basis',
+  } satisfies LocalizedText,
+  performancePriceBasisIncomplete: {
+    ko: '가격 조정·단위 검증이 아직 완료되지 않았습니다. 큰 수익률(예: 002780.KS)은 검증 전까지 참고용입니다.',
+    en: 'Price-adjustment / unit validation is incomplete. Large returns (e.g. 002780.KS) are provisional until validation completes.',
+  } satisfies LocalizedText,
 } as const;
 
 export function t(text: LocalizedText, lang: Lang): string {

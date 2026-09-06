@@ -10,6 +10,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
   issues: write
 
 concurrency:
@@ -46,8 +48,14 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Typegen check
-        run: npm ci && npm run gen:types:check
+      - name: Install, check, and build site
+        env:
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          BASE_PATH: /${{ github.event.repository.name }}/
+        run: |
+          npm ci
+          npm run check
+          npm run build
 
       - name: Commit ledger and performance only
         run: |
@@ -73,8 +81,24 @@ jobs:
             exit 1
           fi
 
-  notify-failure:
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
     needs: regenerate-ledger
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  notify-failure:
+    needs: [regenerate-ledger, deploy]
     if: failure()
     runs-on: ubuntu-latest
     steps:

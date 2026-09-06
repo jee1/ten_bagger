@@ -32,44 +32,86 @@ function pct(n: number | null | undefined): string {
 ---
 
 <section class="card">
-  <h2>{label('performanceHorizons', lang)}</h2>
+  <h2 data-i18n="performanceHorizons">{label('performanceHorizons', lang)}</h2>
   <div class="horizon-grid">
     {presentation.map((h) => (
       <div class="horizon-card">
         <h3>{label(horizonLabelKey[horizonLabel(h.horizonId)], lang)}</h3>
+        <p class="muted">
+          <span data-i18n="performanceHorizonSamples">{label('performanceHorizonSamples', lang)}</span>:
+          {' '}
+          {h.nComplete}
+        </p>
         {h.available ? (
           <>
-            <p>{label('performanceAvgPick', lang)}: {pct(h.avgPickReturn)}</p>
             <p>
-              {label('performanceAvgBench', lang)}:{' '}
-              {h.excessClaimAllowed ? pct(h.avgBenchReturn) : label('performanceBenchmarkUnavailable', lang)}
+              <span data-i18n="performanceAvgPick">{label('performanceAvgPick', lang)}</span>: {pct(h.avgPickReturn)}
+            </p>
+            <p>
+              <span data-i18n="performanceAvgBench">{label('performanceAvgBench', lang)}</span>:{' '}
+              {h.excessClaimAllowed ? (
+                pct(h.avgBenchReturn)
+              ) : (
+                <span data-i18n="performanceBenchmarkUnavailable"
+                  >{label('performanceBenchmarkUnavailable', lang)}</span
+                >
+              )}
             </p>
             {h.survivorshipCaveat && (
-              <p class="muted">{label('performanceSurvivorshipCaveat', lang)}</p>
+              <p class="muted" data-i18n="performanceSurvivorshipCaveat"
+                >{label('performanceSurvivorshipCaveat', lang)}</p
+              >
             )}
           </>
         ) : (
-          <p class="muted">{label('performanceHorizonUnavailable', lang)}</p>
+          <p class="muted">
+            <span data-i18n="performanceHorizonUnavailable"
+              >{label('performanceHorizonUnavailable', lang)}</span
+            >
+            {' '}
+            (n={h.nComplete})
+          </p>
         )}
       </div>
     ))}
   </div>
 
-  <h3 class="secondary-heading">{label('performanceSecondaryHorizons', lang)}</h3>
+  <h3 class="secondary-heading" data-i18n="performanceSecondaryHorizons"
+    >{label('performanceSecondaryHorizons', lang)}</h3
+  >
   <div class="horizon-grid secondary">
     {secondary.map((h) => (
       <div class="horizon-card muted-card">
         <h4>{label(horizonLabelKey[horizonLabel(h.horizonId)], lang)}</h4>
+        <p class="muted">
+          <span data-i18n="performanceHorizonSamples">{label('performanceHorizonSamples', lang)}</span>:
+          {' '}
+          {h.nComplete}
+        </p>
         {h.available ? (
           <>
-            <p>{label('performanceAvgPick', lang)}: {pct(h.avgPickReturn)}</p>
             <p>
-              {label('performanceAvgBench', lang)}:{' '}
-              {h.excessClaimAllowed ? pct(h.avgBenchReturn) : label('performanceBenchmarkUnavailable', lang)}
+              <span data-i18n="performanceAvgPick">{label('performanceAvgPick', lang)}</span>: {pct(h.avgPickReturn)}
+            </p>
+            <p>
+              <span data-i18n="performanceAvgBench">{label('performanceAvgBench', lang)}</span>:{' '}
+              {h.excessClaimAllowed ? (
+                pct(h.avgBenchReturn)
+              ) : (
+                <span data-i18n="performanceBenchmarkUnavailable"
+                  >{label('performanceBenchmarkUnavailable', lang)}</span
+                >
+              )}
             </p>
           </>
         ) : (
-          <p class="muted">{label('performanceHorizonUnavailable', lang)}</p>
+          <p class="muted">
+            <span data-i18n="performanceHorizonUnavailable"
+              >{label('performanceHorizonUnavailable', lang)}</span
+            >
+            {' '}
+            (n={h.nComplete})
+          </p>
         )}
       </div>
     ))}
