@@ -1,13 +1,9 @@
-import type { DailyEntry, Manifest } from './types';
+import type { DailyEntry } from './types';
 
 import { getEntry } from 'astro:content';
-import manifestData from '../../content/manifest.json';
+import { getAllDates, getKstDate, getTodayDateString, manifest } from './dailyDates';
 
-export const manifest = manifestData as Manifest;
-
-export function getAllDates(): string[] {
-  return [...manifest.dates].sort((a, b) => b.localeCompare(a));
-}
+export { getAllDates, getKstDate, getTodayDateString, manifest };
 
 export async function getDailyEntry(date: string): Promise<DailyEntry | undefined> {
   const entry = await getEntry('daily', date);
@@ -18,19 +14,6 @@ export async function getLatestEntry(): Promise<DailyEntry | undefined> {
   const dates = getAllDates();
   if (dates.length === 0) return undefined;
   return getDailyEntry(dates[0]);
-}
-
-export function getKstDate(): Date {
-  const now = new Date();
-  return new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
-}
-
-export function getTodayDateString(): string {
-  const kst = getKstDate();
-  const y = kst.getFullYear();
-  const m = String(kst.getMonth() + 1).padStart(2, '0');
-  const d = String(kst.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
 }
 
 export async function getEntriesForMonth(year: number, month: number): Promise<Map<string, DailyEntry>> {
