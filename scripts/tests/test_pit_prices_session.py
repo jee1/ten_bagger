@@ -6,7 +6,6 @@ from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
 import pandas as pd
-
 from performance.pit_prices import filter_session_bars, infer_as_of_session_closed
 
 
