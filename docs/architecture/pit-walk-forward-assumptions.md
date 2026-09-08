@@ -7,7 +7,7 @@
 
 At each OOS decision session `t`, screening uses only information knowable on or before `t`:
 
-- Price history passed to scoring is filtered with `performance.pit_prices.filter_session_bars(bars, as_of_date=t)` before momentum/entry inputs.
+- Price history passed to scoring is filtered with `performance.pit_prices.filter_session_bars(bars, as_of_date=t)` before momentum/entry inputs. Offline folds use the default `as_of_session_closed=True`; live fetch infers closed vs open via market TZ regular close (not host `date.today()` — see #99).
 - Fundamentals (`get_ticker_info`) are **not** point-in-time filtered in v1 production runs — live yfinance snapshots may include post-`t` revisions. Use `go_evidence` ledger outcomes for merge claims; treat live screening replay as exploratory only until fundamentals PIT is added.
 - No bar, feature, or return observation dated after `t` may influence pick selection for that session.
 

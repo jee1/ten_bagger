@@ -5,7 +5,7 @@ from __future__ import annotations
 import pandas as pd
 from yf_cache import get_ticker_history
 
-from performance.pit_prices import filter_session_bars
+from performance.pit_prices import filter_session_bars, infer_as_of_session_closed
 
 BENCHMARK_SYMBOLS = {
     "KR-KOSPI": "^KS11",
@@ -28,18 +28,30 @@ def _history_to_bars(hist: pd.DataFrame) -> pd.DataFrame:
     return out[present].copy()
 
 
-def fetch_live_bars(symbol: str, as_of_date: str, *, period: str = "10y") -> pd.DataFrame:
+def fetch_live_bars(
+    symbol: str,
+    as_of_date: str,
+    *,
+    period: str = "10y",
+    market: str | None = None,
+    as_of_session_closed: bool | None = None,
+) -> pd.DataFrame:
     """Fetch OHLCV via get_ticker_history (retry/backoff) and apply PIT filter."""
     hist = get_ticker_history(symbol, period=period)
     bars = _history_to_bars(hist)
-    return filter_session_bars(bars, as_of_date)
+    closed = (
+        as_of_session_closed
+        if as_of_session_closed is not None
+        else infer_as_of_session_closed(as_of_date, market=market or "US")
+    )
+    return filter_session_bars(bars, as_of_date, as_of_session_closed=closed)
 
 
 def default_price_provider(as_of_date: str):
     """Return callable(symbol, market) -> bars for regenerate CLI."""
 
-    def provider(symbol: str, market: str) -> pd.DataFrame:  # noqa: ARG001
-        return fetch_live_bars(symbol, as_of_date)
+    def provider(symbol: str, market: str) -> pd.DataFrame:
+        return fetch_live_bars(symbol, as_of_date, market=market)
 
     return provider
 
@@ -51,8 +63,9 @@ def default_benchmark_provider(as_of_date: str):
         yf_symbol = BENCHMARK_SYMBOLS.get(benchmark_id)
         if not yf_symbol:
             return None
+        market = "KR" if benchmark_id.startswith("KR") else "US"
         try:
-            return fetch_live_bars(yf_symbol, as_of_date)
+            return fetch_live_bars(yf_symbol, as_of_date, market=market)
         except Exception:
             return None
 
