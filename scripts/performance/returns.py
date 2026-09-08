@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from datetime import datetime
+from datetime import date, timedelta
 from typing import Any
 
 import pandas as pd
@@ -70,8 +70,33 @@ def resolve_entry(bars: pd.DataFrame, pick_date: str, as_of_date: str) -> dict[s
     }
 
 
-def survivorship_flag(bars: pd.DataFrame, as_of_date: str) -> str:
-    """listed | delisted | unknown based on last session vs asOfDate."""
+def _weekday_gap(last_session: str, as_of_date: str) -> int:
+    """Count Mon–Fri days in (last_session, as_of_date] (weekend-agnostic gap)."""
+    start = date.fromisoformat(last_session) + timedelta(days=1)
+    end = date.fromisoformat(as_of_date)
+    n = 0
+    cur = start
+    while cur <= end:
+        if cur.weekday() < 5:
+            n += 1
+        cur += timedelta(days=1)
+    return n
+
+
+def survivorship_flag(
+    bars: pd.DataFrame,
+    as_of_date: str,
+    *,
+    vendor_status: str | None = None,
+) -> str:
+    """listed | delisted | unknown from vendor hint or weekday session gap."""
+    if vendor_status is not None:
+        status = vendor_status.strip().lower()
+        if status in {"delisted", "dead"}:
+            return "delisted"
+        if status in {"halted", "halt", "suspended"}:
+            return "unknown"
+
     filtered = filter_session_bars(bars, as_of_date)
     sessions = trading_sessions(filtered)
     if not sessions:
@@ -79,9 +104,8 @@ def survivorship_flag(bars: pd.DataFrame, as_of_date: str) -> str:
     last = sessions[-1]
     if last >= as_of_date:
         return "listed"
-    gap_days = (datetime.fromisoformat(as_of_date) - datetime.fromisoformat(last)).days
-    # ponytail: 7-day gap proxy for halted/delisted; upgrade path = vendor delist flag
-    if gap_days >= 7:
+    # ≥5 weekdays without a session ≈ prior 7 calendar-day proxy, without weekend inflation.
+    if _weekday_gap(last, as_of_date) >= 5:
         return "delisted"
     return "unknown"
 

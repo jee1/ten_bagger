@@ -18,12 +18,35 @@ EPS = 1e-9
 
 
 def _pick_daily(date: str, market: str, symbol: str) -> dict:
+    currency = "KRW" if market == "KR" else "USD"
+    exchange = "KOSPI" if market == "KR" else "NASDAQ"
     return {
         "date": date,
         "market": market,
         "status": "pick",
-        "stock": {"symbol": symbol},
-        "scores": {"composite": 80, "version": 2},
+        "stock": {
+            "symbol": symbol,
+            "name": {"ko": symbol, "en": symbol},
+            "exchange": exchange,
+            "currency": currency,
+        },
+        "scores": {
+            "composite": 80.0,
+            "size": 70.0,
+            "growth": 70.0,
+            "valuation": 70.0,
+            "entry": 70.0,
+            "momentum": 70.0,
+            "quality": 70.0,
+            "threshold": 70.0,
+            "version": 2,
+        },
+        "reasoning": {"summary": {"ko": "테스트", "en": "test"}},
+        "meta": {
+            "generatedAt": f"{date}T00:00:00+00:00",
+            "candidatesScreened": 1,
+            "excludedRecent": 0,
+        },
     }
 
 
@@ -32,7 +55,22 @@ def _no_pick_daily(date: str, market: str) -> dict:
         "date": date,
         "market": market,
         "status": "no_pick",
-        "scores": {"composite": 0, "version": 2},
+        "scores": {
+            "composite": 0.0,
+            "size": 0.0,
+            "growth": 0.0,
+            "valuation": 0.0,
+            "entry": 0.0,
+            "momentum": 0.0,
+            "quality": 0.0,
+            "threshold": 70.0,
+            "version": 2,
+        },
+        "meta": {
+            "generatedAt": f"{date}T00:00:00+00:00",
+            "candidatesScreened": 0,
+            "excludedRecent": 0,
+        },
     }
 
 

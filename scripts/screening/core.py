@@ -25,13 +25,6 @@ from scoring.models import ScoreResult
 from scoring.momentum import _score_momentum
 from scoring.quality import _score_quality
 from scoring.size import _score_size
-from scoring.v1 import (
-    _composite_v1,
-    _score_growth_v1,
-    _score_momentum_v1,
-    _score_quality_v1,
-    _score_valuation_v1,
-)
 from scoring.valuation import _score_valuation
 from top_n import rank_key
 from yf_cache import get_ticker_history, get_ticker_info
@@ -141,6 +134,15 @@ def score_symbol(
     hist = get_ticker_history(meta.symbol)
 
     if score_version < 2:
+        # Lazy import: keep Score v1 off the live SCORE_VERSION=2 import graph (#103).
+        from scoring.v1 import (
+            _composite_v1,
+            _score_growth_v1,
+            _score_momentum_v1,
+            _score_quality_v1,
+            _score_valuation_v1,
+        )
+
         growth, g_m = _score_growth_v1(info)
         valuation, v_m = _score_valuation_v1(info)
         momentum, m_m = _score_momentum_v1(hist)

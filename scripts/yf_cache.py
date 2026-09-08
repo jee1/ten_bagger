@@ -32,6 +32,33 @@ _SAFE_SYMBOL = re.compile(r"[^A-Za-z0-9._-]+")
 _api_lock = threading.Lock()
 _last_api_at = 0.0
 
+# ADR 0005 §6 observation (#106): fundamentals stay single-source until triggers fire.
+_fundamental_rate_limit_events = 0
+_FUNDAMENTAL_RATE_LIMIT_TAG = "tech-debt/td-006-fundamental-rate-limit"
+
+
+def fundamental_rate_limit_events() -> int:
+    """Count of observed yfinance info rate-limit hits this process (tests / metrics)."""
+    return _fundamental_rate_limit_events
+
+
+def reset_fundamental_rate_limit_events() -> None:
+    global _fundamental_rate_limit_events
+    _fundamental_rate_limit_events = 0
+
+
+def _note_fundamental_rate_limit(symbol: str, *, where: str, exc: Exception) -> None:
+    global _fundamental_rate_limit_events
+    _fundamental_rate_limit_events += 1
+    logger.warning(
+        "%s symbol=%s where=%s count=%d err=%s",
+        _FUNDAMENTAL_RATE_LIMIT_TAG,
+        symbol,
+        where,
+        _fundamental_rate_limit_events,
+        exc,
+    )
+
 
 def _safe_name(symbol: str) -> str:
     return _SAFE_SYMBOL.sub("_", symbol)
@@ -115,7 +142,12 @@ def _throttle_before_request() -> None:
         _last_api_at = time.time()
 
 
-def _with_retry[T](label: str, fn: Callable[[], T]) -> T:
+def _with_retry[T](
+    label: str,
+    fn: Callable[[], T],
+    *,
+    on_rate_limit: Callable[[Exception], None] | None = None,
+) -> T:
     last_exc: Exception | None = None
     for attempt in range(YF_MAX_RETRIES):
         try:
@@ -123,6 +155,8 @@ def _with_retry[T](label: str, fn: Callable[[], T]) -> T:
             return fn()
         except Exception as exc:
             last_exc = exc
+            if _is_rate_limited(exc) and on_rate_limit is not None:
+                on_rate_limit(exc)
             if attempt + 1 >= YF_MAX_RETRIES:
                 break
             delay = YF_RETRY_BASE_DELAY * (2**attempt)
@@ -151,9 +185,14 @@ def get_ticker_info(symbol: str) -> dict[str, Any]:
     def _fetch() -> dict[str, Any]:
         return yf.Ticker(symbol).info or {}
 
+    def _on_rl(exc: Exception) -> None:
+        _note_fundamental_rate_limit(symbol, where="retry", exc=exc)
+
     try:
-        info = _with_retry(f"yfinance info {symbol}", _fetch)
+        info = _with_retry(f"yfinance info {symbol}", _fetch, on_rate_limit=_on_rl)
     except Exception as exc:
+        if _is_rate_limited(exc):
+            _note_fundamental_rate_limit(symbol, where="exhausted", exc=exc)
         stale = _read_info_cache(path)
         if stale is not None and _is_transient_failure(exc):
             logger.warning(
