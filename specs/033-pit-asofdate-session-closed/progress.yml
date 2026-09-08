@@ -1,0 +1,18 @@
+# specs/033-pit-asofdate-session-closed/progress.yml
+feature: pit-asofdate-session-closed
+created: 2026-09-08
+current_phase: done
+github_issue: 99
+branch: feature/pit-asofdate-calendar-date.today
+phases:
+  constitution: { status: done, updated: 2026-09-08, note: "v1.3.0 revalidated; no amend" }
+  specify:      { status: done, updated: 2026-09-08 }
+  brainstorm:   { status: done, updated: 2026-09-08, sessions: 1, note: "all-recommendations Q1-Q5; saturated" }
+  plan:         { status: done, updated: 2026-09-08 }
+  tasks:        { status: done, updated: 2026-09-08, count: 9 }
+  execute:      { status: done, updated: 2026-09-08, note: "T001-T009; pit_prices+prices_live; 7+17+2 pytest green" }
+  review:       { status: done, updated: 2026-09-08, iterations: 1, verdict: passed }
+notes:
+  - "Kept worktree branch feature/pit-asofdate-calendar-date.today"
+  - "Canonical Speckit: brainstorm auto-select; execute∥review; no commit/push unless asked"
+  - "Issue #99 labeled tech-debt-approved + in-progress"
