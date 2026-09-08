@@ -3,27 +3,28 @@
 from __future__ import annotations
 
 import json
+from functools import lru_cache
 from pathlib import Path
+
+import jsonschema
+from config import SCHEMA_PATH
+
+
+@lru_cache(maxsize=1)
+def _daily_validator() -> jsonschema.Draft202012Validator:
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    return jsonschema.Draft202012Validator(schema)
 
 
 def _require_ledger_contract(data: object, path_name: str) -> dict:
-    """Fail-fast on missing identity fields (FR-018). Not full daily-entry schema.
-
-    ponytail: regenerate only needs date/market/status/symbol; site fields
-    (reasoning, meta, …) stay out of scope — upgrade if writers need stricter gate.
-    """
+    """Fail-fast via daily-entry schema (FR-018 + site fields writers already emit)."""
     if not isinstance(data, dict):
         raise ValueError(f"invalid daily JSON: {path_name}: root must be object")
-    for key in ("date", "market", "status"):
-        if key not in data or data[key] in (None, ""):
-            raise ValueError(f"invalid daily JSON: {path_name}: missing required '{key}'")
-    status = data["status"]
-    if status not in ("pick", "no_pick"):
-        raise ValueError(f"invalid daily JSON: {path_name}: bad status {status!r}")
-    if status == "pick":
-        stock = data.get("stock")
-        if not isinstance(stock, dict) or not stock.get("symbol"):
-            raise ValueError(f"invalid daily JSON: {path_name}: pick requires stock.symbol")
+    errors = sorted(_daily_validator().iter_errors(data), key=lambda e: list(e.absolute_path))
+    if errors:
+        err = errors[0]
+        loc = ".".join(str(p) for p in err.absolute_path) or "(root)"
+        raise ValueError(f"invalid daily JSON: {path_name}: {loc}: {err.message}")
     return data
 
 

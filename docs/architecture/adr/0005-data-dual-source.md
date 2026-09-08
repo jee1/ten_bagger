@@ -28,9 +28,13 @@ least one of prices or fundamentals without a full paid-vendor migration.
    daily CSV is typically unadjusted — label `provider=stooq` and document
    `priceAdjustment` assumptions at call sites that already record them.
 6. **KR DART / OpenAPI**: **Deferred**. Evaluate later if fundamentals axis
-   needs dual-source. Triggers: repeated daily CI rate-limit failures on
-   fundamentals after price secondary is live; or explicit issue to implement
-   OpenDART (secret **names** only in docs).
+   needs dual-source. Triggers (observe before building OpenDART adapter):
+   - Log/metric tag `tech-debt/td-006-fundamental-rate-limit` on
+     `get_ticker_info` retries/exhaustion (`yf_cache.fundamental_rate_limit_events`).
+   - Fire when **≥3 consecutive** daily CI/regenerate runs show fundamentals
+     rate-limit events after price secondary (Stooq) is already live; **or**
+     an explicit issue to implement OpenDART (secret **names** only in docs).
+   Until a trigger fires, keep observation only — no DART adapter in-tree.
 7. **Non-goals**: Full paid vendor migration; changing Score weights /
    thresholds / `SCORE_VERSION`.
 

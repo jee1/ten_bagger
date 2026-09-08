@@ -12,6 +12,43 @@ from tests.fixtures.price_loader import load_price_fixture
 SCRIPTS = Path(__file__).resolve().parents[1]
 
 
+def _schema_pick_daily(
+    *,
+    date: str = "2026-01-02",
+    market: str = "KR",
+    symbol: str = "SIMPLE.KR",
+) -> dict:
+    """Minimal daily-entry.schema.json–valid pick used by regenerate fixtures."""
+    return {
+        "date": date,
+        "market": market,
+        "status": "pick",
+        "stock": {
+            "symbol": symbol,
+            "name": {"ko": "심플", "en": "Simple"},
+            "exchange": "KOSPI" if market == "KR" else "NASDAQ",
+            "currency": "KRW" if market == "KR" else "USD",
+        },
+        "scores": {
+            "composite": 80.0,
+            "size": 70.0,
+            "growth": 70.0,
+            "valuation": 70.0,
+            "entry": 70.0,
+            "momentum": 70.0,
+            "quality": 70.0,
+            "threshold": 70.0,
+            "version": 2,
+        },
+        "reasoning": {"summary": {"ko": "테스트", "en": "test"}},
+        "meta": {
+            "generatedAt": f"{date}T00:00:00+00:00",
+            "candidatesScreened": 1,
+            "excludedRecent": 0,
+        },
+    }
+
+
 def test_missing_as_of_date_exit_2():
     assert regenerate_ledger.main([]) == 2
 
@@ -68,7 +105,7 @@ def test_missing_date_daily_fails_run(tmp_path):
     (daily_dir / "nodate.json").write_text(
         json.dumps({"market": "KR", "status": "no_pick"}), encoding="utf-8"
     )
-    with pytest.raises(ValueError, match="missing required 'date'"):
+    with pytest.raises(ValueError, match="date"):
         load_eligible_dailies(daily_dir, "2026-02-01")
 
 
@@ -94,13 +131,7 @@ def test_atomic_replace_validation_failure_leaves_prior(tmp_path):
 def test_success_path_writes_schema_valid_outputs(tmp_path, monkeypatch):
     daily_dir = tmp_path / "daily"
     daily_dir.mkdir()
-    daily = {
-        "date": "2026-01-02",
-        "market": "KR",
-        "status": "pick",
-        "stock": {"symbol": "SIMPLE.KR"},
-        "scores": {"composite": 80, "version": 2},
-    }
+    daily = _schema_pick_daily()
     (daily_dir / "2026-01-02.json").write_text(json.dumps(daily), encoding="utf-8")
     ledger_dir = tmp_path / "ledger"
     perf_dir = tmp_path / "performance"
@@ -160,15 +191,7 @@ def test_daily_files_untouched(tmp_path, monkeypatch):
     daily_dir = tmp_path / "daily"
     daily_dir.mkdir()
     daily_path = daily_dir / "2026-01-02.json"
-    original = json.dumps(
-        {
-            "date": "2026-01-02",
-            "market": "KR",
-            "status": "pick",
-            "stock": {"symbol": "SIMPLE.KR"},
-            "scores": {"composite": 80},
-        }
-    )
+    original = json.dumps(_schema_pick_daily())
     daily_path.write_text(original, encoding="utf-8")
     ledger_dir = tmp_path / "ledger"
     perf_dir = tmp_path / "performance"

@@ -1,0 +1,12 @@
+feature: fundamental-rate-limit-obs
+created: 2026-09-08
+current_phase: done
+github_issue: 106
+phases:
+  constitution: { status: done, updated: 2026-09-08 }
+  specify: { status: done, updated: 2026-09-08 }
+  brainstorm: { status: done, updated: 2026-09-08, note: "auto saturated" }
+  plan: { status: done, updated: 2026-09-08 }
+  tasks: { status: done, updated: 2026-09-08 }
+  execute: { status: done, updated: 2026-09-08 }
+  review: { status: done, updated: 2026-09-08, verdict: passed }
