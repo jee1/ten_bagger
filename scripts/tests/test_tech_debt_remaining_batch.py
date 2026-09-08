@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import importlib
 import json
 import sys
 from pathlib import Path
@@ -51,16 +50,36 @@ def test_survivorship_weekday_gap_not_weekend_inflated() -> None:
 
 
 def test_screen_import_does_not_load_scoring_v1() -> None:
-    for mod in list(sys.modules):
-        if mod == "scoring.v1" or mod.startswith("scoring.v1."):
-            del sys.modules[mod]
-    if "screen" in sys.modules:
-        del sys.modules["screen"]
-    if "screening.core" in sys.modules:
-        del sys.modules["screening.core"]
+    """Live import graph must not pull scoring.v1 (subprocess isolation)."""
+    import subprocess
 
-    importlib.import_module("screen")
-    assert "scoring.v1" not in sys.modules
+    scripts_dir = Path(__file__).resolve().parents[1]
+    proc = subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            "import screen; import sys; assert 'scoring.v1' not in sys.modules",
+        ],
+        cwd=scripts_dir,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert proc.returncode == 0, proc.stderr
+
+
+def test_screening_core_source_has_no_toplevel_v1_import() -> None:
+    import ast
+
+    path = Path(__file__).resolve().parents[1] / "screening" / "core.py"
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    for node in tree.body:
+        if isinstance(node, ast.ImportFrom) and node.module == "scoring.v1":
+            raise AssertionError("top-level scoring.v1 import in screening/core.py")
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name == "scoring.v1" or alias.name.startswith("scoring.v1."):
+                    raise AssertionError("top-level scoring.v1 import in screening/core.py")
 
 
 def test_fundamental_rate_limit_counter(monkeypatch: pytest.MonkeyPatch) -> None:
