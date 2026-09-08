@@ -20,6 +20,7 @@
     "test:performance-ui": "node --experimental-strip-types --test src/lib/performanceAggregate.test.ts src/lib/performanceLoad.test.ts src/lib/staticNav.test.ts",
     "test:static-nav": "node --experimental-strip-types --test src/lib/staticNav.test.ts",
     "test:rss": "node --experimental-strip-types --test src/lib/rss.test.ts",
+    "test:daily-i18n": "node --experimental-strip-types --test src/lib/dailyDates.test.ts src/lib/i18n.test.ts",
     "walk-forward": "cd scripts && python walk_forward.py",
     "walk-forward:smoke": "cd scripts && python -m pytest tests/test_walk_forward_smoke.py -q",
     "calibrate": "cd scripts && python calibrate.py",
@@ -31,7 +32,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@types/node": "^26.4.1",
+    "@types/node": "^26.5.0",
     "json-schema-to-typescript": "^16.0.0",
     "typescript": "^6.0.3"
   }

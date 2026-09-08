@@ -27,3 +27,6 @@ pnpm-debug.log*
 __pycache__/
 *.pyc
 scripts/cache/
+
+# local agent / browser tooling output
+.playwright-mcp/

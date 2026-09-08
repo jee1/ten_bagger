@@ -1,0 +1,12 @@
+feature: astro-patch-deps
+created: 2026-09-08
+current_phase: done
+github_issue: 104
+phases:
+  constitution: { status: done, updated: 2026-09-08 }
+  specify: { status: done, updated: 2026-09-08 }
+  brainstorm: { status: done, updated: 2026-09-08, note: "auto — no TS7" }
+  plan: { status: done, updated: 2026-09-08 }
+  tasks: { status: done, updated: 2026-09-08 }
+  execute: { status: done, updated: 2026-09-08, note: "astro 7.3.1; @types/node 26.5.0; ts 6.0.3" }
+  review: { status: done, updated: 2026-09-08, verdict: passed }
