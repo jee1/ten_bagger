@@ -1,0 +1,19 @@
+# specs/032-ci-frontend-unit-tests/progress.yml
+feature: ci-frontend-unit-tests
+created: 2026-09-08
+current_phase: done
+github_issue: 98
+branch: feature/ci
+phases:
+  constitution: { status: done, updated: 2026-09-08, note: "v1.3.0 revalidated; no amend" }
+  specify:      { status: done, updated: 2026-09-08 }
+  brainstorm:   { status: done, updated: 2026-09-08, sessions: 1, note: "all-recommendations Q1-Q4; saturated" }
+  plan:         { status: done, updated: 2026-09-08 }
+  tasks:        { status: done, updated: 2026-09-08, count: 11 }
+  execute:      { status: done, updated: 2026-09-08, note: "T001-T011; ci.yml +2 lines; performance-ui 12; rss 6" }
+  review:       { status: done, updated: 2026-09-08, iterations: 1, verdict: passed }
+notes:
+  - "Kept worktree branch feature/ci (SPECIFY_FEATURE=032-ci-frontend-unit-tests)"
+  - "No create-new-feature.sh — branch already matches CI work"
+  - "No commit/push unless asked"
+  - "Issue #98 tech-debt-pending noted; user asked to proceed"
