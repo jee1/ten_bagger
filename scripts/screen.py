@@ -59,23 +59,19 @@ __all__ = [
     "_optional_float",
     "_resolve_market_cap",
     "_safe_float",
-    "_composite_v1",
     "_composite_v2",
     "_score_entry",
     "_score_fcf_yield",
     "_score_growth",
-    "_score_growth_v1",
     "_score_momentum",
-    "_score_momentum_v1",
     "_score_pe_peg",
     "_score_price_to_book",
     "_score_quality",
-    "_score_quality_v1",
     "_score_size",
     "_score_valuation",
-    "_score_valuation_v1",
 ]
 
+# Lazy Score v1 re-exports (not in __all__ — avoids F822; import via attribute access).
 _V1_EXPORTS = {
     "_composite_v1",
     "_score_growth_v1",

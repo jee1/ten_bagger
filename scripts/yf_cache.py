@@ -142,7 +142,12 @@ def _throttle_before_request() -> None:
         _last_api_at = time.time()
 
 
-def _with_retry[T](label: str, fn: Callable[[], T], *, on_rate_limit: Callable[[Exception], None] | None = None) -> T:
+def _with_retry[T](
+    label: str,
+    fn: Callable[[], T],
+    *,
+    on_rate_limit: Callable[[Exception], None] | None = None,
+) -> T:
     last_exc: Exception | None = None
     for attempt in range(YF_MAX_RETRIES):
         try:
