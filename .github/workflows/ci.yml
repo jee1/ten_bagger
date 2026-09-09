@@ -44,13 +44,14 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Install and check
+      - name: Install, check, and build
         run: |
           npm ci
           npm run check
           npm run test:performance-ui
           npm run test:rss
           npm run test:daily-i18n
+          npm run build
 
       - name: Audit npm dependencies
         run: npm audit --audit-level=high
