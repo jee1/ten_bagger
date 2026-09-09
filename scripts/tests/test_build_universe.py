@@ -6,10 +6,9 @@ from datetime import date
 from types import SimpleNamespace
 from urllib.error import HTTPError
 
+import build_universe
 import pandas as pd
 import pytest
-
-import build_universe
 
 
 class _Listing:
