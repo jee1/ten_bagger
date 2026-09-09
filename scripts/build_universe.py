@@ -5,10 +5,22 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import date, timedelta
 from typing import Any
+from urllib.error import HTTPError
 
 import FinanceDataReader as fdr
+import pandas as pd
 from config import UNIVERSE_DIR
+
+# FDR StockListing(KOSPI/KOSDAQ) reads GitHub cache keyed by KRX max_work_dt.
+# Cache lag → HTTP 404; walk back to latest available CSV.
+# ponytail: O(lookback) HEAD-less GETs; upgrade if FDR ships date fallback.
+_FDR_KRX_CACHE = (
+    "https://raw.githubusercontent.com/FinanceData/fdr_krx_data_cache"
+    "/refs/heads/master/data/listing/krx"
+)
+_KR_MARKET_ID = {"KOSPI": "STK", "KOSDAQ": "KSQ"}
 
 
 def _invalid_us_symbol(symbol: str) -> bool:
@@ -17,10 +29,52 @@ def _invalid_us_symbol(symbol: str) -> bool:
     return any(ch in symbol for ch in ("^", "=", "/", " "))
 
 
+def _kr_listing_from_stale_cache(
+    market: str,
+    *,
+    as_of: date | None = None,
+    lookback_days: int = 14,
+) -> pd.DataFrame:
+    market_id = _KR_MARKET_ID[market]
+    start = as_of or date.today()
+    last_error: Exception | None = None
+    for offset in range(lookback_days):
+        day = start - timedelta(days=offset)
+        url = f"{_FDR_KRX_CACHE}/{day.isoformat()}.csv"
+        try:
+            df = pd.read_csv(
+                url,
+                index_col=0,
+                dtype={"Code": str, "Dept": str, "ChangeCode": str, "MarketId": str},
+            )
+        except HTTPError as exc:
+            if getattr(exc, "code", None) == 404:
+                last_error = exc
+                continue
+            raise
+        df = df.reset_index(drop=True)
+        df = df[df["MarketId"] == market_id].reset_index(drop=True)
+        print(f"WARN: using stale FDR KRX cache {day.isoformat()} for {market} ({len(df)} rows)")
+        return df
+    raise RuntimeError(
+        f"No FDR KRX cache CSV for {market} in last {lookback_days} days from {start}"
+    ) from last_error
+
+
+def _kr_stock_listing(market: str) -> pd.DataFrame:
+    try:
+        return fdr.StockListing(market)
+    except HTTPError as exc:
+        if getattr(exc, "code", None) != 404:
+            raise
+        print(f"WARN: StockListing({market}) HTTP 404; falling back to FDR cache walk-back")
+        return _kr_listing_from_stale_cache(market)
+
+
 def build_kr() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for market, suffix in (("KOSPI", "KS"), ("KOSDAQ", "KQ")):
-        listing = fdr.StockListing(market)
+        listing = _kr_stock_listing(market)
         for record in listing.itertuples(index=False):
             code = str(record.Code).zfill(6)
             marcap = getattr(record, "Marcap", None)

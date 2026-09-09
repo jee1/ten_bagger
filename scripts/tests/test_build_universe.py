@@ -2,9 +2,13 @@
 
 from __future__ import annotations
 
+from datetime import date
 from types import SimpleNamespace
+from urllib.error import HTTPError
 
 import build_universe
+import pandas as pd
+import pytest
 
 
 class _Listing:
@@ -101,3 +105,54 @@ def test_build_us_formats_filters_dedupes_and_sorts(monkeypatch):
             "currency": "USD",
         },
     ]
+
+
+def test_kr_stock_listing_falls_back_on_cache_404(monkeypatch):
+    def boom(_market: str):
+        raise HTTPError("https://example.invalid/missing.csv", 404, "Not Found", None, None)
+
+    fallback = pd.DataFrame(
+        [{"Code": "005930", "Name": "삼성전자", "Marcap": 1, "MarketId": "STK"}]
+    )
+    monkeypatch.setattr(build_universe.fdr, "StockListing", boom)
+    monkeypatch.setattr(build_universe, "_kr_listing_from_stale_cache", lambda market: fallback)
+
+    listing = build_universe._kr_stock_listing("KOSPI")
+    assert list(listing["Code"]) == ["005930"]
+
+
+def test_kr_stock_listing_reraises_non_404(monkeypatch):
+    def boom(_market: str):
+        raise HTTPError("https://example.invalid/x", 500, "Server Error", None, None)
+
+    monkeypatch.setattr(build_universe.fdr, "StockListing", boom)
+
+    with pytest.raises(HTTPError) as excinfo:
+        build_universe._kr_stock_listing("KOSPI")
+    assert excinfo.value.code == 500
+
+
+def test_kr_listing_from_stale_cache_walks_back_dates(monkeypatch):
+    calls: list[str] = []
+
+    def fake_read_csv(url, *args, **kwargs):
+        calls.append(url)
+        if url.endswith("2026-09-09.csv") or url.endswith("2026-09-08.csv"):
+            raise HTTPError(url, 404, "Not Found", None, None)
+        return pd.DataFrame(
+            [
+                {"Code": "005930", "Name": "삼성전자", "Marcap": 10, "MarketId": "STK"},
+                {"Code": "000660", "Name": "SK하이닉스", "Marcap": 9, "MarketId": "STK"},
+                {"Code": "357780", "Name": "솔브레인", "Marcap": 1, "MarketId": "KSQ"},
+            ]
+        )
+
+    monkeypatch.setattr(build_universe.pd, "read_csv", fake_read_csv)
+
+    listing = build_universe._kr_listing_from_stale_cache(
+        "KOSPI", as_of=date(2026, 9, 9), lookback_days=5
+    )
+    assert list(listing["Code"]) == ["005930", "000660"]
+    assert calls[0].endswith("2026-09-09.csv")
+    assert calls[1].endswith("2026-09-08.csv")
+    assert calls[2].endswith("2026-09-07.csv")
