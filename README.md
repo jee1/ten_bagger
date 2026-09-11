@@ -17,12 +17,18 @@ npm install
 npm run dev
 ```
 
-GitHub Pages와 동일한 base path로 미리보기:
+커스텀 도메인(root base) 미리보기:
 
 ```bash
-BASE_PATH=/ten_bagger/ npm run dev
 npm run build
-BASE_PATH=/ten_bagger/ npm run preview
+npm run preview
+```
+
+레거시 GitHub Pages path 미리보기:
+
+```bash
+BASE_PATH=/ten_bagger/ SITE_URL=https://jee1.github.io/ten_bagger npm run build
+BASE_PATH=/ten_bagger/ SITE_URL=https://jee1.github.io/ten_bagger npm run preview
 ```
 
 ## 일일 리포트 수동 생성
@@ -102,12 +108,15 @@ Yahoo가 429/rate limit 또는 일시적 네트워크 오류를 반환하면 스
 
 ## 배포 (GitHub Pages)
 
+프로덕션: **https://tenbagger.finnaut.com** (`SITE_URL` / `BASE_PATH=/` / `public/CNAME`)
+
 1. GitHub 저장소 생성 후 push
 2. **Settings → Pages → Source**: GitHub Actions
-3. `.github/workflows/daily.yml`이 매일 06:00 KST에 실행됩니다
-4. `workflow_dispatch`로 날짜 지정 수동 실행도 가능합니다
+3. **Settings → Pages → Custom domain**: `tenbagger.finnaut.com` (DNS CNAME → `jee1.github.io`)
+4. `.github/workflows/daily.yml`이 매일 06:00 KST에 실행됩니다
+5. `workflow_dispatch`로 날짜 지정 수동 실행도 가능합니다
 
-저장소 이름이 `ten_bagger`가 아니면 `astro.config.mjs`의 `SITE_URL` / `BASE_PATH`와 workflow의 env를 맞춰 주세요.
+도메인·base를 바꾸면 `astro.config.mjs` 기본값, workflow env, `public/CNAME`을 함께 맞춰 주세요.
 
 ## 구조
 
@@ -133,12 +142,12 @@ npm run gen:types:check   # CI와 동일한 drift 검사
 
 일일 pick을 피드 리더로 구독할 수 있습니다 (이메일 digest는 별도 설계, 현재 미제공).
 
-1. 피드 URL: `https://<host>/ten_bagger/rss.xml`  
-   - 로컬/커스텀 base: `{SITE}{BASE_PATH}rss.xml` (기본 `BASE_PATH=/ten_bagger/`)
+1. 피드 URL: `https://tenbagger.finnaut.com/rss.xml`  
+   - 로컬/다른 base: `{SITE}{BASE_PATH}rss.xml` (프로덕션 `BASE_PATH=/`)
 2. Feedly, NetNewsWire, Inoreader 등에서 위 URL을 추가합니다.
 3. 형식: RSS 2.0 · 최근 30개 시장일 · `pick`/`no_pick` 포함 · 한·영 병기
 
-개발 중 확인: `npm run dev` 후 `/ten_bagger/rss.xml` (또는 설정한 base) 접속.
+개발 중 확인: `npm run dev` 후 `/rss.xml` 접속.
 단위 테스트: `npm run test:rss`
 
 ## Architecture (Performance Loop / Score v3)

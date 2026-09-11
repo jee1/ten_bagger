@@ -50,8 +50,8 @@ jobs:
 
       - name: Install, check, and build site
         env:
-          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
-          BASE_PATH: /${{ github.event.repository.name }}/
+          SITE_URL: https://tenbagger.finnaut.com
+          BASE_PATH: /
         run: |
           npm ci
           npm run check

@@ -6,7 +6,7 @@ import { FEED_DISCLAIMER, buildRssItems } from '../lib/rss';
 
 export async function GET(context: APIContext) {
   // This repo's astro `site` already includes the Pages path prefix (e.g. .../ten_bagger).
-  const siteUrl = context.site ?? new URL(import.meta.env.SITE || 'https://example.github.io/ten_bagger');
+  const siteUrl = context.site ?? new URL(import.meta.env.SITE || 'https://tenbagger.finnaut.com');
   const site = siteUrl.href.replace(/\/+$/, '');
 
   const dates = getAllDates();
