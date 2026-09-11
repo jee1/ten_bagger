@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-09-06",
+  "asOfDate": "2026-09-11",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -180,6 +180,18 @@
     {
       "pickDate": "2026-09-06",
       "symbol": "CBL",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-08",
+      "symbol": "EVER",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-10",
+      "symbol": "HAPN",
       "status": "pick",
       "scoreVersion": "2"
     }
