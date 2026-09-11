@@ -24,6 +24,11 @@ enParams.set('lang', 'en');
 const koUrl = `${Astro.url.pathname}?${koParams}`;
 const enUrl = `${Astro.url.pathname}?${enParams}`;
 
+const pageTitle = `${title} | ${label('siteName', lang)}`;
+const description = label('tagline', lang);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const goatCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE ?? 'tenbagger';
+
 const labelsJson = JSON.stringify(labels);
 ---
 
@@ -32,7 +37,16 @@ const labelsJson = JSON.stringify(labels);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={label('tagline', lang)} data-i18n-attr="content:tagline" />
+    <meta name="description" content={description} data-i18n-attr="content:tagline" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={label('siteName', lang)} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link
       rel="alternate"
@@ -46,7 +60,7 @@ const labelsJson = JSON.stringify(labels);
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
     />
     <title data-page-title-key={titleKey ?? ''}>
-      {title} | {label('siteName', lang)}
+      {pageTitle}
     </title>
     <script type="application/json" id="i18n-labels" set:html={labelsJson} />
     <script
@@ -158,5 +172,15 @@ const labelsJson = JSON.stringify(labels);
       applyStaticNav();
       window.addEventListener('popstate', applyStaticNav);
     </script>
+    {
+      goatCode ? (
+        <script
+          is:inline
+          data-goatcounter={`https://${goatCode}.goatcounter.com/count`}
+          async
+          src="https://gc.zgo.at/count.js"
+        />
+      ) : null
+    }
   </body>
 </html>
