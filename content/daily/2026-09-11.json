@@ -3,59 +3,59 @@
   "market": "KR",
   "status": "pick",
   "stock": {
-    "symbol": "439090.KQ",
+    "symbol": "134380.KS",
     "name": {
-      "ko": "마녀공장",
-      "en": "Manyo Factory Co., Ltd"
+      "ko": "미원화학",
+      "en": "Miwon Chemicals Co., Ltd."
     },
-    "exchange": "KOSDAQ",
+    "exchange": "KOSPI",
     "currency": "KRW",
     "profile": {
       "overview": {
-        "ko": "마녀공장는 Consumer Defensive 분야 Household & Personal Products 기업입니다.",
-        "en": "Manyo Factory Co., Ltd produces and sells skin care products in South Korea. It offers cleanser, toner, skin, mist, ampoule, serum, oil, moisturizer, sun care, mask, pack, hair, body, lip, and hand cosmetic products."
+        "ko": "미원화학는 Basic Materials 분야 Chemicals 기업입니다.",
+        "en": "Miwon Chemicals Co., Ltd. develops, manufactures, and sells performance chemicals for use in the rubber, detergent, and personal care industries worldwide. Its products include sulfurs; sulfuric acids; sulphonic acid; alkyl sulfates; and rubber chemicals."
       },
       "sector": {
-        "ko": "Consumer Defensive",
-        "en": "Consumer Defensive"
+        "ko": "Basic Materials",
+        "en": "Basic Materials"
       },
       "industry": {
-        "ko": "Household & Personal Products",
-        "en": "Household & Personal Products"
+        "ko": "Chemicals",
+        "en": "Chemicals"
       }
     }
   },
   "scores": {
-    "composite": 76.7,
+    "composite": 76.4,
     "size": 100.0,
-    "growth": 92.5,
-    "valuation": 65.8,
-    "entry": 75.0,
-    "momentum": 75.6,
-    "quality": 58.3,
+    "growth": 97.7,
+    "valuation": 62.2,
+    "entry": 66.0,
+    "momentum": 54.1,
+    "quality": 71.7,
     "threshold": 70.0,
     "version": 2
   },
   "reasoning": {
     "summary": {
-      "ko": "마녀공장(439090.KQ)는 v2 복합 점수 76.7로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
-      "en": "Manyo Factory Co., Ltd (439090.KQ) cleared the 70.0 threshold with v2 composite 76.7; size, value, cash, and entry align."
+      "ko": "미원화학(134380.KS)는 v2 복합 점수 76.4로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Miwon Chemicals Co., Ltd. (134380.KS) cleared the 70.0 threshold with v2 composite 76.4; size, value, cash, and entry align."
     },
     "growth": {
-      "ko": "매출 0.0% / 이익 50.0% (혼합 22.5%) — 지속 가능 성장 점수 92.5.",
-      "en": "Revenue 0.0% / earnings 50.0% (blended 22.5%) — sustainable growth score 92.5."
+      "ko": "매출 50.3% / 이익 0.0% (혼합 27.66%) — 지속 가능 성장 점수 97.7.",
+      "en": "Revenue 50.3% / earnings 0.0% (blended 27.66%) — sustainable growth score 97.7."
     },
     "valuation": {
-      "ko": "PER None, PEG None, FCF수익률 10.08%, PBR None — 밸류 점수 65.8.",
-      "en": "P/E None, PEG None, FCF yield 10.08%, P/B None — valuation score 65.8."
+      "ko": "PER None, PEG None, FCF수익률 6.07%, PBR None — 밸류 점수 62.2.",
+      "en": "P/E None, PEG None, FCF yield 6.07%, P/B None — valuation score 62.2."
     },
     "momentum": {
-      "ko": "6개월 수익률 34.29% — 보조 모멘텀 점수 75.6.",
-      "en": "6M return 34.29% — auxiliary momentum score 75.6."
+      "ko": "6개월 수익률 -6.99% — 보조 모멘텀 점수 54.1.",
+      "en": "6M return -6.99% — auxiliary momentum score 54.1."
     },
     "quality": {
-      "ko": "ROE 11.33%, ROA 7.01%, FCF/순이익 1.96 — 품질 점수 58.3.",
-      "en": "ROE 11.33%, ROA 7.01%, FCF/net income 1.96 — quality score 58.3."
+      "ko": "ROE 22.46%, ROA 12.6%, FCF/순이익 0.28 — 품질 점수 71.7.",
+      "en": "ROE 22.46%, ROA 12.6%, FCF/net income 0.28 — quality score 71.7."
     },
     "risks": [
       {
@@ -72,46 +72,26 @@
       }
     ],
     "size": {
-      "ko": "시가총액 259997106176 기준 규모 점수 100.0.",
-      "en": "Market cap 259997106176 — size score 100.0."
+      "ko": "시가총액 192905920512 기준 규모 점수 100.0.",
+      "en": "Market cap 192905920512 — size score 100.0."
     },
     "entry": {
-      "ko": "12개월 가격대 55.95%, 52주 고점 대비 -19.08% — 진입 점수 75.0.",
-      "en": "12M price range 55.95%, -19.08% from 52W high — entry score 75.0."
+      "ko": "12개월 가격대 31.43%, 52주 고점 대비 -31.01% — 진입 점수 66.0.",
+      "en": "12M price range 31.43%, -31.01% from 52W high — entry score 66.0."
     }
   },
   "meta": {
-    "generatedAt": "2026-09-11T08:16:10+09:00",
-    "candidatesScreened": 1903,
+    "generatedAt": "2026-09-11T23:05:25+09:00",
+    "candidatesScreened": 1902,
     "excludedRecent": 28,
     "skippedMarketCap": 849,
-    "skippedRedFlags": 359,
+    "skippedRedFlags": 361,
     "noData": 0,
     "errors": 2
   },
   "topCandidates": [
     {
       "rank": 1,
-      "symbol": "439090.KQ",
-      "name": {
-        "ko": "마녀공장",
-        "en": "Manyo Factory Co., Ltd"
-      },
-      "exchange": "KOSDAQ",
-      "currency": "KRW",
-      "scores": {
-        "composite": 76.7,
-        "size": 100.0,
-        "growth": 92.5,
-        "valuation": 65.8,
-        "entry": 75.0,
-        "momentum": 75.6,
-        "quality": 58.3,
-        "version": 2
-      }
-    },
-    {
-      "rank": 2,
       "symbol": "134380.KS",
       "name": {
         "ko": "미원화학",
@@ -120,38 +100,38 @@
       "exchange": "KOSPI",
       "currency": "KRW",
       "scores": {
-        "composite": 76.6,
+        "composite": 76.4,
         "size": 100.0,
         "growth": 97.7,
         "valuation": 62.2,
         "entry": 66.0,
-        "momentum": 55.6,
+        "momentum": 54.1,
         "quality": 71.7,
         "version": 2
       }
     },
     {
-      "rank": 3,
-      "symbol": "000240.KS",
+      "rank": 2,
+      "symbol": "065710.KQ",
       "name": {
-        "ko": "한국앤컴퍼니",
-        "en": "Hankook & Company Co., Ltd."
+        "ko": "서호전기",
+        "en": "Seoho Electric Co.,Ltd"
       },
-      "exchange": "KOSPI",
+      "exchange": "KOSDAQ",
       "currency": "KRW",
       "scores": {
-        "composite": 76.5,
-        "size": 83.0,
-        "growth": 98.9,
-        "valuation": 73.5,
+        "composite": 76.2,
+        "size": 100.0,
+        "growth": 85.0,
+        "valuation": 65.8,
         "entry": 75.0,
-        "momentum": 59.4,
-        "quality": 62.5,
+        "momentum": 58.2,
+        "quality": 72.3,
         "version": 2
       }
     },
     {
-      "rank": 4,
+      "rank": 3,
       "symbol": "284740.KS",
       "name": {
         "ko": "쿠쿠홈시스",
@@ -160,18 +140,18 @@
       "exchange": "KOSPI",
       "currency": "KRW",
       "scores": {
-        "composite": 76.3,
+        "composite": 76.2,
         "size": 100.0,
         "growth": 99.2,
         "valuation": 65.8,
         "entry": 75.0,
-        "momentum": 55.5,
+        "momentum": 54.6,
         "quality": 59.9,
         "version": 2
       }
     },
     {
-      "rank": 5,
+      "rank": 4,
       "symbol": "040420.KQ",
       "name": {
         "ko": "정상제이엘에스",
@@ -187,6 +167,26 @@
         "entry": 64.5,
         "momentum": 57.8,
         "quality": 56.5,
+        "version": 2
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "483650.KS",
+      "name": {
+        "ko": "달바글로벌",
+        "en": "d'Alba Global Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 75.8,
+        "size": 75.0,
+        "growth": 87.6,
+        "valuation": 64.7,
+        "entry": 66.0,
+        "momentum": 65.4,
+        "quality": 88.7,
         "version": 2
       }
     }
