@@ -116,6 +116,32 @@ export const labels = {
     ko: '가격 조정·단위 검증이 아직 완료되지 않았습니다. 큰 수익률(예: 002780.KS)은 검증 전까지 참고용입니다.',
     en: 'Price-adjustment / unit validation is incomplete. Large returns (e.g. 002780.KS) are provisional until validation completes.',
   } satisfies LocalizedText,
+  performancePriceBasisIncompleteTitle: {
+    ko: '가격 조정·단위 검증 미완료',
+    en: 'Price-basis validation incomplete',
+  } satisfies LocalizedText,
+  performanceExcess: { ko: '초과 성과', en: 'Excess' } satisfies LocalizedText,
+  performanceExcessPending: {
+    ko: '가격 기준 검증 전까지 산출하지 않음',
+    en: 'Not computed until price-basis validation completes',
+  } satisfies LocalizedText,
+  performanceSamplesPending: {
+    ko: '표본이 쌓이면 자동으로 채워집니다',
+    en: 'Fills in automatically as samples accumulate',
+  } satisfies LocalizedText,
+  threshold: { ko: '임계', en: 'Threshold' } satisfies LocalizedText,
+  screened: { ko: '스크리닝', en: 'Screened' } satisfies LocalizedText,
+  scoreAxesLegend: {
+    ko: '막대 순서: 규모 · 성장 · 밸류 · 진입 · 모멘텀 · 품질',
+    en: 'Bars: size · growth · valuation · entry · momentum · quality',
+  } satisfies LocalizedText,
+  contents: { ko: '목차', en: 'Contents' } satisfies LocalizedText,
+  calendarScoreLegend: { ko: '복합 점수', en: 'Composite score' } satisfies LocalizedText,
+  calendarUnpublished: { ko: '미공개', en: 'Unpublished' } satisfies LocalizedText,
+  calendarRotationNote: {
+    ko: '홀수일 한국, 짝수일 미국 · 최근 30일 중복 종목은 제외됩니다.',
+    en: 'Odd days Korea, even days US · symbols picked in the last 30 days are excluded.',
+  } satisfies LocalizedText,
 } as const;
 
 export function t(text: LocalizedText, lang: Lang): string {

@@ -1,0 +1,59 @@
+---
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+import type { MarketPerformanceView } from '../lib/performanceAggregate';
+
+interface Props {
+  lang: Lang;
+  view: MarketPerformanceView;
+}
+
+const { lang, view } = Astro.props;
+const points = view.cumulative?.points ?? [];
+
+function pct(n: number | null | undefined): string {
+  if (n == null || Number.isNaN(n)) return '—';
+  return `${(n * 100).toFixed(2)}%`;
+}
+
+function signClass(n: number | null | undefined): string {
+  if (n == null || Number.isNaN(n)) return 'pending';
+  return n >= 0 ? 'pos' : 'neg';
+}
+---
+
+{points.length > 0 && (
+  <section>
+    <h2 class="section-title" data-i18n="performanceCumulative">
+      {label('performanceCumulative', lang)}
+    </h2>
+    <table class="perf-table">
+      <thead>
+        <tr>
+          <th data-i18n="performanceTableDate">{label('performanceTableDate', lang)}</th>
+          <th data-i18n="performanceTableSymbol">{label('performanceTableSymbol', lang)}</th>
+          <th class="right" data-i18n="performanceTablePortfolio">
+            {label('performanceTablePortfolio', lang)}
+          </th>
+          <th class="right" data-i18n="performanceTableBench">
+            {label('performanceTableBench', lang)}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {points.map((p) => (
+          <tr>
+            <td class="num muted">{p.pickDate}</td>
+            <td class="num">{p.symbol}</td>
+            <td class={`num right ${signClass(p.portfolioCumulative)}`}>
+              {pct(p.portfolioCumulative)}
+            </td>
+            <td class={`num right ${signClass(p.benchmarkCumulative)}`}>
+              {pct(p.benchmarkCumulative)}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+)}

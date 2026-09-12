@@ -12,7 +12,17 @@ const entry = todayEntry ?? await getLatestEntry();
 ---
 
 <Layout title={label('today', lang)} titleKey="today" lang={lang}>
-  <p class="muted" data-i18n="tagline">{label('tagline', lang)}</p>
+  <div class="page-head" style="align-items: baseline;">
+    <p class="muted" style="margin: 0; font-size: 0.95rem;" data-i18n="tagline">
+      {label('tagline', lang)}
+    </p>
+    {entry?.meta && (
+      <p class="num" style="margin: 0; font-size: 0.78rem; color: var(--faint);">
+        <span data-i18n="screened">{label('screened', lang)}</span>{' '}
+        {entry.meta.candidatesScreened.toLocaleString('en-US')}
+      </p>
+    )}
+  </div>
   {entry ? (
     <DailyCard entry={entry} lang={lang} />
   ) : (

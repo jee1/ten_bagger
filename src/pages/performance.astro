@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import PerformanceEmpty from '../components/PerformanceEmpty.astro';
 import PerformanceSummary from '../components/PerformanceSummary.astro';
 import HorizonCards from '../components/HorizonCards.astro';
+import PerformanceTable from '../components/PerformanceTable.astro';
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
 import { loadPerformanceBundle, type Market } from '../lib/performanceLoad';
@@ -24,14 +25,21 @@ const usHref = `${base}performance?lang=${lang}&market=US`;
 ---
 
 <Layout title={label('performance', lang)} titleKey="performance" lang={lang}>
-  <div class="market-switch">
-    <span class="muted"><span data-i18n="performanceMarket">{label('performanceMarket', lang)}</span>:</span>
-    <a href={krHref} data-market-link="KR" class:list={{ active: initialMarket === 'KR' }}
-      ><span data-i18n="marketKR">{label('marketKR', lang)}</span></a
-    >
-    <a href={usHref} data-market-link="US" class:list={{ active: initialMarket === 'US' }}
-      ><span data-i18n="marketUS">{label('marketUS', lang)}</span></a
-    >
+  <div class="page-head">
+    <div>
+      <h1 data-i18n="performance">{label('performance', lang)}</h1>
+      <p class="muted" data-i18n="performanceHypothetical">
+        {label('performanceHypothetical', lang)}
+      </p>
+    </div>
+    <nav class="segmented" aria-label={label('performanceMarket', lang)}>
+      <a href={krHref} data-market-link="KR" class:list={{ active: initialMarket === 'KR' }}
+        ><span data-i18n="marketKR">{label('marketKR', lang)}</span></a
+      >
+      <a href={usHref} data-market-link="US" class:list={{ active: initialMarket === 'US' }}
+        ><span data-i18n="marketUS">{label('marketUS', lang)}</span></a
+      >
+    </nav>
   </div>
 
   {
@@ -43,6 +51,7 @@ const usHref = `${base}performance?lang=${lang}&market=US`;
           <>
             <PerformanceSummary lang={lang} view={view} />
             <HorizonCards lang={lang} horizons={view.horizons} />
+            <PerformanceTable lang={lang} view={view} />
             {view.empty && (
               <p class="muted">
                 <span data-i18n="performanceHorizonUnavailable">
@@ -56,17 +65,3 @@ const usHref = `${base}performance?lang=${lang}&market=US`;
     ))
   }
 </Layout>
-
-<style>
-  .market-switch {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-  }
-  .market-switch a.active {
-    font-weight: 700;
-    text-decoration: underline;
-  }
-</style>

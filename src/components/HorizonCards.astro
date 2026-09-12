@@ -21,127 +21,94 @@ const horizonLabelKey = {
   H60: 'horizonH60',
 } as const;
 
-function horizonLabel(id: string): keyof typeof horizonLabelKey {
-  return (id in horizonLabelKey ? id : '1M') as keyof typeof horizonLabelKey;
+function horizonKey(id: string): (typeof horizonLabelKey)[keyof typeof horizonLabelKey] {
+  return horizonLabelKey[(id in horizonLabelKey ? id : '1M') as keyof typeof horizonLabelKey];
 }
 
 function pct(n: number | null | undefined): string {
   if (n == null || Number.isNaN(n)) return '—';
   return `${(n * 100).toFixed(2)}%`;
 }
+
+function signClass(n: number | null | undefined): string {
+  if (n == null || Number.isNaN(n)) return 'pending';
+  return n >= 0 ? 'pos' : 'neg';
+}
+
+const anyEmpty = horizons.some((h) => !h.available);
 ---
 
-<section class="card">
-  <h2 data-i18n="performanceHorizons">{label('performanceHorizons', lang)}</h2>
+<section>
+  <h2 class="section-title" data-i18n="performanceHorizons">{label('performanceHorizons', lang)}</h2>
+
   <div class="horizon-grid">
     {presentation.map((h) => (
-      <div class="horizon-card">
-        <h3>{label(horizonLabelKey[horizonLabel(h.horizonId)], lang)}</h3>
-        <p class="muted">
-          <span data-i18n="performanceHorizonSamples">{label('performanceHorizonSamples', lang)}</span>:
-          {' '}
-          {h.nComplete}
-        </p>
+      <div class:list={['horizon-card', { empty: !h.available }]}>
+        <div class="head">
+          <span class="name" data-i18n={horizonKey(h.horizonId)}>
+            {label(horizonKey(h.horizonId), lang)}
+          </span>
+          <span class="num n">n={h.nComplete}</span>
+        </div>
         {h.available ? (
           <>
-            <p>
-              <span data-i18n="performanceAvgPick">{label('performanceAvgPick', lang)}</span>: {pct(h.avgPickReturn)}
-            </p>
-            <p>
-              <span data-i18n="performanceAvgBench">{label('performanceAvgBench', lang)}</span>:{' '}
+            <p class={`num value ${signClass(h.avgPickReturn)}`}>{pct(h.avgPickReturn)}</p>
+            <p class="num bench">
+              <span data-i18n="performanceAvgBench">{label('performanceAvgBench', lang)}</span>{' '}
               {h.excessClaimAllowed ? (
-                pct(h.avgBenchReturn)
+                <span class={signClass(h.avgBenchReturn)}>{pct(h.avgBenchReturn)}</span>
               ) : (
-                <span data-i18n="performanceBenchmarkUnavailable"
-                  >{label('performanceBenchmarkUnavailable', lang)}</span
-                >
+                <span class="pending">—</span>
               )}
             </p>
-            {h.survivorshipCaveat && (
-              <p class="muted" data-i18n="performanceSurvivorshipCaveat"
-                >{label('performanceSurvivorshipCaveat', lang)}</p
-              >
-            )}
           </>
         ) : (
-          <p class="muted">
-            <span data-i18n="performanceHorizonUnavailable"
-              >{label('performanceHorizonUnavailable', lang)}</span
-            >
-            {' '}
-            (n={h.nComplete})
-          </p>
+          <>
+            <p class="num value">—</p>
+            <p class="bench" data-i18n="performanceHorizonUnavailable">
+              {label('performanceHorizonUnavailable', lang)}
+            </p>
+          </>
         )}
       </div>
     ))}
   </div>
 
-  <h3 class="secondary-heading" data-i18n="performanceSecondaryHorizons"
-    >{label('performanceSecondaryHorizons', lang)}</h3
-  >
-  <div class="horizon-grid secondary">
+  {anyEmpty && (
+    <p class="muted" style="margin: 0.6rem 0 0; font-size: 0.78rem;" data-i18n="performanceSamplesPending">
+      {label('performanceSamplesPending', lang)}
+    </p>
+  )}
+
+  <h3 class="section-title" data-i18n="performanceSecondaryHorizons">
+    {label('performanceSecondaryHorizons', lang)}
+  </h3>
+  <div class="horizon-secondary">
     {secondary.map((h) => (
-      <div class="horizon-card muted-card">
-        <h4>{label(horizonLabelKey[horizonLabel(h.horizonId)], lang)}</h4>
-        <p class="muted">
-          <span data-i18n="performanceHorizonSamples">{label('performanceHorizonSamples', lang)}</span>:
-          {' '}
-          {h.nComplete}
-        </p>
+      <div class:list={['horizon-strip', { empty: !h.available }]}>
+        <span class="num">
+          <span data-i18n={horizonKey(h.horizonId)}>{label(horizonKey(h.horizonId), lang)}</span>
+          <span class="muted"> n={h.nComplete}</span>
+        </span>
         {h.available ? (
-          <>
-            <p>
-              <span data-i18n="performanceAvgPick">{label('performanceAvgPick', lang)}</span>: {pct(h.avgPickReturn)}
-            </p>
-            <p>
-              <span data-i18n="performanceAvgBench">{label('performanceAvgBench', lang)}</span>:{' '}
-              {h.excessClaimAllowed ? (
-                pct(h.avgBenchReturn)
-              ) : (
-                <span data-i18n="performanceBenchmarkUnavailable"
-                  >{label('performanceBenchmarkUnavailable', lang)}</span
-                >
-              )}
-            </p>
-          </>
+          <span class="num">
+            <strong class={signClass(h.avgPickReturn)}>{pct(h.avgPickReturn)}</strong>
+            <span class="muted" style="font-size: 0.78rem;">
+              {' / '}
+              <span data-i18n="performanceAvgBench">{label('performanceAvgBench', lang)}</span>{' '}
+              {h.excessClaimAllowed ? pct(h.avgBenchReturn) : '—'}
+            </span>
+          </span>
         ) : (
-          <p class="muted">
-            <span data-i18n="performanceHorizonUnavailable"
-              >{label('performanceHorizonUnavailable', lang)}</span
-            >
-            {' '}
-            (n={h.nComplete})
-          </p>
+          <span class="num pending">—</span>
         )}
       </div>
     ))}
   </div>
-</section>
 
-<style>
-  .horizon-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 0.75rem;
-    margin-top: 0.75rem;
-  }
-  .horizon-card {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0.75rem;
-  }
-  .horizon-card h3,
-  .horizon-card h4 {
-    margin: 0 0 0.5rem;
-    font-size: 1rem;
-  }
-  .secondary-heading {
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    color: var(--muted);
-  }
-  .muted-card {
-    opacity: 0.85;
-  }
-</style>
+  {horizons.some((h) => h.survivorshipCaveat) && (
+    <p class="muted" style="margin: 0.75rem 0 0; font-size: 0.78rem;" data-i18n="performanceSurvivorshipCaveat">
+      {label('performanceSurvivorshipCaveat', lang)}
+    </p>
+  )}
+</section>

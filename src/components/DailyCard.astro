@@ -14,18 +14,28 @@ const { entry, lang, detail = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const profile = entry.stock?.profile;
 const topCandidates = entry.topCandidates;
+const scores = entry.scores;
 
-function axisRows(c: TopNCandidate) {
-  const s = c.scores;
-  return [
-    { key: 'composite' as const, value: s.composite },
-    { key: 'size' as const, value: s.size },
-    { key: 'growth' as const, value: s.growth },
-    { key: 'valuation' as const, value: s.valuation },
-    { key: 'entry' as const, value: s.entry },
-    { key: 'momentum' as const, value: s.momentum },
-    { key: 'quality' as const, value: s.quality },
-  ];
+/** Score colour scale: same hue as --accent, chroma drops with the score. */
+function tone(value: number): string {
+  if (value >= 80) return 'var(--s-high)';
+  if (value >= 60) return 'var(--s-mid)';
+  return 'var(--s-low)';
+}
+
+type AxisKey = 'size' | 'growth' | 'valuation' | 'entry' | 'momentum' | 'quality';
+
+const AXIS_ORDER: AxisKey[] = ['size', 'growth', 'valuation', 'entry', 'momentum', 'quality'];
+
+function axes(s: { [K in AxisKey]?: number }): { key: AxisKey; value: number }[] {
+  return AXIS_ORDER.flatMap((key) => {
+    const value = s[key];
+    return value == null ? [] : [{ key, value }];
+  });
+}
+
+function sparkBars(c: TopNCandidate) {
+  return axes(c.scores);
 }
 
 function overview(langSel: Lang): string {
@@ -33,12 +43,18 @@ function overview(langSel: Lang): string {
   const full = t(profile.overview, langSel);
   return detail ? full : shortText(full);
 }
+
+const composite = scores?.composite ?? 0;
+const threshold = scores?.threshold ?? 0;
+const delta = composite - threshold;
 ---
 
-<article class="card">
-  <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.75rem;">
-    <span class="badge">{entry.date}</span>
+<article class="card daily-card">
+  <div class="daily-meta">
+    <span class="num muted" style="font-size: 0.8rem;">{entry.date}</span>
+    <span class="sep">·</span>
     <span class={`badge ${entry.market === 'KR' ? 'kr' : 'us'}`}>
+      <span class="dot" style={`background: var(--${entry.market === 'KR' ? 'kr' : 'us'});`}></span>
       {entry.market === 'KR' ? (
         <span data-i18n="marketKR">{label('marketKR', lang)}</span>
       ) : (
@@ -54,193 +70,203 @@ function overview(langSel: Lang): string {
     </span>
   </div>
 
-  {entry.status === 'no_pick' ? (
-    <>
-      <h1 data-i18n="noPickTitle">{label('noPickTitle', lang)}</h1>
-      <p class="muted" data-i18n="noPickBody">{label('noPickBody', lang)}</p>
-      {entry.scores && (
-        <p class="muted">
-          <span data-i18n-show="ko" hidden={lang !== 'ko'}>임계 점수</span>
-          <span data-i18n-show="en" hidden={lang !== 'en'}>Threshold</span>: {entry.scores.threshold}
-          {entry.meta && (
-            <>
-              {' · '}
-              <span data-i18n-show="ko" hidden={lang !== 'ko'}>스크리닝</span>
-              <span data-i18n-show="en" hidden={lang !== 'en'}>Screened</span>: {entry.meta.candidatesScreened}
-            </>
-          )}
-        </p>
-      )}
-    </>
-  ) : entry.stock && entry.reasoning && entry.scores ? (
-    <>
-      <h1>{entry.stock.symbol}</h1>
-      <p class="muted">
-        <DualText text={entry.stock.name} lang={lang} /> · {entry.stock.exchange}
-      </p>
-      {profile && (overview('ko') || overview('en')) && (
-        <section class="profile-section">
-          <h2 class="section-title" data-i18n="companyProfile">{label('companyProfile', lang)}</h2>
-          <p data-i18n-show="ko" hidden={lang !== 'ko'}>{overview('ko')}</p>
-          <p data-i18n-show="en" hidden={lang !== 'en'}>{overview('en')}</p>
-          {detail && (profile.sector || profile.industry) && (
-            <p class="muted profile-meta">
-              {profile.sector && (
-                <span>
-                  <span data-i18n="sector">{label('sector', lang)}</span>:
-                  {' '}
+  <div class="daily-body">
+    {entry.status === 'no_pick' ? (
+      <>
+        <h1 data-i18n="noPickTitle">{label('noPickTitle', lang)}</h1>
+        <p class="muted" data-i18n="noPickBody">{label('noPickBody', lang)}</p>
+        {scores && (
+          <p class="num muted" style="font-size: 0.82rem;">
+            <span data-i18n="threshold">{label('threshold', lang)}</span>: {scores.threshold}
+            {entry.meta && (
+              <>
+                {' · '}
+                <span data-i18n="screened">{label('screened', lang)}</span>:{' '}
+                {entry.meta.candidatesScreened}
+              </>
+            )}
+          </p>
+        )}
+      </>
+    ) : entry.stock && entry.reasoning && scores ? (
+      <>
+        <div class="daily-head">
+          <div>
+            <h1>{entry.stock.symbol}</h1>
+            <p class="daily-name">
+              <DualText text={entry.stock.name} lang={lang} />
+            </p>
+            <p class="daily-sub muted">
+              {entry.stock.exchange}
+              {profile?.sector && (
+                <>
+                  {' · '}
                   <DualText text={profile.sector} lang={lang} />
-                </span>
+                </>
               )}
-              {profile.sector && profile.industry && <span> · </span>}
-              {profile.industry && (
-                <span>
-                  <span data-i18n="industry">{label('industry', lang)}</span>:
-                  {' '}
+              {profile?.industry && (
+                <>
+                  {' / '}
                   <DualText text={profile.industry} lang={lang} />
-                </span>
+                </>
               )}
             </p>
-          )}
-        </section>
-      )}
-      <DualText text={entry.reasoning.summary} lang={lang} as="p" />
-
-      <div class="score-grid">
-        <div class="score-item">
-          <div class="value">{entry.scores.composite.toFixed(1)}</div>
-          <div class="label" data-i18n="composite">{label('composite', lang)}</div>
-        </div>
-        {entry.scores.size != null && (
-          <div class="score-item">
-            <div class="value">{entry.scores.size.toFixed(1)}</div>
-            <div class="label" data-i18n="size">{label('size', lang)}</div>
           </div>
-        )}
-        <div class="score-item">
-          <div class="value">{entry.scores.growth.toFixed(1)}</div>
-          <div class="label" data-i18n="growth">{label('growth', lang)}</div>
-        </div>
-        <div class="score-item">
-          <div class="value">{entry.scores.valuation.toFixed(1)}</div>
-          <div class="label" data-i18n="valuation">{label('valuation', lang)}</div>
-        </div>
-        {entry.scores.entry != null && (
-          <div class="score-item">
-            <div class="value">{entry.scores.entry.toFixed(1)}</div>
-            <div class="label" data-i18n="entry">{label('entry', lang)}</div>
+          <div class="composite">
+            <p class="eyebrow">
+              <span data-i18n="composite">{label('composite', lang)}</span>
+              {scores.version ? ` · Score v${scores.version}` : ''}
+            </p>
+            <p class="composite-value">
+              <strong style={`color: ${tone(composite)};`}>{composite.toFixed(1)}</strong>
+              <span class="num muted composite-max">/ 100</span>
+            </p>
+            <p class="num composite-delta">
+              <span data-i18n="threshold">{label('threshold', lang)}</span>{' '}
+              {threshold.toFixed(1)}
+              {' · '}
+              <span style={`color: ${tone(composite)}; font-weight: 600;`}>
+                {delta >= 0 ? '+' : ''}{delta.toFixed(1)}
+              </span>
+            </p>
           </div>
-        )}
-        <div class="score-item">
-          <div class="value">{entry.scores.momentum.toFixed(1)}</div>
-          <div class="label" data-i18n="momentum">{label('momentum', lang)}</div>
         </div>
-        <div class="score-item">
-          <div class="value">{entry.scores.quality.toFixed(1)}</div>
-          <div class="label" data-i18n="quality">{label('quality', lang)}</div>
+
+        <div class="threshold-meter">
+          <div class="track">
+            <span class="fill" style={`width: ${Math.min(Math.max(composite, 0), 100)}%;`}></span>
+            <span class="marker" style={`left: ${Math.min(Math.max(threshold, 0), 100)}%;`}></span>
+          </div>
+          <div class="num threshold-scale">
+            <span>0</span>
+            <span class="at">
+              <span data-i18n="threshold">{label('threshold', lang)}</span> {threshold.toFixed(1)}
+            </span>
+            <span>100</span>
+          </div>
         </div>
-      </div>
 
-      {detail ? (
-        <>
-          {entry.reasoning.size && (
-            <>
-              <h2 class="section-title" data-i18n="size">{label('size', lang)}</h2>
-              <DualText text={entry.reasoning.size} lang={lang} as="p" />
-            </>
-          )}
-          <h2 class="section-title" data-i18n="growth">{label('growth', lang)}</h2>
-          <DualText text={entry.reasoning.growth} lang={lang} as="p" />
-          <h2 class="section-title" data-i18n="valuation">{label('valuation', lang)}</h2>
-          <DualText text={entry.reasoning.valuation} lang={lang} as="p" />
-          {entry.reasoning.entry && (
-            <>
-              <h2 class="section-title" data-i18n="entry">{label('entry', lang)}</h2>
-              <DualText text={entry.reasoning.entry} lang={lang} as="p" />
-            </>
-          )}
-          <h2 class="section-title" data-i18n="momentum">{label('momentum', lang)}</h2>
-          <DualText text={entry.reasoning.momentum} lang={lang} as="p" />
-          {entry.reasoning.quality && (
-            <>
-              <h2 class="section-title" data-i18n="quality">{label('quality', lang)}</h2>
-              <DualText text={entry.reasoning.quality} lang={lang} as="p" />
-            </>
-          )}
-          <h2 class="section-title" data-i18n="risks">{label('risks', lang)}</h2>
-          <ul class="risk-list">
-            {entry.reasoning.risks.map((risk) => (
-              <DualText text={risk} lang={lang} as="li" />
-            ))}
-          </ul>
-        </>
-      ) : (
-        <p>
-          <a href={`${base}daily/${entry.date}?lang=${lang}`}>
-            <span data-i18n="viewDetail">{label('viewDetail', lang)}</span> →
-          </a>
-        </p>
-      )}
-    </>
-  ) : null}
+        <div class="daily-summary">
+          <DualText text={entry.reasoning.summary} lang={lang} as="p" />
+        </div>
 
-  {topCandidates && topCandidates.length > 0 && (
-    <details class="top-n">
-      <summary data-i18n="topCandidates">{label('topCandidates', lang)}</summary>
-      <p class="muted top-n-help" data-i18n="topCandidatesHelp">{label('topCandidatesHelp', lang)}</p>
-      <ol class="top-n-list">
-        {topCandidates.map((c) => (
-          <li>
-            <div class="top-n-head">
-              <strong>#{c.rank}</strong>
-              <span>{c.symbol}</span>
-              <span class="muted">
-                <DualText text={c.name} lang={lang} /> · {c.exchange}
+        <div class="axis-grid">
+          {axes(scores).map((axis) => (
+            <div class="axis-row">
+              <span class="label" data-i18n={axis.key}>{label(axis.key, lang)}</span>
+              <span class="track">
+                <span
+                  style={`width: ${Math.min(Math.max(axis.value, 0), 100)}%; background: ${tone(axis.value)};`}
+                ></span>
+              </span>
+              <span class="num value" style={`color: ${tone(axis.value)};`}>
+                {axis.value.toFixed(1)}
               </span>
             </div>
-            <div class="score-grid top-n-scores">
-              {axisRows(c).map((row) => (
-                <div class="score-item">
-                  <div class="value">{row.value.toFixed(1)}</div>
-                  <div class="label" data-i18n={row.key}>{label(row.key, lang)}</div>
-                </div>
+          ))}
+        </div>
+
+        {profile && (overview('ko') || overview('en')) && (
+          <section class="profile-section">
+            <p class="eyebrow" data-i18n="companyProfile">{label('companyProfile', lang)}</p>
+            <p class="muted" data-i18n-show="ko" hidden={lang !== 'ko'}>{overview('ko')}</p>
+            <p class="muted" data-i18n-show="en" hidden={lang !== 'en'}>{overview('en')}</p>
+          </section>
+        )}
+
+        {detail ? (
+          <div class="reasoning-section">
+            {entry.reasoning.size && (
+              <>
+                <h2 class="section-title" data-i18n="size">{label('size', lang)}</h2>
+                <DualText text={entry.reasoning.size} lang={lang} as="p" />
+              </>
+            )}
+            <h2 class="section-title" data-i18n="growth">{label('growth', lang)}</h2>
+            <DualText text={entry.reasoning.growth} lang={lang} as="p" />
+            <h2 class="section-title" data-i18n="valuation">{label('valuation', lang)}</h2>
+            <DualText text={entry.reasoning.valuation} lang={lang} as="p" />
+            {entry.reasoning.entry && (
+              <>
+                <h2 class="section-title" data-i18n="entry">{label('entry', lang)}</h2>
+                <DualText text={entry.reasoning.entry} lang={lang} as="p" />
+              </>
+            )}
+            <h2 class="section-title" data-i18n="momentum">{label('momentum', lang)}</h2>
+            <DualText text={entry.reasoning.momentum} lang={lang} as="p" />
+            {entry.reasoning.quality && (
+              <>
+                <h2 class="section-title" data-i18n="quality">{label('quality', lang)}</h2>
+                <DualText text={entry.reasoning.quality} lang={lang} as="p" />
+              </>
+            )}
+            <h2 class="section-title" data-i18n="risks">{label('risks', lang)}</h2>
+            <ul class="risk-list">
+              {entry.reasoning.risks.map((risk) => (
+                <DualText text={risk} lang={lang} as="li" />
               ))}
-            </div>
-          </li>
-        ))}
-      </ol>
-    </details>
-  )}
+            </ul>
+          </div>
+        ) : (
+          <p class="detail-link">
+            <a class="btn" href={`${base}daily/${entry.date}?lang=${lang}`}>
+              <span data-i18n="viewDetail">{label('viewDetail', lang)}</span>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </p>
+        )}
+      </>
+    ) : null}
+  </div>
 </article>
 
-<style>
-  .top-n {
-    margin-top: 1.25rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--border);
-  }
-  .top-n summary {
-    cursor: pointer;
-    font-weight: 600;
-  }
-  .top-n-help {
-    margin: 0.5rem 0 0.75rem;
-    font-size: 0.9rem;
-  }
-  .top-n-list {
-    margin: 0;
-    padding-left: 1.2rem;
-  }
-  .top-n-list > li {
-    margin-bottom: 1rem;
-  }
-  .top-n-head {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.35rem;
-  }
-  .top-n-scores {
-    margin: 0.35rem 0 0;
-  }
-</style>
+{topCandidates && topCandidates.length > 0 && (
+  <section class="top-n">
+    <div class="top-n-head-row">
+      <h2 class="section-title" style="margin: 0;" data-i18n="topCandidates">
+        {label('topCandidates', lang)}
+      </h2>
+      <p class="muted top-n-help" data-i18n="topCandidatesHelp">
+        {label('topCandidatesHelp', lang)}
+      </p>
+    </div>
+    <ol class="top-n-list">
+      {topCandidates.map((c) => (
+        <li class="top-n-row">
+          <span class="num top-n-rank">{c.rank}</span>
+          <span class="top-n-id">
+            <span class="num top-n-symbol">{c.symbol}</span>
+            <span class="top-n-name">
+              <DualText text={c.name} lang={lang} />
+              <span class="exchange"> {c.exchange}</span>
+            </span>
+          </span>
+          <span class="spark" aria-hidden="true">
+            {sparkBars(c).map((axis) => (
+              <span
+                style={`height: ${Math.min(Math.max(axis.value, 0), 100)}%; background: ${tone(axis.value)};`}
+              ></span>
+            ))}
+          </span>
+          <span class="num top-n-score" style={`color: ${tone(c.scores.composite)};`}>
+            {c.scores.composite.toFixed(1)}
+          </span>
+        </li>
+      ))}
+    </ol>
+    <p class="num top-n-legend" data-i18n="scoreAxesLegend">{label('scoreAxesLegend', lang)}</p>
+  </section>
+)}

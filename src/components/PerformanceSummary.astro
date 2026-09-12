@@ -1,7 +1,7 @@
 ---
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
-import type { MarketPerformanceView } from '../lib/performanceAggregate';
+import type { CumulativePoint, MarketPerformanceView } from '../lib/performanceAggregate';
 
 interface Props {
   lang: Lang;
@@ -10,159 +10,301 @@ interface Props {
 
 const { lang, view } = Astro.props;
 const series = view.cumulative;
+const points: CumulativePoint[] = series?.points ?? [];
 
 function pct(n: number | null | undefined): string {
   if (n == null || Number.isNaN(n)) return '—';
   return `${(n * 100).toFixed(2)}%`;
 }
 
-const points = series?.points ?? [];
-const w = 320;
-const h = 80;
-const pad = 4;
-let svgPortfolio = '';
-let svgBench = '';
-if (points.length >= 2) {
-  const ys = points.map((p) => p.portfolioCumulative);
-  const bys = points.map((p) => p.benchmarkCumulative).filter((v): v is number => v != null);
-  const all = [...ys, ...bys];
-  const minY = Math.min(...all, 0);
-  const maxY = Math.max(...all, 0);
-  const span = maxY - minY || 1;
-  const xAt = (i: number) => pad + (i / (points.length - 1)) * (w - 2 * pad);
-  const yAt = (v: number) => h - pad - ((v - minY) / span) * (h - 2 * pad);
-  svgPortfolio = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${xAt(i)},${yAt(p.portfolioCumulative)}`).join(' ');
-  const benchPts = points
-    .map((p, i) => (p.benchmarkCumulative == null ? null : [i, p.benchmarkCumulative] as const))
-    .filter((x): x is readonly [number, number] => x != null);
-  if (benchPts.length >= 2) {
-    svgBench = benchPts
-      .map(([i, v], j) => `${j === 0 ? 'M' : 'L'}${xAt(i)},${yAt(v)}`)
-      .join(' ');
-  }
+function signClass(n: number | null | undefined): string {
+  if (n == null || Number.isNaN(n)) return 'pending';
+  return n >= 0 ? 'pos' : 'neg';
 }
+
+/**
+ * The single largest step in the cumulative chain, when it dwarfs the rest.
+ * One such pick can carry the whole curve, so the chart marks where it lands.
+ */
+const jump = (() => {
+  if (points.length < 2) return null;
+  let best = { index: 0, delta: 0 };
+  for (let i = 1; i < points.length; i++) {
+    const delta = Math.abs(points[i].portfolioCumulative - points[i - 1].portfolioCumulative);
+    if (delta > best.delta) best = { index: i, delta };
+  }
+  return best.delta >= 1 ? { index: best.index, symbol: points[best.index].symbol } : null;
+})();
+
+interface Chart {
+  w: number;
+  h: number;
+  portfolio: string;
+  benchmark: string;
+  ticks: { y: number; text: string; zero: boolean }[];
+  jumpX: number | null;
+  jumpTextX: number | null;
+  firstDate: string;
+  lastDate: string;
+  lastX: number;
+  lastY: number;
+  bottom: number;
+  left: number;
+  labelY: number;
+}
+
+const round = (n: number) => Math.round(n * 10) / 10;
+
+function buildChart(
+  w: number,
+  h: number,
+  l: number,
+  r: number,
+  tp: number,
+  b: number,
+  compactDates = false,
+): Chart | null {
+  if (points.length < 2) return null;
+
+  const ys = points.map((p) => p.portfolioCumulative);
+  const bys = points
+    .map((p) => p.benchmarkCumulative)
+    .filter((v): v is number => v != null && !Number.isNaN(v));
+  const all = [...ys, ...bys, 0];
+  const min = Math.min(...all);
+  const max = Math.max(...all);
+  const span = max - min || 1;
+  const lo = min - span * 0.08;
+  const hi = max + span * 0.08;
+
+  const xAt = (i: number) => l + (i / (points.length - 1)) * (w - l - r);
+  const yAt = (v: number) => tp + ((hi - v) / (hi - lo)) * (h - tp - b);
+
+  // round gridlines (1/2/5 × 10^n, in percentage points) instead of raw range slices
+  const rough = ((hi - lo) * 100) / 4;
+  const mag = 10 ** Math.floor(Math.log10(rough));
+  const norm = rough / mag;
+  const step = (norm <= 1 ? 1 : norm <= 2 ? 2 : norm <= 2.5 ? 2.5 : norm <= 5 ? 5 : 10) * mag;
+
+  const zeroY = round(yAt(0));
+  const ticks: Chart['ticks'] = [];
+  for (let v = Math.ceil((lo * 100) / step) * step; v <= hi * 100; v += step) {
+    const y = round(yAt(v / 100));
+    if (Math.abs(y - zeroY) > 8) ticks.push({ y, text: `${v.toFixed(0)}%`, zero: false });
+  }
+  ticks.push({ y: zeroY, text: '0%', zero: true });
+
+  const line = (vals: (number | null)[]) => {
+    const seg = vals
+      .map((v, i) => (v == null ? null : ([i, v] as const)))
+      .filter((x): x is readonly [number, number] => x != null);
+    if (seg.length < 2) return '';
+    return seg
+      .map(([i, v], j) => `${j === 0 ? 'M' : 'L'}${xAt(i).toFixed(1)},${yAt(v).toFixed(1)}`)
+      .join(' ');
+  };
+
+  return {
+    w,
+    h,
+    portfolio: line(ys),
+    benchmark: series?.excessClaimAllowed ? line(points.map((p) => p.benchmarkCumulative)) : '',
+    ticks,
+    jumpX: jump ? round(xAt(jump.index)) : null,
+    jumpTextX: jump ? round(xAt(jump.index)) : null,
+    firstDate: compactDates ? points[0].pickDate.slice(5) : points[0].pickDate,
+    lastDate: compactDates
+      ? points[points.length - 1].pickDate.slice(5)
+      : points[points.length - 1].pickDate,
+    lastX: round(xAt(points.length - 1)),
+    lastY: round(yAt(ys[ys.length - 1])),
+    bottom: h - b,
+    left: l,
+    labelY: tp + 8,
+  };
+}
+
+// two sizes: a wide viewBox keeps axis labels legible on desktop, a narrow one on phones
+const wide = buildChart(880, 220, 52, 18, 16, 30);
+const narrow = buildChart(358, 180, 40, 8, 12, 26, true);
+
+const benchmarkKey = view.market === 'KR' ? 'performanceBenchmarkIdKR' : 'performanceBenchmarkIdUS';
 ---
 
-<article class="card">
-  <h2 data-i18n="performanceCumulative">{label('performanceCumulative', lang)}</h2>
-  {view.asOfDate && (
-    <p class="muted">
-      <span data-i18n="performanceAsOf">{label('performanceAsOf', lang)}</span>: {view.asOfDate}
-    </p>
-  )}
-  {view.priceAdjustment && (
-    <p class="muted">
-      <span data-i18n="performancePriceAdjustment">{label('performancePriceAdjustment', lang)}</span>:
-      {' '}
-      <code>{view.priceAdjustment}</code>
-    </p>
-  )}
-  {view.priceBasisValidation === 'incomplete' && (
-    <p class="warn" role="status">
-      <span data-i18n="performancePriceBasisIncomplete"
-        >{label('performancePriceBasisIncomplete', lang)}</span
-      >
-    </p>
-  )}
-  <p data-i18n="performanceHypothetical">{label('performanceHypothetical', lang)}</p>
-  <p class="muted" data-i18n="performanceEqualWeight">{label('performanceEqualWeight', lang)}</p>
-  <p class="muted" data-i18n="performanceIndexNote">{label('performanceIndexNote', lang)}</p>
-  <p class="muted">
-    <span data-i18n-show="ko" hidden={lang !== 'ko' || view.market !== 'KR'}
-      >{label('performanceBenchmarkIdKR', 'ko')}</span
+{view.priceBasisValidation === 'incomplete' && (
+  <div class="alert" role="status">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
     >
-    <span data-i18n-show="en" hidden={lang !== 'en' || view.market !== 'KR'}
-      >{label('performanceBenchmarkIdKR', 'en')}</span
-    >
-    <span data-i18n-show="ko" hidden={lang !== 'ko' || view.market !== 'US'}
-      >{label('performanceBenchmarkIdUS', 'ko')}</span
-    >
-    <span data-i18n-show="en" hidden={lang !== 'en' || view.market !== 'US'}
-      >{label('performanceBenchmarkIdUS', 'en')}</span
-    >
-  </p>
+      <path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path>
+      <path d="M12 9v4"></path>
+      <path d="M12 17h.01"></path>
+    </svg>
+    <div>
+      <strong data-i18n="performancePriceBasisIncompleteTitle">
+        {label('performancePriceBasisIncompleteTitle', lang)}
+      </strong>
+      <p>
+        {view.priceAdjustment && (
+          <>
+            <span data-i18n="performancePriceAdjustment">
+              {label('performancePriceAdjustment', lang)}
+            </span>{' '}
+            <code>{view.priceAdjustment}</code>
+            {' · '}
+          </>
+        )}
+        <span data-i18n="performancePriceBasisIncomplete">
+          {label('performancePriceBasisIncomplete', lang)}
+        </span>
+      </p>
+    </div>
+  </div>
+)}
 
+<article class="card">
   {series ? (
     <>
-      <p>
-        <strong data-i18n="performancePortfolio">{label('performancePortfolio', lang)}</strong>: {pct(series.finalPortfolioReturn)}
-        {' · '}
-        <strong data-i18n="performanceBenchmark">{label('performanceBenchmark', lang)}</strong>:{' '}
-        {series.excessClaimAllowed
-          ? pct(series.finalBenchmarkReturn)
-          : <span data-i18n="performanceBenchmarkUnavailable">{label('performanceBenchmarkUnavailable', lang)}</span>}
-        <span class="muted"> ({series.horizonId})</span>
-      </p>
-      {view.hasSurvivorshipCaveat && (
-        <p class="muted" data-i18n="performanceSurvivorshipCaveat"
-          >{label('performanceSurvivorshipCaveat', lang)}</p
-        >
+      {view.asOfDate && (
+        <p class="num muted" style="margin: 0 0 1.25rem; font-size: 0.78rem;">
+          <span data-i18n="performanceAsOf">{label('performanceAsOf', lang)}</span> {view.asOfDate}
+        </p>
       )}
+      <div class="stat-row">
+        <div class="stat">
+          <p class="eyebrow">
+            <span data-i18n="performancePortfolio">{label('performancePortfolio', lang)}</span>
+            {` · ${series.horizonId}`}
+          </p>
+          <p class={`value ${signClass(series.finalPortfolioReturn)}`}>
+            {pct(series.finalPortfolioReturn)}
+          </p>
+          <p class="num note">
+            <span data-i18n="performanceHorizonSamples">
+              {label('performanceHorizonSamples', lang)}
+            </span>{' '}
+            {points.length}
+          </p>
+        </div>
+        <div class="stat">
+          <p class="eyebrow" data-i18n="performanceBenchmark">
+            {label('performanceBenchmark', lang)}
+          </p>
+          {series.excessClaimAllowed ? (
+            <p class={`value ${signClass(series.finalBenchmarkReturn)}`}>
+              {pct(series.finalBenchmarkReturn)}
+            </p>
+          ) : (
+            <p class="value pending">—</p>
+          )}
+          <p class="note">
+            {series.excessClaimAllowed ? (
+              <span data-i18n={benchmarkKey}>{label(benchmarkKey, lang)}</span>
+            ) : (
+              <span data-i18n="performanceBenchmarkUnavailable">
+                {label('performanceBenchmarkUnavailable', lang)}
+              </span>
+            )}
+          </p>
+        </div>
+        <div class="stat">
+          <p class="eyebrow" data-i18n="performanceExcess">{label('performanceExcess', lang)}</p>
+          <p class="value pending">—</p>
+          <p class="note" data-i18n="performanceExcessPending">
+            {label('performanceExcessPending', lang)}
+          </p>
+        </div>
+      </div>
 
-      {points.length >= 2 && (
-        <svg
-          class="perf-spark"
-          viewBox={`0 0 ${w} ${h}`}
-          width="100%"
-          height={h}
-          role="img"
-          aria-hidden="true"
-        >
-          {svgPortfolio && <path d={svgPortfolio} fill="none" stroke="var(--accent)" stroke-width="2" />}
-          {svgBench && <path d={svgBench} fill="none" stroke="var(--muted)" stroke-width="1.5" />}
-        </svg>
-      )}
-
-      <table class="perf-table">
-        <caption class="muted" data-i18n="performanceCumulative">{label('performanceCumulative', lang)}</caption>
-        <thead>
-          <tr>
-            <th data-i18n="performanceTableDate">{label('performanceTableDate', lang)}</th>
-            <th data-i18n="performanceTableSymbol">{label('performanceTableSymbol', lang)}</th>
-            <th data-i18n="performanceTablePortfolio">{label('performanceTablePortfolio', lang)}</th>
-            <th data-i18n="performanceTableBench">{label('performanceTableBench', lang)}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {points.map((p) => (
-            <tr>
-              <td>{p.pickDate}</td>
-              <td>{p.symbol}</td>
-              <td>{pct(p.portfolioCumulative)}</td>
-              <td>{pct(p.benchmarkCumulative)}</td>
-            </tr>
+      {wide && narrow && (
+        <div class="perf-chart">
+          {[wide, narrow].map((c, ci) => (
+            <svg
+              class={ci === 0 ? 'chart chart-wide' : 'chart chart-narrow'}
+              viewBox={`0 0 ${c.w} ${c.h}`}
+              width="100%"
+              height={c.h}
+              role="img"
+              aria-label={`${label('performancePortfolio', lang)} / ${label('performanceBenchmark', lang)}`}
+            >
+              {c.ticks.map((tick) => (
+                <>
+                  <line
+                    class:list={['grid', { zero: tick.zero }]}
+                    x1={c.left}
+                    y1={tick.y}
+                    x2={c.w}
+                    y2={tick.y}
+                  />
+                  <text
+                    class:list={['tick', { zero: tick.zero }]}
+                    x={c.left - 8}
+                    y={tick.y + 3.5}
+                    text-anchor="end"
+                  >
+                    {tick.text}
+                  </text>
+                </>
+              ))}
+              {c.benchmark && <path class="bench" d={c.benchmark} />}
+              <path class="portfolio" d={c.portfolio} />
+              {c.jumpX != null && (
+                <line class="jump" x1={c.jumpX} y1={0} x2={c.jumpX} y2={c.bottom + 6} />
+              )}
+              <circle class="head" cx={c.lastX} cy={c.lastY} r="3.5" />
+              <text class="date" x={c.left} y={c.h - 6}>
+                {c.firstDate}
+              </text>
+              {jump && c.jumpTextX != null && (
+                <text class="jump-label" x={c.jumpTextX - 6} y={c.labelY} text-anchor="end">
+                  {jump.symbol}
+                </text>
+              )}
+              <text class="date" x={c.w - 8} y={c.h - 6} text-anchor="end">
+                {c.lastDate}
+              </text>
+            </svg>
           ))}
-        </tbody>
-      </table>
+          <div class="chart-legend">
+            <span>
+              <span class="line"></span>
+              <span data-i18n="performancePortfolio">{label('performancePortfolio', lang)}</span>
+            </span>
+            {series.excessClaimAllowed && (
+              <span>
+                <span class="line bench"></span>
+                <span data-i18n="performanceBenchmark">{label('performanceBenchmark', lang)}</span>
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+
+      <p class="perf-note">
+        <span data-i18n="performanceEqualWeight">{label('performanceEqualWeight', lang)}</span>
+        {' '}
+        <span data-i18n="performanceIndexNote">{label('performanceIndexNote', lang)}</span>
+        {view.hasSurvivorshipCaveat && (
+          <>
+            {' '}
+            <span data-i18n="performanceSurvivorshipCaveat">
+              {label('performanceSurvivorshipCaveat', lang)}
+            </span>
+          </>
+        )}
+      </p>
     </>
   ) : (
-    <p class="muted" data-i18n="performanceHorizonUnavailable"
-      >{label('performanceHorizonUnavailable', lang)}</p
-    >
+    <p class="muted" data-i18n="performanceHorizonUnavailable">
+      {label('performanceHorizonUnavailable', lang)}
+    </p>
   )}
 </article>
-
-<style>
-  .perf-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-  }
-  .perf-table th,
-  .perf-table td {
-    border-bottom: 1px solid var(--border);
-    padding: 0.4rem 0.5rem;
-    text-align: left;
-  }
-  .perf-spark {
-    margin-top: 0.75rem;
-    display: block;
-  }
-  .warn {
-    color: var(--accent, #b45309);
-    background: color-mix(in srgb, var(--accent, #b45309) 12%, transparent);
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-  }
-</style>

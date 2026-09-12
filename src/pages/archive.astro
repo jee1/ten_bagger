@@ -35,15 +35,19 @@ const monthData = await Promise.all(
 ---
 
 <Layout title={label('archive', lang)} titleKey="archive" lang={lang}>
-  <h1 data-i18n="archive">{label('archive', lang)}</h1>
-  <p class="muted">
-    <span data-i18n-show="ko" hidden={lang !== 'ko'}
-      >날짜를 선택하면 해당 일의 텐베거 리포트를 볼 수 있습니다.</span
-    >
-    <span data-i18n-show="en" hidden={lang !== 'en'}
-      >Select a date to view that day's ten-bagger report.</span
-    >
-  </p>
+  <div class="page-head">
+    <div>
+      <h1 data-i18n="archive">{label('archive', lang)}</h1>
+      <p class="muted">
+        <span data-i18n-show="ko" hidden={lang !== 'ko'}
+          >날짜를 선택하면 해당 일의 텐베거 리포트를 볼 수 있습니다.</span
+        >
+        <span data-i18n-show="en" hidden={lang !== 'en'}
+          >Select a date to view that day's ten-bagger report.</span
+        >
+      </p>
+    </div>
+  </div>
   {
     monthData.map(({ year, month, key, entries }) => (
       <section data-archive-ym={key} hidden={key !== archiveYmKey(defaultYear, defaultMonth)}>
