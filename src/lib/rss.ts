@@ -30,7 +30,7 @@ export function joinSitePath(site: string, relPath: string): string {
 
 /** Absolute URL for a daily page under Astro `site`. */
 export function dailyPermalink(site: string, date: string): string {
-  return joinSitePath(site, `daily/${date}`);
+  return joinSitePath(site, `daily/${date}/`);
 }
 
 function localizedPair(ko: string | undefined, en: string | undefined): string {

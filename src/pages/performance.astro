@@ -20,8 +20,8 @@ const views = markets.map((market) => {
   return { market, view: aggregateMarket(bundle, market) };
 });
 
-const krHref = `${base}performance?lang=${lang}&market=KR`;
-const usHref = `${base}performance?lang=${lang}&market=US`;
+const krHref = `${base}performance/?lang=${lang}&market=KR`;
+const usHref = `${base}performance/?lang=${lang}&market=US`;
 ---
 
 <Layout title={label('performance', lang)} titleKey="performance" lang={lang}>

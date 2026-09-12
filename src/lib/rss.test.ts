@@ -19,8 +19,8 @@ function entry(partial: Partial<DailyEntry> & Pick<DailyEntry, 'date' | 'status'
 describe('joinSitePath', () => {
   it('resolves under site that already includes project path', () => {
     assert.equal(
-      joinSitePath('https://example.github.io/ten_bagger', 'daily/2026-09-05'),
-      'https://example.github.io/ten_bagger/daily/2026-09-05',
+      joinSitePath('https://example.github.io/ten_bagger', 'daily/2026-09-05/'),
+      'https://example.github.io/ten_bagger/daily/2026-09-05/',
     );
   });
 
@@ -81,7 +81,7 @@ describe('buildRssItems', () => {
     assert.match(item.title, /진흥기업/);
     assert.match(item.title, /ChinHung/);
     assert.match(item.title, /002780\.KS/);
-    assert.equal(item.link, 'https://example.github.io/ten_bagger/daily/2026-09-05');
+    assert.equal(item.link, 'https://example.github.io/ten_bagger/daily/2026-09-05/');
     assert.doesNotMatch(item.link, /ten_bagger\/ten_bagger/);
     assert.match(item.description, /요약KO/);
     assert.match(item.description, /SummaryEN/);
@@ -96,7 +96,7 @@ describe('buildRssItems', () => {
     assert.equal(items.length, 1);
     assert.match(items[0]!.title, /no[_ ]?pick|선정 없음|No pick/i);
     assert.doesNotMatch(items[0]!.title, /\.[A-Z]{1,2}\b/);
-    assert.equal(items[0]!.link, 'https://example.github.io/ten_bagger/daily/2026-09-04');
+    assert.equal(items[0]!.link, 'https://example.github.io/ten_bagger/daily/2026-09-04/');
   });
 
   it('skips pick entries missing stock identity', () => {

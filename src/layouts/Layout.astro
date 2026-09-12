@@ -120,21 +120,21 @@ const isActive = (key: string) =>
             ><span data-i18n="today">{label('today', lang)}</span></a
           >
           <a
-            href={`${base}archive?lang=${lang}`}
+            href={`${base}archive/?lang=${lang}`}
             data-nav-preserve="lang"
             class:list={{ active: isActive('archive') }}
             aria-current={isActive('archive') ? 'page' : undefined}
             ><span data-i18n="archive">{label('archive', lang)}</span></a
           >
           <a
-            href={`${base}methodology?lang=${lang}`}
+            href={`${base}methodology/?lang=${lang}`}
             data-nav-preserve="lang"
             class:list={{ active: isActive('methodology') }}
             aria-current={isActive('methodology') ? 'page' : undefined}
             ><span data-i18n="methodology">{label('methodology', lang)}</span></a
           >
           <a
-            href={`${base}performance?lang=${lang}`}
+            href={`${base}performance/?lang=${lang}`}
             data-nav-preserve="lang"
             class:list={{ active: isActive('performance') }}
             aria-current={isActive('performance') ? 'page' : undefined}

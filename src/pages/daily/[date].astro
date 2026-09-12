@@ -14,11 +14,11 @@ const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang
 const entry = await getDailyEntry(date!);
 
 if (!entry) {
-  return Astro.redirect(`${import.meta.env.BASE_URL}archive?lang=${lang}`);
+  return Astro.redirect(`${import.meta.env.BASE_URL}archive/?lang=${lang}`);
 }
 ---
 
 <Layout title={date!} lang={lang}>
-  <p><a href={`${import.meta.env.BASE_URL}archive?lang=${lang}`}>← {label('archive', lang)}</a></p>
+  <p><a href={`${import.meta.env.BASE_URL}archive/?lang=${lang}`}>← {label('archive', lang)}</a></p>
   <DailyCard entry={entry} lang={lang} detail />
 </Layout>
