@@ -129,6 +129,12 @@ const wide = buildChart(880, 220, 52, 18, 16, 30);
 const narrow = buildChart(358, 180, 40, 8, 12, 26, true);
 
 const benchmarkKey = view.market === 'KR' ? 'performanceBenchmarkIdKR' : 'performanceBenchmarkIdUS';
+const priceBasisNoteUrl =
+  'https://github.com/jee1/ten_bagger/blob/main/docs/architecture/price-basis-validation-002780.md';
+const priceAdjustmentLabel =
+  view.priceAdjustment === 'adjusted_auto'
+    ? label('performancePriceAdjustmentAdjustedAuto', lang)
+    : view.priceAdjustment;
 ---
 
 {view.priceBasisValidation === 'incomplete' && (
@@ -168,6 +174,30 @@ const benchmarkKey = view.market === 'KR' ? 'performanceBenchmarkIdKR' : 'perfor
       </p>
     </div>
   </div>
+)}
+
+{view.priceBasisValidation === 'complete' && (
+  <p class="muted" style="margin: 0 0 1rem; font-size: 0.82rem;" role="status">
+    <strong data-i18n="performancePriceBasisCompleteTitle">
+      {label('performancePriceBasisCompleteTitle', lang)}
+    </strong>
+    {' · '}
+    {view.priceAdjustment && (
+      <>
+        <span data-i18n="performancePriceAdjustment">
+          {label('performancePriceAdjustment', lang)}
+        </span>{' '}
+        <code>{priceAdjustmentLabel}</code>
+        {' · '}
+      </>
+    )}
+    <span data-i18n="performancePriceBasisComplete">
+      {label('performancePriceBasisComplete', lang)}
+    </span>{' '}
+    <a href={priceBasisNoteUrl} data-i18n="performancePriceBasisNoteLink">
+      {label('performancePriceBasisNoteLink', lang)}
+    </a>
+  </p>
 )}
 
 <article class="card">

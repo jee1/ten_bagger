@@ -63,10 +63,14 @@ describe('aggregateMarket', () => {
     assert.deepEqual(presentation, ['1M', '3M', '6M', '1Y']);
   });
 
-  it('surfaces runMeta.priceAdjustment and incomplete price-basis validation', () => {
+  it('surfaces runMeta.priceAdjustment and complete price-basis validation', () => {
     const view = aggregateMarket(krSample, 'KR');
     assert.equal(view.priceAdjustment, 'adjusted_preferred');
-    assert.equal(view.priceBasisValidation, 'incomplete');
+    assert.equal(view.priceBasisValidation, 'complete');
     assert.equal(view.cumulativeLabelKind, 'modeled_pick_chain');
+  });
+
+  it('keeps incomplete price-basis validation for empty bundles', () => {
+    assert.equal(aggregateMarket(null, 'KR').priceBasisValidation, 'incomplete');
   });
 });

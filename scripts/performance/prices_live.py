@@ -7,6 +7,9 @@ from yf_cache import get_ticker_history
 
 from performance.pit_prices import filter_session_bars, infer_as_of_session_closed
 
+# Matches yf_cache.get_ticker_history(..., auto_adjust=True) — vendor split/dividend adjusted.
+YF_PRICE_BASIS = "adjusted_auto"
+
 BENCHMARK_SYMBOLS = {
     "KR-KOSPI": "^KS11",
     "US-SPX": "^GSPC",

@@ -159,6 +159,7 @@ def test_success_path_writes_schema_valid_outputs(tmp_path, monkeypatch):
     assert (perf_dir / "KR.json").exists()
     perf = json.loads((perf_dir / "KR.json").read_text())
     assert len(perf["measurements"]) == 8
+    assert perf["runMeta"]["priceAdjustment"] == "adjusted_auto"
 
 
 def test_dry_run_leaves_targets_unwritten(tmp_path, monkeypatch):
