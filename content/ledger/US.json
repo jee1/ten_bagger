@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-09-11",
+  "asOfDate": "2026-09-12",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -192,6 +192,12 @@
     {
       "pickDate": "2026-09-10",
       "symbol": "HAPN",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-12",
+      "symbol": "HMN",
       "status": "pick",
       "scoreVersion": "2"
     }
