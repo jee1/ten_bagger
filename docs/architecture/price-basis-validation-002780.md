@@ -10,7 +10,8 @@
 | Fetch path | `scripts/yf_cache.py` `yf.Ticker(symbol).history(period="10y")` → `scripts/performance/prices_live.py` `fetch_live_bars` |
 | Effective adjustment | **Adjusted** — split and dividend adjusted (`auto_adjust=True`; yfinance drops `Adj Close` when prices are already adjusted) |
 | Published label (post-#119) | `adjusted_auto` |
-| Bundle `asOfDate` | `2026-09-12` (planner verification `2026-09-13`, commit `508643b`) |
+| Bundle `asOfDate` | `2026-09-13` |
+| yfinance version | Evidence collected with `1.5.1`; repo pins `1.7.0` in `scripts/requirements.txt` — basis no longer depends on version because `auto_adjust=True` is explicit |
 | Survivorship | `unknown` |
 
 ## Observed facts (KR performance bundle)
@@ -83,7 +84,7 @@ Supporting chain:
 
 **Data-quality caveat (disclosed, not buried):** the H20/1M **exit price 7820 is a suspension forward-fill with `Volume == 0`** — not a tradable print. A tradable exit at resumption would have been 7570 (KST 2026-09-07 close), i.e. ~−3.3% rather than −0.13%.
 
-## Aggregate materiality (KR bundle `asOfDate=2026-09-12`)
+## Aggregate materiality (KR bundle `asOfDate=2026-09-13`)
 
 | Metric | Keep the row | Exclude the row | Effect of keeping |
 |--------|--------------|-----------------|-------------------|
@@ -110,3 +111,5 @@ Rejected: **exclude** (invents discretionary methodology); **override exit to re
 ## Label fix (#119)
 
 The pipeline fetches vendor-adjusted prices (`auto_adjust=True`) but previously published `unadjusted_fallback` because `prefer_adjusted()` inferred the label from a column yfinance removes when prices are already adjusted. Fixed: fetch pins `auto_adjust=True`; `runMeta.priceAdjustment` publishes `adjusted_auto`.
+
+Published `runMeta.provider` and `runMeta.priceAdjustment` now reflect the serving provider at fetch time (`yfinance` / `stooq` / `mixed`). A Stooq fallback publishes `unadjusted_fallback` and the performance page re-flags as incomplete.
