@@ -5,7 +5,7 @@
   "runMeta": {
     "provider": "yfinance",
     "priceAdjustment": "unadjusted_fallback",
-    "generatedAt": "2026-09-11T15:34:59.852157+00:00",
+    "generatedAt": "2026-09-12T09:08:52.320319+00:00",
     "asOfDate": "2026-09-11"
   },
   "measurements": [
@@ -2105,13 +2105,15 @@
       "symbol": "204610.KQ",
       "horizonId": "H20",
       "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
       "horizonDays": 20,
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series"
+      "entryPrice": 3275.358761309128,
+      "exitPrice": 3140.0,
+      "forwardReturn": -0.04132639236595462,
+      "benchmarkReturn": 0.02007555978567847
     },
     {
       "market": "KR",
@@ -2133,12 +2135,14 @@
       "symbol": "204610.KQ",
       "horizonId": "1M",
       "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series"
+      "entryPrice": 3275.358761309128,
+      "exitPrice": 3140.0,
+      "forwardReturn": -0.04132639236595462,
+      "benchmarkReturn": 0.02007555978567847
     },
     {
       "market": "KR",
@@ -3594,7 +3598,7 @@
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
       "horizonDays": 20,
-      "incompleteReason": "missing_entry",
+      "incompleteReason": "insufficient_history",
       "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
@@ -3608,7 +3612,7 @@
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
       "horizonDays": 60,
-      "incompleteReason": "missing_entry",
+      "incompleteReason": "insufficient_history",
       "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
@@ -3621,7 +3625,7 @@
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
-      "incompleteReason": "missing_entry",
+      "incompleteReason": "horizon_beyond_asof",
       "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
@@ -3634,7 +3638,7 @@
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
-      "incompleteReason": "missing_entry",
+      "incompleteReason": "horizon_beyond_asof",
       "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
@@ -3647,7 +3651,7 @@
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
-      "incompleteReason": "missing_entry",
+      "incompleteReason": "horizon_beyond_asof",
       "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
@@ -3660,7 +3664,7 @@
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
-      "incompleteReason": "missing_entry",
+      "incompleteReason": "horizon_beyond_asof",
       "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
@@ -3673,7 +3677,7 @@
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
-      "incompleteReason": "missing_entry",
+      "incompleteReason": "horizon_beyond_asof",
       "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
@@ -3686,7 +3690,7 @@
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
       "asOfDate": "2026-09-11",
-      "incompleteReason": "missing_entry",
+      "incompleteReason": "horizon_beyond_asof",
       "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
