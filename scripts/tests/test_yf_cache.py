@@ -204,3 +204,102 @@ def test_get_ticker_history_raises_when_primary_and_stooq_fail(monkeypatch, tmp_
 
     with pytest.raises(RuntimeError, match="Too Many Requests"):
         yf_cache.get_ticker_history("TEST")
+
+
+def test_get_ticker_history_with_provider_fresh_yfinance_cache(monkeypatch, tmp_path):
+    path = tmp_path / "TEST_hist_1y.json"
+    path.write_text(
+        json.dumps({"index": ["2026-07-20T00:00:00"], "close": [12.5]}),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache, "CACHE_TTL_SECONDS", 3600)
+
+    hist, provider = yf_cache.get_ticker_history_with_provider("TEST")
+    assert provider == "yfinance"
+    assert hist["Close"].tolist() == [12.5]
+
+
+def test_get_ticker_history_with_provider_live_yfinance(monkeypatch, tmp_path):
+    history_kwargs: list[dict] = []
+
+    class LiveTicker:
+        def history(self, period: str = "1y", **kwargs) -> pd.DataFrame:
+            history_kwargs.append(kwargs)
+            idx = pd.to_datetime(["2026-07-22"], utc=True)
+            return pd.DataFrame({"Close": [42.0]}, index=idx)
+
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: LiveTicker())
+
+    hist, provider = yf_cache.get_ticker_history_with_provider("TEST")
+    assert provider == "yfinance"
+    assert hist["Close"].tolist() == [42.0]
+    assert history_kwargs[0]["auto_adjust"] is True
+
+
+def test_get_ticker_history_with_provider_stale_yfinance_cache(monkeypatch, tmp_path):
+    path = tmp_path / "TEST_hist_1y.json"
+    path.write_text(
+        json.dumps({"index": ["2026-07-20T00:00:00"], "close": [12.5]}),
+        encoding="utf-8",
+    )
+    old_time = time.time() - 10_000
+    os.utime(path, (old_time, old_time))
+
+    class FailingTicker:
+        def history(self, period: str = "1y", **_) -> pd.DataFrame:
+            raise TimeoutError("temporary timeout")
+
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache, "CACHE_TTL_SECONDS", 1)
+    monkeypatch.setattr(yf_cache, "YF_MAX_RETRIES", 1)
+    monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: FailingTicker())
+
+    hist, provider = yf_cache.get_ticker_history_with_provider("TEST")
+    assert provider == "yfinance"
+    assert hist["Close"].tolist() == [12.5]
+
+
+def test_get_ticker_history_with_provider_fresh_stooq_cache(monkeypatch, tmp_path):
+    stooq_path = tmp_path / "TEST_hist_1y_stooq.json"
+    stooq_path.write_text(
+        json.dumps({"index": ["2026-07-21T00:00:00"], "close": [99.0]}),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache, "CACHE_TTL_SECONDS", 3600)
+
+    class FailingTicker:
+        def history(self, period: str = "1y", **_) -> pd.DataFrame:
+            raise RuntimeError("429 Too Many Requests")
+
+    def boom_stooq(*_a, **_k):
+        raise AssertionError("Stooq fetch must not run when fresh cache exists")
+
+    monkeypatch.setattr(yf_cache, "YF_MAX_RETRIES", 1)
+    monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: FailingTicker())
+    monkeypatch.setattr("stooq_prices.fetch_history", boom_stooq)
+
+    hist, provider = yf_cache.get_ticker_history_with_provider("TEST")
+    assert provider == "stooq"
+    assert hist["Close"].tolist() == [99.0]
+
+
+def test_get_ticker_history_with_provider_fetched_stooq(monkeypatch, tmp_path):
+    class FailingTicker:
+        def history(self, period: str = "1y", **_) -> pd.DataFrame:
+            raise RuntimeError("429 Too Many Requests")
+
+    def fake_stooq(symbol: str, period: str = "1y") -> pd.DataFrame:
+        idx = pd.to_datetime(["2026-07-21"], utc=True)
+        return pd.DataFrame({"Close": [99.0], "Open": [98.0]}, index=idx)
+
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache, "YF_MAX_RETRIES", 1)
+    monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: FailingTicker())
+    monkeypatch.setattr("stooq_prices.fetch_history", fake_stooq)
+
+    hist, provider = yf_cache.get_ticker_history_with_provider("TEST")
+    assert provider == "stooq"
+    assert hist["Close"].tolist() == [99.0]

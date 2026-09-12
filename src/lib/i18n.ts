@@ -125,10 +125,14 @@ export const labels = {
     en: 'Price basis validated',
   } satisfies LocalizedText,
   performancePriceBasisComplete: {
+    ko: '가격은 yfinance vendor 조정(분할·배당, auto_adjust) 기준입니다.',
+    en: 'Prices use yfinance vendor adjustment (splits and dividends, auto_adjust).',
+  } satisfies LocalizedText,
+  performancePriceBasisCompleteKR: {
     ko:
-      '가격은 yfinance vendor 조정(분할·배당, auto_adjust) 기준입니다. 002780.KS(2026-07-31 픽)의 +898% 이상 수치는 2026-09-07 시행 1:10 주식병합의 일시적 미반영이었고, 현재는 집계에 유지·표시합니다. 해당 픽의 H20/1M 청산가는 거래정지 구간의 forward-fill(Volume 0)입니다.',
+      '002780.KS(2026-07-31 픽)의 +898% 이상 수치는 2026-09-07 시행 1:10 주식병합의 일시적 미반영이었고, 현재는 집계에 유지·표시합니다. 해당 픽의 H20/1M 청산가는 거래정지 구간의 forward-fill(Volume 0)입니다.',
     en:
-      'Prices use yfinance vendor adjustment (splits and dividends, auto_adjust). The former +898% on 002780.KS (2026-07-31 pick) was a transient pre-consolidation mismatch around the 1-for-10 reverse split effective 2026-09-07; the pick stays in aggregates. Its H20/1M exit price is a suspension forward-fill (Volume 0).',
+      'The former +898% on 002780.KS (2026-07-31 pick) was a transient pre-consolidation mismatch around the 1-for-10 reverse split effective 2026-09-07; the pick stays in aggregates. Its H20/1M exit price is a suspension forward-fill (Volume 0).',
   } satisfies LocalizedText,
   performancePriceAdjustmentAdjustedAuto: {
     ko: 'vendor 조정 (auto_adjust)',

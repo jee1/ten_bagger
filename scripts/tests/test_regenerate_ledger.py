@@ -137,6 +137,8 @@ def test_success_path_writes_schema_valid_outputs(tmp_path, monkeypatch):
     perf_dir = tmp_path / "performance"
 
     bars = load_price_fixture("simple_kr_h20")
+    bars.attrs["provider"] = "yfinance"
+    bars.attrs["priceBasis"] = "adjusted_auto"
 
     monkeypatch.setattr(
         regenerate_ledger,
@@ -160,6 +162,113 @@ def test_success_path_writes_schema_valid_outputs(tmp_path, monkeypatch):
     perf = json.loads((perf_dir / "KR.json").read_text())
     assert len(perf["measurements"]) == 8
     assert perf["runMeta"]["priceAdjustment"] == "adjusted_auto"
+    assert perf["runMeta"]["provider"] == "yfinance"
+
+
+def test_unstamped_bars_publish_unknown_basis(tmp_path, monkeypatch):
+    daily_dir = tmp_path / "daily"
+    daily_dir.mkdir()
+    (daily_dir / "2026-01-02.json").write_text(json.dumps(_schema_pick_daily()), encoding="utf-8")
+    ledger_dir = tmp_path / "ledger"
+    perf_dir = tmp_path / "performance"
+    bars = load_price_fixture("simple_kr_h20")
+
+    monkeypatch.setattr(
+        regenerate_ledger,
+        "default_price_provider",
+        lambda _as_of: (lambda _s, _m: bars),
+    )
+    monkeypatch.setattr(
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+    )
+
+    regenerate_ledger.regenerate(
+        as_of_date="2026-02-10",
+        markets=("KR",),
+        daily_dir=daily_dir,
+        ledger_dir=ledger_dir,
+        performance_dir=perf_dir,
+        provider_label="fixture",
+    )
+    perf = json.loads((perf_dir / "KR.json").read_text())
+    assert perf["runMeta"]["priceAdjustment"] == "unknown"
+    assert perf["runMeta"]["provider"] == "fixture"
+
+
+def test_stooq_stamped_bars_publish_unadjusted_fallback(tmp_path, monkeypatch):
+    daily_dir = tmp_path / "daily"
+    daily_dir.mkdir()
+    (daily_dir / "2026-01-02.json").write_text(json.dumps(_schema_pick_daily()), encoding="utf-8")
+    ledger_dir = tmp_path / "ledger"
+    perf_dir = tmp_path / "performance"
+    bars = load_price_fixture("simple_kr_h20")
+    bars.attrs["provider"] = "stooq"
+    bars.attrs["priceBasis"] = "unadjusted_fallback"
+
+    monkeypatch.setattr(
+        regenerate_ledger,
+        "default_price_provider",
+        lambda _as_of: (lambda _s, _m: bars),
+    )
+    monkeypatch.setattr(
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+    )
+
+    regenerate_ledger.regenerate(
+        as_of_date="2026-02-10",
+        markets=("KR",),
+        daily_dir=daily_dir,
+        ledger_dir=ledger_dir,
+        performance_dir=perf_dir,
+        provider_label="yfinance",
+    )
+    perf = json.loads((perf_dir / "KR.json").read_text())
+    assert perf["runMeta"]["provider"] == "stooq"
+    assert perf["runMeta"]["priceAdjustment"] == "unadjusted_fallback"
+
+
+def test_mixed_providers_publish_mixed_meta(tmp_path, monkeypatch):
+    daily_dir = tmp_path / "daily"
+    daily_dir.mkdir()
+    (daily_dir / "2026-01-02.json").write_text(
+        json.dumps(_schema_pick_daily(symbol="AAA.KR")), encoding="utf-8"
+    )
+    (daily_dir / "2026-01-03.json").write_text(
+        json.dumps(_schema_pick_daily(date="2026-01-03", symbol="BBB.KR")), encoding="utf-8"
+    )
+    ledger_dir = tmp_path / "ledger"
+    perf_dir = tmp_path / "performance"
+
+    yf_bars = load_price_fixture("simple_kr_h20")
+    yf_bars.attrs["provider"] = "yfinance"
+    yf_bars.attrs["priceBasis"] = "adjusted_auto"
+    stooq_bars = load_price_fixture("simple_kr_h20")
+    stooq_bars.attrs["provider"] = "stooq"
+    stooq_bars.attrs["priceBasis"] = "unadjusted_fallback"
+
+    def provider(symbol: str, _market: str):
+        return yf_bars if symbol == "AAA.KR" else stooq_bars
+
+    monkeypatch.setattr(
+        regenerate_ledger,
+        "default_price_provider",
+        lambda _as_of: provider,
+    )
+    monkeypatch.setattr(
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+    )
+
+    regenerate_ledger.regenerate(
+        as_of_date="2026-02-10",
+        markets=("KR",),
+        daily_dir=daily_dir,
+        ledger_dir=ledger_dir,
+        performance_dir=perf_dir,
+        provider_label="yfinance",
+    )
+    perf = json.loads((perf_dir / "KR.json").read_text())
+    assert perf["runMeta"]["provider"] == "mixed"
+    assert perf["runMeta"]["priceAdjustment"] == "mixed"
 
 
 def test_dry_run_leaves_targets_unwritten(tmp_path, monkeypatch):

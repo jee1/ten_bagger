@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import pandas as pd
-from yf_cache import get_ticker_history
+from yf_cache import get_ticker_history_with_provider
 
 from performance.pit_prices import filter_session_bars, infer_as_of_session_closed
 
 # Matches yf_cache.get_ticker_history(..., auto_adjust=True) — vendor split/dividend adjusted.
 YF_PRICE_BASIS = "adjusted_auto"
+# ADR 0005 §5: Stooq daily CSV is typically unadjusted (no Adj columns).
+PROVIDER_BASIS = {"yfinance": YF_PRICE_BASIS, "stooq": "unadjusted_fallback"}
 
 BENCHMARK_SYMBOLS = {
     "KR-KOSPI": "^KS11",
@@ -40,14 +42,17 @@ def fetch_live_bars(
     as_of_session_closed: bool | None = None,
 ) -> pd.DataFrame:
     """Fetch OHLCV via get_ticker_history (retry/backoff) and apply PIT filter."""
-    hist = get_ticker_history(symbol, period=period)
+    hist, provider = get_ticker_history_with_provider(symbol, period=period)
     bars = _history_to_bars(hist)
     closed = (
         as_of_session_closed
         if as_of_session_closed is not None
         else infer_as_of_session_closed(as_of_date, market=market or "US")
     )
-    return filter_session_bars(bars, as_of_date, as_of_session_closed=closed)
+    out = filter_session_bars(bars, as_of_date, as_of_session_closed=closed)
+    out.attrs["provider"] = provider
+    out.attrs["priceBasis"] = PROVIDER_BASIS.get(provider, "unknown")
+    return out
 
 
 def default_price_provider(as_of_date: str):

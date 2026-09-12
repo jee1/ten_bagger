@@ -193,7 +193,15 @@ const priceAdjustmentLabel =
     )}
     <span data-i18n="performancePriceBasisComplete">
       {label('performancePriceBasisComplete', lang)}
-    </span>{' '}
+    </span>
+    {view.market === 'KR' && (
+      <>
+        {' '}
+        <span data-i18n="performancePriceBasisCompleteKR">
+          {label('performancePriceBasisCompleteKR', lang)}
+        </span>
+      </>
+    )}{' '}
     <a href={priceBasisNoteUrl} data-i18n="performancePriceBasisNoteLink">
       {label('performancePriceBasisNoteLink', lang)}
     </a>

@@ -214,7 +214,9 @@ export function aggregateMarket(
   const priceAdjustment =
     typeof bundle.runMeta?.priceAdjustment === 'string' ? bundle.runMeta.priceAdjustment : null;
   // Price-basis validation complete per docs/architecture/price-basis-validation-002780.md (#119)
-  const priceBasisValidation: PriceBasisValidationStatus = 'complete';
+  const VALIDATED_PRICE_BASES = new Set(['adjusted_auto', 'adjusted_preferred']);
+  const priceBasisValidation: PriceBasisValidationStatus =
+    priceAdjustment !== null && VALIDATED_PRICE_BASES.has(priceAdjustment) ? 'complete' : 'incomplete';
 
   return {
     market,
