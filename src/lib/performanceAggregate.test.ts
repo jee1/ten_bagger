@@ -70,6 +70,26 @@ describe('aggregateMarket', () => {
     assert.equal(view.cumulativeLabelKind, 'modeled_pick_chain');
   });
 
+  it('marks adjusted_auto as complete price-basis validation', () => {
+    const bundle: PerformanceBundle = {
+      ...krSample,
+      runMeta: { ...krSample.runMeta, priceAdjustment: 'adjusted_auto' },
+    };
+    assert.equal(aggregateMarket(bundle, 'KR').priceBasisValidation, 'complete');
+  });
+
+  it('marks non-validated price bases as incomplete', () => {
+    for (const basis of ['unknown', 'mixed', 'unadjusted_fallback'] as const) {
+      const bundle: PerformanceBundle = {
+        ...krSample,
+        runMeta: { ...krSample.runMeta, priceAdjustment: basis },
+      };
+      assert.equal(aggregateMarket(bundle, 'KR').priceBasisValidation, 'incomplete');
+    }
+    const missingMeta = { ...krSample, runMeta: undefined } as unknown as PerformanceBundle;
+    assert.equal(aggregateMarket(missingMeta, 'KR').priceBasisValidation, 'incomplete');
+  });
+
   it('keeps incomplete price-basis validation for empty bundles', () => {
     assert.equal(aggregateMarket(null, 'KR').priceBasisValidation, 'incomplete');
   });
