@@ -66,7 +66,7 @@ def test_get_ticker_history_uses_stale_cache_after_transient_failure(monkeypatch
     os.utime(path, (old_time, old_time))
 
     class FailingTicker:
-        def history(self, period: str = "1y") -> pd.DataFrame:
+        def history(self, period: str = "1y", **_) -> pd.DataFrame:
             raise TimeoutError("temporary timeout")
 
     monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
@@ -124,7 +124,7 @@ def test_get_ticker_info_raises_without_usable_stale_cache(monkeypatch, tmp_path
 
 def test_get_ticker_history_uses_stooq_when_no_stale(monkeypatch, tmp_path):
     class FailingTicker:
-        def history(self, period: str = "1y") -> pd.DataFrame:
+        def history(self, period: str = "1y", **_) -> pd.DataFrame:
             raise RuntimeError("429 Too Many Requests")
 
     stooq_calls = {"n": 0}
@@ -155,7 +155,7 @@ def test_get_ticker_history_stale_before_stooq(monkeypatch, tmp_path):
     os.utime(path, (old_time, old_time))
 
     class FailingTicker:
-        def history(self, period: str = "1y") -> pd.DataFrame:
+        def history(self, period: str = "1y", **_) -> pd.DataFrame:
             raise TimeoutError("temporary timeout")
 
     def boom_stooq(*_a, **_k):
@@ -173,7 +173,7 @@ def test_get_ticker_history_stale_before_stooq(monkeypatch, tmp_path):
 
 def test_get_ticker_history_empty_primary_tries_stooq(monkeypatch, tmp_path):
     class EmptyTicker:
-        def history(self, period: str = "1y") -> pd.DataFrame:
+        def history(self, period: str = "1y", **_) -> pd.DataFrame:
             return pd.DataFrame()
 
     def fake_stooq(symbol: str, period: str = "1y") -> pd.DataFrame:
@@ -191,7 +191,7 @@ def test_get_ticker_history_empty_primary_tries_stooq(monkeypatch, tmp_path):
 
 def test_get_ticker_history_raises_when_primary_and_stooq_fail(monkeypatch, tmp_path):
     class FailingTicker:
-        def history(self, period: str = "1y") -> pd.DataFrame:
+        def history(self, period: str = "1y", **_) -> pd.DataFrame:
             raise RuntimeError("429 Too Many Requests")
 
     def fail_stooq(*_a, **_k):

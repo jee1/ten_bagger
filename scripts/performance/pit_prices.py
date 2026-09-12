@@ -68,10 +68,12 @@ def filter_session_bars(
     return out.drop(columns=["_session"]).reset_index(drop=True)
 
 
-def prefer_adjusted(bars: pd.DataFrame) -> tuple[pd.DataFrame, str]:
+def prefer_adjusted(
+    bars: pd.DataFrame, *, default_label: str = "unadjusted_fallback"
+) -> tuple[pd.DataFrame, str]:
     """Return bars with Open/Close columns and priceAdjustment label."""
     if bars.empty:
-        return bars.copy(), "unadjusted_fallback"
+        return bars.copy(), default_label
     out = bars.copy()
     has_adj = "Adj Close" in out.columns or "Adj Open" in out.columns
     if has_adj:
@@ -82,4 +84,4 @@ def prefer_adjusted(bars: pd.DataFrame) -> tuple[pd.DataFrame, str]:
         if "Adj Close" in out.columns:
             out["Close"] = out["Adj Close"]
         return out, "adjusted_preferred"
-    return out, "unadjusted_fallback"
+    return out, default_label

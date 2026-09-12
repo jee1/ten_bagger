@@ -388,6 +388,31 @@ def test_prefer_adjusted_unadjusted_fallback_without_adj():
     assert label == "unadjusted_fallback"
 
 
+def test_prefer_adjusted_default_label_without_adj():
+    import pandas as pd
+
+    bars = pd.DataFrame([{"date": "2026-01-02", "Open": 10.0, "Close": 11.0}])
+    _, label = prefer_adjusted(bars, default_label="adjusted_auto")
+    assert label == "adjusted_auto"
+
+
+def test_prefer_adjusted_adj_columns_ignore_default_label():
+    import pandas as pd
+
+    bars = pd.DataFrame(
+        [
+            {
+                "date": "2026-01-02",
+                "Open": 10.0,
+                "Close": 11.0,
+                "Adj Close": 110.0,
+            }
+        ]
+    )
+    _, label = prefer_adjusted(bars, default_label="adjusted_auto")
+    assert label == "adjusted_preferred"
+
+
 def test_second_regenerate_identical(tmp_path, monkeypatch):
     """SC-005 determinism with fixture provider."""
     daily_dir = tmp_path / "daily"

@@ -216,7 +216,7 @@ def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
             return cached
 
     def _fetch() -> pd.DataFrame:
-        return yf.Ticker(symbol).history(period=period)
+        return yf.Ticker(symbol).history(period=period, auto_adjust=True)
 
     hist: pd.DataFrame | None = None
     primary_exc: Exception | None = None

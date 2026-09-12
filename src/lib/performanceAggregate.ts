@@ -213,8 +213,8 @@ export function aggregateMarket(
 
   const priceAdjustment =
     typeof bundle.runMeta?.priceAdjustment === 'string' ? bundle.runMeta.priceAdjustment : null;
-  // v1 ships incomplete until the 002780 validation note is explicitly completed
-  const priceBasisValidation: PriceBasisValidationStatus = 'incomplete';
+  // Price-basis validation complete per docs/architecture/price-basis-validation-002780.md (#119)
+  const priceBasisValidation: PriceBasisValidationStatus = 'complete';
 
   return {
     market,

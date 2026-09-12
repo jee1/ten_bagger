@@ -365,7 +365,22 @@ const toc = [
               <span data-i18n-show="ko" hidden={lang !== 'ko'}>가격·재무</span>
               <span data-i18n-show="en" hidden={lang !== 'en'}>Prices & fundamentals</span>
             </p>
-            <p>Yahoo Finance (yfinance)</p>
+            <p>
+              <span data-i18n-show="ko" hidden={lang !== 'ko'}
+                >Yahoo Finance (yfinance) · 가격은 vendor 조정(분할·배당, auto_adjust=True).{' '}
+                <a
+                  href="https://github.com/jee1/ten_bagger/blob/main/docs/architecture/price-basis-validation-002780.md"
+                  >002780.KS 가격 기준 검증 노트</a
+                ></span
+              >
+              <span data-i18n-show="en" hidden={lang !== 'en'}
+                >Yahoo Finance (yfinance) · prices are vendor-adjusted (splits and dividends, auto_adjust=True).{' '}
+                <a
+                  href="https://github.com/jee1/ten_bagger/blob/main/docs/architecture/price-basis-validation-002780.md"
+                  >002780.KS price-basis validation note</a
+                ></span
+              >
+            </p>
           </div>
         </div>
         <p style="margin-top: 1rem; font-size: 0.85rem;">
