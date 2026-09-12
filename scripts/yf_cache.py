@@ -207,13 +207,13 @@ def get_ticker_info(symbol: str) -> dict[str, Any]:
     return info
 
 
-def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
+def get_ticker_history_with_provider(symbol: str, period: str = "1y") -> tuple[pd.DataFrame, str]:
     kind = f"hist_{period.replace('/', '_')}"
     path = _cache_path(symbol, kind)
     if _is_fresh(path):
         cached = _read_history_cache(path)
         if cached is not None and not cached.empty:
-            return cached
+            return cached, "yfinance"
 
     def _fetch() -> pd.DataFrame:
         return yf.Ticker(symbol).history(period=period, auto_adjust=True)
@@ -238,7 +238,7 @@ def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
             if src in hist.columns:
                 payload[key] = [float(v) for v in hist[src].tolist()]
         _write_json(path, payload)
-        return hist
+        return hist, "yfinance"
 
     stale = _read_history_cache(path)
     if stale is not None and not stale.empty:
@@ -247,7 +247,7 @@ def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
             symbol,
             primary_exc,
         )
-        return stale
+        return stale, "yfinance"
 
     # ADR 0005: Stooq secondary (provider-keyed cache)
     import stooq_prices
@@ -258,7 +258,7 @@ def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
         cached_s = _read_history_cache(stooq_path)
         if cached_s is not None and not cached_s.empty:
             logger.info("Using fresh Stooq cache for %s (provider=stooq)", symbol)
-            return cached_s
+            return cached_s, "stooq"
 
     try:
         hist_s = stooq_prices.fetch_history(symbol, period=period)
@@ -284,4 +284,8 @@ def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
                 payload_s[key] = [float(v) for v in hist_s[src].tolist()]
         _write_json(stooq_path, payload_s)
         logger.info("provider=stooq served history for %s", symbol)
-    return hist_s
+    return hist_s, "stooq"
+
+
+def get_ticker_history(symbol: str, period: str = "1y") -> pd.DataFrame:
+    return get_ticker_history_with_provider(symbol, period)[0]

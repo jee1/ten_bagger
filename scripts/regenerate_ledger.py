@@ -20,11 +20,7 @@ from config import (
 )
 from performance.load_dailies import load_eligible_dailies
 from performance.pit_prices import prefer_adjusted
-from performance.prices_live import (
-    YF_PRICE_BASIS,
-    default_benchmark_provider,
-    default_price_provider,
-)
+from performance.prices_live import default_benchmark_provider, default_price_provider
 from performance.returns import measure_all_horizons
 from performance.write_atomic import atomic_replace
 from validate_content import load_validator
@@ -49,6 +45,12 @@ def _validate_as_of_date(value: str | None) -> str | None:
 
 PriceProvider = Callable[[str, str], pd.DataFrame]
 BenchmarkProvider = Callable[[str], pd.DataFrame | None]
+
+
+def _resolve_meta(values: set[str], fallback: str) -> str:
+    if not values or values == {"unknown"}:
+        return fallback
+    return next(iter(values)) if len(values) == 1 else "mixed"
 
 
 def _ledger_entry(daily: dict) -> dict[str, Any]:
@@ -83,15 +85,16 @@ def build_market_snapshots(
     measurements: list[dict[str, Any]] = []
     bench_cache: dict[str, pd.DataFrame | None] = {}
     adj_labels: set[str] = set()
+    providers: set[str] = set()
 
     for daily in market_dailies:
         if daily["status"] != "pick":
             continue
         symbol = daily["stock"]["symbol"]
         bars = price_provider(symbol, market)
-        # ponytail: label assumes yfinance path; Stooq fallback (ADR 0005) would be mislabelled
-        # adjusted_auto — upgrade = get_ticker_history returns provider + basis.
-        _, label = prefer_adjusted(bars, default_label=YF_PRICE_BASIS)
+        basis = bars.attrs.get("priceBasis", "unknown")
+        providers.add(bars.attrs.get("provider", "unknown"))
+        _, label = prefer_adjusted(bars, default_label=basis)
         adj_labels.add(label)
         bench_id = "KR-KOSPI" if market == "KR" else "US-SPX"
         if bench_id not in bench_cache:
@@ -108,16 +111,8 @@ def build_market_snapshots(
         )
 
     if price_adjustment is None:
-        if not adj_labels:
-            price_adjustment = "adjusted_preferred"
-        elif adj_labels == {"adjusted_preferred"}:
-            price_adjustment = "adjusted_preferred"
-        elif adj_labels == {"unadjusted_fallback"}:
-            price_adjustment = "unadjusted_fallback"
-        elif adj_labels == {"adjusted_auto"}:
-            price_adjustment = "adjusted_auto"
-        else:
-            price_adjustment = "mixed"
+        price_adjustment = _resolve_meta(adj_labels, "unknown")
+    provider = _resolve_meta(providers, provider_label)
 
     ledger = {
         "schemaVersion": SCHEMA_VERSION,
@@ -130,7 +125,7 @@ def build_market_snapshots(
         "market": market,
         "asOfDate": as_of_date,
         "runMeta": {
-            "provider": provider_label,
+            "provider": provider,
             "priceAdjustment": price_adjustment,
             "generatedAt": datetime.now(UTC).isoformat(),
             "asOfDate": as_of_date,
