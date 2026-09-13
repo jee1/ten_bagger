@@ -14,6 +14,14 @@ _MARKET_TZ_CLOSE: dict[str, tuple[str, time]] = {
 }
 
 
+def market_tz(market: str | None) -> str:
+    """IANA timezone of the market's exchange (unknown markets fall back to US)."""
+    key = (market or "US").upper()
+    if key not in _MARKET_TZ_CLOSE:
+        key = "US"
+    return _MARKET_TZ_CLOSE[key][0]
+
+
 def _session_dates(bars: pd.DataFrame) -> pd.Series:
     if "date" in bars.columns:
         return pd.to_datetime(bars["date"]).dt.strftime("%Y-%m-%d")
@@ -34,7 +42,8 @@ def infer_as_of_session_closed(
     key = (market or "US").upper()
     if key not in _MARKET_TZ_CLOSE:
         key = "US"
-    tz_name, close_t = _MARKET_TZ_CLOSE[key]
+    tz_name = market_tz(market)
+    close_t = _MARKET_TZ_CLOSE[key][1]
     tz = ZoneInfo(tz_name)
     current = now.astimezone(tz) if now is not None else datetime.now(tz)
     local_today = current.date().isoformat()
