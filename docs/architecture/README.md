@@ -38,6 +38,7 @@ authorize weight or pick-logic changes.
 8. Threshold / weight merge criteria ([#67](./threshold-weight-merge-criteria.md))
 8b. [Phase 2 measurement note](./074-phase2-measurement-note.md) — baseline `go_evidence` GO (freeze-only; Score v3 not live)
 8c. [Price-basis validation 002780.KS](./price-basis-validation-002780.md) ([#94](https://github.com/jee1/ten_bagger/issues/94), [#119](https://github.com/jee1/ten_bagger/issues/119)) — status **complete**: 1-for-10 consolidation effective 2026-09-07; pick **kept** in aggregates (≤8.3 bp materiality)
+8d. [Score v3 candidates](./score-v3-candidates.md) — gated candidate factors moved off the public methodology page ([#122](https://github.com/jee1/ten_bagger/issues/122)); not live
 9. Promoted schemas (enforced by validate:content / gen:types, #63):
    - `scripts/schema/ledger.schema.json`
    - `scripts/schema/performance-bundle.schema.json`
