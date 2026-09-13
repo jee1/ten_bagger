@@ -1342,24 +1342,6 @@ code {
   color: var(--muted);
 }
 
-.gated-box {
-  border: 1px dashed var(--border);
-  border-radius: 10px;
-  padding: 1.1rem 1.2rem;
-  background: #0e131a;
-}
-
-.gated-box p {
-  font-size: 0.85rem;
-}
-
-.gated-box ul {
-  font-size: 0.85rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
 .meta-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
