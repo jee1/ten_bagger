@@ -15,7 +15,11 @@ from performance.horizons import (
     session_horizon_exit,
     trading_sessions,
 )
-from performance.pit_prices import filter_session_bars, is_zero_volume_suspension_bar, prefer_adjusted
+from performance.pit_prices import (
+    filter_session_bars,
+    is_zero_volume_suspension_bar,
+    prefer_adjusted,
+)
 
 BENCHMARK_IDS = {"KR": "KR-KOSPI", "US": "US-SPX"}
 
