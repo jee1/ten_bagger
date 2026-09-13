@@ -263,7 +263,11 @@ const priceAdjustmentLabel =
         </div>
         <div class="stat">
           <p class="eyebrow" data-i18n="performanceExcess">{label('performanceExcess', lang)}</p>
-          <p class="value pending">—</p>
+          {series.excessPublishAllowed ? (
+            <p class={`value ${signClass(series.excessReturn)}`}>{pct(series.excessReturn)}</p>
+          ) : (
+            <p class="value pending">—</p>
+          )}
           <p class="note" data-i18n="performanceExcessPending">
             {label('performanceExcessPending', lang)}
           </p>

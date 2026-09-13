@@ -48,6 +48,7 @@ const toc = [
   { id: 'weights', ko: '점수 구성 v2', en: 'Score weights v2' },
   { id: 'prefilter', ko: '1차 필터', en: 'Pre-filter' },
   { id: 'rules', ko: '선정·없음 규칙', en: 'Pick vs none' },
+  { id: 'performance-excess', ko: '초과 성과 게이트', en: 'Excess-return gate' },
   { id: 'data', ko: '데이터·생성', en: 'Data & schedule' },
 ] as const;
 ---
@@ -249,6 +250,82 @@ const toc = [
             </p>
           </div>
         </div>
+      </section>
+
+      <section id="performance-excess">
+        <h2>
+          <span data-i18n-show="ko" hidden={lang !== 'ko'}>초과 성과 게이트</span>
+          <span data-i18n-show="en" hidden={lang !== 'en'}>Excess-return gate</span>
+        </h2>
+        <p>
+          <span data-i18n-show="ko" hidden={lang !== 'ko'}
+            >성과 페이지의 <strong>초과 성과(Excess)</strong> 숫자는 별도 게이트를 통과할 때만
+            공개합니다. 누적 포트폴리오·벤치마크 곡선은 기존과 같이 표시될 수 있으나, 초과 성과 %는
+            아래 조건을 모두 만족할 때만 산출·표시합니다 (현재는 <strong>미공개</strong>).</span
+          >
+          <span data-i18n-show="en" hidden={lang !== 'en'}
+            >The performance page publishes the headline <strong>Excess</strong> figure only when a
+            separate gate passes. Cumulative portfolio and benchmark curves may still render, but the
+            Excess % stays hidden until <strong>all</strong> of the following hold (today:
+            <strong>not published</strong>).</span
+          >
+        </p>
+        <ul style="margin: 0.75rem 0 0; padding-left: 1.25rem; font-size: 0.9rem;">
+            <li>
+              <span data-i18n-show="ko" hidden={lang !== 'ko'}
+                ><strong>표본</strong> — 누적 지평에서 pick-complete 행 ≥ 20</span
+              >
+              <span data-i18n-show="en" hidden={lang !== 'en'}
+                ><strong>Sample</strong> — ≥ 20 pick-complete rows on the cumulative horizon</span
+              >
+            </li>
+            <li>
+              <span data-i18n-show="ko" hidden={lang !== 'ko'}
+                ><strong>벤치마크</strong> — 해당 지평의 모든 pick-complete 행에 벤치마크 수익률
+                완료</span
+              >
+              <span data-i18n-show="en" hidden={lang !== 'en'}
+                ><strong>Benchmark</strong> — every pick-complete row on that horizon also has a
+                complete benchmark return</span
+              >
+            </li>
+            <li>
+              <span data-i18n-show="ko" hidden={lang !== 'ko'}
+                ><strong>지평</strong> — 공개 표시 지평(1M / 3M / 6M / 1Y)만 허용; H20·H60
+                엔지니어링 지평은 제외</span
+              >
+              <span data-i18n-show="en" hidden={lang !== 'en'}
+                ><strong>Horizon tier</strong> — presentation horizons only (1M / 3M / 6M / 1Y);
+                engineering H20 / H60 excluded</span
+              >
+            </li>
+            <li>
+              <span data-i18n-show="ko" hidden={lang !== 'ko'}
+                ><strong>가격 기준</strong> — #119 가격 기준 검증 완료 (<code
+                  >adjusted_preferred</code> 또는 <code>adjusted_auto</code>)</span
+              >
+              <span data-i18n-show="en" hidden={lang !== 'en'}
+                ><strong>Price basis</strong> — #119 price-basis validation complete (<code
+                  >adjusted_preferred</code> or <code>adjusted_auto</code>)</span
+              >
+            </li>
+        </ul>
+        <p style="margin-top: 0.75rem; font-size: 0.85rem;">
+          <span data-i18n-show="ko" hidden={lang !== 'ko'}
+            >엔지니어 플랜:{' '}
+            <a
+              href="https://github.com/jee1/ten_bagger/blob/main/docs/plans/issue-126-excess-gate.md"
+              >docs/plans/issue-126-excess-gate.md</a
+            ></span
+          >
+          <span data-i18n-show="en" hidden={lang !== 'en'}
+            >Engineer plan:{' '}
+            <a
+              href="https://github.com/jee1/ten_bagger/blob/main/docs/plans/issue-126-excess-gate.md"
+              >docs/plans/issue-126-excess-gate.md</a
+            ></span
+          >
+        </p>
       </section>
 
       <section id="data">
