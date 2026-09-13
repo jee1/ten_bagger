@@ -164,6 +164,12 @@ export const labels = {
     ko: '홀수일 한국, 짝수일 미국 · 최근 30일 중복 종목은 제외됩니다.',
     en: 'Odd days Korea, even days US · symbols picked in the last 30 days are excluded.',
   } satisfies LocalizedText,
+  pickFreshToday: { ko: '오늘의 픽', en: "Today's pick" } satisfies LocalizedText,
+  pickFreshLatest: { ko: '최신 픽', en: 'Latest pick' } satisfies LocalizedText,
+  pickFreshHint: {
+    ko: '오늘 리포트는 아직 준비되지 않았습니다. 새 픽은 매일 오전 6시(KST)에 공개됩니다.',
+    en: "Today's report isn't ready yet. New picks publish daily at 06:00 KST.",
+  } satisfies LocalizedText,
 } as const;
 
 export function t(text: LocalizedText, lang: Lang): string {

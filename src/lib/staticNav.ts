@@ -38,3 +38,33 @@ export function parseStaticNav(
 export function archiveYmKey(year: number, month: number): string {
   return `${year}-${String(month).padStart(2, '0')}`;
 }
+
+export type PickFreshness = 'today' | 'latest';
+
+export interface PickFreshnessView {
+  freshness: PickFreshness;
+  labelKey: 'pickFreshToday' | 'pickFreshLatest';
+  badgeTone: 'pick' | 'none';
+  stale: boolean;
+}
+
+/** Build- and run-time both call this so the baked HTML and the client hydrate cannot drift. */
+export function pickFreshnessView(entryDate: string, todayDate: string): PickFreshnessView {
+  const freshness: PickFreshness = entryDate === todayDate ? 'today' : 'latest';
+  return {
+    freshness,
+    labelKey: freshness === 'today' ? 'pickFreshToday' : 'pickFreshLatest',
+    badgeTone: freshness === 'today' ? 'pick' : 'none',
+    stale: freshness === 'latest',
+  };
+}
+
+/** KST calendar date as YYYY-MM-DD. Browser-safe — no node:fs, unlike dailyDates.ts. */
+export function kstDateString(now: Date = new Date()): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(now);
+}
