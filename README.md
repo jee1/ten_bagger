@@ -113,8 +113,10 @@ Yahoo가 429/rate limit 또는 일시적 네트워크 오류를 반환하면 스
 1. GitHub 저장소 생성 후 push
 2. **Settings → Pages → Source**: GitHub Actions
 3. **Settings → Pages → Custom domain**: `tenbagger.finnaut.com` (DNS CNAME → `jee1.github.io`)
-4. `.github/workflows/daily.yml`이 매일 06:00 KST에 실행됩니다
-5. `workflow_dispatch`로 날짜 지정 수동 실행도 가능합니다
+4. **Settings → Pages → Enforce HTTPS**: 체크 (인증서 발급 완료 후 활성화됨).
+   확인: `gh api repos/:owner/:repo/pages --jq '.https_enforced'` → `true`
+5. `.github/workflows/daily.yml`이 매일 06:00 KST에 실행됩니다
+6. `workflow_dispatch`로 날짜 지정 수동 실행도 가능합니다
 
 도메인·base를 바꾸면 `astro.config.mjs` 기본값, workflow env, `public/CNAME`을 함께 맞춰 주세요.
 

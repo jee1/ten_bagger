@@ -11,7 +11,7 @@ decisions: storage posture, measurement, walk-forward, and merge gates.
 Public-facing score explanation remains on the site **Methodology** pages:
 
 - In-repo: [`src/pages/methodology.astro`](../../src/pages/methodology.astro)
-- Published (default base): https://jee1.github.io/ten_bagger/methodology/
+- Published: https://tenbagger.finnaut.com/methodology/
 
 Cross-link both; do not treat Methodology as the ledger/merge contract.
 
