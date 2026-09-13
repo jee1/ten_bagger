@@ -5,6 +5,7 @@ import type {
   SurvivorshipFlag,
 } from './content-types.generated.ts';
 
+import { evaluateExcessGate } from './excessGate.ts';
 import type { Market } from './performanceLoad.ts';
 
 export type HorizonTier = 'presentation' | 'secondary';
@@ -21,10 +22,13 @@ export interface CumulativePoint {
 
 export interface CumulativeSeries {
   horizonId: HorizonId;
+  tier: HorizonTier;
   points: CumulativePoint[];
   finalPortfolioReturn: number | null;
   finalBenchmarkReturn: number | null;
   excessClaimAllowed: boolean;
+  excessPublishAllowed: boolean;
+  excessReturn: number | null;
 }
 
 export interface HorizonSummary {
@@ -59,6 +63,10 @@ export interface MarketPerformanceView {
 const PRESENTATION: HorizonId[] = ['1M', '3M', '6M', '1Y'];
 const SECONDARY: HorizonId[] = ['H20', 'H60'];
 const CUMULATIVE_FALLBACK: HorizonId[] = ['H20', '1M', '3M', '6M', '1Y'];
+
+function horizonTier(horizonId: HorizonId): HorizonTier {
+  return PRESENTATION.includes(horizonId) ? 'presentation' : 'secondary';
+}
 
 function pickComplete(rows: PerformanceMeasurement[]): PerformanceMeasurement[] {
   return rows.filter((m) => m.completionStatus === 'complete');
@@ -127,13 +135,19 @@ function buildCumulative(
   }
 
   const excessClaimAllowed = rows.length >= 1 && gapCount === 0;
+  const tier = horizonTier(horizonId);
+  const finalPortfolioReturn = points.length ? points[points.length - 1].portfolioCumulative : null;
+  const finalBenchmarkReturn = benchSteps ? benchmarkFactor - 1 : null;
   return {
     series: {
       horizonId,
+      tier,
       points,
-      finalPortfolioReturn: points.length ? points[points.length - 1].portfolioCumulative : null,
-      finalBenchmarkReturn: benchSteps ? benchmarkFactor - 1 : null,
+      finalPortfolioReturn,
+      finalBenchmarkReturn,
       excessClaimAllowed,
+      excessPublishAllowed: false,
+      excessReturn: null,
     },
     benchmarkGapCount: gapCount,
   };
@@ -194,9 +208,28 @@ export function aggregateMarket(
   const horizonId = selectCumulativeHorizon(measurements);
   let cumulative: CumulativeSeries | null = null;
   let benchmarkGapCount = 0;
+  const priceAdjustment =
+    typeof bundle.runMeta?.priceAdjustment === 'string' ? bundle.runMeta.priceAdjustment : null;
+  const VALIDATED_PRICE_BASES = new Set(['adjusted_auto', 'adjusted_preferred']);
+  const priceBasisValidation: PriceBasisValidationStatus =
+    priceAdjustment !== null && VALIDATED_PRICE_BASES.has(priceAdjustment) ? 'complete' : 'incomplete';
+
   if (horizonId) {
     const built = buildCumulative(measurements, horizonId);
-    cumulative = built.series;
+    const rows = pickComplete(measurements.filter((m) => m.horizonId === horizonId));
+    const excessGate = evaluateExcessGate({
+      nComplete: rows.length,
+      excessClaimAllowed: built.series.excessClaimAllowed,
+      tier: built.series.tier,
+      priceBasisValidation,
+      finalPortfolioReturn: built.series.finalPortfolioReturn,
+      finalBenchmarkReturn: built.series.finalBenchmarkReturn,
+    });
+    cumulative = {
+      ...built.series,
+      excessPublishAllowed: excessGate.publish,
+      excessReturn: excessGate.excessReturn,
+    };
     benchmarkGapCount = built.benchmarkGapCount;
   }
 
@@ -215,13 +248,6 @@ export function aggregateMarket(
   const hasZeroVolumeCaveat = measurements.some(
     (m) => m.dataQualityFlag === 'zero_volume_forward_fill',
   );
-
-  const priceAdjustment =
-    typeof bundle.runMeta?.priceAdjustment === 'string' ? bundle.runMeta.priceAdjustment : null;
-  // Price-basis validation complete per docs/architecture/price-basis-validation-002780.md (#119)
-  const VALIDATED_PRICE_BASES = new Set(['adjusted_auto', 'adjusted_preferred']);
-  const priceBasisValidation: PriceBasisValidationStatus =
-    priceAdjustment !== null && VALIDATED_PRICE_BASES.has(priceAdjustment) ? 'complete' : 'incomplete';
 
   return {
     market,

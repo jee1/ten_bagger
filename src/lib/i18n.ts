@@ -148,8 +148,8 @@ export const labels = {
   } satisfies LocalizedText,
   performanceExcess: { ko: '초과 성과', en: 'Excess' } satisfies LocalizedText,
   performanceExcessPending: {
-    ko: '표본과 벤치마크 커버리지가 충족되면 산출',
-    en: 'Computed once sample size and benchmark coverage suffice',
+    ko: '표본·벤치마크·공개 지평(1M–1Y) 게이트 충족 시 산출',
+    en: 'Computed once sample, benchmark coverage, and a presentation horizon (1M–1Y) pass the gate',
   } satisfies LocalizedText,
   performanceSamplesPending: {
     ko: '표본이 쌓이면 자동으로 채워집니다',
