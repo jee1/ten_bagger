@@ -29,9 +29,7 @@ def _session_dates(values, *, market: str | None, provider: str) -> pd.Series:
     return ts.dt.strftime("%Y-%m-%d")
 
 
-def _history_to_bars(
-    hist: pd.DataFrame, *, market: str | None, provider: str
-) -> pd.DataFrame:
+def _history_to_bars(hist: pd.DataFrame, *, market: str | None, provider: str) -> pd.DataFrame:
     if hist.empty:
         return pd.DataFrame(columns=["date", "Open", "High", "Low", "Close"])
     out = hist.reset_index()
