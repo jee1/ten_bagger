@@ -2,11 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Calendar from '../components/Calendar.astro';
 import { getAllDates, getEntriesForMonth, getKstDate } from '../lib/daily';
-import { label } from '../lib/i18n';
-import type { Lang } from '../lib/i18n';
+import { label, localeToLang } from '../lib/i18n';
 import { archiveYmKey } from '../lib/staticNav';
 
-const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
+const lang = localeToLang(Astro.currentLocale);
 const kstNow = getKstDate();
 const defaultYear = kstNow.getFullYear();
 const defaultMonth = kstNow.getMonth() + 1;

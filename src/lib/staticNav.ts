@@ -1,6 +1,14 @@
 export type Lang = 'ko' | 'en';
 export type Market = 'KR' | 'US';
 
+export const DEFAULT_LANG: Lang = 'ko';
+
+export interface SplitPath {
+  lang: Lang;
+  rel: string;
+  prefixed: boolean;
+}
+
 export interface StaticNavState {
   lang: Lang;
   year: number;
@@ -11,6 +19,41 @@ export interface StaticNavState {
 export interface StaticNavDefaults {
   year: number;
   month: number;
+  lang: Lang;
+  localePrefixed: boolean;
+}
+
+function normalizeBase(base: string): string {
+  if (!base.startsWith('/')) return `/${base.endsWith('/') ? base : `${base}/`}`;
+  return base.endsWith('/') ? base : `${base}/`;
+}
+
+/** Split a built pathname into its locale prefix and the locale-free remainder. */
+export function splitLocalePath(pathname: string, base = '/'): SplitPath {
+  const b = normalizeBase(base);
+  let rest = pathname;
+  if (rest.startsWith(b)) {
+    rest = rest.slice(b.length);
+  }
+  rest = rest.replace(/^\/+|\/+$/g, '');
+  if (rest === 'en' || rest.startsWith('en/')) {
+    const rel = rest === 'en' ? '' : rest.slice(3);
+    return { lang: 'en', rel, prefixed: true };
+  }
+  return { lang: DEFAULT_LANG, rel: rest, prefixed: false };
+}
+
+/** Inverse of splitLocalePath: build an internal href for a locale. */
+export function localeHref(base: string, lang: Lang, rel: string): string {
+  const b = normalizeBase(base);
+  const relPath = rel ? `${rel.replace(/^\/+|\/+$/g, '')}/` : '';
+  if (lang === 'en') {
+    return `${b}en/${relPath}`;
+  }
+  if (!relPath) {
+    return b === '/' ? '/' : b;
+  }
+  return `${b}${relPath}`;
 }
 
 function parsePositiveInt(raw: string | null): number | null {
@@ -26,7 +69,14 @@ export function parseStaticNav(
   defaults: StaticNavDefaults,
 ): StaticNavState {
   const q = new URLSearchParams(search.startsWith('?') ? search.slice(1) : search);
-  const lang: Lang = q.get('lang') === 'en' ? 'en' : 'ko';
+  let lang: Lang;
+  if (defaults.localePrefixed) {
+    lang = defaults.lang;
+  } else if (q.get('lang') === 'en') {
+    lang = 'en';
+  } else {
+    lang = defaults.lang;
+  }
   const year = parsePositiveInt(q.get('year')) ?? defaults.year;
   const monthRaw = parsePositiveInt(q.get('month'));
   const month =

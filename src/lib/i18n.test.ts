@@ -1,13 +1,23 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { label, labels, shortText, t } from './i18n.ts';
+import { label, labels, localeToLang, shortText, t } from './i18n.ts';
 
 describe('t', () => {
   it('picks ko and en from LocalizedText', () => {
     const text = { ko: '안녕', en: 'Hello' };
     assert.equal(t(text, 'ko'), '안녕');
     assert.equal(t(text, 'en'), 'Hello');
+  });
+});
+
+describe('localeToLang', () => {
+  it('maps Astro locale strings to Lang', () => {
+    assert.equal(localeToLang('en'), 'en');
+    assert.equal(localeToLang('ko'), 'ko');
+    assert.equal(localeToLang(undefined), 'ko');
+    assert.equal(localeToLang('EN'), 'ko');
+    assert.equal(localeToLang('en-US'), 'ko');
   });
 });
 

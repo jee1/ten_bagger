@@ -2,11 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import DailyCard from '../components/DailyCard.astro';
 import { getLatestEntry, getTodayDateString, getDailyEntry } from '../lib/daily';
-import { label } from '../lib/i18n';
-import type { Lang } from '../lib/i18n';
+import { label, localeToLang } from '../lib/i18n';
 import { pickFreshnessView } from '../lib/staticNav';
 
-const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
+const lang = localeToLang(Astro.currentLocale);
 const today = getTodayDateString();
 const todayEntry = await getDailyEntry(today);
 const entry = todayEntry ?? await getLatestEntry();
