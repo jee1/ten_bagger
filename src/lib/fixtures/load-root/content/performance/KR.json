@@ -20,7 +20,8 @@
       "survivorshipFlag": "listed",
       "asOfDate": "2026-08-28",
       "forwardReturn": 0.1,
-      "benchmarkReturn": 0.05
+      "benchmarkReturn": 0.05,
+      "dataQualityFlag": "clean"
     },
     {
       "market": "KR",
@@ -33,7 +34,8 @@
       "survivorshipFlag": "listed",
       "asOfDate": "2026-08-28",
       "forwardReturn": 0.2,
-      "benchmarkReturn": 0.0
+      "benchmarkReturn": 0.0,
+      "dataQualityFlag": "clean"
     },
     {
       "market": "KR",
@@ -46,7 +48,8 @@
       "survivorshipFlag": "listed",
       "asOfDate": "2026-08-28",
       "forwardReturn": 0.05,
-      "benchmarkReturn": 0.02
+      "benchmarkReturn": 0.02,
+      "dataQualityFlag": "clean"
     },
     {
       "market": "KR",
@@ -59,7 +62,8 @@
       "survivorshipFlag": "listed",
       "asOfDate": "2026-08-28",
       "forwardReturn": 0.15,
-      "benchmarkReturn": 0.01
+      "benchmarkReturn": 0.01,
+      "dataQualityFlag": "clean"
     },
     {
       "market": "KR",
@@ -72,7 +76,8 @@
       "survivorshipFlag": "listed",
       "asOfDate": "2026-08-28",
       "forwardReturn": 0.08,
-      "benchmarkReturn": 0.03
+      "benchmarkReturn": 0.03,
+      "dataQualityFlag": "clean"
     },
     {
       "market": "KR",
@@ -85,7 +90,8 @@
       "benchmarkCompletionStatus": "incomplete",
       "benchmarkIncompleteReason": "horizon_beyond_asof",
       "survivorshipFlag": "listed",
-      "asOfDate": "2026-08-28"
+      "asOfDate": "2026-08-28",
+      "dataQualityFlag": "clean"
     },
     {
       "market": "KR",
@@ -98,7 +104,8 @@
       "survivorshipFlag": "listed",
       "asOfDate": "2026-08-28",
       "forwardReturn": 0.12,
-      "benchmarkReturn": 0.04
+      "benchmarkReturn": 0.04,
+      "dataQualityFlag": "clean"
     },
     {
       "market": "KR",
@@ -111,7 +118,8 @@
       "survivorshipFlag": "delisted",
       "asOfDate": "2026-08-28",
       "forwardReturn": 0.05,
-      "benchmarkIncompleteReason": "missing_benchmark_series"
+      "benchmarkIncompleteReason": "missing_benchmark_series",
+      "dataQualityFlag": "clean"
     }
   ]
 }

@@ -31,12 +31,12 @@ def _session_dates(values, *, market: str | None, provider: str) -> pd.Series:
 
 def _history_to_bars(hist: pd.DataFrame, *, market: str | None, provider: str) -> pd.DataFrame:
     if hist.empty:
-        return pd.DataFrame(columns=["date", "Open", "High", "Low", "Close"])
+        return pd.DataFrame(columns=["date", "Open", "High", "Low", "Close", "Volume"])
     out = hist.reset_index()
     date_col = "Date" if "Date" in out.columns else out.columns[0]
     out = out.rename(columns={date_col: "date"})
     out["date"] = _session_dates(out["date"], market=market, provider=provider)
-    cols = ["date", "Open", "High", "Low", "Close"]
+    cols = ["date", "Open", "High", "Low", "Close", "Volume"]
     for optional in ("Adj Open", "Adj Close"):
         if optional in out.columns:
             cols.append(optional)

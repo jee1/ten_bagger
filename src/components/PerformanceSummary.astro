@@ -208,6 +208,14 @@ const priceAdjustmentLabel =
   </p>
 )}
 
+{view.hasZeroVolumeCaveat && (
+  <p class="muted" style="margin: 0 0 1rem; font-size: 0.82rem;" role="status">
+    <span data-i18n="performanceZeroVolumeCaveat">
+      {label('performanceZeroVolumeCaveat', lang)}
+    </span>
+  </p>
+)}
+
 <article class="card">
   {series ? (
     <>

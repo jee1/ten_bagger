@@ -93,4 +93,15 @@ describe('aggregateMarket', () => {
   it('keeps incomplete price-basis validation for empty bundles', () => {
     assert.equal(aggregateMarket(null, 'KR').priceBasisValidation, 'incomplete');
   });
+
+  it('surfaces zero-volume caveat when any measurement is flagged', () => {
+    const flagged: PerformanceBundle = {
+      ...krSample,
+      measurements: krSample.measurements.map((m, i) =>
+        i === 0 ? { ...m, dataQualityFlag: 'zero_volume_forward_fill' } : m,
+      ),
+    };
+    assert.equal(aggregateMarket(flagged, 'KR').hasZeroVolumeCaveat, true);
+    assert.equal(aggregateMarket(krSample, 'KR').hasZeroVolumeCaveat, false);
+  });
 });

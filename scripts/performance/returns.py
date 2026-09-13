@@ -15,7 +15,7 @@ from performance.horizons import (
     session_horizon_exit,
     trading_sessions,
 )
-from performance.pit_prices import filter_session_bars, prefer_adjusted
+from performance.pit_prices import filter_session_bars, is_zero_volume_suspension_bar, prefer_adjusted
 
 BENCHMARK_IDS = {"KR": "KR-KOSPI", "US": "US-SPX"}
 
@@ -110,6 +110,20 @@ def survivorship_flag(
     return "unknown"
 
 
+def _data_quality_flag(
+    adjusted: pd.DataFrame,
+    entry_session: str | None,
+    exit_session: str | None,
+) -> str:
+    for session in (entry_session, exit_session):
+        if session is None:
+            continue
+        row = _bar_on_session(adjusted, session)
+        if row is not None and is_zero_volume_suspension_bar(row):
+            return "zero_volume_forward_fill"
+    return "clean"
+
+
 def _base_measurement(
     *,
     market: str,
@@ -128,6 +142,7 @@ def _base_measurement(
         "completionStatus": "incomplete",
         "benchmarkCompletionStatus": "incomplete",
         "survivorshipFlag": surv,
+        "dataQualityFlag": "clean",
         "asOfDate": as_of_date,
     }
     if horizon_id in _SESSION_HORIZON_DAYS:
@@ -256,6 +271,8 @@ def measure_pick_horizon(
             else:
                 pick_complete = True
                 forward_return = (exit_price - entry_price) / entry_price
+
+    m["dataQualityFlag"] = _data_quality_flag(adjusted, entry_session, exit_session)
 
     if not pick_complete:
         m["incompleteReason"] = incomplete_reason or "missing_exit"
