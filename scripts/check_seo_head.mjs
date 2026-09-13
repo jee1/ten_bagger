@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /** Assert og:image, hreflang, and /en locale pages in built HTML. */
-import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { join, relative } from 'node:path';
 
 const dist = join(process.cwd(), 'dist');
 const site = 'https://tenbagger.finnaut.com';
@@ -110,6 +110,50 @@ const sitemap = readFileSync(sitemapPath, 'utf8');
 if (!sitemap.includes('/en/')) {
   console.error('check_seo_head: sitemap must contain at least one /en/ URL');
   process.exit(1);
+}
+
+const enArchive = readHtml('en/archive/index.html');
+const navBlock = enArchive.match(/<div class="calendar-nav">([\s\S]*?)<\/div>/);
+if (!navBlock) {
+  console.error('check_seo_head: dist/en/archive/index.html missing calendar-nav');
+  process.exit(1);
+}
+const monthNavHrefs = [...navBlock[1].matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+if (monthNavHrefs.length < 2) {
+  console.error('check_seo_head: dist/en/archive/index.html must contain prev/next month links');
+  process.exit(1);
+}
+for (const href of monthNavHrefs) {
+  if (!href.startsWith('/en/archive/?')) {
+    console.error(
+      `check_seo_head: en archive month link must start with /en/archive/?, got ${href}`,
+    );
+    process.exit(1);
+  }
+}
+
+function walkHtml(dir, out = []) {
+  for (const name of readdirSync(dir)) {
+    const path = join(dir, name);
+    if (statSync(path).isDirectory()) {
+      walkHtml(path, out);
+    } else if (name.endsWith('.html')) {
+      out.push(path);
+    }
+  }
+  return out;
+}
+
+const legacyLangQuery = /href="[^"]*(?:[?&]lang=en(?:&|$|"))/g;
+for (const htmlPath of walkHtml(dist)) {
+  const html = readFileSync(htmlPath, 'utf8');
+  const hit = html.match(legacyLangQuery);
+  if (hit) {
+    console.error(
+      `check_seo_head: ${relative(process.cwd(), htmlPath)} contains legacy lang=en link: ${hit[0]}`,
+    );
+    process.exit(1);
+  }
 }
 
 console.log('check_seo_head: OK');
