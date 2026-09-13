@@ -4,6 +4,7 @@ import { labels, label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
 import Disclaimer from '../components/Disclaimer.astro';
 import { getKstDate } from '../lib/daily';
+import { splitLocalePath, localeHref } from '../lib/staticNav';
 
 interface Props {
   title: string;
@@ -17,22 +18,19 @@ const kst = getKstDate();
 const defaultYear = kst.getFullYear();
 const defaultMonth = kst.getMonth() + 1;
 
-const koParams = new URLSearchParams(Astro.url.search);
-koParams.set('lang', 'ko');
-const enParams = new URLSearchParams(Astro.url.search);
-enParams.set('lang', 'en');
-const koUrl = `${Astro.url.pathname}?${koParams}`;
-const enUrl = `${Astro.url.pathname}?${enParams}`;
+const { rel, prefixed } = splitLocalePath(Astro.url.pathname, base);
+const koUrl = localeHref(base, 'ko', rel);
+const enUrl = localeHref(base, 'en', rel);
 
 const pageTitle = `${title} | ${label('siteName', lang)}`;
 const description = label('tagline', lang);
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(localeHref(base, lang, rel), Astro.site);
+const ogImage = new URL(`${base}og-default.png`, Astro.site);
 const goatCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE ?? 'tenbagger';
 
 const labelsJson = JSON.stringify(labels);
 
-const path = Astro.url.pathname.slice(base.length).replace(/^\/+|\/+$/g, '');
-const section = path === '' ? 'today' : path.split('/')[0];
+const section = rel === '' ? 'today' : rel.split('/')[0];
 const isActive = (key: string) =>
   key === 'today' ? section === 'today' || section === 'daily' : section === key;
 ---
@@ -48,14 +46,28 @@ const isActive = (key: string) =>
     />
     <meta name="description" content={description} data-i18n-attr="content:tagline" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="ko" href={new URL(localeHref(base, 'ko', rel), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(localeHref(base, 'en', rel), Astro.site)} />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(localeHref(base, 'ko', rel), Astro.site)}
+    />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content={label('siteName', lang)} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={label('siteName', lang)} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'ko_KR'} />
+    <meta property="og:locale:alternate" content={lang === 'en' ? 'ko_KR' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link
       rel="alternate"
@@ -81,14 +93,14 @@ const isActive = (key: string) =>
     <script
       type="application/json"
       id="static-nav-defaults"
-      set:html={JSON.stringify({ year: defaultYear, month: defaultMonth })}
+      set:html={JSON.stringify({ year: defaultYear, month: defaultMonth, lang, localePrefixed: prefixed })}
     />
   </head>
   <body>
     <header class="site-header">
       <div class="inner">
         <div class="brand-row">
-          <a class="brand" href={`${base}?lang=${lang}`} data-nav-preserve="lang">
+          <a class="brand" href={localeHref(base, lang, '')}>
             <svg
               width="18"
               height="18"
@@ -113,29 +125,25 @@ const isActive = (key: string) =>
         </div>
         <nav class="nav">
           <a
-            href={`${base}?lang=${lang}`}
-            data-nav-preserve="lang"
+            href={localeHref(base, lang, '')}
             class:list={{ active: isActive('today') }}
             aria-current={isActive('today') ? 'page' : undefined}
             ><span data-i18n="today">{label('today', lang)}</span></a
           >
           <a
-            href={`${base}archive/?lang=${lang}`}
-            data-nav-preserve="lang"
+            href={localeHref(base, lang, 'archive')}
             class:list={{ active: isActive('archive') }}
             aria-current={isActive('archive') ? 'page' : undefined}
             ><span data-i18n="archive">{label('archive', lang)}</span></a
           >
           <a
-            href={`${base}methodology/?lang=${lang}`}
-            data-nav-preserve="lang"
+            href={localeHref(base, lang, 'methodology')}
             class:list={{ active: isActive('methodology') }}
             aria-current={isActive('methodology') ? 'page' : undefined}
             ><span data-i18n="methodology">{label('methodology', lang)}</span></a
           >
           <a
-            href={`${base}performance/?lang=${lang}`}
-            data-nav-preserve="lang"
+            href={localeHref(base, lang, 'performance')}
             class:list={{ active: isActive('performance') }}
             aria-current={isActive('performance') ? 'page' : undefined}
             ><span data-i18n="performance">{label('performance', lang)}</span></a
@@ -161,7 +169,12 @@ const isActive = (key: string) =>
 
       function applyStaticNav() {
         const labelMap = readJson<LabelMap>('i18n-labels');
-        const defaults = readJson<{ year: number; month: number }>('static-nav-defaults');
+        const defaults = readJson<{
+          year: number;
+          month: number;
+          lang: Lang;
+          localePrefixed: boolean;
+        }>('static-nav-defaults');
         const state = parseStaticNav(window.location.search, defaults);
         const lang = state.lang as Lang;
 

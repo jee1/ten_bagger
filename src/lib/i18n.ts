@@ -172,6 +172,10 @@ export const labels = {
   } satisfies LocalizedText,
 } as const;
 
+export function localeToLang(locale: string | undefined): Lang {
+  return locale === 'en' ? 'en' : 'ko';
+}
+
 export function t(text: LocalizedText, lang: Lang): string {
   return text[lang];
 }

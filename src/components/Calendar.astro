@@ -1,6 +1,7 @@
 ---
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
+import { localeHref } from '../lib/staticNav';
 import type { DailyEntry, LocalizedText } from '../lib/types';
 import { getTodayDateString } from '../lib/daily';
 import DualText from './DualText.astro';
@@ -173,7 +174,7 @@ if (cells.length > 0) {
                 <td class="blank" />
               ) : cell.kind === 'pick' ? (
                 <td class:list={['has-pick', { today: cell.date === today }]}>
-                  <a class="cal-link" href={`${base}daily/${cell.date}/?lang=${lang}`}>
+                  <a class="cal-link" href={localeHref(base, lang, `daily/${cell.date}`)}>
                     <span class="cal-day">
                       <span class:list={['num', { weekend: i === 0 || i === 6 }]}>{cell.day}</span>
                       {cell.date === today ? (

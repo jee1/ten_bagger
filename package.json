@@ -22,6 +22,7 @@
     "test:rss": "node --experimental-strip-types --test src/lib/rss.test.ts",
     "test:daily-i18n": "node --experimental-strip-types --test src/lib/dailyDates.test.ts src/lib/i18n.test.ts",
     "test:market-scope": "node scripts/check_market_scope.mjs",
+    "test:seo-head": "node scripts/check_seo_head.mjs",
     "walk-forward": "cd scripts && python walk_forward.py",
     "walk-forward:smoke": "cd scripts && python -m pytest tests/test_walk_forward_smoke.py -q",
     "calibrate": "cd scripts && python calibrate.py",

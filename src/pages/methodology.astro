@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { label } from '../lib/i18n';
-import type { Lang } from '../lib/i18n';
+import { localeToLang } from '../lib/i18n';
 
-const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
+const lang = localeToLang(Astro.currentLocale);
 
 /** Live Score v2 weights — the stacked bar and the rows read from one source. */
 const weights = [

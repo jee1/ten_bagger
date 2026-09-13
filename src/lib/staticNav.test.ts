@@ -1,9 +1,61 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { archiveYmKey, kstDateString, parseStaticNav, pickFreshnessView } from './staticNav.ts';
+import {
+  archiveYmKey,
+  kstDateString,
+  localeHref,
+  parseStaticNav,
+  pickFreshnessView,
+  splitLocalePath,
+} from './staticNav.ts';
 
-const defaults = { year: 2026, month: 9 };
+const defaults = { year: 2026, month: 9, lang: 'ko' as const, localePrefixed: false };
+
+describe('splitLocalePath', () => {
+  it('splits ko root and nested paths', () => {
+    assert.deepEqual(splitLocalePath('/', '/'), { lang: 'ko', rel: '', prefixed: false });
+    assert.deepEqual(splitLocalePath('/archive/', '/'), {
+      lang: 'ko',
+      rel: 'archive',
+      prefixed: false,
+    });
+  });
+
+  it('splits en prefix and ignores false positives', () => {
+    assert.deepEqual(splitLocalePath('/en/', '/'), { lang: 'en', rel: '', prefixed: true });
+    assert.deepEqual(splitLocalePath('/en/daily/2026-09-13/', '/'), {
+      lang: 'en',
+      rel: 'daily/2026-09-13',
+      prefixed: true,
+    });
+    assert.deepEqual(splitLocalePath('/english/', '/'), {
+      lang: 'ko',
+      rel: 'english',
+      prefixed: false,
+    });
+  });
+
+  it('respects BASE_PATH', () => {
+    assert.deepEqual(splitLocalePath('/ten_bagger/en/archive/', '/ten_bagger/'), {
+      lang: 'en',
+      rel: 'archive',
+      prefixed: true,
+    });
+  });
+});
+
+describe('localeHref', () => {
+  it('builds trailing-slash internal hrefs', () => {
+    assert.equal(localeHref('/', 'ko', ''), '/');
+    assert.equal(localeHref('/', 'en', ''), '/en/');
+    assert.equal(localeHref('/', 'en', 'archive'), '/en/archive/');
+    assert.equal(
+      localeHref('/ten_bagger/', 'en', 'daily/2026-09-13'),
+      '/ten_bagger/en/daily/2026-09-13/',
+    );
+  });
+});
 
 describe('parseStaticNav', () => {
   it('defaults lang=ko, market=KR, year/month from defaults', () => {
@@ -15,13 +67,19 @@ describe('parseStaticNav', () => {
     });
   });
 
-  it('parses lang=en, market=US, year, month', () => {
+  it('parses lang=en, market=US, year, month from query on unprefixed pages', () => {
     assert.deepEqual(parseStaticNav('?lang=en&market=US&year=2026&month=8', defaults), {
       lang: 'en',
       year: 2026,
       month: 8,
       market: 'US',
     });
+  });
+
+  it('uses baked lang on locale-prefixed pages', () => {
+    const enDefaults = { ...defaults, lang: 'en' as const, localePrefixed: true };
+    assert.equal(parseStaticNav('', enDefaults).lang, 'en');
+    assert.equal(parseStaticNav('?lang=ko', enDefaults).lang, 'en');
   });
 
   it('rejects invalid month and falls back to default', () => {

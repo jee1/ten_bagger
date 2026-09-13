@@ -53,6 +53,7 @@ jobs:
           npm run test:daily-i18n
           npm run build
           npm run test:market-scope
+          npm run test:seo-head
 
       - name: Audit npm dependencies
         run: npm audit --audit-level=high
