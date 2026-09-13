@@ -30,3 +30,7 @@ scripts/cache/
 
 # local agent / browser tooling output
 .playwright-mcp/
+
+# tech-debt harness: per-run snapshots + transient fix state (registry.json is tracked)
+docs/tech-debt/*-audit.json
+docs/tech-debt/.active-fix.json

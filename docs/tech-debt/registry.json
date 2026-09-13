@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "updated_at": "2026-09-13",
+  "items": {
+    "52575a2d8ea3b9a4": {
+      "id": "TD-001",
+      "title": "프론트 단위 테스트가 CI에 없음",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 98,
+      "resolved_issue": 98
+    },
+    "5584c8f7fd35216f": {
+      "id": "TD-002",
+      "title": "PIT asOfDate=오늘 처리가 calendar date.today() 휴리스틱",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 99,
+      "resolved_issue": 99
+    },
+    "c40cbc9beb908149": {
+      "id": "TD-004",
+      "title": "src/lib/daily.ts·i18n.ts 단위 테스트 부재",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 100,
+      "resolved_issue": 100
+    },
+    "ced476aff9bd2901": {
+      "id": "TD-007",
+      "title": "ledger regenerate 계약 검증이 부분 스키마",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 101,
+      "resolved_issue": 101
+    },
+    "858ef2732ea3f0ba": {
+      "id": "TD-003",
+      "title": "상장폐지/거래정지 판별 7일 갭 프록시",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 102,
+      "resolved_issue": 102
+    },
+    "c510a81ad04aca75": {
+      "id": "TD-005",
+      "title": "Score v1 경로가 라이브 import 그래프에 잔존",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 103,
+      "resolved_issue": 103
+    },
+    "cb1315d7875d33ef": {
+      "id": "TD-008",
+      "title": "Astro 패치 뒤처짐·TypeScript 메이저 미적용",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 104,
+      "resolved_issue": 104
+    },
+    "81d3d65aa203faf0": {
+      "id": "TD-009",
+      "title": ".playwright-mcp/ 미무시·미추적 산출물",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 105,
+      "resolved_issue": 105
+    },
+    "6de27e40480be31f": {
+      "id": "TD-006",
+      "title": "펀더멘털 단일 소스(yfinance) — DART 이중화 연기",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 106,
+      "resolved_issue": 106
+    },
+    "0debb4d29a615c58": {
+      "id": "TD-010",
+      "title": "tech-debt 하네스가 scripts/requirements.txt 미탐지",
+      "status": "resolved",
+      "last_seen": "2026-09-06",
+      "issue_number": 107,
+      "resolved_issue": 107
+    }
+  }
+}
