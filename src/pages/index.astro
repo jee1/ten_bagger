@@ -4,11 +4,13 @@ import DailyCard from '../components/DailyCard.astro';
 import { getLatestEntry, getTodayDateString, getDailyEntry } from '../lib/daily';
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
+import { pickFreshnessView } from '../lib/staticNav';
 
 const lang = (Astro.url.searchParams.get('lang') === 'en' ? 'en' : 'ko') as Lang;
 const today = getTodayDateString();
 const todayEntry = await getDailyEntry(today);
 const entry = todayEntry ?? await getLatestEntry();
+const view = entry ? pickFreshnessView(entry.date, today) : null;
 ---
 
 <Layout title={label('today', lang)} titleKey="today" lang={lang}>
@@ -23,6 +25,36 @@ const entry = todayEntry ?? await getLatestEntry();
       </p>
     )}
   </div>
+  {entry && view && (
+    <div
+      class="pick-freshness"
+      data-pick-date={entry.date}
+      style="display: flex; align-items: center; gap: 0.4rem; margin: 0 0 0.7rem;"
+    >
+      <span class:list={['badge', view.badgeTone]} data-freshness-badge>
+        <span data-i18n={view.labelKey} data-freshness-label>{label(view.labelKey, lang)}</span>
+      </span>
+      <span
+        class="num muted"
+        style="font-size: 0.78rem;"
+        data-freshness-stale
+        hidden={!view.stale}
+      >
+        · <time datetime={entry.date}>{entry.date}</time>
+      </span>
+    </div>
+  )}
+  {entry && view && (
+    <p
+      class="muted"
+      style="margin: 0 0 0.9rem; font-size: 0.8rem;"
+      data-freshness-stale
+      hidden={!view.stale}
+      data-i18n="pickFreshHint"
+    >
+      {label('pickFreshHint', lang)}
+    </p>
+  )}
   {entry ? (
     <DailyCard entry={entry} lang={lang} />
   ) : (

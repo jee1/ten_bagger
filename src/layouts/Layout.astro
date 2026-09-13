@@ -148,7 +148,7 @@ const isActive = (key: string) =>
       <Disclaimer lang={lang} />
     </main>
     <script>
-      import { archiveYmKey, parseStaticNav } from '../lib/staticNav.ts';
+      import { archiveYmKey, kstDateString, parseStaticNav, pickFreshnessView } from '../lib/staticNav.ts';
       import type { Lang } from '../lib/i18n.ts';
 
       type LabelMap = Record<string, { ko: string; en: string }>;
@@ -166,6 +166,20 @@ const isActive = (key: string) =>
         const lang = state.lang as Lang;
 
         document.documentElement.lang = lang;
+
+        const freshnessRow = document.querySelector<HTMLElement>('[data-pick-date]');
+        const pickDate = freshnessRow?.dataset.pickDate;
+        if (pickDate) {
+          const view = pickFreshnessView(pickDate, kstDateString());
+          const labelEl = freshnessRow!.querySelector<HTMLElement>('[data-freshness-label]');
+          if (labelEl) labelEl.dataset.i18n = view.labelKey;
+          const badge = freshnessRow!.querySelector<HTMLElement>('[data-freshness-badge]');
+          badge?.classList.toggle('pick', !view.stale);
+          badge?.classList.toggle('none', view.stale);
+          document.querySelectorAll<HTMLElement>('[data-freshness-stale]').forEach((el) => {
+            el.hidden = !view.stale;
+          });
+        }
 
         document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
           const key = el.dataset.i18n;

@@ -18,6 +18,15 @@ describe('label', () => {
   });
 });
 
+describe('labels completeness', () => {
+  it('T6: every label has non-empty ko and en', () => {
+    for (const [key, text] of Object.entries(labels)) {
+      assert.ok(text.ko.length > 0, `${key}.ko is empty`);
+      assert.ok(text.en.length > 0, `${key}.en is empty`);
+    }
+  });
+});
+
 describe('shortText', () => {
   it('returns trimmed short text unchanged', () => {
     assert.equal(shortText('  hi  '), 'hi');
