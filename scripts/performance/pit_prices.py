@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from datetime import datetime, time
 from zoneinfo import ZoneInfo
 
@@ -75,6 +76,21 @@ def filter_session_bars(
     else:
         out = out[out["_session"] < as_of_date]
     return out.drop(columns=["_session"]).reset_index(drop=True)
+
+
+def is_zero_volume_suspension_bar(row: pd.Series) -> bool:
+    """True when vendor forward-filled a halt: Volume 0 and flat OHLC."""
+    if "Volume" not in row.index or pd.isna(row["Volume"]):
+        return False
+    if float(row["Volume"]) != 0.0:
+        return False
+    cols = ("Open", "High", "Low", "Close")
+    if not all(c in row.index and pd.notna(row[c]) for c in cols):
+        return False
+    o, h, low, c = (float(row[col]) for col in cols)
+    if not all(math.isfinite(x) for x in (o, h, low, c)):
+        return False
+    return o == h == low == c
 
 
 def prefer_adjusted(

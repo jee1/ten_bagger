@@ -121,6 +121,7 @@ export type PerformanceMeasurement = {
   benchmarkCompletionStatus: CompletionStatus;
   benchmarkIncompleteReason?: BenchmarkIncompleteReason;
   survivorshipFlag: SurvivorshipFlag;
+  dataQualityFlag: DataQualityFlag;
   asOfDate: string;
 };
 export type HorizonId = "H20" | "H60" | "1M" | "3M" | "6M" | "1Y" | "3Y" | "5Y";
@@ -129,6 +130,7 @@ export type IncompleteReason =
   "missing_entry" | "invalid_entry" | "missing_exit" | "horizon_beyond_asof" | "insufficient_history" | "series_break";
 export type BenchmarkIncompleteReason = "missing_benchmark_series" | "missing_benchmark_exit" | "horizon_beyond_asof";
 export type SurvivorshipFlag = "listed" | "delisted" | "unknown";
+export type DataQualityFlag = "clean" | "zero_volume_forward_fill";
 
 export interface PerformanceBundle {
   schemaVersion: "0.1.0";

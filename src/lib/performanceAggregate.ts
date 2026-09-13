@@ -49,6 +49,7 @@ export interface MarketPerformanceView {
   cumulative: CumulativeSeries | null;
   horizons: HorizonSummary[];
   hasSurvivorshipCaveat: boolean;
+  hasZeroVolumeCaveat: boolean;
   benchmarkGapCount: number;
   priceAdjustment: string | null;
   priceBasisValidation: PriceBasisValidationStatus;
@@ -181,6 +182,7 @@ export function aggregateMarket(
         ...SECONDARY.map((id) => summarizeHorizon([], id, 'secondary')),
       ],
       hasSurvivorshipCaveat: false,
+      hasZeroVolumeCaveat: false,
       benchmarkGapCount: 0,
       priceAdjustment: null,
       priceBasisValidation: 'incomplete',
@@ -210,6 +212,9 @@ export function aggregateMarket(
   const hasSurvivorshipCaveat =
     (cumulative?.points.some((p) => p.survivorshipFlag !== 'listed') ?? false) ||
     horizons.some((h) => h.available && h.survivorshipCaveat);
+  const hasZeroVolumeCaveat = measurements.some(
+    (m) => m.dataQualityFlag === 'zero_volume_forward_fill',
+  );
 
   const priceAdjustment =
     typeof bundle.runMeta?.priceAdjustment === 'string' ? bundle.runMeta.priceAdjustment : null;
@@ -226,6 +231,7 @@ export function aggregateMarket(
     cumulative,
     horizons,
     hasSurvivorshipCaveat,
+    hasZeroVolumeCaveat,
     benchmarkGapCount,
     priceAdjustment,
     priceBasisValidation,

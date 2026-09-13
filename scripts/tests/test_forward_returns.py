@@ -360,6 +360,59 @@ def test_benchmark_complete_when_series_present():
 # --- T031-T033: prefer_adjusted, epsilon ---
 
 
+# --- #127: zero-volume suspension detection ---
+
+
+def test_history_to_bars_preserves_volume():
+    import pandas as pd
+    from performance.prices_live import _history_to_bars
+
+    idx = pd.to_datetime(["2026-08-14 00:00:00"]).tz_localize("Asia/Seoul")
+    hist = pd.DataFrame(
+        {
+            "Open": [7820.0],
+            "High": [7820.0],
+            "Low": [7820.0],
+            "Close": [7820.0],
+            "Volume": [0.0],
+        },
+        index=idx,
+    )
+    bars = _history_to_bars(hist, market="KR", provider="yfinance")
+    assert "Volume" in bars.columns
+    assert bars.iloc[0]["Volume"] == 0.0
+    assert bars.iloc[0]["date"] == "2026-08-14"
+
+
+def test_zero_volume_suspension_detected_on_002780_window():
+    bars = load_price_fixture("002780_suspension_kr")
+    m = measure_pick_horizon(
+        bars=bars,
+        benchmark_bars=None,
+        pick_date="2026-07-31",
+        as_of_date="2026-09-13",
+        market="KR",
+        symbol="002780.KS",
+        horizon_id="H20",
+    )
+    assert m["completionStatus"] == "complete"
+    assert m["exitPrice"] == pytest.approx(7820.0, abs=EPS)
+    assert m["dataQualityFlag"] == "zero_volume_forward_fill"
+
+
+def test_clean_bars_stay_clean():
+    bars = load_price_fixture("simple_kr_h20")
+    measurements = measure_all_horizons(
+        bars=bars,
+        benchmark_bars=None,
+        pick_date="2026-01-02",
+        as_of_date="2026-02-10",
+        market="KR",
+        symbol="SIMPLE.KR",
+    )
+    assert all(m["dataQualityFlag"] == "clean" for m in measurements)
+
+
 def test_prefer_adjusted_uses_adj_columns():
     import pandas as pd
 

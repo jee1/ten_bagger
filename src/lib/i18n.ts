@@ -142,6 +142,10 @@ export const labels = {
     ko: '검증 노트',
     en: 'validation note',
   } satisfies LocalizedText,
+  performanceZeroVolumeCaveat: {
+    ko: '일부 측정값의 진입·청산가가 거래정지 구간 vendor forward-fill(Volume 0, OHLC 동일)입니다. 실제 체결가와 다를 수 있습니다.',
+    en: 'Some measurements use entry/exit prices from vendor forward-fills during trading suspensions (Volume 0, flat OHLC). They may differ from tradable prints.',
+  } satisfies LocalizedText,
   performanceExcess: { ko: '초과 성과', en: 'Excess' } satisfies LocalizedText,
   performanceExcessPending: {
     ko: '표본과 벤치마크 커버리지가 충족되면 산출',

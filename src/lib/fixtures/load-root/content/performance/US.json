@@ -20,7 +20,8 @@
       "survivorshipFlag": "listed",
       "asOfDate": "2026-08-27",
       "forwardReturn": 0.1,
-      "benchmarkReturn": 0.05
+      "benchmarkReturn": 0.05,
+      "dataQualityFlag": "clean"
     }
   ]
 }

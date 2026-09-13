@@ -139,6 +139,7 @@ def _missing_measurement_row(
         "completionStatus": "incomplete",
         "benchmarkCompletionStatus": "incomplete",
         "survivorshipFlag": "unknown",
+        "dataQualityFlag": "clean",
         "asOfDate": as_of_date,
         "incompleteReason": "missing_ledger_row",
     }
