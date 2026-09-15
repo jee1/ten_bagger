@@ -1,0 +1,194 @@
+{
+  "date": "2026-09-15",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "178920.KS",
+    "name": {
+      "ko": "PI첨단소재",
+      "en": "PI Advanced Materials Co., Ltd."
+    },
+    "exchange": "KOSPI",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "PI첨단소재는 Basic Materials 분야 Specialty Chemicals 기업입니다.",
+        "en": "PI Advanced Materials Co., Ltd. engages in the manufacture and sale of polyimide-based materials in South Korea. It offers PI film, and PI varnish and power/mold products for use in IT, electric vehicles, display, semiconductor, and advance industrials."
+      },
+      "sector": {
+        "ko": "Basic Materials",
+        "en": "Basic Materials"
+      },
+      "industry": {
+        "ko": "Specialty Chemicals",
+        "en": "Specialty Chemicals"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.7,
+    "size": 100.0,
+    "growth": 95.9,
+    "valuation": 73.5,
+    "entry": 59.0,
+    "momentum": 55.7,
+    "quality": 68.3,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "PI첨단소재(178920.KS)는 v2 복합 점수 77.7로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "PI Advanced Materials Co., Ltd. (178920.KS) cleared the 70.0 threshold with v2 composite 77.7; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 6.9% / 이익 49.2% (혼합 25.94%) — 지속 가능 성장 점수 95.9.",
+      "en": "Revenue 6.9% / earnings 49.2% (blended 25.94%) — sustainable growth score 95.9."
+    },
+    "valuation": {
+      "ko": "PER 9.46, PEG None, FCF수익률 11.27%, PBR None — 밸류 점수 73.5.",
+      "en": "P/E 9.46, PEG None, FCF yield 11.27%, P/B None — valuation score 73.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -3.89% — 보조 모멘텀 점수 55.7.",
+      "en": "6M return -3.89% — auxiliary momentum score 55.7."
+    },
+    "quality": {
+      "ko": "ROE 11.41%, ROA 6.94%, FCF/순이익 1.5 — 품질 점수 68.3.",
+      "en": "ROE 11.41%, ROA 6.94%, FCF/net income 1.5 — quality score 68.3."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 542102290432 기준 규모 점수 100.0.",
+      "en": "Market cap 542102290432 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 22.7%, 52주 고점 대비 -40.93% — 진입 점수 59.0.",
+      "en": "12M price range 22.7%, -40.93% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-15T09:01:48+09:00",
+    "candidatesScreened": 1895,
+    "excludedRecent": 29,
+    "skippedMarketCap": 854,
+    "skippedRedFlags": 355,
+    "noData": 0,
+    "errors": 2
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "178920.KS",
+      "name": {
+        "ko": "PI첨단소재",
+        "en": "PI Advanced Materials Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 77.7,
+        "size": 100.0,
+        "growth": 95.9,
+        "valuation": 73.5,
+        "entry": 59.0,
+        "momentum": 55.7,
+        "quality": 68.3,
+        "version": 2
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "000240.KS",
+      "name": {
+        "ko": "한국앤컴퍼니",
+        "en": "Hankook & Company Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.5,
+        "size": 83.0,
+        "growth": 98.9,
+        "valuation": 73.5,
+        "entry": 75.0,
+        "momentum": 59.3,
+        "quality": 62.5,
+        "version": 2
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "284740.KS",
+      "name": {
+        "ko": "쿠쿠홈시스",
+        "en": "CUCKOO Homesys Co., Ltd"
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.4,
+        "size": 100.0,
+        "growth": 99.2,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 56.3,
+        "quality": 59.9,
+        "version": 2
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "040420.KQ",
+      "name": {
+        "ko": "정상제이엘에스",
+        "en": "JLS Co.,Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 75.9,
+        "size": 100.0,
+        "growth": 95.1,
+        "valuation": 73.5,
+        "entry": 64.5,
+        "momentum": 57.7,
+        "quality": 56.5,
+        "version": 2
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "483650.KS",
+      "name": {
+        "ko": "달바글로벌",
+        "en": "d'Alba Global Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 75.7,
+        "size": 75.0,
+        "growth": 87.6,
+        "valuation": 64.7,
+        "entry": 66.0,
+        "momentum": 63.8,
+        "quality": 88.7,
+        "version": 2
+      }
+    }
+  ]
+}
