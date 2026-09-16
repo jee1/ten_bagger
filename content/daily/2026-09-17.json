@@ -1,0 +1,194 @@
+{
+  "date": "2026-09-17",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "483650.KS",
+    "name": {
+      "ko": "달바글로벌",
+      "en": "d'Alba Global Co., Ltd."
+    },
+    "exchange": "KOSPI",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "달바글로벌는 Consumer Defensive 분야 Household & Personal Products 기업입니다.",
+        "en": "d'Alba Global Co., Ltd. engages in the manufacturing and sale of perfumes and cosmetic products in South Korea and internationally."
+      },
+      "sector": {
+        "ko": "Consumer Defensive",
+        "en": "Consumer Defensive"
+      },
+      "industry": {
+        "ko": "Household & Personal Products",
+        "en": "Household & Personal Products"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.2,
+    "size": 92.0,
+    "growth": 87.6,
+    "valuation": 64.7,
+    "entry": 59.0,
+    "momentum": 60.1,
+    "quality": 88.7,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "달바글로벌(483650.KS)는 v2 복합 점수 77.2로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "d'Alba Global Co., Ltd. (483650.KS) cleared the 70.0 threshold with v2 composite 77.2; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 50.5% / 이익 32.4% (혼합 42.36%) — 지속 가능 성장 점수 87.6.",
+      "en": "Revenue 50.5% / earnings 32.4% (blended 42.36%) — sustainable growth score 87.6."
+    },
+    "valuation": {
+      "ko": "PER 11.34, PEG None, FCF수익률 3.28%, PBR None — 밸류 점수 64.7.",
+      "en": "P/E 11.34, PEG None, FCF yield 3.28%, P/B None — valuation score 64.7."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 4.58% — 보조 모멘텀 점수 60.1.",
+      "en": "6M return 4.58% — auxiliary momentum score 60.1."
+    },
+    "quality": {
+      "ko": "ROE 50.85%, ROA 31.2%, FCF/순이익 0.72 — 품질 점수 88.7.",
+      "en": "ROE 50.85%, ROA 31.2%, FCF/net income 0.72 — quality score 88.7."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1988688609280 기준 규모 점수 92.0.",
+      "en": "Market cap 1988688609280 — size score 92.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 28.24%, 52주 고점 대비 -39.58% — 진입 점수 59.0.",
+      "en": "12M price range 28.24%, -39.58% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-17T08:51:03+09:00",
+    "candidatesScreened": 1899,
+    "excludedRecent": 29,
+    "skippedMarketCap": 849,
+    "skippedRedFlags": 363,
+    "noData": 0,
+    "errors": 2
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "483650.KS",
+      "name": {
+        "ko": "달바글로벌",
+        "en": "d'Alba Global Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 77.2,
+        "size": 92.0,
+        "growth": 87.6,
+        "valuation": 64.7,
+        "entry": 59.0,
+        "momentum": 60.1,
+        "quality": 88.7,
+        "version": 2
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "439090.KQ",
+      "name": {
+        "ko": "마녀공장",
+        "en": "Manyo Factory Co., Ltd"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.4,
+        "size": 100.0,
+        "growth": 92.5,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 73.2,
+        "quality": 58.3,
+        "version": 2
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "284740.KS",
+      "name": {
+        "ko": "쿠쿠홈시스",
+        "en": "CUCKOO Homesys Co., Ltd"
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.3,
+        "size": 100.0,
+        "growth": 99.2,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 55.8,
+        "quality": 59.9,
+        "version": 2
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "040420.KQ",
+      "name": {
+        "ko": "정상제이엘에스",
+        "en": "JLS Co.,Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 75.9,
+        "size": 100.0,
+        "growth": 95.1,
+        "valuation": 73.5,
+        "entry": 64.5,
+        "momentum": 57.5,
+        "quality": 56.5,
+        "version": 2
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "013030.KQ",
+      "name": {
+        "ko": "하이록코리아",
+        "en": "Hy-Lok Corporation"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 75.6,
+        "size": 100.0,
+        "growth": 90.6,
+        "valuation": 70.0,
+        "entry": 66.0,
+        "momentum": 57.7,
+        "quality": 63.1,
+        "version": 2
+      }
+    }
+  ]
+}
