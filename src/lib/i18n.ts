@@ -174,6 +174,51 @@ export const labels = {
     ko: '오늘 리포트는 아직 준비되지 않았습니다. 새 픽은 매일 오전 6시(KST)에 공개됩니다.',
     en: "Today's report isn't ready yet. New picks publish daily at 06:00 KST.",
   } satisfies LocalizedText,
+  homeTitle: {
+    ko: '규칙 기반 일일 종목 스크리닝',
+    en: 'Daily rule-based stock screening',
+  } satisfies LocalizedText,
+  homeDescription: {
+    ko:
+      '한국·미국 시장에서 규칙과 데이터로 하루 하나의 텐베거 후보를 기록합니다. 선정 이유·리스크·일정을 공개하며 수익을 보장하지 않습니다.',
+    en:
+      'One rule-based ten-bagger candidate per day across Korea and US markets — with reasons, risks, and schedule published. No return promises.',
+  } satisfies LocalizedText,
+  newcomerTitle: {
+    ko: '이 사이트는 무엇을 하나요?',
+    en: 'What is this site?',
+  } satisfies LocalizedText,
+  newcomerBody: {
+    ko:
+      '한국·미국 시장을 번갈아 스크리닝해 규칙 기반으로 하루 하나의 후보 종목을 기록합니다. 선정 이유와 리스크를 함께 공개하고, 매일 오전 6시(KST)에 새 리포트가 올라갑니다. 연구·참고용이며 투자 수익을 약속하지 않습니다.',
+    en:
+      'We screen Korea and US markets on a schedule and record one rule-based candidate per day. Each report includes selection reasons and risks; new reports publish daily at 06:00 KST. For research only — no return promises.',
+  } satisfies LocalizedText,
+  newcomerLinks: {
+    ko: '선정 방법과 누적 성과를 확인하세요.',
+    en: 'See how picks are made and historical results.',
+  } satisfies LocalizedText,
+  rssCta: { ko: '일일 기록 피드', en: 'Daily report feed' } satisfies LocalizedText,
+  rssHint: {
+    ko: '피드 리더에 주소를 추가해 새 기록을 받아보세요.',
+    en: 'Add this feed in your reader to follow new reports.',
+  } satisfies LocalizedText,
+  shareCta: { ko: '일일 링크 공유', en: 'Share daily link' } satisfies LocalizedText,
+  shareShared: { ko: '공유 메뉴를 열었습니다', en: 'Share menu opened' } satisfies LocalizedText,
+  shareCopied: { ko: '링크를 복사했습니다', en: 'Link copied' } satisfies LocalizedText,
+  shareCancelled: { ko: '공유가 취소되었습니다', en: 'Share cancelled' } satisfies LocalizedText,
+  shareManualHint: {
+    ko: '아래 주소를 선택해 복사해 주세요.',
+    en: 'Select and copy the URL below.',
+  } satisfies LocalizedText,
+  shareManualUrlLabel: {
+    ko: '공유 링크',
+    en: 'Share link',
+  } satisfies LocalizedText,
+  shareFailed: {
+    ko: '공유할 수 없습니다. 아래 주소를 직접 복사해 주세요.',
+    en: 'Could not share. Please copy the URL below.',
+  } satisfies LocalizedText,
 } as const;
 
 export function localeToLang(locale: string | undefined): Lang {

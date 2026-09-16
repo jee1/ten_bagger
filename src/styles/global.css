@@ -501,6 +501,113 @@ code {
   margin-bottom: 0.35rem;
 }
 
+/* ---------- visitor growth ---------- */
+
+.newcomer-intro {
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  background: var(--surface-3);
+}
+
+.newcomer-title {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+}
+
+.newcomer-body {
+  margin: 0 0 0.65rem;
+  font-size: 0.92rem;
+  text-wrap: pretty;
+}
+
+.newcomer-links {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.newcomer-links > span:first-child::after {
+  content: ' ';
+}
+
+.retention-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-start;
+  margin: 0 0 1.1rem;
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: rgba(20, 26, 34, 0.55);
+}
+
+.retention-block {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.retention-hint {
+  margin: 0.35rem 0 0.5rem;
+  font-size: 0.8rem;
+  text-wrap: pretty;
+}
+
+.retention-url-row {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.retention-rss-link {
+  font-size: 0.82rem;
+}
+
+.retention-share-btn {
+  width: 100%;
+  max-width: 16rem;
+  cursor: pointer;
+  color: var(--accent);
+  background: rgba(61, 214, 140, 0.08);
+}
+
+.retention-share-btn:hover {
+  color: #6fe6ab;
+  background: rgba(61, 214, 140, 0.14);
+}
+
+.retention-share-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.retention-status {
+  margin: 0.45rem 0 0;
+  font-size: 0.8rem;
+}
+
+.retention-status-error {
+  color: var(--warn);
+}
+
+.retention-manual {
+  margin-top: 0.5rem;
+}
+
+.retention-manual-url {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
 /* ---------- top-n ---------- */
 
 .top-n {

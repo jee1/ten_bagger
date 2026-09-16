@@ -1,7 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import DailyCard from '../../components/DailyCard.astro';
+import RetentionActions from '../../components/RetentionActions.astro';
 import { getAllDates, getDailyEntry } from '../../lib/daily';
+import { dailyPageDescription, dailyPageTitle } from '../../lib/dailyMeta';
 import { label, localeToLang } from '../../lib/i18n';
 import { localeHref } from '../../lib/staticNav';
 
@@ -17,9 +19,24 @@ const entry = await getDailyEntry(date!);
 if (!entry) {
   return Astro.redirect(localeHref(base, lang, 'archive'));
 }
+
+const pageTitle = dailyPageTitle(entry, lang);
+const pageDescription = dailyPageDescription(entry, lang);
+const titleI18n = { ko: dailyPageTitle(entry, 'ko'), en: dailyPageTitle(entry, 'en') };
+const descriptionI18n = {
+  ko: dailyPageDescription(entry, 'ko'),
+  en: dailyPageDescription(entry, 'en'),
+};
 ---
 
-<Layout title={date!} lang={lang}>
+<Layout
+  title={pageTitle}
+  titleI18n={titleI18n}
+  description={pageDescription}
+  descriptionI18n={descriptionI18n}
+  lang={lang}
+>
   <p><a href={localeHref(base, lang, 'archive')}>← {label('archive', lang)}</a></p>
   <DailyCard entry={entry} lang={lang} detail />
+  <RetentionActions lang={lang} date={entry.date} />
 </Layout>

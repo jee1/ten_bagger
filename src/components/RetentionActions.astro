@@ -1,0 +1,151 @@
+---
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+import { joinSitePath } from '../lib/rss.ts';
+
+interface Props {
+  lang: Lang;
+  date: string;
+}
+
+const { lang, date } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const site = Astro.site?.href.replace(/\/+$/, '') ?? '';
+const rssUrl = site ? joinSitePath(site, 'rss.xml') : `${base}rss.xml`;
+---
+
+<section
+  class="retention-actions"
+  aria-label={label('rssCta', lang)}
+  data-retention-actions
+  data-share-site={site}
+  data-share-base={base}
+>
+  <div class="retention-block">
+    <h2 class="eyebrow" data-i18n="rssCta">{label('rssCta', lang)}</h2>
+    <p class="muted retention-hint" data-i18n="rssHint">{label('rssHint', lang)}</p>
+    <p class="retention-url-row">
+      <a
+        class="retention-rss-link num"
+        href={rssUrl}
+        data-growth-rss
+      >
+        {rssUrl}
+      </a>
+    </p>
+  </div>
+  <div class="retention-block">
+    <button
+      type="button"
+      class="btn retention-share-btn"
+      data-growth-share
+      data-share-date={date}
+      data-i18n="shareCta"
+    >
+      {label('shareCta', lang)}
+    </button>
+    <p class="muted retention-status" data-share-status hidden aria-live="polite"></p>
+    <div class="retention-manual" data-share-manual hidden>
+      <p class="muted retention-hint" data-i18n="shareManualHint">{label('shareManualHint', lang)}</p>
+      <p class="retention-url-row">
+        <input
+          type="text"
+          class="retention-manual-url num"
+          data-share-manual-url
+          readonly
+          aria-label={label('shareManualUrlLabel', lang)}
+          value=""
+        />
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { attemptShareOrCopy, buildDailyShareUrl } from '../lib/share.ts';
+  import { GROWTH_EVENTS, isGrowthTrackingEnabled, trackGrowthEvent } from '../lib/growthTrack.ts';
+  import type { Lang } from '../lib/i18n.ts';
+
+  type GoatWindow = Window & {
+    goatcounter?: { count: (args: { path: string; event: true; title?: string }) => void };
+  };
+
+  const trackingEnabled = isGrowthTrackingEnabled(window.location.hostname, import.meta.env.DEV);
+
+  function trackRssClick() {
+    trackGrowthEvent((window as GoatWindow).goatcounter, GROWTH_EVENTS.rssClick, trackingEnabled);
+  }
+
+  function trackShareSuccess() {
+    trackGrowthEvent((window as GoatWindow).goatcounter, GROWTH_EVENTS.shareSuccess, trackingEnabled);
+  }
+
+  function currentLang(): Lang {
+    return document.documentElement.lang === 'en' ? 'en' : 'ko';
+  }
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-growth-rss]').forEach((link) => {
+    link.addEventListener('click', () => {
+      trackRssClick();
+    });
+  });
+
+  document.querySelectorAll<HTMLInputElement>('[data-share-manual-url]').forEach((input) => {
+    input.addEventListener('focus', () => {
+      input.select();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-growth-share]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const date = btn.dataset.shareDate;
+      const section = btn.closest<HTMLElement>('[data-retention-actions]');
+      const site = section?.dataset.shareSite ?? '';
+      const base = section?.dataset.shareBase ?? '/';
+      if (!date || !site) return;
+
+      const lang = currentLang();
+      const url = buildDailyShareUrl(site, base, lang, date);
+      const status = btn.parentElement?.querySelector<HTMLElement>('[data-share-status]');
+      const manual = btn.parentElement?.querySelector<HTMLElement>('[data-share-manual]');
+      const manualUrl = btn.parentElement?.querySelector<HTMLInputElement>('[data-share-manual-url]');
+      const labels = document.getElementById('i18n-labels');
+      const labelMap = labels?.textContent
+        ? (JSON.parse(labels.textContent) as Record<string, { ko: string; en: string }>)
+        : {};
+
+      manual?.setAttribute('hidden', '');
+      if (manualUrl) manualUrl.value = '';
+
+      const result = await attemptShareOrCopy(url);
+      if (!status) {
+        if (result.outcome === 'shared' || result.outcome === 'copied') {
+          trackShareSuccess();
+        }
+        return;
+      }
+
+      status.hidden = false;
+      status.classList.remove('retention-status-error');
+
+      if (result.outcome === 'shared') {
+        status.textContent = labelMap.shareShared?.[lang] ?? '';
+        trackShareSuccess();
+      } else if (result.outcome === 'copied') {
+        status.textContent = labelMap.shareCopied?.[lang] ?? '';
+        trackShareSuccess();
+      } else if (result.outcome === 'cancelled') {
+        status.textContent = labelMap.shareCancelled?.[lang] ?? '';
+      } else {
+        status.textContent = labelMap.shareFailed?.[lang] ?? '';
+        status.classList.add('retention-status-error');
+        if (manual && manualUrl) {
+          manual.removeAttribute('hidden');
+          manualUrl.value = url;
+          manualUrl.focus();
+          manualUrl.select();
+        }
+      }
+    });
+  });
+</script>

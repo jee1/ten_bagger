@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import DailyCard from '../components/DailyCard.astro';
+import NewcomerIntro from '../components/NewcomerIntro.astro';
+import RetentionActions from '../components/RetentionActions.astro';
 import { getLatestEntry, getTodayDateString, getDailyEntry } from '../lib/daily';
+import { homePageTitle } from '../lib/dailyMeta';
 import { label, localeToLang } from '../lib/i18n';
 import { pickFreshnessView } from '../lib/staticNav';
 
@@ -12,7 +15,13 @@ const entry = todayEntry ?? await getLatestEntry();
 const view = entry ? pickFreshnessView(entry.date, today) : null;
 ---
 
-<Layout title={label('today', lang)} titleKey="today" lang={lang}>
+<Layout
+  title={homePageTitle(lang)}
+  titleKey="homeTitle"
+  descriptionKey="homeDescription"
+  lang={lang}
+>
+  <NewcomerIntro lang={lang} />
   <div class="page-head" style="align-items: baseline;">
     <p class="muted" style="margin: 0; font-size: 0.95rem;" data-i18n="tagline">
       {label('tagline', lang)}
@@ -56,7 +65,9 @@ const view = entry ? pickFreshnessView(entry.date, today) : null;
   )}
   {entry ? (
     <DailyCard entry={entry} lang={lang} />
-  ) : (
+  ) : null}
+  {entry && <RetentionActions lang={lang} date={entry.date} />}
+  {!entry ? (
     <article class="card">
       <h1 data-i18n="noPickTitle">{label('noPickTitle', lang)}</h1>
       <p class="muted">
@@ -68,5 +79,5 @@ const view = entry ? pickFreshnessView(entry.date, today) : null;
         >
       </p>
     </article>
-  )}
+  ) : null}
 </Layout>

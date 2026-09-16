@@ -1,0 +1,25 @@
+---
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+import { localeHref } from '../lib/staticNav';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="newcomer-intro" aria-labelledby="newcomer-title">
+  <h2 id="newcomer-title" class="newcomer-title" data-i18n="newcomerTitle">
+    {label('newcomerTitle', lang)}
+  </h2>
+  <p class="muted newcomer-body" data-i18n="newcomerBody">{label('newcomerBody', lang)}</p>
+  <p class="newcomer-links muted">
+    <span data-i18n="newcomerLinks">{label('newcomerLinks', lang)}</span>
+    <a href={localeHref(base, lang, 'methodology')} data-i18n="methodology">{label('methodology', lang)}</a>
+    <span aria-hidden="true"> · </span>
+    <a href={localeHref(base, lang, 'performance')} data-i18n="performance">{label('performance', lang)}</a>
+  </p>
+</section>
