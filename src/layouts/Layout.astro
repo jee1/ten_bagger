@@ -9,10 +9,22 @@ import { splitLocalePath, localeHref } from '../lib/staticNav';
 interface Props {
   title: string;
   titleKey?: keyof typeof labels;
+  titleI18n?: { ko: string; en: string };
+  description?: string;
+  descriptionKey?: keyof typeof labels;
+  descriptionI18n?: { ko: string; en: string };
   lang?: Lang;
 }
 
-const { title, titleKey, lang = 'ko' } = Astro.props;
+const {
+  title,
+  titleKey,
+  titleI18n,
+  description: descriptionProp,
+  descriptionKey,
+  descriptionI18n,
+  lang = 'ko',
+} = Astro.props;
 const base = import.meta.env.BASE_URL;
 const kst = getKstDate();
 const defaultYear = kst.getFullYear();
@@ -23,7 +35,9 @@ const koUrl = localeHref(base, 'ko', rel);
 const enUrl = localeHref(base, 'en', rel);
 
 const pageTitle = `${title} | ${label('siteName', lang)}`;
-const description = label('tagline', lang);
+const descriptionLabelKey = descriptionProp || descriptionI18n ? undefined : (descriptionKey ?? 'tagline');
+const description =
+  descriptionProp ?? descriptionI18n?.[lang] ?? label(descriptionLabelKey ?? 'tagline', lang);
 const canonicalURL = new URL(localeHref(base, lang, rel), Astro.site);
 const ogImage = new URL(`${base}og-default.png`, Astro.site);
 const goatCode = import.meta.env.PUBLIC_GOATCOUNTER_CODE ?? 'tenbagger';
@@ -44,7 +58,13 @@ const isActive = (key: string) =>
       name="google-site-verification"
       content="jN6qQ_VKT9OjatY4TL1Iq4tJCw6cxzV9_bjejTZqHB8"
     />
-    <meta name="description" content={description} data-i18n-attr="content:tagline" />
+    <meta
+      name="description"
+      content={description}
+      data-i18n-attr={descriptionLabelKey ? `content:${descriptionLabelKey}` : undefined}
+      data-description-ko={descriptionI18n?.ko}
+      data-description-en={descriptionI18n?.en}
+    />
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="ko" href={new URL(localeHref(base, 'ko', rel), Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(localeHref(base, 'en', rel), Astro.site)} />
@@ -86,7 +106,11 @@ const isActive = (key: string) =>
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
     />
-    <title data-page-title-key={titleKey ?? ''}>
+    <title
+      data-page-title-key={titleKey ?? ''}
+      data-title-ko={titleI18n?.ko}
+      data-title-en={titleI18n?.en}
+    >
       {pageTitle}
     </title>
     <script type="application/json" id="i18n-labels" set:html={labelsJson} />
@@ -204,15 +228,39 @@ const isActive = (key: string) =>
           el.hidden = el.dataset.i18nShow !== lang;
         });
 
-        const titleEl = document.querySelector('title');
-        const titleKey = titleEl?.getAttribute('data-page-title-key');
-        if (titleEl && titleKey && labelMap[titleKey] && labelMap.siteName) {
-          titleEl.textContent = `${labelMap[titleKey][lang]} | ${labelMap.siteName[lang]}`;
+        function setMetaContent(selector: string, value: string) {
+          document.querySelector<HTMLMetaElement>(selector)?.setAttribute('content', value);
         }
 
-        const desc = document.querySelector('meta[name="description"]');
-        if (desc && labelMap.tagline) {
-          desc.setAttribute('content', labelMap.tagline[lang]);
+        const titleEl = document.querySelector('title');
+        const titleKey = titleEl?.getAttribute('data-page-title-key');
+        const titleKo = titleEl?.dataset.titleKo;
+        const titleEn = titleEl?.dataset.titleEn;
+        let localizedTitle: string | null = null;
+        if (titleEl && titleKo && titleEn && labelMap.siteName) {
+          localizedTitle = `${lang === 'en' ? titleEn : titleKo} | ${labelMap.siteName[lang]}`;
+          titleEl.textContent = localizedTitle;
+        } else if (titleEl && titleKey && labelMap[titleKey] && labelMap.siteName) {
+          localizedTitle = `${labelMap[titleKey][lang]} | ${labelMap.siteName[lang]}`;
+          titleEl.textContent = localizedTitle;
+        }
+        if (localizedTitle) {
+          setMetaContent('meta[property="og:title"]', localizedTitle);
+          setMetaContent('meta[name="twitter:title"]', localizedTitle);
+        }
+
+        const desc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+        const descKey = desc?.getAttribute('data-i18n-attr')?.replace(/^content:/, '');
+        let localizedDesc: string | null = null;
+        if (desc?.dataset.descriptionKo && desc.dataset.descriptionEn) {
+          localizedDesc = lang === 'en' ? desc.dataset.descriptionEn : desc.dataset.descriptionKo;
+        } else if (desc && descKey && labelMap[descKey]) {
+          localizedDesc = labelMap[descKey][lang];
+        }
+        if (desc && localizedDesc) {
+          desc.setAttribute('content', localizedDesc);
+          setMetaContent('meta[property="og:description"]', localizedDesc);
+          setMetaContent('meta[name="twitter:description"]', localizedDesc);
         }
 
         document.querySelectorAll<HTMLAnchorElement>('[data-lang-link]').forEach((a) => {
