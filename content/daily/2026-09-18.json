@@ -1,0 +1,194 @@
+{
+  "date": "2026-09-18",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "UFCS",
+    "name": {
+      "ko": "United Fire Group Inc",
+      "en": "United Fire Group, Inc."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "United Fire Group Inc는 Financial Services 분야 Insurance - Property & Casualty 기업입니다.",
+        "en": "United Fire Group, Inc., together with its subsidiaries, engages in writing property and casualty insurance in the United States."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Insurance - Property & Casualty",
+        "en": "Insurance - Property & Casualty"
+      }
+    }
+  },
+  "scores": {
+    "composite": 84.5,
+    "size": 100.0,
+    "growth": 99.7,
+    "valuation": 84.3,
+    "entry": 59.0,
+    "momentum": 100.0,
+    "quality": 62.9,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "United Fire Group Inc(UFCS)는 v2 복합 점수 84.5로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "United Fire Group, Inc. (UFCS) cleared the 70.0 threshold with v2 composite 84.5; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 14.4% / 이익 48.3% (혼합 29.66%) — 지속 가능 성장 점수 99.7.",
+      "en": "Revenue 14.4% / earnings 48.3% (blended 29.66%) — sustainable growth score 99.7."
+    },
+    "valuation": {
+      "ko": "PER 10.07, PEG 1.41, FCF수익률 18.31%, PBR 1.43 — 밸류 점수 84.3.",
+      "en": "P/E 10.07, PEG 1.41, FCF yield 18.31%, P/B 1.43 — valuation score 84.3."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 nan% — 보조 모멘텀 점수 100.0.",
+      "en": "6M return nan% — auxiliary momentum score 100.0."
+    },
+    "quality": {
+      "ko": "ROE 15.47%, ROA 3.09%, FCF/순이익 1.81 — 품질 점수 62.9.",
+      "en": "ROE 15.47%, ROA 3.09%, FCF/net income 1.81 — quality score 62.9."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1395805312 기준 규모 점수 100.0.",
+      "en": "Market cap 1395805312 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 nan%, 52주 고점 대비 nan% — 진입 점수 59.0.",
+      "en": "12M price range nan%, nan% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-18T09:18:04+09:00",
+    "candidatesScreened": 6268,
+    "excludedRecent": 29,
+    "skippedMarketCap": 1942,
+    "skippedRedFlags": 988,
+    "noData": 64,
+    "errors": 6
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "UFCS",
+      "name": {
+        "ko": "United Fire Group Inc",
+        "en": "United Fire Group, Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 84.5,
+        "size": 100.0,
+        "growth": 99.7,
+        "valuation": 84.3,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 62.9,
+        "version": 2
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "SENEA",
+      "name": {
+        "ko": "Seneca Foods Corporation Class A",
+        "en": "Seneca Foods Corporation"
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 84.3,
+        "size": 100.0,
+        "growth": 95.2,
+        "valuation": 88.0,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 61.8,
+        "version": 2
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "TILE",
+      "name": {
+        "ko": "Interface  Inc.",
+        "en": "Interface, Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 84.3,
+        "size": 100.0,
+        "growth": 100.0,
+        "valuation": 77.4,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 70.1,
+        "version": 2
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "AII",
+      "name": {
+        "ko": "American Integrity Insurance Group Inc",
+        "en": "American Integrity Insurance Group, Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.5,
+        "size": 100.0,
+        "growth": 96.6,
+        "valuation": 83.5,
+        "entry": 36.5,
+        "momentum": 78.8,
+        "quality": 84.0,
+        "version": 2
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "SCZM",
+      "name": {
+        "ko": "Santacruz Silver Mining Ltd.",
+        "en": "Santacruz Silver Mining Ltd."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.3,
+        "size": 100.0,
+        "growth": 99.9,
+        "valuation": 67.7,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 77.7,
+        "version": 2
+      }
+    }
+  ]
+}
