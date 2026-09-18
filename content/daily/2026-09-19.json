@@ -1,0 +1,194 @@
+{
+  "date": "2026-09-19",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "052400.KQ",
+    "name": {
+      "ko": "코나아이",
+      "en": "Kona I Co.,Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "코나아이는 Technology 분야 Semiconductors 기업입니다.",
+        "en": "Kona I Co.,Ltd. provides solutions and platforms for the financial technology market in South Korea and internationally."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Semiconductors",
+        "en": "Semiconductors"
+      }
+    }
+  },
+  "scores": {
+    "composite": 78.5,
+    "size": 100.0,
+    "growth": 95.5,
+    "valuation": 65.8,
+    "entry": 59.0,
+    "momentum": 40.1,
+    "quality": 90.1,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "코나아이(052400.KQ)는 v2 복합 점수 78.5로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Kona I Co.,Ltd. (052400.KQ) cleared the 70.0 threshold with v2 composite 78.5; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 25.9% / 이익 45.0% (혼합 34.5%) — 지속 가능 성장 점수 95.5.",
+      "en": "Revenue 25.9% / earnings 45.0% (blended 34.5%) — sustainable growth score 95.5."
+    },
+    "valuation": {
+      "ko": "PER None, PEG None, FCF수익률 22.21%, PBR None — 밸류 점수 65.8.",
+      "en": "P/E None, PEG None, FCF yield 22.21%, P/B None — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -33.86% — 보조 모멘텀 점수 40.1.",
+      "en": "6M return -33.86% — auxiliary momentum score 40.1."
+    },
+    "quality": {
+      "ko": "ROE 38.97%, ROA 12.79%, FCF/순이익 1.26 — 품질 점수 90.1.",
+      "en": "ROE 38.97%, ROA 12.79%, FCF/net income 1.26 — quality score 90.1."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 545416642560 기준 규모 점수 100.0.",
+      "en": "Market cap 545416642560 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 8.49%, 52주 고점 대비 -45.58% — 진입 점수 59.0.",
+      "en": "12M price range 8.49%, -45.58% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-19T08:20:08+09:00",
+    "candidatesScreened": 1905,
+    "excludedRecent": 29,
+    "skippedMarketCap": 842,
+    "skippedRedFlags": 367,
+    "noData": 0,
+    "errors": 2
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "052400.KQ",
+      "name": {
+        "ko": "코나아이",
+        "en": "Kona I Co.,Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 78.5,
+        "size": 100.0,
+        "growth": 95.5,
+        "valuation": 65.8,
+        "entry": 59.0,
+        "momentum": 40.1,
+        "quality": 90.1,
+        "version": 2
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "404990.KS",
+      "name": {
+        "ko": "신한서부티엔디리츠",
+        "en": "Shinhan Seobu T&D REIT Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 77.7,
+        "size": 100.0,
+        "growth": 96.6,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 51.5,
+        "quality": 71.4,
+        "version": 2
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "013030.KQ",
+      "name": {
+        "ko": "하이록코리아",
+        "en": "Hy-Lok Corporation"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.9,
+        "size": 100.0,
+        "growth": 90.6,
+        "valuation": 70.0,
+        "entry": 75.0,
+        "momentum": 62.0,
+        "quality": 63.1,
+        "version": 2
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "439090.KQ",
+      "name": {
+        "ko": "마녀공장",
+        "en": "Manyo Factory Co., Ltd"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.6,
+        "size": 100.0,
+        "growth": 92.5,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 75.1,
+        "quality": 58.3,
+        "version": 2
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "284740.KS",
+      "name": {
+        "ko": "쿠쿠홈시스",
+        "en": "CUCKOO Homesys Co., Ltd"
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.2,
+        "size": 100.0,
+        "growth": 99.2,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 54.8,
+        "quality": 59.9,
+        "version": 2
+      }
+    }
+  ]
+}
