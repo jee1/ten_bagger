@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-09-13",
+  "asOfDate": "2026-09-20",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -198,6 +198,30 @@
     {
       "pickDate": "2026-09-12",
       "symbol": "HMN",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-14",
+      "symbol": "ZVRA",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-16",
+      "symbol": "YB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-18",
+      "symbol": "UFCS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-20",
+      "symbol": "AII",
       "status": "pick",
       "scoreVersion": "2"
     }

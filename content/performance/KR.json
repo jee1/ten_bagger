@@ -1,12 +1,12 @@
 {
   "schemaVersion": "0.1.0",
   "market": "KR",
-  "asOfDate": "2026-09-13",
+  "asOfDate": "2026-09-20",
   "runMeta": {
     "provider": "yfinance",
     "priceAdjustment": "adjusted_auto",
-    "generatedAt": "2026-09-13T01:55:39.491420+00:00",
-    "asOfDate": "2026-09-13"
+    "generatedAt": "2026-09-20T00:05:02.072746+00:00",
+    "asOfDate": "2026-09-20"
   },
   "measurements": [
     {
@@ -18,13 +18,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 320000.0,
       "exitPrice": 240000.0,
       "forwardReturn": -0.25,
-      "benchmarkReturn": -0.2232698005028686,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.2232698005028686
     },
     {
       "market": "KR",
@@ -35,11 +35,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -50,12 +50,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 320000.0,
       "exitPrice": 239500.0,
       "forwardReturn": -0.2515625,
-      "benchmarkReturn": -0.23566777702847094,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.23566777702847094
     },
     {
       "market": "KR",
@@ -66,10 +66,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -80,10 +80,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -94,10 +94,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -108,10 +108,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -122,10 +122,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -136,13 +136,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 210000.0,
       "exitPrice": 176400.0,
       "forwardReturn": -0.16,
-      "benchmarkReturn": -0.2232698005028686,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.2232698005028686
     },
     {
       "market": "KR",
@@ -153,11 +153,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -168,12 +168,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 210000.0,
       "exitPrice": 183900.0,
       "forwardReturn": -0.12428571428571429,
-      "benchmarkReturn": -0.19403872232467786,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.19403872232467786
     },
     {
       "market": "KR",
@@ -184,10 +184,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -198,10 +198,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -212,10 +212,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -226,10 +226,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -240,10 +240,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -254,13 +254,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 1266000.0,
       "exitPrice": 970000.0,
       "forwardReturn": -0.23380726698262244,
-      "benchmarkReturn": -0.1551295811174434,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.1551295811174434
     },
     {
       "market": "KR",
@@ -271,11 +271,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -286,12 +286,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 1266000.0,
       "exitPrice": 939000.0,
       "forwardReturn": -0.25829383886255924,
-      "benchmarkReturn": -0.16017620497685892,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.16017620497685892
     },
     {
       "market": "KR",
@@ -302,10 +302,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -316,10 +316,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -330,10 +330,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -344,10 +344,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -358,10 +358,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -372,13 +372,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 13500.0,
       "exitPrice": 12480.0,
       "forwardReturn": -0.07555555555555556,
-      "benchmarkReturn": -0.1658830450945531,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.1658830450945531
     },
     {
       "market": "KR",
@@ -389,11 +389,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -404,12 +404,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 13500.0,
       "exitPrice": 12030.0,
       "forwardReturn": -0.10888888888888888,
-      "benchmarkReturn": -0.17129717148860513,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.17129717148860513
     },
     {
       "market": "KR",
@@ -420,10 +420,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -434,10 +434,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -448,10 +448,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -462,10 +462,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -476,10 +476,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -490,13 +490,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 3018.467916290031,
       "exitPrice": 3280.299072265625,
       "forwardReturn": 0.08674306410962551,
-      "benchmarkReturn": -0.14388771104722667,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.14388771104722667
     },
     {
       "market": "KR",
@@ -507,11 +507,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -522,12 +522,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 3018.467916290031,
       "exitPrice": 3280.299072265625,
       "forwardReturn": 0.08674306410962551,
-      "benchmarkReturn": -0.14388771104722667,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.14388771104722667
     },
     {
       "market": "KR",
@@ -538,10 +538,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -552,10 +552,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -566,10 +566,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -580,10 +580,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -594,10 +594,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -608,13 +608,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 338069.4999045801,
       "exitPrice": 352010.53125,
       "forwardReturn": 0.041237175638011485,
-      "benchmarkReturn": -0.028071847182092522,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.028071847182092522
     },
     {
       "market": "KR",
@@ -625,11 +625,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -640,12 +640,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 338069.4999045801,
       "exitPrice": 354500.0,
       "forwardReturn": 0.04860095365023279,
-      "benchmarkReturn": 0.00654149686558535,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.00654149686558535
     },
     {
       "market": "KR",
@@ -656,10 +656,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -670,10 +670,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -684,10 +684,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -698,10 +698,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -712,10 +712,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -726,13 +726,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 12800.0,
       "exitPrice": 13400.0,
       "forwardReturn": 0.046875,
-      "benchmarkReturn": 0.0025055587107607213,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.0025055587107607213
     },
     {
       "market": "KR",
@@ -743,11 +743,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -758,12 +758,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 12800.0,
       "exitPrice": 13400.0,
       "forwardReturn": 0.046875,
-      "benchmarkReturn": 0.0025055587107607213,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.0025055587107607213
     },
     {
       "market": "KR",
@@ -774,10 +774,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -788,10 +788,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -802,10 +802,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -816,10 +816,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -830,10 +830,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -844,13 +844,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 16350.0,
       "exitPrice": 16840.0,
       "forwardReturn": 0.02996941896024465,
-      "benchmarkReturn": 0.034055433567356644,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.034055433567356644
     },
     {
       "market": "KR",
@@ -861,11 +861,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -876,12 +876,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 16350.0,
       "exitPrice": 17060.0,
       "forwardReturn": 0.04342507645259939,
-      "benchmarkReturn": 0.0503282656864754,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.0503282656864754
     },
     {
       "market": "KR",
@@ -892,10 +892,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -906,10 +906,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -920,10 +920,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -934,10 +934,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -948,10 +948,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -962,13 +962,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 21000.0,
       "exitPrice": 18220.0,
       "forwardReturn": -0.13238095238095238,
-      "benchmarkReturn": 0.034055433567356644,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.034055433567356644
     },
     {
       "market": "KR",
@@ -979,11 +979,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -994,12 +994,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 21000.0,
       "exitPrice": 16890.0,
       "forwardReturn": -0.1957142857142857,
-      "benchmarkReturn": -0.02595139280667162,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.02595139280667162
     },
     {
       "market": "KR",
@@ -1010,10 +1010,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1024,10 +1024,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1038,10 +1038,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1052,10 +1052,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1066,10 +1066,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1080,13 +1080,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 2650.163761480735,
       "exitPrice": 2430.0,
       "forwardReturn": -0.0830755309089738,
-      "benchmarkReturn": -0.02829087122334636,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.02829087122334636
     },
     {
       "market": "KR",
@@ -1097,11 +1097,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1112,12 +1112,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 2650.163761480735,
       "exitPrice": 2440.0,
       "forwardReturn": -0.07930217918431937,
-      "benchmarkReturn": -0.019730271667031327,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.019730271667031327
     },
     {
       "market": "KR",
@@ -1128,10 +1128,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1142,10 +1142,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1156,10 +1156,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1170,10 +1170,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1184,10 +1184,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1198,13 +1198,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 5810.0,
       "exitPrice": 7350.0,
       "forwardReturn": 0.26506024096385544,
-      "benchmarkReturn": -0.04339799758634588,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.04339799758634588
     },
     {
       "market": "KR",
@@ -1215,11 +1215,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1230,12 +1230,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 5810.0,
       "exitPrice": 6860.0,
       "forwardReturn": 0.18072289156626506,
-      "benchmarkReturn": -0.012545686700497998,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.012545686700497998
     },
     {
       "market": "KR",
@@ -1246,10 +1246,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1260,10 +1260,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1274,10 +1274,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1288,10 +1288,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1302,10 +1302,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1316,13 +1316,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 61100.0,
       "exitPrice": 58100.0,
       "forwardReturn": -0.049099836333878884,
-      "benchmarkReturn": -0.009334008932050174,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.009334008932050174
     },
     {
       "market": "KR",
@@ -1333,11 +1333,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1348,12 +1348,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 61100.0,
       "exitPrice": 58100.0,
       "forwardReturn": -0.049099836333878884,
-      "benchmarkReturn": -0.009334008932050174,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": -0.009334008932050174
     },
     {
       "market": "KR",
@@ -1364,10 +1364,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1378,10 +1378,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1392,10 +1392,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1406,10 +1406,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1420,10 +1420,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1434,13 +1434,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 9630.0,
       "exitPrice": 10640.0,
       "forwardReturn": 0.10488058151609553,
-      "benchmarkReturn": 0.06373792670643091,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.06373792670643091
     },
     {
       "market": "KR",
@@ -1451,11 +1451,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1466,12 +1466,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 9630.0,
       "exitPrice": 10650.0,
       "forwardReturn": 0.1059190031152648,
-      "benchmarkReturn": 0.08001226449720253,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.08001226449720253
     },
     {
       "market": "KR",
@@ -1482,10 +1482,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1496,10 +1496,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1510,10 +1510,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1524,10 +1524,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1538,10 +1538,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1552,13 +1552,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 15000.0,
       "exitPrice": 19360.0,
       "forwardReturn": 0.2906666666666667,
-      "benchmarkReturn": 0.19485298762102787,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.19485298762102787
     },
     {
       "market": "KR",
@@ -1569,11 +1569,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1584,12 +1584,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 15000.0,
       "exitPrice": 19360.0,
       "forwardReturn": 0.2906666666666667,
-      "benchmarkReturn": 0.19485298762102787,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.19485298762102787
     },
     {
       "market": "KR",
@@ -1600,10 +1600,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1614,10 +1614,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1628,10 +1628,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1642,10 +1642,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1656,10 +1656,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1670,13 +1670,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "zero_volume_forward_fill",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 7830.0,
       "exitPrice": 7820.0,
       "forwardReturn": -0.001277139208173691,
-      "benchmarkReturn": 0.07510372848107745,
-      "dataQualityFlag": "zero_volume_forward_fill"
+      "benchmarkReturn": 0.07510372848107745
     },
     {
       "market": "KR",
@@ -1687,11 +1687,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1702,12 +1702,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "zero_volume_forward_fill",
+      "asOfDate": "2026-09-20",
       "entryPrice": 7830.0,
       "exitPrice": 7820.0,
       "forwardReturn": -0.001277139208173691,
-      "benchmarkReturn": 0.07262195512011954,
-      "dataQualityFlag": "zero_volume_forward_fill"
+      "benchmarkReturn": 0.07262195512011954
     },
     {
       "market": "KR",
@@ -1718,10 +1718,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1732,10 +1732,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1746,10 +1746,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1760,10 +1760,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1774,10 +1774,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1788,13 +1788,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 23400.0,
       "exitPrice": 26500.0,
       "forwardReturn": 0.13247863247863248,
-      "benchmarkReturn": 0.07510372848107745,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.07510372848107745
     },
     {
       "market": "KR",
@@ -1805,11 +1805,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1820,12 +1820,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 23400.0,
       "exitPrice": 26500.0,
       "forwardReturn": 0.13247863247863248,
-      "benchmarkReturn": 0.07510372848107745,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.07510372848107745
     },
     {
       "market": "KR",
@@ -1836,10 +1836,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1850,10 +1850,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1864,10 +1864,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1878,10 +1878,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1892,10 +1892,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1906,13 +1906,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 3125.0,
       "exitPrice": 3200.0,
       "forwardReturn": 0.024,
-      "benchmarkReturn": 0.03327471131165671,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.03327471131165671
     },
     {
       "market": "KR",
@@ -1923,11 +1923,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1938,12 +1938,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 3125.0,
       "exitPrice": 3200.0,
       "forwardReturn": 0.024,
-      "benchmarkReturn": 0.03591347106689568,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.03591347106689568
     },
     {
       "market": "KR",
@@ -1954,10 +1954,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1968,10 +1968,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1982,10 +1982,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -1996,10 +1996,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2010,10 +2010,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2024,13 +2024,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 4165.0,
       "exitPrice": 4250.0,
       "forwardReturn": 0.02040816326530612,
-      "benchmarkReturn": 0.032175953839475205,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.032175953839475205
     },
     {
       "market": "KR",
@@ -2041,11 +2041,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2056,12 +2056,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 4165.0,
       "exitPrice": 4250.0,
       "forwardReturn": 0.02040816326530612,
-      "benchmarkReturn": 0.032175953839475205,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.032175953839475205
     },
     {
       "market": "KR",
@@ -2072,10 +2072,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2086,10 +2086,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2100,10 +2100,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2114,10 +2114,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2128,10 +2128,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2142,13 +2142,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 12060.0,
       "exitPrice": 10300.0,
       "forwardReturn": -0.14593698175787728,
-      "benchmarkReturn": 0.1027840175468535,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.1027840175468535
     },
     {
       "market": "KR",
@@ -2159,11 +2159,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2174,12 +2174,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 12060.0,
       "exitPrice": 10310.0,
       "forwardReturn": -0.1451077943615257,
-      "benchmarkReturn": 0.11818443521994425,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.11818443521994425
     },
     {
       "market": "KR",
@@ -2190,10 +2190,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2204,10 +2204,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2218,10 +2218,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2232,10 +2232,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2246,10 +2246,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2260,13 +2260,13 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "entryPrice": 3280.29892282197,
       "exitPrice": 3230.0,
       "forwardReturn": -0.015333640014337112,
-      "benchmarkReturn": 0.09247804952628717,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.09247804952628717
     },
     {
       "market": "KR",
@@ -2277,11 +2277,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2292,12 +2292,12 @@
       "completionStatus": "complete",
       "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "entryPrice": 3280.29892282197,
       "exitPrice": 3140.0,
       "forwardReturn": -0.04277016397678592,
-      "benchmarkReturn": 0.07321738856100023,
-      "dataQualityFlag": "clean"
+      "benchmarkReturn": 0.07321738856100023
     },
     {
       "market": "KR",
@@ -2308,10 +2308,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2322,10 +2322,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2336,10 +2336,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2350,10 +2350,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2364,10 +2364,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2375,14 +2375,16 @@
       "symbol": "001060.KS",
       "horizonId": "H20",
       "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "entryPrice": 28550.0,
+      "exitPrice": 27100.0,
+      "forwardReturn": -0.050788091068301226,
+      "benchmarkReturn": -0.0702197535182491
     },
     {
       "market": "KR",
@@ -2393,11 +2395,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2405,13 +2407,15 @@
       "symbol": "001060.KS",
       "horizonId": "1M",
       "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "entryPrice": 28550.0,
+      "exitPrice": 27100.0,
+      "forwardReturn": -0.050788091068301226,
+      "benchmarkReturn": -0.0702197535182491
     },
     {
       "market": "KR",
@@ -2422,10 +2426,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2436,10 +2440,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2450,10 +2454,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2464,10 +2468,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2478,10 +2482,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2489,14 +2493,16 @@
       "symbol": "002990.KS",
       "horizonId": "H20",
       "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "entryPrice": 14020.0,
+      "exitPrice": 13300.0,
+      "forwardReturn": -0.05135520684736091,
+      "benchmarkReturn": -0.0702197535182491
     },
     {
       "market": "KR",
@@ -2507,11 +2513,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2519,13 +2525,15 @@
       "symbol": "002990.KS",
       "horizonId": "1M",
       "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "entryPrice": 14020.0,
+      "exitPrice": 13360.0,
+      "forwardReturn": -0.047075606276747506,
+      "benchmarkReturn": -0.05785257691414241
     },
     {
       "market": "KR",
@@ -2536,10 +2544,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2550,10 +2558,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2564,10 +2572,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2578,10 +2586,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2592,10 +2600,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2603,14 +2611,16 @@
       "symbol": "052400.KQ",
       "horizonId": "H20",
       "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "entryPrice": 39300.0,
+      "exitPrice": 37500.0,
+      "forwardReturn": -0.04580152671755725,
+      "benchmarkReturn": 0.005249779699877263
     },
     {
       "market": "KR",
@@ -2621,11 +2631,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2633,13 +2643,15 @@
       "symbol": "052400.KQ",
       "horizonId": "1M",
       "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "entryPrice": 39300.0,
+      "exitPrice": 37950.0,
+      "forwardReturn": -0.03435114503816794,
+      "benchmarkReturn": 0.032017852642461236
     },
     {
       "market": "KR",
@@ -2650,10 +2662,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2664,10 +2676,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2678,10 +2690,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2692,10 +2704,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2706,10 +2718,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2720,11 +2732,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2735,11 +2747,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2750,10 +2762,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2764,10 +2776,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2778,10 +2790,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2792,10 +2804,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2806,10 +2818,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2820,10 +2832,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2834,11 +2846,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2849,11 +2861,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2864,10 +2876,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2878,10 +2890,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2892,10 +2904,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2906,10 +2918,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2920,10 +2932,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2934,10 +2946,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2948,11 +2960,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2963,11 +2975,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2978,10 +2990,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -2992,10 +3004,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3006,10 +3018,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3020,10 +3032,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3034,10 +3046,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3048,10 +3060,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3062,11 +3074,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3077,11 +3089,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3092,10 +3104,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3106,10 +3118,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3120,10 +3132,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3134,10 +3146,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3148,10 +3160,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3162,10 +3174,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3176,11 +3188,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3191,11 +3203,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3206,10 +3218,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3220,10 +3232,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3234,10 +3246,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3248,10 +3260,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3262,10 +3274,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3276,10 +3288,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3290,11 +3302,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3305,11 +3317,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3320,10 +3332,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3334,10 +3346,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3348,10 +3360,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3362,10 +3374,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3376,10 +3388,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3390,10 +3402,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3404,11 +3416,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3419,11 +3431,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3434,10 +3446,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3448,10 +3460,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3462,10 +3474,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3476,10 +3488,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3490,10 +3502,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3504,10 +3516,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3518,11 +3530,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3533,11 +3545,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3548,10 +3560,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3562,10 +3574,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3576,10 +3588,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3590,10 +3602,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3604,10 +3616,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3618,10 +3630,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3632,11 +3644,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3647,11 +3659,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3662,10 +3674,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3676,10 +3688,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3690,10 +3702,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3704,10 +3716,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3718,10 +3730,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3732,10 +3744,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3746,11 +3758,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3761,11 +3773,11 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3776,10 +3788,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3790,10 +3802,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3804,10 +3816,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3818,10 +3830,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3832,10 +3844,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3846,10 +3858,10 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
@@ -3860,338 +3872,680 @@
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "horizonDays": 20,
+      "incompleteReason": "missing_exit",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-09",
+      "symbol": "069260.KS",
+      "horizonId": "H60",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "horizonDays": 60,
+      "incompleteReason": "missing_exit",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-09",
+      "symbol": "069260.KS",
+      "horizonId": "1M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-09",
+      "symbol": "069260.KS",
+      "horizonId": "3M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-09",
+      "symbol": "069260.KS",
+      "horizonId": "6M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-09",
+      "symbol": "069260.KS",
+      "horizonId": "1Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-09",
+      "symbol": "069260.KS",
+      "horizonId": "3Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-09",
+      "symbol": "069260.KS",
+      "horizonId": "5Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-11",
+      "symbol": "134380.KS",
+      "horizonId": "H20",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "horizonDays": 20,
+      "incompleteReason": "missing_exit",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-11",
+      "symbol": "134380.KS",
+      "horizonId": "H60",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "horizonDays": 60,
+      "incompleteReason": "missing_exit",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-11",
+      "symbol": "134380.KS",
+      "horizonId": "1M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-11",
+      "symbol": "134380.KS",
+      "horizonId": "3M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-11",
+      "symbol": "134380.KS",
+      "horizonId": "6M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-11",
+      "symbol": "134380.KS",
+      "horizonId": "1Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-11",
+      "symbol": "134380.KS",
+      "horizonId": "3Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-11",
+      "symbol": "134380.KS",
+      "horizonId": "5Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-13",
+      "symbol": "065710.KQ",
+      "horizonId": "H20",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "horizonDays": 20,
+      "incompleteReason": "missing_exit",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-13",
+      "symbol": "065710.KQ",
+      "horizonId": "H60",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "horizonDays": 60,
+      "incompleteReason": "missing_exit",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-13",
+      "symbol": "065710.KQ",
+      "horizonId": "1M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-13",
+      "symbol": "065710.KQ",
+      "horizonId": "3M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-13",
+      "symbol": "065710.KQ",
+      "horizonId": "6M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-13",
+      "symbol": "065710.KQ",
+      "horizonId": "1Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-13",
+      "symbol": "065710.KQ",
+      "horizonId": "3Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-13",
+      "symbol": "065710.KQ",
+      "horizonId": "5Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-15",
+      "symbol": "178920.KS",
+      "horizonId": "H20",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "horizonDays": 20,
+      "incompleteReason": "missing_exit",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-15",
+      "symbol": "178920.KS",
+      "horizonId": "H60",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "horizonDays": 60,
+      "incompleteReason": "missing_exit",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-15",
+      "symbol": "178920.KS",
+      "horizonId": "1M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-15",
+      "symbol": "178920.KS",
+      "horizonId": "3M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-15",
+      "symbol": "178920.KS",
+      "horizonId": "6M",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-15",
+      "symbol": "178920.KS",
+      "horizonId": "1Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-15",
+      "symbol": "178920.KS",
+      "horizonId": "3Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-15",
+      "symbol": "178920.KS",
+      "horizonId": "5Y",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
+      "incompleteReason": "horizon_beyond_asof",
+      "benchmarkIncompleteReason": "missing_benchmark_series"
+    },
+    {
+      "market": "KR",
+      "pickDate": "2026-09-17",
+      "symbol": "483650.KS",
+      "horizonId": "H20",
+      "benchmarkId": "KR-KOSPI",
+      "completionStatus": "incomplete",
+      "benchmarkCompletionStatus": "incomplete",
+      "survivorshipFlag": "unknown",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "insufficient_history",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-09",
-      "symbol": "069260.KS",
+      "pickDate": "2026-09-17",
+      "symbol": "483650.KS",
       "horizonId": "H60",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "insufficient_history",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-09",
-      "symbol": "069260.KS",
+      "pickDate": "2026-09-17",
+      "symbol": "483650.KS",
       "horizonId": "1M",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-09",
-      "symbol": "069260.KS",
+      "pickDate": "2026-09-17",
+      "symbol": "483650.KS",
       "horizonId": "3M",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-09",
-      "symbol": "069260.KS",
+      "pickDate": "2026-09-17",
+      "symbol": "483650.KS",
       "horizonId": "6M",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-09",
-      "symbol": "069260.KS",
+      "pickDate": "2026-09-17",
+      "symbol": "483650.KS",
       "horizonId": "1Y",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-09",
-      "symbol": "069260.KS",
+      "pickDate": "2026-09-17",
+      "symbol": "483650.KS",
       "horizonId": "3Y",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-09",
-      "symbol": "069260.KS",
+      "pickDate": "2026-09-17",
+      "symbol": "483650.KS",
       "horizonId": "5Y",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "horizon_beyond_asof",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-11",
-      "symbol": "134380.KS",
+      "pickDate": "2026-09-19",
+      "symbol": "052400.KQ",
       "horizonId": "H20",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 20,
       "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-11",
-      "symbol": "134380.KS",
+      "pickDate": "2026-09-19",
+      "symbol": "052400.KQ",
       "horizonId": "H60",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "horizonDays": 60,
       "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-11",
-      "symbol": "134380.KS",
+      "pickDate": "2026-09-19",
+      "symbol": "052400.KQ",
       "horizonId": "1M",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-11",
-      "symbol": "134380.KS",
+      "pickDate": "2026-09-19",
+      "symbol": "052400.KQ",
       "horizonId": "3M",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-11",
-      "symbol": "134380.KS",
+      "pickDate": "2026-09-19",
+      "symbol": "052400.KQ",
       "horizonId": "6M",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-11",
-      "symbol": "134380.KS",
+      "pickDate": "2026-09-19",
+      "symbol": "052400.KQ",
       "horizonId": "1Y",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-11",
-      "symbol": "134380.KS",
+      "pickDate": "2026-09-19",
+      "symbol": "052400.KQ",
       "horizonId": "3Y",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     },
     {
       "market": "KR",
-      "pickDate": "2026-09-11",
-      "symbol": "134380.KS",
+      "pickDate": "2026-09-19",
+      "symbol": "052400.KQ",
       "horizonId": "5Y",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "incomplete",
       "benchmarkCompletionStatus": "incomplete",
       "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
+      "dataQualityFlag": "clean",
+      "asOfDate": "2026-09-20",
       "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
-    },
-    {
-      "market": "KR",
-      "pickDate": "2026-09-13",
-      "symbol": "065710.KQ",
-      "horizonId": "H20",
-      "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
-      "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "horizonDays": 20,
-      "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
-    },
-    {
-      "market": "KR",
-      "pickDate": "2026-09-13",
-      "symbol": "065710.KQ",
-      "horizonId": "H60",
-      "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
-      "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "horizonDays": 60,
-      "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
-    },
-    {
-      "market": "KR",
-      "pickDate": "2026-09-13",
-      "symbol": "065710.KQ",
-      "horizonId": "1M",
-      "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
-      "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
-    },
-    {
-      "market": "KR",
-      "pickDate": "2026-09-13",
-      "symbol": "065710.KQ",
-      "horizonId": "3M",
-      "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
-      "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
-    },
-    {
-      "market": "KR",
-      "pickDate": "2026-09-13",
-      "symbol": "065710.KQ",
-      "horizonId": "6M",
-      "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
-      "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
-    },
-    {
-      "market": "KR",
-      "pickDate": "2026-09-13",
-      "symbol": "065710.KQ",
-      "horizonId": "1Y",
-      "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
-      "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
-    },
-    {
-      "market": "KR",
-      "pickDate": "2026-09-13",
-      "symbol": "065710.KQ",
-      "horizonId": "3Y",
-      "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
-      "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
-    },
-    {
-      "market": "KR",
-      "pickDate": "2026-09-13",
-      "symbol": "065710.KQ",
-      "horizonId": "5Y",
-      "benchmarkId": "KR-KOSPI",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
-      "survivorshipFlag": "unknown",
-      "asOfDate": "2026-09-13",
-      "incompleteReason": "missing_entry",
-      "benchmarkIncompleteReason": "missing_benchmark_series",
-      "dataQualityFlag": "clean"
+      "benchmarkIncompleteReason": "missing_benchmark_series"
     }
   ]
 }
