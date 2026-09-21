@@ -5,11 +5,11 @@ from __future__ import annotations
 import json
 import logging
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import generate_daily
 import pytest
-from config import COMPOSITE_THRESHOLD, SCORE_VERSION, UniverseSymbol
+from config import SCORE_VERSION, UniverseSymbol
 from reasoning import STATIC_RISKS, build_reasoning
 from risk_classification import (
     apply_pick_risk_reasoning,
@@ -41,7 +41,7 @@ def _candidate(symbol: str, rank: int = 1) -> dict:
 
 
 def _fixed_now() -> datetime:
-    return datetime(2026, 9, 21, 4, 0, 0, tzinfo=timezone.utc)
+    return datetime(2026, 9, 21, 4, 0, 0, tzinfo=UTC)
 
 
 def test_classify_top_candidates_calls_at_most_five(monkeypatch):
@@ -269,21 +269,24 @@ def test_info_fetcher_exception_falls_back(monkeypatch):
 
 
 def test_classify_summary_typesafe_error_handling(monkeypatch):
+    import httpx2
     from risk_classification import _classify_summary
     from typesafe_sdk import (
         TypeSafeAPITimeoutError,
         TypeSafeInternalServerError,
         TypeSafeRateLimitError,
     )
-    import httpx2
 
     class DummyClient:
         def __init__(self, exc):
             self.exc = exc
+
         def __enter__(self):
             return self
+
         def __exit__(self, *args):
             pass
+
         def system_one(self, *args, **kwargs):
             raise self.exc
 
@@ -293,7 +296,10 @@ def test_classify_summary_typesafe_error_handling(monkeypatch):
         TypeSafeAPITimeoutError("request timed out"),
         TypeSafeInternalServerError(500, {}, headers, "server error"),
     ]:
-        monkeypatch.setattr("typesafe_sdk.TypeSafeClient", lambda *a, **k: DummyClient(exc))
+        monkeypatch.setattr(
+            "typesafe_sdk.TypeSafeClient",
+            lambda *a, exc=exc, **k: DummyClient(exc),
+        )
         tag, record = _classify_summary("Retail bank", input_at="2026-09-21T04:00:00+00:00")
         assert tag is None
         assert record["fallback"] is True

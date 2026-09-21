@@ -88,6 +88,7 @@ def test_generate_daily_writes_pick_and_syncs_manifest(content_dirs, monkeypatch
 
     import jsonschema
     from config import SCHEMA_PATH
+
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     validator = jsonschema.Draft202012Validator(schema)
     errors = list(validator.iter_errors(entry))

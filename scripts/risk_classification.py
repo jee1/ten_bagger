@@ -7,8 +7,9 @@ from __future__ import annotations
 
 import logging
 import os
-from datetime import datetime, timezone
-from typing import Any, Callable
+from collections.abc import Callable
+from datetime import UTC, datetime
+from typing import Any
 
 from yf_cache import get_ticker_info
 
@@ -143,9 +144,7 @@ def _classify_summary(summary: str, *, input_at: str) -> tuple[str | None, dict[
 
     cap_sdk_logger()
 
-    criteria = {
-        key: row["criteria"] for key, row in RISK_TAG_CHOICES.items() if row["criteria"]
-    }
+    criteria = {key: row["criteria"] for key, row in RISK_TAG_CHOICES.items() if row["criteria"]}
     question = Choice(
         instructions=(
             "From the company's long business summary, pick the single most salient "
@@ -190,7 +189,7 @@ def classify_candidate_risk(
     now: Callable[[], datetime] | None = None,
 ) -> dict[str, Any]:
     """Classify one Top-N row; never raises."""
-    clock = now() if now else datetime.now(timezone.utc)
+    clock = now() if now else datetime.now(UTC)
     input_at = clock.isoformat(timespec="seconds")
     symbol = candidate.get("symbol", "")
 

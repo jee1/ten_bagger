@@ -16,10 +16,10 @@ from config import (
     SCORE_VERSION,
     market_for_date,
 )
+from risk_classification import apply_pick_risk_reasoning, classify_top_candidate_risks
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
 from time_utils import now_kst
-from risk_classification import apply_pick_risk_reasoning, classify_top_candidate_risks
 from top_n import build_top_candidates, select_pick
 from yf_cache import get_ticker_info
 
