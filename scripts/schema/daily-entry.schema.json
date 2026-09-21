@@ -135,7 +135,51 @@
         "scores": { "$ref": "#/$defs/topNScores" },
         "riskTag": { "$ref": "#/$defs/riskTag" },
         "riskText": { "$ref": "#/$defs/localizedText" },
-        "riskClassification": { "$ref": "#/$defs/riskClassification" }
+        "riskClassification": { "$ref": "#/$defs/riskClassification" },
+        "moatWidth": { "$ref": "#/$defs/moatWidth" },
+        "moatText": { "$ref": "#/$defs/localizedText" },
+        "moatClassification": { "$ref": "#/$defs/moatClassification" },
+        "megatrendTheme": { "$ref": "#/$defs/megatrendTheme" },
+        "megatrendText": { "$ref": "#/$defs/localizedText" },
+        "megatrendClassification": { "$ref": "#/$defs/megatrendClassification" }
+      }
+    },
+    "moatWidth": {
+      "title": "MoatWidth",
+      "type": "string",
+      "enum": ["none", "narrow", "wide"]
+    },
+    "megatrendTheme": {
+      "title": "MegatrendTheme",
+      "type": "string",
+      "enum": ["none", "ai_infrastructure", "power_grid", "robotics"]
+    },
+    "moatClassification": {
+      "title": "MoatClassification",
+      "type": "object",
+      "required": ["model", "sdkVersion", "inputAt", "fallback"],
+      "additionalProperties": false,
+      "properties": {
+        "model": { "type": "string" },
+        "sdkVersion": { "type": "string" },
+        "inputAt": { "type": "string" },
+        "tag": { "$ref": "#/$defs/moatWidth" },
+        "fallback": { "type": "boolean" },
+        "fallbackReason": { "type": "string" }
+      }
+    },
+    "megatrendClassification": {
+      "title": "MegatrendClassification",
+      "type": "object",
+      "required": ["model", "sdkVersion", "inputAt", "fallback"],
+      "additionalProperties": false,
+      "properties": {
+        "model": { "type": "string" },
+        "sdkVersion": { "type": "string" },
+        "inputAt": { "type": "string" },
+        "tag": { "$ref": "#/$defs/megatrendTheme" },
+        "fallback": { "type": "boolean" },
+        "fallbackReason": { "type": "string" }
       }
     },
     "riskTag": {

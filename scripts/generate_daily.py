@@ -16,6 +16,7 @@ from config import (
     SCORE_VERSION,
     market_for_date,
 )
+from moat_megatrend_classification import classify_top_candidate_moat_megatrend
 from risk_classification import apply_pick_risk_reasoning, classify_top_candidate_risks
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
@@ -150,6 +151,7 @@ def main() -> int:
     pick = select_pick(candidates)
     top_candidates = build_top_candidates(candidates)
     top_candidates = classify_top_candidate_risks(top_candidates)
+    top_candidates = classify_top_candidate_moat_megatrend(top_candidates)
     logger.info(
         "Daily %s market=%s pick=%s screened=%d errors=%d",
         target,
