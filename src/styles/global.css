@@ -659,6 +659,19 @@ code {
   line-height: 1.35;
 }
 
+.top-n-observe {
+  grid-column: 2 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.top-n-observe-item {
+  display: inline;
+}
+
 .top-n-id {
   display: flex;
   align-items: baseline;

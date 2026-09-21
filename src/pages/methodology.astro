@@ -50,6 +50,7 @@ const toc = [
   { id: 'rules', ko: '선정·없음 규칙', en: 'Pick vs none' },
   { id: 'performance-excess', ko: '초과 성과 게이트', en: 'Excess-return gate' },
   { id: 'data', ko: '데이터·생성', en: 'Data & schedule' },
+  { id: 'observational-tags', ko: 'Top-N 관찰 태그', en: 'Top-N observational tags' },
 ] as const;
 ---
 
@@ -396,6 +397,66 @@ const toc = [
               >docs/architecture/score-v3-candidates.md</a
             ></span
           >
+        </p>
+      </section>
+
+      <section id="observational-tags">
+        <h2>
+          <span data-i18n-show="ko" hidden={lang !== 'ko'}>Top-N 관찰 태그</span>
+          <span data-i18n-show="en" hidden={lang !== 'en'}>Top-N observational tags</span>
+        </h2>
+        <p data-i18n-show="ko" hidden={lang !== 'ko'}>
+          당일 Top-5 후보 행에만, 점수·선정과 분리된 <strong>관찰용</strong> 라벨을 붙일 수
+          있습니다. 비즈니스 요약(longBusinessSummary)과 TypeSafe API 키가 있을 때만 JEV
+          <code>system_one</code> Choice로 분류하며, 선정·순위·Score v2에는 영향을 주지
+          않습니다.
+        </p>
+        <p data-i18n-show="en" hidden={lang !== 'en'}>
+          Optional <strong>observational</strong> labels on Top-5 candidate rows only — separate
+          from scores and the published pick. Classification runs via TypeSafe JEV
+          <code>system_one</code> Choice only when a business summary and API key exist; it never
+          changes selection, rank, or Score v2.
+        </p>
+        <ul>
+          <li>
+            <span data-i18n-show="ko" hidden={lang !== 'ko'}
+              ><strong>리스크 (#147)</strong> — 단일 salient business-risk 카테고리</span
+            >
+            <span data-i18n-show="en" hidden={lang !== 'en'}
+              ><strong>Risk (#147)</strong> — one salient business-risk category</span
+            >
+          </li>
+          <li>
+            <span data-i18n-show="ko" hidden={lang !== 'ko'}
+              ><strong>해자 (#149)</strong> — <code>none</code> · <code>narrow</code> ·
+              <code>wide</code></span
+            >
+            <span data-i18n-show="en" hidden={lang !== 'en'}
+              ><strong>Moat (#149)</strong> — <code>none</code>, <code>narrow</code>, or
+              <code>wide</code></span
+            >
+          </li>
+          <li>
+            <span data-i18n-show="ko" hidden={lang !== 'ko'}
+              ><strong>메가트렌드 (#149)</strong> — <code>none</code> ·
+              <code>ai_infrastructure</code> · <code>power_grid</code> ·
+              <code>robotics</code></span
+            >
+            <span data-i18n-show="en" hidden={lang !== 'en'}
+              ><strong>Megatrend (#149)</strong> — <code>none</code>,
+              <code>ai_infrastructure</code>, <code>power_grid</code>, or
+              <code>robotics</code></span
+            >
+          </li>
+        </ul>
+        <p data-i18n-show="ko" hidden={lang !== 'ko'}>
+          API 키 없음·요약 없음·오류·타임아웃 시 JSON에는 <code>fallback</code> provenance만
+          남기고 화면 라벨은 숨깁니다. 과거 일별 JSON(필드 없음)은 그대로 유효합니다.
+        </p>
+        <p data-i18n-show="en" hidden={lang !== 'en'}>
+          On missing API key, missing summary, errors, or timeouts, entries keep concise
+          <code>fallback</code> provenance in JSON but hide UI labels. Older daily JSON without
+          these fields remains valid.
         </p>
       </section>
     </article>

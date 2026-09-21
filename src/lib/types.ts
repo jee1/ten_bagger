@@ -78,6 +78,34 @@ export interface TopNCandidate {
   riskTag?: RiskTag;
   riskText?: LocalizedText;
   riskClassification?: RiskClassification;
+  moatWidth?: MoatWidth;
+  moatText?: LocalizedText;
+  moatClassification?: MoatClassification;
+  megatrendTheme?: MegatrendTheme;
+  megatrendText?: LocalizedText;
+  megatrendClassification?: MegatrendClassification;
+}
+
+export type MoatWidth = 'none' | 'narrow' | 'wide';
+
+export type MegatrendTheme = 'none' | 'ai_infrastructure' | 'power_grid' | 'robotics';
+
+export interface MoatClassification {
+  model: string;
+  sdkVersion: string;
+  inputAt: string;
+  tag?: MoatWidth;
+  fallback: boolean;
+  fallbackReason?: string;
+}
+
+export interface MegatrendClassification {
+  model: string;
+  sdkVersion: string;
+  inputAt: string;
+  tag?: MegatrendTheme;
+  fallback: boolean;
+  fallbackReason?: string;
 }
 
 export type RiskTag =

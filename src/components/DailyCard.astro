@@ -270,6 +270,22 @@ const delta = composite - threshold;
               <DualText text={c.riskText} lang={lang} />
             </span>
           )}
+          {(c.moatText || c.megatrendText) && (
+            <span class="top-n-observe muted">
+              {c.moatText && (
+                <span class="top-n-observe-item">
+                  <span data-i18n="moatLabel">{label('moatLabel', lang)}</span>:{' '}
+                  <DualText text={c.moatText} lang={lang} />
+                </span>
+              )}
+              {c.megatrendText && (
+                <span class="top-n-observe-item">
+                  <span data-i18n="megatrendLabel">{label('megatrendLabel', lang)}</span>:{' '}
+                  <DualText text={c.megatrendText} lang={lang} />
+                </span>
+              )}
+            </span>
+          )}
         </li>
       ))}
     </ol>

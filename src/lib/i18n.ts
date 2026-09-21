@@ -161,6 +161,8 @@ export const labels = {
     ko: '막대 순서: 규모 · 성장 · 밸류 · 진입 · 모멘텀 · 품질',
     en: 'Bars: size · growth · valuation · entry · momentum · quality',
   } satisfies LocalizedText,
+  moatLabel: { ko: '해자', en: 'Moat' } satisfies LocalizedText,
+  megatrendLabel: { ko: '메가트렌드', en: 'Megatrend' } satisfies LocalizedText,
   contents: { ko: '목차', en: 'Contents' } satisfies LocalizedText,
   calendarScoreLegend: { ko: '복합 점수', en: 'Composite score' } satisfies LocalizedText,
   calendarUnpublished: { ko: '미공개', en: 'Unpublished' } satisfies LocalizedText,
