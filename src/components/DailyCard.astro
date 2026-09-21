@@ -265,6 +265,11 @@ const delta = composite - threshold;
           <span class="num top-n-score" style={`color: ${tone(c.scores.composite)};`}>
             {c.scores.composite.toFixed(1)}
           </span>
+          {c.riskText && (
+            <span class="top-n-risk muted">
+              <DualText text={c.riskText} lang={lang} />
+            </span>
+          )}
         </li>
       ))}
     </ol>

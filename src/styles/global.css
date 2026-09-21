@@ -653,6 +653,12 @@ code {
   background: var(--surface);
 }
 
+.top-n-risk {
+  grid-column: 2 / -1;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
 .top-n-id {
   display: flex;
   align-items: baseline;

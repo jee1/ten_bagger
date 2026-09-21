@@ -86,6 +86,13 @@ def test_generate_daily_writes_pick_and_syncs_manifest(content_dirs, monkeypatch
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     assert "2026-07-08" in manifest["dates"]
 
+    import jsonschema
+    from config import SCHEMA_PATH
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    validator = jsonschema.Draft202012Validator(schema)
+    errors = list(validator.iter_errors(entry))
+    assert errors == []
+
 
 def test_generate_daily_writes_no_pick(content_dirs, monkeypatch):
     daily_dir, manifest_path = content_dirs

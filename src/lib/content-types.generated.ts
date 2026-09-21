@@ -53,6 +53,15 @@ export type DailyEntry = {
    */
   topCandidates?: TopNCandidate[];
 };
+export type RiskTag =
+  | "customer_concentration"
+  | "regulation"
+  | "single_product_pipeline"
+  | "technology_obsolescence"
+  | "commodities_fx"
+  | "debt_liquidity"
+  | "holding_complexity"
+  | "insufficient_evidence";
 
 export interface LocalizedText {
   ko: string;
@@ -65,6 +74,9 @@ export interface TopNCandidate {
   exchange: string;
   currency: "KRW" | "USD";
   scores: TopNScores;
+  riskTag?: RiskTag;
+  riskText?: LocalizedText;
+  riskClassification?: RiskClassification;
 }
 export interface TopNScores {
   composite: number;
@@ -75,6 +87,14 @@ export interface TopNScores {
   momentum: number;
   quality: number;
   version?: number;
+}
+export interface RiskClassification {
+  model: string;
+  sdkVersion: string;
+  inputAt: string;
+  tag?: RiskTag;
+  fallback: boolean;
+  fallbackReason?: string;
 }
 
 export interface Manifest {

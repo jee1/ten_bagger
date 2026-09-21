@@ -132,7 +132,38 @@
         "name": { "$ref": "#/$defs/localizedText" },
         "exchange": { "type": "string" },
         "currency": { "enum": ["KRW", "USD"] },
-        "scores": { "$ref": "#/$defs/topNScores" }
+        "scores": { "$ref": "#/$defs/topNScores" },
+        "riskTag": { "$ref": "#/$defs/riskTag" },
+        "riskText": { "$ref": "#/$defs/localizedText" },
+        "riskClassification": { "$ref": "#/$defs/riskClassification" }
+      }
+    },
+    "riskTag": {
+      "title": "RiskTag",
+      "type": "string",
+      "enum": [
+        "customer_concentration",
+        "regulation",
+        "single_product_pipeline",
+        "technology_obsolescence",
+        "commodities_fx",
+        "debt_liquidity",
+        "holding_complexity",
+        "insufficient_evidence"
+      ]
+    },
+    "riskClassification": {
+      "title": "RiskClassification",
+      "type": "object",
+      "required": ["model", "sdkVersion", "inputAt", "fallback"],
+      "additionalProperties": false,
+      "properties": {
+        "model": { "type": "string" },
+        "sdkVersion": { "type": "string" },
+        "inputAt": { "type": "string" },
+        "tag": { "$ref": "#/$defs/riskTag" },
+        "fallback": { "type": "boolean" },
+        "fallbackReason": { "type": "string" }
       }
     }
   }

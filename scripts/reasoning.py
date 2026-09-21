@@ -7,6 +7,21 @@ from typing import Any
 from config import COMPOSITE_THRESHOLD
 from scoring.models import ScoreResult
 
+STATIC_RISKS: list[dict[str, str]] = [
+    {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts",
+    },
+    {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity",
+    },
+    {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee",
+    },
+]
+
 
 def build_reasoning(result: ScoreResult) -> dict[str, Any]:
     m = result.metrics
@@ -98,20 +113,7 @@ def build_reasoning(result: ScoreResult) -> dict[str, Any]:
         "valuation": {"ko": valuation_ko, "en": valuation_en},
         "momentum": {"ko": momentum_ko, "en": momentum_en},
         "quality": {"ko": quality_ko, "en": quality_en},
-        "risks": [
-            {
-                "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
-                "en": "Growth premium may compress on guidance cuts",
-            },
-            {
-                "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
-                "en": "Valuation re-rating risk from rates and liquidity",
-            },
-            {
-                "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
-                "en": "10x in five years is a scenario, not a guarantee",
-            },
-        ],
+        "risks": list(STATIC_RISKS),
     }
     if result.score_version >= 2:
         reasoning["size"] = {"ko": size_ko, "en": size_en}

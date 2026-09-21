@@ -75,6 +75,28 @@ export interface TopNCandidate {
   exchange: string;
   currency: 'KRW' | 'USD';
   scores: TopNScores;
+  riskTag?: RiskTag;
+  riskText?: LocalizedText;
+  riskClassification?: RiskClassification;
+}
+
+export type RiskTag =
+  | 'customer_concentration'
+  | 'regulation'
+  | 'single_product_pipeline'
+  | 'technology_obsolescence'
+  | 'commodities_fx'
+  | 'debt_liquidity'
+  | 'holding_complexity'
+  | 'insufficient_evidence';
+
+export interface RiskClassification {
+  model: string;
+  sdkVersion: string;
+  inputAt: string;
+  tag?: RiskTag;
+  fallback: boolean;
+  fallbackReason?: string;
 }
 
 export interface DailyMeta {

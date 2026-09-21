@@ -19,6 +19,7 @@ from config import (
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
 from time_utils import now_kst
+from risk_classification import apply_pick_risk_reasoning, classify_top_candidate_risks
 from top_n import build_top_candidates, select_pick
 from yf_cache import get_ticker_info
 
@@ -99,6 +100,13 @@ def build_pick(target: str, market: str, result, stats, top_candidates=None) -> 
     if profile:
         stock["profile"] = profile
 
+    reasoning = build_reasoning(result)
+    reasoning = apply_pick_risk_reasoning(
+        reasoning,
+        pick_symbol=result.symbol,
+        top_candidates=top_candidates,
+    )
+
     entry = {
         "date": target,
         "market": market,
@@ -115,7 +123,7 @@ def build_pick(target: str, market: str, result, stats, top_candidates=None) -> 
             "threshold": COMPOSITE_THRESHOLD,
             "version": result.score_version,
         },
-        "reasoning": build_reasoning(result),
+        "reasoning": reasoning,
         "meta": {
             "generatedAt": now,
             "candidatesScreened": stats.screened,
@@ -141,6 +149,7 @@ def main() -> int:
     candidates, stats = screen_market(market, excluded_symbols)
     pick = select_pick(candidates)
     top_candidates = build_top_candidates(candidates)
+    top_candidates = classify_top_candidate_risks(top_candidates)
     logger.info(
         "Daily %s market=%s pick=%s screened=%d errors=%d",
         target,
