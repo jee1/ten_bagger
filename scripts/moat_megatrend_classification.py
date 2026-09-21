@@ -56,7 +56,9 @@ MEGATREND_THEME_CHOICES: dict[str, dict[str, str | None]] = {
     "power_grid": {
         "ko": "전력·그리드",
         "en": "Power grid",
-        "criteria": "Core exposure to power generation, grid, electrification, or related infrastructure",
+        "criteria": (
+            "Core exposure to power generation, grid, electrification, or related infrastructure"
+        ),
     },
     "robotics": {
         "ko": "로보틱스·자동화",
@@ -173,7 +175,8 @@ def _classify_summary(
         ),
         "megatrend_theme": Choice(
             instructions=(
-                "From the company's long business summary, pick the single best-fit megatrend theme."
+                "From the company's long business summary, pick the single "
+                "best-fit megatrend theme."
             ),
             criteria=theme_criteria,
         ),
