@@ -1,0 +1,299 @@
+{
+  "date": "2026-09-23",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "439260.KS",
+    "name": {
+      "ko": "대한조선",
+      "en": "Daehan Shipbuilding Co., Ltd."
+    },
+    "exchange": "KOSPI",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "대한조선는 Industrials 분야 Aerospace & Defense 기업입니다.",
+        "en": "Daehan Shipbuilding Co., Ltd. provides ship construction and repair services. It develops crude oil tankers, product carriers, shuttle tankers, container carriers, and bulk carriers."
+      },
+      "sector": {
+        "ko": "Industrials",
+        "en": "Industrials"
+      },
+      "industry": {
+        "ko": "Aerospace & Defense",
+        "en": "Aerospace & Defense"
+      }
+    }
+  },
+  "scores": {
+    "composite": 79.4,
+    "size": 100.0,
+    "growth": 99.2,
+    "valuation": 73.5,
+    "entry": 59.0,
+    "momentum": 35.0,
+    "quality": 83.9,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "대한조선(439260.KS)는 v2 복합 점수 79.4로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Daehan Shipbuilding Co., Ltd. (439260.KS) cleared the 70.0 threshold with v2 composite 79.4; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 19.7% / 이익 44.4% (혼합 30.82%) — 지속 가능 성장 점수 99.2.",
+      "en": "Revenue 19.7% / earnings 44.4% (blended 30.82%) — sustainable growth score 99.2."
+    },
+    "valuation": {
+      "ko": "PER 5.96, PEG 데이터 없음, FCF수익률 11.44%, PBR 데이터 없음 — 밸류 점수 73.5.",
+      "en": "P/E 5.96, PEG No data, FCF yield 11.44%, P/B No data — valuation score 73.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -48.09% — 보조 모멘텀 점수 35.0.",
+      "en": "6M return -48.09% — auxiliary momentum score 35.0."
+    },
+    "quality": {
+      "ko": "ROE 34.23%, ROA 14.27%, FCF/순이익 0.67 — 품질 점수 83.9.",
+      "en": "ROE 34.23%, ROA 14.27%, FCF/net income 0.67 — quality score 83.9."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1755890319360 기준 규모 점수 100.0.",
+      "en": "Market cap 1755890319360 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 4.19%, 52주 고점 대비 -56.79% — 진입 점수 59.0.",
+      "en": "12M price range 4.19%, -56.79% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-23T08:47:59+09:00",
+    "candidatesScreened": 1906,
+    "excludedRecent": 30,
+    "skippedMarketCap": 841,
+    "skippedRedFlags": 369,
+    "noData": 0,
+    "errors": 2
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "439260.KS",
+      "name": {
+        "ko": "대한조선",
+        "en": "Daehan Shipbuilding Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 79.4,
+        "size": 100.0,
+        "growth": 99.2,
+        "valuation": 73.5,
+        "entry": 59.0,
+        "momentum": 35.0,
+        "quality": 83.9,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "461300.KQ",
+      "name": {
+        "ko": "아이스크림미디어",
+        "en": "i-Scream Media CO., LTD."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 77.5,
+        "size": 100.0,
+        "growth": 73.3,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 64.0,
+        "quality": 87.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "013030.KQ",
+      "name": {
+        "ko": "하이록코리아",
+        "en": "Hy-Lok Corporation"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.9,
+        "size": 100.0,
+        "growth": 90.6,
+        "valuation": 70.0,
+        "entry": 75.0,
+        "momentum": 61.8,
+        "quality": 63.1,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "439090.KQ",
+      "name": {
+        "ko": "마녀공장",
+        "en": "Manyo Factory Co., Ltd"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.6,
+        "size": 100.0,
+        "growth": 92.5,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 75.2,
+        "quality": 58.3,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "284740.KS",
+      "name": {
+        "ko": "쿠쿠홈시스",
+        "en": "CUCKOO Homesys Co., Ltd"
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.4,
+        "size": 100.0,
+        "growth": 99.2,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 56.0,
+        "quality": 59.9,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-22T23:47:59+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
