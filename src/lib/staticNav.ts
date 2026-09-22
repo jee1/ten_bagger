@@ -89,24 +89,131 @@ export function archiveYmKey(year: number, month: number): string {
   return `${year}-${String(month).padStart(2, '0')}`;
 }
 
-export type PickFreshness = 'today' | 'latest';
+export type HomeReportEntryRef = {
+  date: string;
+  generatedAt?: string;
+};
 
-export interface PickFreshnessView {
-  freshness: PickFreshness;
+export type HomeReportState = 'published_today' | 'published_fallback' | 'unpublished_today';
+
+export interface HomeReportView {
+  state: HomeReportState;
   labelKey: 'pickFreshToday' | 'pickFreshLatest';
   badgeTone: 'pick' | 'none';
-  stale: boolean;
+  showStatusBadge: boolean;
+  showNotReadyHint: boolean;
+  showFallbackDate: boolean;
+  showPublishedAt: boolean;
+  showPickDetails: boolean;
+  displayDate: string | null;
+  generatedAtIso: string | null;
 }
 
-/** Build- and run-time both call this so the baked HTML and the client hydrate cannot drift. */
-export function pickFreshnessView(entryDate: string, todayDate: string): PickFreshnessView {
-  const freshness: PickFreshness = entryDate === todayDate ? 'today' : 'latest';
-  return {
-    freshness,
-    labelKey: freshness === 'today' ? 'pickFreshToday' : 'pickFreshLatest',
-    badgeTone: freshness === 'today' ? 'pick' : 'none',
-    stale: freshness === 'latest',
-  };
+/** Past calendar days are always published; today waits until meta.generatedAt (KST). */
+export function isReportPublished(
+  entry: HomeReportEntryRef,
+  todayDate: string,
+  now: Date = new Date(),
+): boolean {
+  if (entry.date < todayDate) return true;
+  if (entry.date > todayDate) return false;
+  const generatedAt = entry.generatedAt;
+  if (!generatedAt) return false;
+  return now.getTime() >= new Date(generatedAt).getTime();
+}
+
+function newestPublishedFallbackEntry(
+  todayDate: string,
+  candidates: (HomeReportEntryRef | undefined)[],
+  now: Date,
+): HomeReportEntryRef | undefined {
+  let best: HomeReportEntryRef | undefined;
+  for (const entry of candidates) {
+    if (!entry || entry.date >= todayDate) continue;
+    if (!isReportPublished(entry, todayDate, now)) continue;
+    if (!best || entry.date > best.date) best = entry;
+  }
+  return best;
+}
+
+/**
+ * Single source of truth for home report publication UI.
+ * Build-time Astro and client hydrate both call this with the same entry refs.
+ */
+export function deriveHomeReportView(
+  todayDate: string,
+  todayEntry: HomeReportEntryRef | undefined,
+  fallbackEntry: HomeReportEntryRef | undefined,
+  now: Date = new Date(),
+): HomeReportView | null {
+  if (
+    todayEntry &&
+    todayEntry.date === todayDate &&
+    isReportPublished(todayEntry, todayDate, now)
+  ) {
+    return {
+      state: 'published_today',
+      labelKey: 'pickFreshToday',
+      badgeTone: 'pick',
+      showStatusBadge: true,
+      showNotReadyHint: false,
+      showFallbackDate: false,
+      showPublishedAt: true,
+      showPickDetails: true,
+      displayDate: todayEntry.date,
+      generatedAtIso: todayEntry.generatedAt ?? null,
+    };
+  }
+
+  const publishedFallback = newestPublishedFallbackEntry(
+    todayDate,
+    [todayEntry, fallbackEntry],
+    now,
+  );
+  if (publishedFallback) {
+    return {
+      state: 'published_fallback',
+      labelKey: 'pickFreshLatest',
+      badgeTone: 'none',
+      showStatusBadge: true,
+      showNotReadyHint: true,
+      showFallbackDate: true,
+      showPublishedAt: true,
+      showPickDetails: true,
+      displayDate: publishedFallback.date,
+      generatedAtIso: publishedFallback.generatedAt ?? null,
+    };
+  }
+
+  if (todayEntry || fallbackEntry) {
+    return {
+      state: 'unpublished_today',
+      labelKey: 'pickFreshLatest',
+      badgeTone: 'none',
+      showStatusBadge: false,
+      showNotReadyHint: true,
+      showFallbackDate: false,
+      showPublishedAt: false,
+      showPickDetails: false,
+      displayDate: null,
+      generatedAtIso: null,
+    };
+  }
+
+  return null;
+}
+
+export function formatGeneratedAtKst(iso: string, lang: 'ko' | 'en'): string {
+  const formatted = new Intl.DateTimeFormat(lang === 'ko' ? 'ko-KR' : 'en-GB', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(new Date(iso));
+  return `${formatted} KST`;
 }
 
 /** KST calendar date as YYYY-MM-DD. Browser-safe — no node:fs, unlike dailyDates.ts. */

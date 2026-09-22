@@ -3,10 +3,12 @@ import { describe, it } from 'node:test';
 
 import {
   archiveYmKey,
+  deriveHomeReportView,
+  formatGeneratedAtKst,
+  isReportPublished,
   kstDateString,
   localeHref,
   parseStaticNav,
-  pickFreshnessView,
   splitLocalePath,
 } from './staticNav.ts';
 
@@ -93,27 +95,152 @@ describe('parseStaticNav', () => {
   });
 });
 
-describe('pickFreshnessView', () => {
-  it('T1: same date → today', () => {
-    assert.deepEqual(pickFreshnessView('2026-09-13', '2026-09-13'), {
-      freshness: 'today',
-      labelKey: 'pickFreshToday',
-      badgeTone: 'pick',
-      stale: false,
-    });
+describe('isReportPublished', () => {
+  it('past dates are always published', () => {
+    assert.equal(
+      isReportPublished({ date: '2026-09-20' }, '2026-09-22', new Date('2026-09-22T01:00:00+09:00')),
+      true,
+    );
   });
 
-  it('T2: older date → latest', () => {
-    assert.deepEqual(pickFreshnessView('2026-09-11', '2026-09-13'), {
-      freshness: 'latest',
-      labelKey: 'pickFreshLatest',
-      badgeTone: 'none',
-      stale: true,
-    });
+  it('today before generatedAt is unpublished', () => {
+    const entry = { date: '2026-09-22', generatedAt: '2026-09-22T06:00:00+09:00' };
+    assert.equal(
+      isReportPublished(entry, '2026-09-22', new Date('2026-09-22T05:59:59+09:00')),
+      false,
+    );
+    assert.equal(
+      isReportPublished(entry, '2026-09-22', new Date('2026-09-22T06:00:00+09:00')),
+      true,
+    );
+  });
+});
+
+describe('deriveHomeReportView', () => {
+  const today = '2026-09-22';
+  const todayEntry = { date: today, generatedAt: '2026-09-22T06:00:00+09:00' };
+  const fallbackEntry = { date: '2026-09-21', generatedAt: '2026-09-21T08:16:22+09:00' };
+
+  it('published today: badge + generatedAt, no hint, pick details', () => {
+    const view = deriveHomeReportView(
+      today,
+      todayEntry,
+      fallbackEntry,
+      new Date('2026-09-22T07:00:00+09:00'),
+    );
+    assert.equal(view?.state, 'published_today');
+    assert.equal(view?.labelKey, 'pickFreshToday');
+    assert.equal(view?.showNotReadyHint, false);
+    assert.equal(view?.showPickDetails, true);
+    assert.equal(view?.showPublishedAt, true);
+    assert.equal(view?.generatedAtIso, todayEntry.generatedAt);
   });
 
-  it('T3: future date → latest', () => {
-    assert.equal(pickFreshnessView('2026-09-14', '2026-09-13').freshness, 'latest');
+  it('unpublished today with fallback: hint + fallback pick, no today badge', () => {
+    const view = deriveHomeReportView(
+      today,
+      todayEntry,
+      fallbackEntry,
+      new Date('2026-09-22T05:00:00+09:00'),
+    );
+    assert.equal(view?.state, 'published_fallback');
+    assert.equal(view?.labelKey, 'pickFreshLatest');
+    assert.equal(view?.showNotReadyHint, true);
+    assert.equal(view?.showPickDetails, true);
+    assert.equal(view?.showFallbackDate, true);
+    assert.equal(view?.displayDate, fallbackEntry.date);
+    assert.equal(view?.showPublishedAt, true);
+  });
+
+  it('unpublished today without fallback: hint only, no pick details', () => {
+    const view = deriveHomeReportView(
+      today,
+      todayEntry,
+      undefined,
+      new Date('2026-09-22T05:00:00+09:00'),
+    );
+    assert.equal(view?.state, 'unpublished_today');
+    assert.equal(view?.showPickDetails, false);
+    assert.equal(view?.showStatusBadge, false);
+    assert.equal(view?.showNotReadyHint, true);
+    assert.equal(view?.showPublishedAt, false);
+  });
+
+  it('missing today entry uses published fallback', () => {
+    const view = deriveHomeReportView(
+      today,
+      undefined,
+      fallbackEntry,
+      new Date('2026-09-22T07:00:00+09:00'),
+    );
+    assert.equal(view?.state, 'published_fallback');
+    assert.equal(view?.displayDate, fallbackEntry.date);
+  });
+
+  it('no entries returns null', () => {
+    assert.equal(deriveHomeReportView(today, undefined, undefined), null);
+  });
+
+  it('never mixes published-today label with not-ready hint', () => {
+    const view = deriveHomeReportView(
+      today,
+      todayEntry,
+      fallbackEntry,
+      new Date('2026-09-22T07:00:00+09:00'),
+    );
+    assert.equal(view?.labelKey, 'pickFreshToday');
+    assert.equal(view?.showNotReadyHint, false);
+  });
+
+  it('static rollover: baked today entry hydrates as fallback on next KST day', () => {
+    const bakedToday = { date: '2026-09-22', generatedAt: '2026-09-22T06:00:00+09:00' };
+    const bakedFallback = { date: '2026-09-21', generatedAt: '2026-09-21T08:16:22+09:00' };
+    const view = deriveHomeReportView(
+      '2026-09-23',
+      bakedToday,
+      bakedFallback,
+      new Date('2026-09-23T05:00:00+09:00'),
+    );
+    assert.equal(view?.state, 'published_fallback');
+    assert.equal(view?.displayDate, '2026-09-22');
+    assert.equal(view?.labelKey, 'pickFreshLatest');
+    assert.notEqual(view?.labelKey, 'pickFreshToday');
+    assert.equal(view?.showNotReadyHint, true);
+    assert.equal(view?.showPickDetails, true);
+  });
+});
+
+describe('formatGeneratedAtKst', () => {
+  it('formats generatedAt in KST for ko and en', () => {
+    const iso = '2026-09-21T08:16:22+09:00';
+    assert.match(formatGeneratedAtKst(iso, 'ko'), /KST$/);
+    assert.match(formatGeneratedAtKst(iso, 'en'), /KST$/);
+    assert.match(formatGeneratedAtKst(iso, 'ko'), /2026/);
+  });
+
+  it('KST day boundary: after midnight shows fallback while today is unpublished', () => {
+    const todayBefore = kstDateString(new Date('2026-09-12T14:59:00Z'));
+    const todayAfter = kstDateString(new Date('2026-09-12T15:00:00Z'));
+    const entrySept12 = { date: '2026-09-12', generatedAt: '2026-09-12T06:00:00+09:00' };
+    const entrySept13 = { date: '2026-09-13', generatedAt: '2026-09-13T06:00:00+09:00' };
+
+    const lateSept12 = deriveHomeReportView(
+      todayBefore,
+      entrySept12,
+      undefined,
+      new Date('2026-09-12T14:59:00Z'),
+    );
+    assert.equal(lateSept12?.state, 'published_today');
+
+    const earlySept13 = deriveHomeReportView(
+      todayAfter,
+      entrySept13,
+      entrySept12,
+      new Date('2026-09-12T15:30:00Z'),
+    );
+    assert.equal(earlySept13?.state, 'published_fallback');
+    assert.equal(earlySept13?.showNotReadyHint, true);
+    assert.equal(earlySept13?.showPickDetails, true);
   });
 });
 

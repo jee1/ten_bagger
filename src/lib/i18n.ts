@@ -176,6 +176,10 @@ export const labels = {
     ko: '오늘 리포트는 아직 준비되지 않았습니다. 새 픽은 매일 오전 6시(KST)에 공개됩니다.',
     en: "Today's report isn't ready yet. New picks publish daily at 06:00 KST.",
   } satisfies LocalizedText,
+  homeReportGenerated: {
+    ko: '리포트 생성',
+    en: 'Report generated',
+  } satisfies LocalizedText,
   homeTitle: {
     ko: '규칙 기반 일일 종목 스크리닝',
     en: 'Daily rule-based stock screening',
