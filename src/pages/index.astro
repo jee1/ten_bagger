@@ -3,16 +3,42 @@ import Layout from '../layouts/Layout.astro';
 import DailyCard from '../components/DailyCard.astro';
 import NewcomerIntro from '../components/NewcomerIntro.astro';
 import RetentionActions from '../components/RetentionActions.astro';
-import { getLatestEntry, getTodayDateString, getDailyEntry } from '../lib/daily';
+import {
+  getDailyEntry,
+  getLatestEntryBefore,
+  getTodayDateString,
+} from '../lib/daily';
 import { homePageTitle } from '../lib/dailyMeta';
 import { label, localeToLang } from '../lib/i18n';
-import { pickFreshnessView } from '../lib/staticNav';
+import {
+  deriveHomeReportView,
+  formatGeneratedAtKst,
+  type HomeReportEntryRef,
+} from '../lib/staticNav';
 
 const lang = localeToLang(Astro.currentLocale);
 const today = getTodayDateString();
+const now = new Date();
 const todayEntry = await getDailyEntry(today);
-const entry = todayEntry ?? await getLatestEntry();
-const view = entry ? pickFreshnessView(entry.date, today) : null;
+const fallbackEntry = await getLatestEntryBefore(today);
+
+const toRef = (entry: typeof todayEntry): HomeReportEntryRef | undefined =>
+  entry ? { date: entry.date, generatedAt: entry.meta?.generatedAt } : undefined;
+
+const todayRef = toRef(todayEntry);
+const fallbackRef = toRef(fallbackEntry);
+const view = deriveHomeReportView(today, todayRef, fallbackRef, now);
+
+const displayDate = view?.showPickDetails ? view.displayDate : null;
+const displayEntry = displayDate
+  ? displayDate === todayEntry?.date
+    ? todayEntry
+    : displayDate === fallbackEntry?.date
+      ? fallbackEntry
+      : await getDailyEntry(displayDate)
+  : undefined;
+
+const metaEntry = displayEntry;
 ---
 
 <Layout
@@ -26,48 +52,67 @@ const view = entry ? pickFreshnessView(entry.date, today) : null;
     <p class="muted" style="margin: 0; font-size: 0.95rem;" data-i18n="tagline">
       {label('tagline', lang)}
     </p>
-    {entry?.meta && (
+    {metaEntry?.meta && (
       <p class="num" style="margin: 0; font-size: 0.78rem; color: var(--faint);">
         <span data-i18n="screened">{label('screened', lang)}</span>{' '}
-        {entry.meta.candidatesScreened.toLocaleString('en-US')}
+        {metaEntry.meta.candidatesScreened.toLocaleString('en-US')}
       </p>
     )}
   </div>
-  {entry && view && (
+  {view && (
     <div
       class="pick-freshness"
-      data-pick-date={entry.date}
-      style="display: flex; align-items: center; gap: 0.4rem; margin: 0 0 0.7rem;"
+      data-home-report
+      data-today-date={todayRef?.date}
+      data-today-generated-at={todayRef?.generatedAt}
+      data-fallback-date={fallbackRef?.date}
+      data-fallback-generated-at={fallbackRef?.generatedAt}
+      style="display: flex; flex-direction: column; gap: 0.35rem; margin: 0 0 0.7rem;"
     >
-      <span class:list={['badge', view.badgeTone]} data-freshness-badge>
-        <span data-i18n={view.labelKey} data-freshness-label>{label(view.labelKey, lang)}</span>
-      </span>
-      <span
+      {view.showStatusBadge && (
+        <div style="display: flex; align-items: center; gap: 0.4rem;">
+          <span class:list={['badge', view.badgeTone]} data-home-badge>
+            <span data-i18n={view.labelKey} data-home-label>{label(view.labelKey, lang)}</span>
+          </span>
+          <span
+            class="num muted"
+            style="font-size: 0.78rem;"
+            data-home-fallback-date
+            hidden={!view.showFallbackDate}
+          >
+            · <time datetime={view.displayDate ?? undefined}>{view.displayDate}</time>
+          </span>
+        </div>
+      )}
+      <p
         class="num muted"
-        style="font-size: 0.78rem;"
-        data-freshness-stale
-        hidden={!view.stale}
+        style="margin: 0; font-size: 0.78rem;"
+        data-home-published-at
+        hidden={!view.showPublishedAt || !view.generatedAtIso}
       >
-        · <time datetime={entry.date}>{entry.date}</time>
-      </span>
+        <span data-i18n="homeReportGenerated">{label('homeReportGenerated', lang)}</span>:{' '}
+        <time datetime={view.generatedAtIso ?? undefined}>
+          {view.generatedAtIso ? formatGeneratedAtKst(view.generatedAtIso, lang) : ''}
+        </time>
+      </p>
+      <p
+        class="muted"
+        style="margin: 0; font-size: 0.8rem;"
+        data-home-not-ready
+        hidden={!view.showNotReadyHint}
+        data-i18n="pickFreshHint"
+      >
+        {label('pickFreshHint', lang)}
+      </p>
     </div>
   )}
-  {entry && view && (
-    <p
-      class="muted"
-      style="margin: 0 0 0.9rem; font-size: 0.8rem;"
-      data-freshness-stale
-      hidden={!view.stale}
-      data-i18n="pickFreshHint"
-    >
-      {label('pickFreshHint', lang)}
-    </p>
-  )}
-  {entry ? (
-    <DailyCard entry={entry} lang={lang} />
+  {displayEntry && view?.showPickDetails ? (
+    <div data-home-pick-details>
+      <DailyCard entry={displayEntry} lang={lang} />
+      <RetentionActions lang={lang} date={displayEntry.date} />
+    </div>
   ) : null}
-  {entry && <RetentionActions lang={lang} date={entry.date} />}
-  {!entry ? (
+  {!view ? (
     <article class="card">
       <h1 data-i18n="noPickTitle">{label('noPickTitle', lang)}</h1>
       <p class="muted">

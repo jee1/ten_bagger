@@ -16,6 +16,12 @@ export async function getLatestEntry(): Promise<DailyEntry | undefined> {
   return getDailyEntry(dates[0]);
 }
 
+export async function getLatestEntryBefore(beforeDate: string): Promise<DailyEntry | undefined> {
+  const dates = getAllDates().filter((date) => date < beforeDate);
+  if (dates.length === 0) return undefined;
+  return getDailyEntry(dates[0]);
+}
+
 export async function getEntriesForMonth(year: number, month: number): Promise<Map<string, DailyEntry>> {
   const prefix = `${year}-${String(month).padStart(2, '0')}`;
   const result = new Map<string, DailyEntry>();
