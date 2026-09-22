@@ -1,5 +1,6 @@
 ---
 import { label, shortText, t } from '../lib/i18n';
+import { sanitizeReasoningForDisplay } from '../lib/reasoningDisplay';
 import type { Lang } from '../lib/i18n';
 import { localeHref } from '../lib/staticNav';
 import type { DailyEntry, TopNCandidate } from '../lib/types';
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const { entry, lang, detail = false } = Astro.props;
+const reasoning = entry.reasoning ? sanitizeReasoningForDisplay(entry.reasoning) : undefined;
 const base = import.meta.env.BASE_URL;
 const profile = entry.stock?.profile;
 const topCandidates = entry.topCandidates;
@@ -89,7 +91,7 @@ const delta = composite - threshold;
           </p>
         )}
       </>
-    ) : entry.stock && entry.reasoning && scores ? (
+    ) : entry.stock && reasoning && scores ? (
       <>
         <div class="daily-head">
           <div>
@@ -148,7 +150,7 @@ const delta = composite - threshold;
         </div>
 
         <div class="daily-summary">
-          <DualText text={entry.reasoning.summary} lang={lang} as="p" />
+          <DualText text={reasoning.summary} lang={lang} as="p" />
         </div>
 
         <div class="axis-grid">
@@ -177,33 +179,33 @@ const delta = composite - threshold;
 
         {detail ? (
           <div class="reasoning-section">
-            {entry.reasoning.size && (
+            {reasoning.size && (
               <>
                 <h2 class="section-title" data-i18n="size">{label('size', lang)}</h2>
-                <DualText text={entry.reasoning.size} lang={lang} as="p" />
+                <DualText text={reasoning.size} lang={lang} as="p" />
               </>
             )}
             <h2 class="section-title" data-i18n="growth">{label('growth', lang)}</h2>
-            <DualText text={entry.reasoning.growth} lang={lang} as="p" />
+            <DualText text={reasoning.growth} lang={lang} as="p" />
             <h2 class="section-title" data-i18n="valuation">{label('valuation', lang)}</h2>
-            <DualText text={entry.reasoning.valuation} lang={lang} as="p" />
-            {entry.reasoning.entry && (
+            <DualText text={reasoning.valuation} lang={lang} as="p" />
+            {reasoning.entry && (
               <>
                 <h2 class="section-title" data-i18n="entry">{label('entry', lang)}</h2>
-                <DualText text={entry.reasoning.entry} lang={lang} as="p" />
+                <DualText text={reasoning.entry} lang={lang} as="p" />
               </>
             )}
             <h2 class="section-title" data-i18n="momentum">{label('momentum', lang)}</h2>
-            <DualText text={entry.reasoning.momentum} lang={lang} as="p" />
-            {entry.reasoning.quality && (
+            <DualText text={reasoning.momentum} lang={lang} as="p" />
+            {reasoning.quality && (
               <>
                 <h2 class="section-title" data-i18n="quality">{label('quality', lang)}</h2>
-                <DualText text={entry.reasoning.quality} lang={lang} as="p" />
+                <DualText text={reasoning.quality} lang={lang} as="p" />
               </>
             )}
             <h2 class="section-title" data-i18n="risks">{label('risks', lang)}</h2>
             <ul class="risk-list">
-              {entry.reasoning.risks.map((risk) => (
+              {reasoning.risks.map((risk) => (
                 <DualText text={risk} lang={lang} as="li" />
               ))}
             </ul>

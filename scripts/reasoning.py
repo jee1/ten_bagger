@@ -2,10 +2,15 @@
 
 from __future__ import annotations
 
+import math
+import re
 from typing import Any
 
-from config import COMPOSITE_THRESHOLD
+from config import COMPOSITE_THRESHOLD, ENTRY_DEFAULT_SCORE, MOMENTUM_DEFAULT_SCORE
 from scoring.models import ScoreResult
+
+MISSING_LABEL = {"ko": "데이터 없음", "en": "No data"}
+_FORBIDDEN_RENDER_TOKENS = re.compile(r"\b(nan|NaN|Infinity)\b|None")
 
 STATIC_RISKS: list[dict[str, str]] = [
     {
@@ -21,6 +26,73 @@ STATIC_RISKS: list[dict[str, str]] = [
         "en": "10x in five years is a scenario, not a guarantee",
     },
 ]
+
+
+def _is_missing(value: Any) -> bool:
+    if value is None:
+        return True
+    if isinstance(value, float) and (math.isnan(value) or math.isinf(value)):
+        return True
+    return False
+
+
+def _fmt_metric(value: Any, lang: str, *, pct: bool = False) -> str:
+    if _is_missing(value):
+        return MISSING_LABEL[lang]
+    text = str(value)
+    return f"{text}%" if pct else text
+
+
+def _price_factor_note(
+    metrics: dict[str, Any],
+    metric_keys: list[str],
+    score: float,
+    default_score: float,
+    lang: str,
+    *,
+    factor_ko: str,
+    factor_en: str,
+) -> str:
+    missing = [_is_missing(metrics.get(key)) for key in metric_keys]
+    if all(missing) and score == default_score:
+        if lang == "ko":
+            return (
+                f" (가격 이력 부족: 기본 {factor_ko} 점수 {default_score} 적용; "
+                f"해당 점수는 복합에 포함되며 선정은 복합 임계 {COMPOSITE_THRESHOLD} 기준)"
+            )
+        return (
+            f" (insufficient price history: default {factor_en} score {default_score}; "
+            f"score still enters composite; selection uses composite threshold "
+            f"{COMPOSITE_THRESHOLD})"
+        )
+    if any(missing):
+        if lang == "ko":
+            return (
+                f" (일부 가격 입력 없음; {factor_ko} 점수 {score}는 가용 데이터로 계산; "
+                f"복합에 포함, 선정은 복합 임계 {COMPOSITE_THRESHOLD} 기준)"
+            )
+        return (
+            f" (some price inputs missing; {factor_en} score {score} from available data; "
+            f"still enters composite; selection uses composite threshold {COMPOSITE_THRESHOLD})"
+        )
+    return ""
+
+
+def reasoning_has_forbidden_tokens(reasoning: dict[str, Any]) -> bool:
+    """True when any reasoning string would expose nan/NaN/Infinity/None to readers."""
+    for section in reasoning.values():
+        if isinstance(section, dict) and "ko" in section and "en" in section:
+            for lang in ("ko", "en"):
+                if _FORBIDDEN_RENDER_TOKENS.search(str(section[lang])):
+                    return True
+            continue
+        if isinstance(section, list):
+            for item in section:
+                if isinstance(item, dict):
+                    for lang in ("ko", "en"):
+                        if lang in item and _FORBIDDEN_RENDER_TOKENS.search(str(item[lang])):
+                            return True
+    return False
 
 
 def build_reasoning(result: ScoreResult) -> dict[str, Any]:
@@ -51,33 +123,88 @@ def build_reasoning(result: ScoreResult) -> dict[str, Any]:
             f"threshold with v2 composite {result.composite}; size, value, cash, and entry align."
         )
         growth_ko = (
-            f"매출 {rev}% / 이익 {earn}% (혼합 {blended}%) — 지속 가능 성장 점수 {result.growth}."
+            f"매출 {_fmt_metric(rev, 'ko', pct=True)} / 이익 {_fmt_metric(earn, 'ko', pct=True)} "
+            f"(혼합 {_fmt_metric(blended, 'ko', pct=True)}) — 지속 가능 성장 점수 {result.growth}."
         )
         growth_en = (
-            f"Revenue {rev}% / earnings {earn}% (blended {blended}%) — "
+            f"Revenue {_fmt_metric(rev, 'en', pct=True)} / "
+            f"earnings {_fmt_metric(earn, 'en', pct=True)} "
+            f"(blended {_fmt_metric(blended, 'en', pct=True)}) — "
             f"sustainable growth score {result.growth}."
         )
         valuation_ko = (
-            f"PER {pe}, PEG {peg}, FCF수익률 {fcf_yield}%, PBR {pb} — 밸류 점수 {result.valuation}."
+            f"PER {_fmt_metric(pe, 'ko')}, PEG {_fmt_metric(peg, 'ko')}, "
+            f"FCF수익률 {_fmt_metric(fcf_yield, 'ko', pct=True)}, PBR {_fmt_metric(pb, 'ko')} — "
+            f"밸류 점수 {result.valuation}."
         )
         valuation_en = (
-            f"P/E {pe}, PEG {peg}, FCF yield {fcf_yield}%, P/B {pb} — "
+            f"P/E {_fmt_metric(pe, 'en')}, PEG {_fmt_metric(peg, 'en')}, "
+            f"FCF yield {_fmt_metric(fcf_yield, 'en', pct=True)}, P/B {_fmt_metric(pb, 'en')} — "
             f"valuation score {result.valuation}."
         )
-        size_ko = f"시가총액 {mcap} 기준 규모 점수 {result.size}."
-        size_en = f"Market cap {mcap} — size score {result.size}."
+        size_ko = f"시가총액 {_fmt_metric(mcap, 'ko')} 기준 규모 점수 {result.size}."
+        size_en = f"Market cap {_fmt_metric(mcap, 'en')} — size score {result.size}."
+        entry_note_ko = _price_factor_note(
+            m,
+            ["twelve_month_range_pct", "from_52w_high_pct"],
+            result.entry,
+            ENTRY_DEFAULT_SCORE,
+            "ko",
+            factor_ko="진입",
+            factor_en="entry",
+        )
+        entry_note_en = _price_factor_note(
+            m,
+            ["twelve_month_range_pct", "from_52w_high_pct"],
+            result.entry,
+            ENTRY_DEFAULT_SCORE,
+            "en",
+            factor_ko="진입",
+            factor_en="entry",
+        )
         entry_ko = (
-            f"12개월 가격대 {range_pct}%, 52주 고점 대비 {from_high}% — 진입 점수 {result.entry}."
+            f"12개월 가격대 {_fmt_metric(range_pct, 'ko', pct=True)}, "
+            f"52주 고점 대비 {_fmt_metric(from_high, 'ko', pct=True)} — "
+            f"진입 점수 {result.entry}.{entry_note_ko}"
         )
         entry_en = (
-            f"12M price range {range_pct}%, {from_high}% from 52W high — "
-            f"entry score {result.entry}."
+            f"12M price range {_fmt_metric(range_pct, 'en', pct=True)}, "
+            f"{_fmt_metric(from_high, 'en', pct=True)} from 52W high — "
+            f"entry score {result.entry}.{entry_note_en}"
         )
-        momentum_ko = f"6개월 수익률 {ret6}% — 보조 모멘텀 점수 {result.momentum}."
-        momentum_en = f"6M return {ret6}% — auxiliary momentum score {result.momentum}."
-        quality_ko = f"ROE {roe}%, ROA {roa}%, FCF/순이익 {fcf_ni} — 품질 점수 {result.quality}."
+        momentum_note_ko = _price_factor_note(
+            m,
+            ["six_month_return_pct"],
+            result.momentum,
+            MOMENTUM_DEFAULT_SCORE,
+            "ko",
+            factor_ko="모멘텀",
+            factor_en="momentum",
+        )
+        momentum_note_en = _price_factor_note(
+            m,
+            ["six_month_return_pct"],
+            result.momentum,
+            MOMENTUM_DEFAULT_SCORE,
+            "en",
+            factor_ko="모멘텀",
+            factor_en="momentum",
+        )
+        momentum_ko = (
+            f"6개월 수익률 {_fmt_metric(ret6, 'ko', pct=True)} — "
+            f"보조 모멘텀 점수 {result.momentum}.{momentum_note_ko}"
+        )
+        momentum_en = (
+            f"6M return {_fmt_metric(ret6, 'en', pct=True)} — "
+            f"auxiliary momentum score {result.momentum}.{momentum_note_en}"
+        )
+        quality_ko = (
+            f"ROE {_fmt_metric(roe, 'ko', pct=True)}, ROA {_fmt_metric(roa, 'ko', pct=True)}, "
+            f"FCF/순이익 {_fmt_metric(fcf_ni, 'ko')} — 품질 점수 {result.quality}."
+        )
         quality_en = (
-            f"ROE {roe}%, ROA {roa}%, FCF/net income {fcf_ni} — quality score {result.quality}."
+            f"ROE {_fmt_metric(roe, 'en', pct=True)}, ROA {_fmt_metric(roa, 'en', pct=True)}, "
+            f"FCF/net income {_fmt_metric(fcf_ni, 'en')} — quality score {result.quality}."
         )
     else:
         summary_ko = (
@@ -88,24 +215,56 @@ def build_reasoning(result: ScoreResult) -> dict[str, Any]:
             f"{result.meta.name_en} ({result.symbol}) cleared the {COMPOSITE_THRESHOLD} "
             f"threshold with composite score {result.composite}."
         )
-        growth_ko = f"매출 성장 {rev}% / 이익 성장 {earn}% — 성장 점수 {result.growth}."
-        growth_en = (
-            f"Revenue growth {rev}% and earnings growth {earn}% — growth score {result.growth}."
+        growth_ko = (
+            f"매출 성장 {_fmt_metric(rev, 'ko', pct=True)} / "
+            f"이익 성장 {_fmt_metric(earn, 'ko', pct=True)} — 성장 점수 {result.growth}."
         )
-        valuation_ko = f"PER {pe}, PEG {peg} — 밸류 점수 {result.valuation}."
-        valuation_en = f"P/E {pe}, PEG {peg} — valuation score {result.valuation}."
+        growth_en = (
+            f"Revenue growth {_fmt_metric(rev, 'en', pct=True)} and "
+            f"earnings growth {_fmt_metric(earn, 'en', pct=True)} — growth score {result.growth}."
+        )
+        valuation_ko = (
+            f"PER {_fmt_metric(pe, 'ko')}, PEG {_fmt_metric(peg, 'ko')} — "
+            f"밸류 점수 {result.valuation}."
+        )
+        valuation_en = (
+            f"P/E {_fmt_metric(pe, 'en')}, PEG {_fmt_metric(peg, 'en')} — "
+            f"valuation score {result.valuation}."
+        )
         size_ko = ""
         size_en = ""
+        v1_momentum_note_ko = _price_factor_note(
+            m,
+            ["six_month_return_pct", "from_52w_high_pct"],
+            result.momentum,
+            MOMENTUM_DEFAULT_SCORE,
+            "ko",
+            factor_ko="모멘텀",
+            factor_en="momentum",
+        )
+        v1_momentum_note_en = _price_factor_note(
+            m,
+            ["six_month_return_pct", "from_52w_high_pct"],
+            result.momentum,
+            MOMENTUM_DEFAULT_SCORE,
+            "en",
+            factor_ko="모멘텀",
+            factor_en="momentum",
+        )
         entry_ko = (
-            f"6개월 수익률 {ret6}%, 52주 고점 대비 {from_high}% — 모멘텀 점수 {result.momentum}."
+            f"6개월 수익률 {_fmt_metric(ret6, 'ko', pct=True)}, "
+            f"52주 고점 대비 {_fmt_metric(from_high, 'ko', pct=True)} — "
+            f"모멘텀 점수 {result.momentum}.{v1_momentum_note_ko}"
         )
         entry_en = (
-            f"6M return {ret6}%, {from_high}% from 52W high — momentum score {result.momentum}."
+            f"6M return {_fmt_metric(ret6, 'en', pct=True)}, "
+            f"{_fmt_metric(from_high, 'en', pct=True)} from 52W high — "
+            f"momentum score {result.momentum}.{v1_momentum_note_en}"
         )
         momentum_ko = entry_ko
         momentum_en = entry_en
-        quality_ko = f"ROE {roe}% — 품질 점수 {result.quality}."
-        quality_en = f"ROE {roe}% — quality score {result.quality}."
+        quality_ko = f"ROE {_fmt_metric(roe, 'ko', pct=True)} — 품질 점수 {result.quality}."
+        quality_en = f"ROE {_fmt_metric(roe, 'en', pct=True)} — quality score {result.quality}."
 
     reasoning: dict[str, Any] = {
         "summary": {"ko": summary_ko, "en": summary_en},
@@ -131,4 +290,7 @@ def build_reasoning(result: ScoreResult) -> dict[str, Any]:
                 ),
             }
         )
+    assert not reasoning_has_forbidden_tokens(reasoning), (
+        "reasoning must not expose nan/NaN/Infinity/None"
+    )
     return reasoning
