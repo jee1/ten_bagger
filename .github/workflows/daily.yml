@@ -23,6 +23,8 @@ concurrency:
 jobs:
   generate-and-deploy:
     runs-on: ubuntu-latest
+    outputs:
+      target_date: ${{ steps.target_date.outputs.date }}
     steps:
       - uses: actions/checkout@v4
 
@@ -65,14 +67,18 @@ jobs:
           restore-keys: |
             yf-cache-${{ runner.os }}-
 
-      - name: Generate daily report
-        # Must not write content/ledger/** or content/performance/** (#63 isolation).
+      - name: Resolve target date
+        id: target_date
         run: |
           TARGET="${{ github.event.inputs.date }}"
           if [ -z "$TARGET" ]; then
             TARGET=$(TZ=Asia/Seoul date +%F)
           fi
-          cd scripts && python generate_daily.py "$TARGET"
+          echo "date=$TARGET" >> "$GITHUB_OUTPUT"
+
+      - name: Generate daily report
+        # Must not write content/ledger/** or content/performance/** (#63 isolation).
+        run: cd scripts && python generate_daily.py "${{ steps.target_date.outputs.date }}"
 
       - name: Validate daily JSON
         run: |
@@ -134,9 +140,27 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  notify-failure:
+  dispatch-ledger:
     needs: [generate-and-deploy, deploy]
-    if: failure()
+    if: success()
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Dispatch Ledger Regenerate for target date
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AS_OF: ${{ needs.generate-and-deploy.outputs.target_date }}
+        run: |
+          set -euo pipefail
+          gh workflow run ledger.yml \
+            --repo "${{ github.repository }}" \
+            --ref main \
+            -f "asOfDate=${AS_OF}"
+
+  notify-failure:
+    needs: [generate-and-deploy, deploy, dispatch-ledger]
+    if: ${{ always() && (needs.generate-and-deploy.result == 'failure' || needs.deploy.result == 'failure' || needs['dispatch-ledger'].result == 'failure') }}
     runs-on: ubuntu-latest
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
