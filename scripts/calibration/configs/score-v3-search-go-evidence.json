@@ -12,15 +12,15 @@
     "oosSessions": 2,
     "stepSessions": 2,
     "startDate": "2026-07-03",
-    "endDate": "2026-07-31"
+    "endDate": "2026-07-27"
   },
   "oosFoldSpec": {
     "mode": "rolling",
     "trainSessions": 6,
     "oosSessions": 3,
     "stepSessions": 3,
-    "startDate": "2026-08-01",
-    "endDate": "2026-08-25"
+    "startDate": "2026-07-29",
+    "endDate": "2026-08-19"
   },
   "candidates": [
     {
@@ -76,5 +76,5 @@
       }
     }
   ],
-  "notes": "Issue #93 Score v3 search go_evidence (growth grid). IS 2026-07-03..2026-07-31, OOS 2026-08-01..2026-08-25 (readiness carve 2026-09-24). #68/#70 grids follow same pattern."
+  "notes": "Issue #93 Score v3 search go_evidence (growth grid). IS 2026-07-03..2026-07-27, OOS 2026-07-29..2026-08-19 (readiness carve as_of_date 2026-09-20, projectedOosPickDays=20). #68/#70 grids follow same pattern."
 }
