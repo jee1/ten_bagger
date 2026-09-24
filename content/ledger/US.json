@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-09-20",
+  "asOfDate": "2026-09-24",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -222,6 +222,18 @@
     {
       "pickDate": "2026-09-20",
       "symbol": "AII",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-22",
+      "symbol": "SENEA",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-24",
+      "symbol": "SENEB",
       "status": "pick",
       "scoreVersion": "2"
     }
