@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "0.1.0",
+  "runId": "3556ef47c1e57d4e",
+  "packageIntent": "go_evidence",
+  "mode": "search",
+  "configHash": "3556ef47c1e57d4e659eb71fde310b8fd0f5d51e6ad30a3b54d50898d7217ad2",
+  "generatedAt": "2026-08-25T23:59:59Z",
+  "liveConstantsSnapshot": {
+    "compositeThreshold": 70.0,
+    "weights": {
+      "WEIGHT_SIZE": 0.15,
+      "WEIGHT_VALUATION": 0.25,
+      "WEIGHT_GROWTH": 0.2,
+      "WEIGHT_QUALITY": 0.2,
+      "WEIGHT_ENTRY": 0.1,
+      "WEIGHT_MOMENTUM": 0.1
+    }
+  },
+  "isRanking": [
+    {
+      "candidateId": "growth_shrink_05_vq",
+      "rank": 1,
+      "isMetricH20ExcessMean": null,
+      "isPickDays": 0,
+      "walkForwardReportPath": "",
+      "walkForwardConfigHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "failed"
+    },
+    {
+      "candidateId": "growth_shrink_10_vq",
+      "rank": 2,
+      "isMetricH20ExcessMean": null,
+      "isPickDays": 0,
+      "walkForwardReportPath": "",
+      "walkForwardConfigHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "failed"
+    },
+    {
+      "candidateId": "growth_shrink_10_vqs",
+      "rank": 3,
+      "isMetricH20ExcessMean": null,
+      "isPickDays": 0,
+      "walkForwardReportPath": "",
+      "walkForwardConfigHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "failed"
+    },
+    {
+      "candidateId": "growth_shrink_15_vq",
+      "rank": 4,
+      "isMetricH20ExcessMean": null,
+      "isPickDays": 0,
+      "walkForwardReportPath": "",
+      "walkForwardConfigHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "status": "failed"
+    }
+  ],
+  "selectionRationale": "IS ranking by H20 excess return mean (desc), tie-break isPickDays then candidateId",
+  "oosEvaluations": [
+    {
+      "candidateId": "score-v2-baseline",
+      "walkForwardReportPath": "walk-forward/c8f7a386d9a033d2.json",
+      "walkForwardConfigHash": "c8f7a386d9a033d210ddd41195dbc0c5c61162a6eb82ee8bbf0d1cff6d12fdfc",
+      "oosPickDays": 7,
+      "noPickRatio": 0.2222222222222222,
+      "h20ExcessReturnMean": -0.011699527123332701,
+      "h60ExcessReturnMean": null,
+      "insufficientCoverage": true,
+      "contaminationFindings": [],
+      "verdict": "NO-GO",
+      "failedBullets": [
+        "insufficient_coverage",
+        "h20_excess_not_positive",
+        "incomplete_horizons"
+      ]
+    }
+  ],
+  "overallVerdict": "NO-GO",
+  "failedBullets": [
+    "incomplete_required_evaluations"
+  ],
+  "mergeCriteriaRef": "docs/architecture/threshold-weight-merge-criteria.md"
+}
