@@ -3,7 +3,13 @@
 from __future__ import annotations
 
 import pytest
-from walk_forward.folds import build_decision_sessions, generate_rolling_folds
+from walk_forward.folds import (
+    build_decision_sessions,
+    generate_go_evidence_oos_folds,
+    generate_rolling_folds,
+    project_go_evidence_oos_sessions,
+    project_unique_oos_sessions,
+)
 
 VALID_FOLD_SPEC = {
     "mode": "rolling",
@@ -77,3 +83,59 @@ def test_generate_rolling_folds_fails_when_less_than_two():
     )
     with pytest.raises(ValueError, match="at least 2"):
         generate_rolling_folds(short_spec, sessions)
+
+
+def test_generate_go_evidence_oos_folds_use_is_train_not_oos_calendar():
+    is_spec = {
+        "mode": "rolling",
+        "trainSessions": 4,
+        "oosSessions": 2,
+        "stepSessions": 2,
+        "startDate": "2025-01-01",
+        "endDate": "2025-01-31",
+    }
+    oos_spec = {
+        "mode": "rolling",
+        "trainSessions": 4,
+        "oosSessions": 2,
+        "stepSessions": 2,
+        "startDate": "2025-02-03",
+        "endDate": "2025-02-28",
+    }
+    folds = generate_go_evidence_oos_folds(is_spec, oos_spec, ["KR", "US"])
+    assert len(folds) >= 2
+    is_sessions = set(build_decision_sessions(is_spec["startDate"], is_spec["endDate"], ["KR", "US"]))
+    oos_sessions = set(build_decision_sessions(oos_spec["startDate"], oos_spec["endDate"], ["KR", "US"]))
+    for fold in folds:
+        assert set(fold["trainSessions"]) & set(fold["oosSessions"]) == set()
+        assert set(fold["trainSessions"]).issubset(is_sessions | oos_sessions)
+        assert set(fold["trainSessions"]) & set(fold["oosSessions"]) == set()
+
+
+def test_project_go_evidence_oos_sessions_covers_full_oos_calendar():
+    is_spec = {
+        **VALID_FOLD_SPEC,
+        "startDate": "2025-01-01",
+        "endDate": "2025-01-31",
+    }
+    oos_spec = {
+        **VALID_FOLD_SPEC,
+        "startDate": "2025-02-03",
+        "endDate": "2025-02-28",
+        "oosSessions": 2,
+        "stepSessions": 2,
+    }
+    oos_sessions = build_decision_sessions(oos_spec["startDate"], oos_spec["endDate"], ["KR", "US"])
+    projected = project_go_evidence_oos_sessions(is_spec, oos_spec, ["KR", "US"])
+    assert projected == len(oos_sessions)
+
+
+def test_project_unique_oos_sessions_counts_disjoint_oos():
+    spec = {
+        **VALID_FOLD_SPEC,
+        "trainSessions": 4,
+        "oosSessions": 2,
+        "stepSessions": 2,
+    }
+    count = project_unique_oos_sessions(spec, ["KR", "US"])
+    assert count >= 4
