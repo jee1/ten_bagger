@@ -1,0 +1,142 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { label, localeToLang } from '../../lib/i18n';
+import { localeHref } from '../../lib/staticNav';
+
+const lang = localeToLang(Astro.currentLocale);
+const base = import.meta.env.BASE_URL;
+const methodologyHref = localeHref(base, lang, 'methodology');
+const performanceHref = localeHref(base, lang, 'performance');
+---
+
+<Layout
+  title={label('priceBasisPageTitle', lang)}
+  titleKey="priceBasisPageTitle"
+  descriptionKey="priceBasisPageDescription"
+  lang={lang}
+>
+  <article class="doc-body">
+    <p class="muted" style="margin: 0 0 1rem; font-size: 0.85rem;">
+      <a href={methodologyHref} data-i18n="methodology">{label('methodology', lang)}</a>
+      <span aria-hidden="true"> · </span>
+      <span data-i18n="priceBasisPageTitle">{label('priceBasisPageTitle', lang)}</span>
+    </p>
+
+    <h1 data-i18n="priceBasisPageTitle">{label('priceBasisPageTitle', lang)}</h1>
+    <p class="muted about-lead">
+      <span data-i18n-show="ko" hidden={lang !== 'ko'}
+        >한국 성과 집계에서 002780.KS(2026-07-31 픽)의 수익률이 한때 +898%처럼 보였던 이유와, 현재
+        사이트가 어떤 가격 기준을 쓰는지 정리한 공개 검증 기록입니다. 투자 권유가 아닙니다.</span
+      >
+      <span data-i18n-show="en" hidden={lang !== 'en'}
+        >A public validation record explaining why 002780.KS (2026-07-31 pick) briefly showed about
+        +898% in Korea performance aggregates, and which price basis the site uses today. Not
+        investment advice.</span
+      >
+    </p>
+
+    <section>
+      <h2>
+        <span data-i18n-show="ko" hidden={lang !== 'ko'}>무슨 일이 있었나요?</span>
+        <span data-i18n-show="en" hidden={lang !== 'en'}>What happened?</span>
+      </h2>
+      <p data-i18n-show="ko" hidden={lang !== 'ko'}>
+        002780.KS는 2026년 8월 14일부터 9월 4일까지 거래가 정지되었고, 2026년 9월 7일에
+        <strong>1주당 10주를 합치는 주식병합(1:10 reverse split)</strong>이 시행되었습니다. 데이터
+        제공처(Yahoo Finance / yfinance)가 병합을 반영하기 전에 생성된 성과 파일에서는, 진입가는
+        병합 전 가격(783원)으로, 청산가는 병합 후 구간의 가격(7,820원)으로 섞여 들어가
+        <strong>약 +898%의 비정상 수익률</strong>이 잠깐 표시되었습니다.
+      </p>
+      <p data-i18n-show="en" hidden={lang !== 'en'}>
+        Trading in 002780.KS was suspended from 2026-08-14 through 2026-09-04. A
+        <strong>1-for-10 reverse split (share consolidation)</strong> took effect on 2026-09-07.
+        Before the data vendor restated history, one performance bundle mixed a pre-split entry
+        (783) with a post-split exit (7,820), which produced a
+        <strong>temporary +898% return</strong> on the site.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+        <span data-i18n-show="ko" hidden={lang !== 'ko'}>지금은 어떻게 계산하나요?</span>
+        <span data-i18n-show="en" hidden={lang !== 'en'}>How is it calculated now?</span>
+      </h2>
+      <p data-i18n-show="ko" hidden={lang !== 'ko'}>
+        현재 성과 데이터는 Yahoo Finance에서 가져온 <strong>조정 가격</strong>을 사용합니다. 분할·
+        배당 반영은 <code>auto_adjust=True</code> 설정으로 맞춥니다. 병합이 반영된 뒤에는 진입·청산
+        모두 같은 기준(예: 진입 7,830원, 청산 7,820원)으로 맞춰져, 해당 픽의 수익률은 약
+        <strong>−0.13%</strong>로 표시됩니다.
+      </p>
+      <p data-i18n-show="en" hidden={lang !== 'en'}>
+        Performance data now uses <strong>vendor-adjusted prices</strong> from Yahoo Finance, with
+        splits and dividends handled via <code>auto_adjust=True</code>. After the consolidation was
+        restated, both entry and exit sit on the same basis (for example entry 7,830 and exit 7,820),
+        so the pick shows about <strong>−0.13%</strong>.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+        <span data-i18n-show="ko" hidden={lang !== 'ko'}>거래정지 구간 주의</span>
+        <span data-i18n-show="en" hidden={lang !== 'en'}>Trading-suspension caveat</span>
+      </h2>
+      <p data-i18n-show="ko" hidden={lang !== 'ko'}>
+        정지 기간에는 실제 체결가가 없어, 데이터 제공처가 마지막 가격을
+        <strong>forward-fill</strong>합니다(거래량 0, 시·고·저·종 동일). 이 픽의 H20·1M 청산가
+        7,820원도 그런 값입니다. 거래 재개 직후 실제 종가(예: 9월 7일 7,570원)와 다를 수 있으며,
+        사이트는 “측정 기록”을 보여 주는 것이지 체결 가능 가격을 보장하지 않습니다.
+      </p>
+      <p data-i18n-show="en" hidden={lang !== 'en'}>
+        During the suspension there were no tradable prints, so the vendor
+        <strong>forward-filled</strong> the last price (volume 0, flat OHLC). The H20 and 1M exit at
+        7,820 for this pick is such a value. It can differ from the first tradable close after
+        resumption (for example 7,570 on 2026-09-07). The site shows a measurement record, not a
+        guarantee of executable prices.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+        <span data-i18n-show="ko" hidden={lang !== 'ko'}>집계에는 어떻게 반영했나요?</span>
+        <span data-i18n-show="en" hidden={lang !== 'en'}>How does this affect published aggregates?</span>
+      </h2>
+      <p data-i18n-show="ko" hidden={lang !== 'ko'}>
+        가격 기준이 맞춰진 현재 수치는 한국 성과 요약에 미치는 영향이 매우 작습니다(대략 8bp
+        이내). 과거의 +898% 오류는 집계를 크게 왜곡했지만, 수정 후 값은 다른 픽들과 같은 규칙으로
+        <strong>집계에 유지</strong>합니다. 특정 종목을 조용히 빼거나 수동으로 다른 청산가를 넣지
+        않았습니다.
+      </p>
+      <p data-i18n-show="en" hidden={lang !== 'en'}>
+        With the corrected basis, this row moves published Korea summaries by only a few basis points
+        (on the order of 8 bp). The old +898% error distorted totals dramatically, but the corrected
+        figure is <strong>kept in aggregates</strong> under the same rules as every other pick — not
+        quietly dropped and not manually overridden.
+      </p>
+      <p style="margin-top: 0.75rem;">
+        <a href={performanceHref} data-i18n="performance">{label('performance', lang)}</a>
+        <span data-i18n-show="ko" hidden={lang !== 'ko'}> 페이지에서 현재 수치와 검증 상태를 확인할 수 있습니다.</span>
+        <span data-i18n-show="en" hidden={lang !== 'en'}>
+          {' '}— see current figures and validation status on the performance page.</span
+        >
+      </p>
+    </section>
+
+    <section>
+      <h2>
+        <span data-i18n-show="ko" hidden={lang !== 'ko'}>면책</span>
+        <span data-i18n-show="en" hidden={lang !== 'en'}>Disclaimer</span>
+      </h2>
+      <p data-i18n="disclaimer">{label('disclaimer', lang)}</p>
+      <p class="muted" style="font-size: 0.85rem; margin-top: 0.75rem;">
+        <span data-i18n-show="ko" hidden={lang !== 'ko'}
+          >이 페이지는 데이터 품질과 공개 기록의 투명성을 위한 설명입니다. 매수·매도 판단이나 목표
+          수익을 제시하지 않습니다.</span
+        >
+        <span data-i18n-show="en" hidden={lang !== 'en'}
+          >This page documents data quality and transparency for the public record. It does not
+          recommend trades or target returns.</span
+        >
+      </p>
+    </section>
+  </article>
+</Layout>

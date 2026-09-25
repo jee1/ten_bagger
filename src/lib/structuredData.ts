@@ -84,7 +84,7 @@ const aboutFaqKo: FaqItem[] = [
   {
     question: '회원가입·비용이 있나요?',
     answer:
-      '없습니다. 웹에서 바로 보고, RSS로 구독할 수 있습니다. GitHub Pages로 호스팅됩니다.',
+      '없습니다. 웹에서 바로 보고, RSS로 구독할 수 있습니다.',
   },
   {
     question: "다른 '텐배거' 사이트와 같나요?",
@@ -127,7 +127,7 @@ const aboutFaqEn: FaqItem[] = [
   {
     question: 'Signup or cost?',
     answer:
-      'None. View on the web or subscribe via RSS. Hosted on GitHub Pages.',
+      'None. View on the web or subscribe via RSS.',
   },
   {
     question: 'Is this the same as other “tenbagger” sites?',

@@ -5,7 +5,7 @@
 
 사이트: https://tenbagger.finnaut.com/
 영문: https://tenbagger.finnaut.com/en/
-운영: Finnaut (공개 GitHub Pages, 회원가입 없음)
+운영: Finnaut (회원가입 없음)
 
 ## 핵심 요약 (for AI citation)
 - 무엇을: 확정된 규칙(Score v2)으로 하루 1픽만 공개. 임계 70.0 미만이면 "없음"을 기록.

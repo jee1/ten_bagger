@@ -1,14 +1,11 @@
 #!/usr/bin/env node
-/** Assert public methodology stays Score v2 summary; engineer notes linked once. */
+/** Assert public methodology stays Score v2 summary; no visitor-facing GitHub repo links. */
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const dist = join(process.cwd(), 'dist');
 const pages = ['methodology/index.html', 'en/methodology/index.html'];
-const engineerNoteUrl =
-  'https://github.com/jee1/ten_bagger/blob/main/docs/architecture/score-v3-candidates.md';
-/** KO + EN spans each carry the handoff link — same pattern as price-basis URLs. */
-const EXPECTED_ENGINEER_LINKS_PER_PAGE = 2;
+const forbiddenRepoUrl = 'https://github.com/jee1/ten_bagger';
 /** Section-only markers; handoff link may say "Score v3" once per locale. */
 const forbidden = [
   'id="v3"',
@@ -29,12 +26,6 @@ function readHtml(rel) {
     process.exit(1);
   }
   return readFileSync(path, 'utf8');
-}
-
-const notePath = join(process.cwd(), 'docs/architecture/score-v3-candidates.md');
-if (!existsSync(notePath)) {
-  console.error('check_methodology_split: docs/architecture/score-v3-candidates.md missing');
-  process.exit(1);
 }
 
 for (const rel of pages) {
@@ -67,11 +58,13 @@ for (const rel of pages) {
     process.exit(1);
   }
 
-  const linkCount = html.split(engineerNoteUrl).length - 1;
-  if (linkCount !== EXPECTED_ENGINEER_LINKS_PER_PAGE) {
-    console.error(
-      `check_methodology_split: ${rel} must contain engineer note URL exactly ${EXPECTED_ENGINEER_LINKS_PER_PAGE} times, got ${linkCount}`,
-    );
+  if (html.includes(forbiddenRepoUrl)) {
+    console.error(`check_methodology_split: ${rel} must not link to ${forbiddenRepoUrl}`);
+    process.exit(1);
+  }
+
+  if (!html.includes('/methodology/price-basis/')) {
+    console.error(`check_methodology_split: ${rel} must link to on-site price-basis validation`);
     process.exit(1);
   }
 }

@@ -11,6 +11,16 @@ export const labels = {
   today: { ko: '오늘', en: 'Today' } satisfies LocalizedText,
   archive: { ko: '달력', en: 'Archive' } satisfies LocalizedText,
   methodology: { ko: '선정 방법', en: 'Methodology' } satisfies LocalizedText,
+  priceBasisPageTitle: {
+    ko: '002780.KS 가격 기준 검증',
+    en: '002780.KS price-basis validation',
+  } satisfies LocalizedText,
+  priceBasisPageDescription: {
+    ko:
+      '주식병합(1:10)으로 일시적으로 +898%처럼 보였던 002780.KS 픽의 가격 기준을 어떻게 검증·수정했는지 설명합니다. 투자 권유가 아닙니다.',
+    en:
+      'How we validated and corrected price basis for pick 002780.KS after a temporary +898% display around a 1-for-10 reverse split. Not investment advice.',
+  } satisfies LocalizedText,
   about: { ko: '소개', en: 'About' } satisfies LocalizedText,
   noPickTitle: {
     ko: '오늘은 텐베거 후보가 없습니다',
