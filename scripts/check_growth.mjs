@@ -59,17 +59,11 @@ if (!indexHtml.includes('RSS로 구독') || !indexHtml.includes(expectedRssUrl))
   console.error('check_growth: home must offer RSS subscribe CTA and show feed URL');
   process.exit(1);
 }
-if (!indexHtml.includes('텔레그램으로 매일 기록 받기')) {
-  console.error('check_growth: home missing Telegram primary CTA copy');
-  process.exit(1);
-}
-if (!indexHtml.includes('투자 권유 없이, 그날 스크리닝 기록만 알려 드립니다.')) {
-  console.error('check_growth: home missing Telegram sub copy');
-  process.exit(1);
-}
-if (!indexHtml.includes('준비 중')) {
-  console.error('check_growth: home must show Telegram preparing state when channel unset');
-  process.exit(1);
+for (const forbidden of ['텔레그램', 'Telegram', '준비 중', 'Coming soon']) {
+  if (indexHtml.includes(forbidden)) {
+    console.error(`check_growth: home must not mention visitor Telegram copy (${forbidden})`);
+    process.exit(1);
+  }
 }
 if (!indexHtml.includes('data-i18n-attr="content:homeDescription"')) {
   console.error('check_growth: home meta must use service description key');
@@ -175,16 +169,16 @@ if (!methodologyHtml.includes('data-i18n-attr="content:tagline"')) {
   process.exit(1);
 }
 
-const pinnedDisclaimer =
-  '이 채널은 규칙 기반 일일 스크리닝 기록 알림입니다. 투자 권유·매수 신호가 아니며, 수익을 보장하지 않습니다.';
+const rssDisclaimer =
+  'RSS 항목은 “해당 날짜의 일일 스크리닝 기록이 공개되었다”는 뜻입니다. 투자 권유·매수 신호가 아니며';
 
 const followKo = readHtml('follow/index.html');
 if (!followKo.includes(expectedRssUrl) || !followKo.includes('follow-disclaimer')) {
   console.error('check_growth: follow page must show RSS URL and disclaimer');
   process.exit(1);
 }
-if (!followKo.includes(pinnedDisclaimer)) {
-  console.error('check_growth: follow page must include pinned disclaimer copy');
+if (!followKo.includes(rssDisclaimer)) {
+  console.error('check_growth: follow page must include RSS record disclaimer');
   process.exit(1);
 }
 if (!followKo.includes('RSS로 구독')) {
@@ -195,14 +189,20 @@ if (followKo.includes('github.com')) {
   console.error('check_growth: follow page must not link to GitHub');
   process.exit(1);
 }
-if (!followKo.includes('준비 중')) {
-  console.error('check_growth: follow page must show Telegram preparing state when channel unset');
-  process.exit(1);
+for (const forbidden of ['텔레그램', 'Telegram', '준비 중']) {
+  if (followKo.includes(forbidden)) {
+    console.error(`check_growth: follow page must not mention Telegram (${forbidden})`);
+    process.exit(1);
+  }
 }
 
 const followEn = readHtml('en/follow/index.html');
-if (!followEn.includes('Coming soon') || !followEn.includes(expectedRssUrl)) {
-  console.error('check_growth: en follow page must show RSS URL and Telegram preparing state');
+if (!followEn.includes(expectedRssUrl) || !followEn.includes('Subscribe via RSS')) {
+  console.error('check_growth: en follow page must show RSS URL and subscribe heading');
+  process.exit(1);
+}
+if (followEn.includes('Telegram')) {
+  console.error('check_growth: en follow page must not mention Telegram');
   process.exit(1);
 }
 

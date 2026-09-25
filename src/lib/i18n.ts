@@ -273,14 +273,6 @@ export const labels = {
     en: 'Add this feed in your reader to follow new reports.',
   } satisfies LocalizedText,
   rssSubscribeCta: { ko: 'RSS로 구독', en: 'Subscribe via RSS' } satisfies LocalizedText,
-  alertTelegramPrimary: {
-    ko: '텔레그램으로 매일 기록 받기',
-    en: 'Get daily records on Telegram',
-  } satisfies LocalizedText,
-  alertTelegramSub: {
-    ko: '투자 권유 없이, 그날 스크리닝 기록만 알려 드립니다.',
-    en: 'Screening records only — we do not offer investment advice.',
-  } satisfies LocalizedText,
   shareCta: { ko: '일일 링크 공유', en: 'Share daily link' } satisfies LocalizedText,
   shareShared: { ko: '공유 메뉴를 열었습니다', en: 'Share menu opened' } satisfies LocalizedText,
   shareCopied: { ko: '링크를 복사했습니다', en: 'Link copied' } satisfies LocalizedText,
@@ -297,14 +289,14 @@ export const labels = {
     ko: '공유할 수 없습니다. 아래 주소를 직접 복사해 주세요.',
     en: 'Could not share. Please copy the URL below.',
   } satisfies LocalizedText,
-  followTitle: { ko: '구독·알림', en: 'Follow & alerts' } satisfies LocalizedText,
+  followTitle: { ko: 'RSS 구독', en: 'RSS subscribe' } satisfies LocalizedText,
   followDescription: {
-    ko: '텐베거 데일리 일일 스크리닝 기록을 텔레그램 또는 RSS로 받는 방법입니다.',
-    en: 'How to get Ten Bagger Daily screening records via Telegram or RSS.',
+    ko: '텐베거 데일리 일일 스크리닝 기록을 RSS 피드로 받는 방법입니다.',
+    en: 'How to subscribe to Ten Bagger Daily screening records via RSS.',
   } satisfies LocalizedText,
   followLead: {
-    ko: '매일 오전 6시(KST) 새 기록이 올라오면 알림을 받을 수 있습니다.',
-    en: 'Get notified when a new daily record is published (~06:00 KST).',
+    ko: '피드 리더에 주소를 추가하면 매일 오전 6시(KST) 새 기록이 올라올 때 항목이 추가됩니다.',
+    en: 'Add the feed in a reader; new items appear when each daily record is published (~06:00 KST).',
   } satisfies LocalizedText,
   followRssHeading: { ko: 'RSS로 구독', en: 'Subscribe via RSS' } satisfies LocalizedText,
   followRssIntro: {
@@ -332,27 +324,14 @@ export const labels = {
     en: 'New items appear when each day’s report is published.',
   } satisfies LocalizedText,
   followRssUrlLabel: { ko: '피드 주소', en: 'Feed URL' } satisfies LocalizedText,
-  followTelegramHeading: {
-    ko: '텔레그램으로 매일 기록 받기',
-    en: 'Get daily records on Telegram',
-  } satisfies LocalizedText,
-  followTelegramIntro: {
-    ko: '투자 권유 없이, 그날 스크리닝 기록만 알려 드립니다.',
-    en: 'Screening records only — we do not offer investment advice.',
-  } satisfies LocalizedText,
-  followTelegramJoin: {
-    ko: '텔레그램으로 매일 기록 받기',
-    en: 'Get daily records on Telegram',
-  } satisfies LocalizedText,
-  followTelegramPreparing: { ko: '준비 중', en: 'Coming soon' } satisfies LocalizedText,
-  followDisclaimerHeading: { ko: '알림 안내', en: 'About these alerts' } satisfies LocalizedText,
+  followDisclaimerHeading: { ko: '피드 안내', en: 'About this feed' } satisfies LocalizedText,
   followDisclaimerBody: {
     ko:
-      '이 채널은 규칙 기반 일일 스크리닝 기록 알림입니다. 투자 권유·매수 신호가 아니며, 수익을 보장하지 않습니다. 가상 성과와 실거래는 다를 수 있습니다. 판단과 책임은 본인에게 있습니다. 상세: https://tenbagger.finnaut.com/',
+      'RSS 항목은 “해당 날짜의 일일 스크리닝 기록이 공개되었다”는 뜻입니다. 투자 권유·매수 신호가 아니며, 수익을 보장하지 않습니다. 모든 판단과 책임은 이용자 본인에게 있습니다.',
     en:
-      'This channel notifies you when a rule-based daily screening record is published. It is not investment advice or a buy signal; no returns are promised. Paper results may differ from real trading. You are responsible for your own decisions. Details: https://tenbagger.finnaut.com/',
+      'RSS items mean “that day’s daily screening record was published.” This is not investment advice or a buy signal; no returns are promised. All decisions and losses are your own responsibility.',
   } satisfies LocalizedText,
-  followCtaLink: { ko: '구독·알림 안내', en: 'Follow & alerts' } satisfies LocalizedText,
+  followCtaLink: { ko: 'RSS 구독 방법', en: 'How to subscribe via RSS' } satisfies LocalizedText,
 } as const;
 
 export function localeToLang(locale: string | undefined): Lang {
