@@ -2,7 +2,15 @@ import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
 
 import { getAllDates, getDailyEntry } from '../lib/daily';
-import { FEED_DISCLAIMER, buildRssItems } from '../lib/rss';
+import {
+  countWeekPicks,
+  buildWeeklyDayRow,
+  groupDatesByIsoWeek,
+  isoWeekDateRange,
+  listIsoWeekKeys,
+  parseIsoWeekKey,
+} from '../lib/weekly';
+import { FEED_DISCLAIMER, buildRssItems, buildWeeklyRssItem } from '../lib/rss';
 
 export async function GET(context: APIContext) {
   // This repo's astro `site` already includes the Pages path prefix (e.g. .../ten_bagger).
@@ -17,7 +25,27 @@ export async function GET(context: APIContext) {
     }),
   );
   const inputs = loaded.filter((row): row is { entry: NonNullable<typeof row>['entry'] } => row !== null);
-  const items = buildRssItems(inputs, { site });
+  const dailyItems = buildRssItems(inputs, { site });
+  const weekKeys = listIsoWeekKeys(dates);
+  const weeklyItems: ReturnType<typeof buildWeeklyRssItem>[] = [];
+  if (weekKeys.length > 0) {
+    const weekKey = weekKeys[0]!;
+    const weekDates = groupDatesByIsoWeek(dates).get(weekKey) ?? [];
+    const weekEntries = (
+      await Promise.all(weekDates.map(async (date) => getDailyEntry(date)))
+    )
+      .filter((entry) => entry != null)
+      .map((entry) => buildWeeklyDayRow(entry));
+    const { isoYear, isoWeek } = parseIsoWeekKey(weekKey);
+    const { start, end } = isoWeekDateRange(isoYear, isoWeek);
+    weeklyItems.push(
+      buildWeeklyRssItem(
+        { weekKey, pickCount: countWeekPicks(weekEntries), rangeStart: start, rangeEnd: end },
+        { site },
+      ),
+    );
+  }
+  const items = [...weeklyItems, ...dailyItems];
 
   return rss({
     title: 'Ten Bagger Daily',

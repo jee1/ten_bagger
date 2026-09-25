@@ -4,11 +4,11 @@ import type { Lang } from '../lib/i18n';
 
 interface Props {
   lang: Lang;
-  variant?: 'default' | 'digest';
+  variant?: 'default' | 'weekly';
 }
 
 const { lang, variant = 'default' } = Astro.props;
-const bodyKey = variant === 'digest' ? 'digestDisclaimer' : 'disclaimer';
+const bodyKey = variant === 'weekly' ? 'weeklyDisclaimer' : 'disclaimer';
 ---
 
 <aside class="disclaimer" role="note">

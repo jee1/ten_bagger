@@ -157,3 +157,63 @@ export function aboutFaqJsonLd(lang: Lang): Record<string, unknown> {
 export function aboutFaqItems(lang: Lang): FaqItem[] {
   return lang === 'en' ? aboutFaqEn : aboutFaqKo;
 }
+
+function weeklyBasePath(lang: Lang): string {
+  return lang === 'en' ? `${SITE}/en/weekly/` : `${SITE}/weekly/`;
+}
+
+export function weeklyHubJsonLd(lang: Lang): Record<string, unknown> {
+  const url = weeklyBasePath(lang);
+  const name = lang === 'en' ? 'Weekly screening records | Ten Bagger Daily' : '주간 스크리닝 기록 | 텐베거 데일리';
+  const description =
+    lang === 'en'
+      ? 'Week-by-week summaries of Score v2 daily candidates. Not investment advice; no return promises.'
+      : '주 단위로 Score v2 일일 후보 기록을 요약합니다. 투자 권유가 아니며 수익을 약속하지 않습니다.';
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${url}#webpage`,
+    url,
+    name,
+    description,
+    inLanguage: lang === 'en' ? 'en' : 'ko',
+    isPartOf: { '@id': `${SITE}/#website` },
+  };
+}
+
+export function weeklyPageJsonLd(
+  lang: Lang,
+  weekKey: string,
+  title: string,
+  description: string,
+  datePublishedIso: string,
+): Record<string, unknown> {
+  const hub = weeklyBasePath(lang);
+  const url = `${hub}${weekKey}/`;
+  const siteName = lang === 'en' ? 'Ten Bagger Daily' : '텐베거 데일리';
+  const hubLabel = lang === 'en' ? 'Weekly records' : '주간 기록';
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        url,
+        name: title,
+        description,
+        inLanguage: lang === 'en' ? 'en' : 'ko',
+        isPartOf: { '@id': `${SITE}/#website` },
+        datePublished: datePublishedIso,
+        dateModified: datePublishedIso,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: siteName, item: lang === 'en' ? `${SITE}/en/` : `${SITE}/` },
+          { '@type': 'ListItem', position: 2, name: hubLabel, item: hub },
+          { '@type': 'ListItem', position: 3, name: weekKey, item: url },
+        ],
+      },
+    ],
+  };
+}

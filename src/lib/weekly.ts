@@ -8,6 +8,9 @@ const PRESENTATION_HORIZONS = new Set(['1M', '3M', '6M', '1Y']);
  * Market-day strings (YYYY-MM-DD) are bucketed by ISO week using Asia/Seoul calendar
  * dates — the same KST day labels used in content/daily/*.json. Week 1 is the ISO
  * week containing that year's first Thursday; weeks run Monday–Sunday.
+ *
+ * Publish cadence (product): Monday 06:30 KST after the ISO week ends — see PR/docs
+ * for optional CI job; pages are build-time idempotent from committed daily JSON.
  */
 
 export interface IsoWeekParts {
@@ -20,7 +23,7 @@ export interface IsoWeekRange {
   end: string;
 }
 
-export interface DigestDayRow {
+export interface WeeklyDayRow {
   date: string;
   market: DailyEntry['market'];
   status: DailyEntry['status'];
@@ -28,6 +31,7 @@ export interface DigestDayRow {
   nameKo: string | null;
   nameEn: string | null;
   composite: number | null;
+  threshold: number | null;
 }
 
 const ISO_WEEK_KEY_RE = /^(\d{4})-W(\d{2})$/;
@@ -42,6 +46,12 @@ function formatYmdUtc(date: Date): string {
   const m = String(date.getUTCMonth() + 1).padStart(2, '0');
   const d = String(date.getUTCDate()).padStart(2, '0');
   return `${y}-${m}-${d}`;
+}
+
+function addDaysYmd(dateStr: string, days: number): string {
+  const [y, m, d] = parseYmd(dateStr);
+  const date = new Date(Date.UTC(y, m - 1, d + days));
+  return formatYmdUtc(date);
 }
 
 /** ISO week year and week number from a KST calendar market day (YYYY-MM-DD). */
@@ -81,6 +91,14 @@ export function isoWeekDateRange(isoYear: number, isoWeek: number): IsoWeekRange
   return { start: formatYmdUtc(monday), end: formatYmdUtc(sunday) };
 }
 
+/** Monday 06:30 KST after the ISO week ends (product publish time). */
+export function weeklyPublishIso(weekKey: string): string {
+  const { isoYear, isoWeek } = parseIsoWeekKey(weekKey);
+  const { end } = isoWeekDateRange(isoYear, isoWeek);
+  const publishDate = addDaysYmd(end, 1);
+  return `${publishDate}T06:30:00+09:00`;
+}
+
 /** Distinct ISO week keys from market days, newest first. */
 export function listIsoWeekKeys(dates: string[]): string[] {
   const weeks = new Set<string>();
@@ -106,7 +124,19 @@ export function formatWeekRangeLabel(isoYear: number, isoWeek: number, _lang: La
   return `${start} – ${end} (KST)`;
 }
 
-export function buildDigestDayRow(entry: DailyEntry): DigestDayRow {
+export function adjacentIsoWeekKeys(
+  weekKeys: string[],
+  current: string,
+): { prev: string | null; next: string | null } {
+  const idx = weekKeys.indexOf(current);
+  if (idx < 0) return { prev: null, next: null };
+  return {
+    prev: idx < weekKeys.length - 1 ? weekKeys[idx + 1]! : null,
+    next: idx > 0 ? weekKeys[idx - 1]! : null,
+  };
+}
+
+export function buildWeeklyDayRow(entry: DailyEntry): WeeklyDayRow {
   const stock = entry.stock;
   return {
     date: entry.date,
@@ -116,11 +146,16 @@ export function buildDigestDayRow(entry: DailyEntry): DigestDayRow {
     nameKo: stock?.name?.ko?.trim() || null,
     nameEn: stock?.name?.en?.trim() || null,
     composite: entry.scores?.composite ?? null,
+    threshold: entry.scores?.threshold ?? null,
   };
 }
 
-export function countWeekPicks(rows: DigestDayRow[]): number {
+export function countWeekPicks(rows: WeeklyDayRow[]): number {
   return rows.filter((row) => row.status === 'pick' && row.symbol).length;
+}
+
+export function countNoPickDays(rows: WeeklyDayRow[]): number {
+  return rows.filter((row) => row.status === 'no_pick').length;
 }
 
 export interface MarketDayCounts {
@@ -128,8 +163,7 @@ export interface MarketDayCounts {
   us: number;
 }
 
-/** Published market-day counts by KR/US for a week table. */
-export function countMarketDays(rows: DigestDayRow[]): MarketDayCounts {
+export function countMarketDays(rows: WeeklyDayRow[]): MarketDayCounts {
   let kr = 0;
   let us = 0;
   for (const row of rows) {
@@ -139,8 +173,14 @@ export function countMarketDays(rows: DigestDayRow[]): MarketDayCounts {
   return { kr, us };
 }
 
-export interface DigestWeekPerformanceView {
-  /** Weekly rollup return is intentionally not computed on digest pages. */
+export function formatScoreDelta(row: WeeklyDayRow): string | null {
+  if (row.composite == null || row.threshold == null) return null;
+  const delta = row.composite - row.threshold;
+  const sign = delta >= 0 ? '+' : '';
+  return `${sign}${delta.toFixed(1)}`;
+}
+
+export interface WeeklyPerformanceView {
   weeklyReturnComputed: false;
   pickDays: number;
   completedSamples: number;
@@ -166,15 +206,12 @@ function hasCompletePickMeasurement(
   );
 }
 
-/**
- * Digest-safe performance context: never computes weekly return or excess vs benchmark.
- * Reports completed per-pick measurement count only (presentation horizons).
- */
-export function deriveDigestWeekPerformance(
-  rows: DigestDayRow[],
+/** Never computes weekly return or excess vs benchmark — sample counts only. */
+export function deriveWeeklyPerformance(
+  rows: WeeklyDayRow[],
   krBundle: PerformanceBundle | null,
   usBundle: PerformanceBundle | null,
-): DigestWeekPerformanceView {
+): WeeklyPerformanceView {
   const pickRows = rows.filter((row) => row.status === 'pick' && row.symbol);
   let completedKr = 0;
   let completedUs = 0;

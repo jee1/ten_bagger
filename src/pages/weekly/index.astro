@@ -6,7 +6,9 @@ import {
   groupDatesByIsoWeek,
   listIsoWeekKeys,
   parseIsoWeekKey,
-} from '../../lib/digest';
+} from '../../lib/weekly';
+import { weeklyHubDescription, weeklyHubTitle } from '../../lib/weeklyMeta';
+import { weeklyHubJsonLd } from '../../lib/structuredData';
 import { label, localeToLang } from '../../lib/i18n';
 import { localeHref } from '../../lib/staticNav';
 
@@ -29,42 +31,41 @@ const weeks = weekKeys.map((key) => {
 ---
 
 <Layout
-  title={label('digestTitle', lang)}
-  titleKey="digestTitle"
-  descriptionKey="digestDescription"
+  title={weeklyHubTitle(lang)}
+  titleKey="weeklyHubTitle"
+  description={weeklyHubDescription(lang)}
   lang={lang}
-  disclaimerVariant="digest"
+  disclaimerVariant="weekly"
+  jsonLd={[weeklyHubJsonLd(lang)]}
 >
-  <article class="doc-body digest-page">
-    <h1 data-i18n="digestTitle">{label('digestTitle', lang)}</h1>
-    <p class="muted about-lead" data-i18n="digestIndexLead">{label('digestIndexLead', lang)}</p>
-    <p class="muted digest-week-note" data-i18n="calendarRotationNote">
+  <article class="doc-body weekly-page">
+    <h1 data-i18n="weeklyHubTitle">{label('weeklyHubTitle', lang)}</h1>
+    <p class="muted about-lead" data-i18n="weeklyIndexLead">{label('weeklyIndexLead', lang)}</p>
+    <p class="muted weekly-week-note" data-i18n="calendarRotationNote">
       {label('calendarRotationNote', lang)}
     </p>
-    <p class="muted digest-week-note" data-i18n="digestWeekNote">{label('digestWeekNote', lang)}</p>
+    <p class="muted weekly-week-note" data-i18n="weeklyWeekNote">{label('weeklyWeekNote', lang)}</p>
 
     {
       weeks.length === 0 ? (
-        <p class="muted" data-i18n="digestEmpty">{label('digestEmpty', lang)}</p>
+        <p class="muted" data-i18n="weeklyEmpty">{label('weeklyEmpty', lang)}</p>
       ) : (
-        <ul class="digest-week-list">
+        <ul class="weekly-week-list">
           {weeks.map((week) => (
             <li>
-              <a href={localeHref(base, lang, `digest/${week.key}`)}>
+              <a href={localeHref(base, lang, `weekly/${week.key}`)}>
                 <span class="num">{week.key}</span>
-                <span class="muted digest-week-range">{week.rangeLabel}</span>
+                <span class="muted weekly-week-range">{week.rangeLabel}</span>
               </a>
-              <span class="muted digest-week-meta">
-                <span data-i18n="digestDayCount">{label('digestDayCount', lang)}</span>: {week.dayCount}
-              </span>
+              <span class="muted weekly-week-meta num">{week.dayCount}</span>
             </li>
           ))}
         </ul>
       )
     }
 
-    <section class="digest-cta" aria-labelledby="digest-cta-heading">
-      <h2 id="digest-cta-heading" data-i18n="digestCtaHeading">{label('digestCtaHeading', lang)}</h2>
+    <section class="weekly-cta" aria-labelledby="weekly-cta-heading">
+      <h2 id="weekly-cta-heading" data-i18n="weeklyCtaHeading">{label('weeklyCtaHeading', lang)}</h2>
       <ul class="about-links">
         <li>
           <a href={localeHref(base, lang, 'performance')} data-i18n="performance">
@@ -81,6 +82,9 @@ const weeks = weekKeys.map((key) => {
         </li>
         <li>
           <a href={localeHref(base, lang, 'follow')} data-i18n="followTitle">{label('followTitle', lang)}</a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'about')} data-i18n="about">{label('about', lang)}</a>
         </li>
       </ul>
     </section>

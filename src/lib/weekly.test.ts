@@ -2,18 +2,22 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
 import {
-  buildDigestDayRow,
+  adjacentIsoWeekKeys,
+  buildWeeklyDayRow,
   countMarketDays,
+  countNoPickDays,
   countWeekPicks,
-  deriveDigestWeekPerformance,
+  deriveWeeklyPerformance,
   formatIsoWeekKey,
+  formatScoreDelta,
   groupDatesByIsoWeek,
   isoWeekDateRange,
   isoWeekFromKstDate,
   isoWeekKeyFromDate,
   listIsoWeekKeys,
   parseIsoWeekKey,
-} from './digest.ts';
+  weeklyPublishIso,
+} from './weekly.ts';
 import type { PerformanceBundle } from './content-types.generated.ts';
 import type { DailyEntry } from './types.ts';
 
@@ -51,6 +55,22 @@ describe('isoWeekDateRange', () => {
   });
 });
 
+describe('weeklyPublishIso', () => {
+  it('is Monday 06:30 KST after the ISO week', () => {
+    assert.equal(weeklyPublishIso('2026-W39'), '2026-09-28T06:30:00+09:00');
+  });
+});
+
+describe('adjacentIsoWeekKeys', () => {
+  it('returns prev/next in newest-first list', () => {
+    const keys = ['2026-W39', '2026-W38', '2026-W37'];
+    assert.deepEqual(adjacentIsoWeekKeys(keys, '2026-W38'), {
+      prev: '2026-W37',
+      next: '2026-W39',
+    });
+  });
+});
+
 describe('listIsoWeekKeys', () => {
   it('returns distinct weeks newest first', () => {
     const dates = ['2026-09-21', '2026-09-22', '2026-09-14', '2026-09-15'];
@@ -66,9 +86,9 @@ describe('groupDatesByIsoWeek', () => {
   });
 });
 
-describe('buildDigestDayRow', () => {
-  it('captures pick identity and composite score', () => {
-    const row = buildDigestDayRow(
+describe('buildWeeklyDayRow', () => {
+  it('captures pick identity, composite score, and threshold', () => {
+    const row = buildWeeklyDayRow(
       entry({
         date: '2026-09-05',
         status: 'pick',
@@ -89,28 +109,29 @@ describe('buildDigestDayRow', () => {
       }),
     );
     assert.equal(row.symbol, '002780.KS');
-    assert.equal(row.nameKo, '진흥기업');
-    assert.equal(row.composite, 72.5);
+    assert.equal(row.threshold, 70);
+    assert.equal(formatScoreDelta(row), '+2.5');
   });
 
   it('leaves symbol null for no_pick', () => {
-    const row = buildDigestDayRow(entry({ date: '2026-09-04', status: 'no_pick' }));
+    const row = buildWeeklyDayRow(entry({ date: '2026-09-04', status: 'no_pick' }));
     assert.equal(row.symbol, null);
     assert.equal(countWeekPicks([row]), 0);
+    assert.equal(countNoPickDays([row]), 1);
   });
 });
 
 describe('countMarketDays', () => {
   it('counts KR and US published days', () => {
     const rows = [
-      buildDigestDayRow(entry({ date: '2026-09-21', status: 'pick', market: 'KR' })),
-      buildDigestDayRow(entry({ date: '2026-09-22', status: 'no_pick', market: 'US' })),
+      buildWeeklyDayRow(entry({ date: '2026-09-21', status: 'pick', market: 'KR' })),
+      buildWeeklyDayRow(entry({ date: '2026-09-22', status: 'no_pick', market: 'US' })),
     ];
     assert.deepEqual(countMarketDays(rows), { kr: 1, us: 1 });
   });
 });
 
-describe('deriveDigestWeekPerformance', () => {
+describe('deriveWeeklyPerformance', () => {
   const krBundle = {
     market: 'KR',
     measurements: [
@@ -126,7 +147,7 @@ describe('deriveDigestWeekPerformance', () => {
 
   it('never computes weekly return and counts completed per-pick samples only', () => {
     const rows = [
-      buildDigestDayRow(
+      buildWeeklyDayRow(
         entry({
           date: '2026-09-21',
           status: 'pick',
@@ -139,9 +160,9 @@ describe('deriveDigestWeekPerformance', () => {
           },
         }),
       ),
-      buildDigestDayRow(entry({ date: '2026-09-22', status: 'no_pick', market: 'US' })),
+      buildWeeklyDayRow(entry({ date: '2026-09-22', status: 'no_pick', market: 'US' })),
     ];
-    const view = deriveDigestWeekPerformance(rows, krBundle, null);
+    const view = deriveWeeklyPerformance(rows, krBundle, null);
     assert.equal(view.weeklyReturnComputed, false);
     assert.equal(view.pickDays, 1);
     assert.equal(view.completedSamples, 1);
@@ -151,7 +172,7 @@ describe('deriveDigestWeekPerformance', () => {
 
   it('marks insufficient when picks lack completed measurements', () => {
     const rows = [
-      buildDigestDayRow(
+      buildWeeklyDayRow(
         entry({
           date: '2026-09-21',
           status: 'pick',
@@ -165,7 +186,7 @@ describe('deriveDigestWeekPerformance', () => {
         }),
       ),
     ];
-    const view = deriveDigestWeekPerformance(rows, krBundle, null);
+    const view = deriveWeeklyPerformance(rows, krBundle, null);
     assert.equal(view.completedSamples, 0);
     assert.equal(view.insufficientSample, true);
   });

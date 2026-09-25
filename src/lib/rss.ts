@@ -1,3 +1,4 @@
+import { weeklyPublishIso } from './weekly.ts';
 import type { DailyEntry } from './types.ts';
 
 export const FEED_ITEM_LIMIT = 30;
@@ -31,6 +32,18 @@ export function joinSitePath(site: string, relPath: string): string {
 /** Absolute URL for a daily page under Astro `site`. */
 export function dailyPermalink(site: string, date: string): string {
   return joinSitePath(site, `daily/${date}/`);
+}
+
+/** Absolute URL for a weekly page under Astro `site`. */
+export function weeklyPermalink(site: string, weekKey: string): string {
+  return joinSitePath(site, `weekly/${weekKey}/`);
+}
+
+export interface BuildWeeklyRssItemInput {
+  weekKey: string;
+  pickCount: number;
+  rangeStart: string;
+  rangeEnd: string;
 }
 
 function localizedPair(ko: string | undefined, en: string | undefined): string {
@@ -102,4 +115,26 @@ export function buildRssItems(
   }
 
   return items;
+}
+
+/** Teaser RSS item for the latest ISO week — links to on-site weekly page only. */
+export function buildWeeklyRssItem(
+  input: BuildWeeklyRssItemInput,
+  options: BuildRssItemsOptions,
+): RssItemView {
+  const link = weeklyPermalink(options.site, input.weekKey);
+  const title = `${input.weekKey} weekly record summary / 주간 스크리닝 기록`;
+  const description = [
+    `${input.rangeStart}–${input.rangeEnd} Score v2 공개 후보 ${input.pickCount}건 요약.`,
+    '상세·점수·리스크는 사이트 주간·일일 기록에서 확인하세요.',
+    'See methodology, performance, and daily reports on the site.',
+    FEED_DISCLAIMER,
+  ].join('\n');
+  return {
+    title,
+    description,
+    link,
+    pubDate: new Date(weeklyPublishIso(input.weekKey)),
+    guid: link,
+  };
 }

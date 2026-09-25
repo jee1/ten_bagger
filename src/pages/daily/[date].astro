@@ -5,6 +5,7 @@ import RetentionActions from '../../components/RetentionActions.astro';
 import { getAllDates, getDailyEntry } from '../../lib/daily';
 import { dailyPageDescription, dailyPageTitle } from '../../lib/dailyMeta';
 import { label, localeToLang } from '../../lib/i18n';
+import { isoWeekKeyFromDate } from '../../lib/weekly';
 import { localeHref } from '../../lib/staticNav';
 
 export function getStaticPaths() {
@@ -38,5 +39,10 @@ const descriptionI18n = {
 >
   <p><a href={localeHref(base, lang, 'archive')}>← {label('archive', lang)}</a></p>
   <DailyCard entry={entry} lang={lang} detail />
+  <p class="muted">
+    <a href={localeHref(base, lang, `weekly/${isoWeekKeyFromDate(entry.date)}`)} data-i18n="weeklyDailyCta">
+      {label('weeklyDailyCta', lang)}
+    </a>
+  </p>
   <RetentionActions lang={lang} date={entry.date} />
 </Layout>

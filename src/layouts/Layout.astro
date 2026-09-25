@@ -15,7 +15,7 @@ interface Props {
   descriptionI18n?: { ko: string; en: string };
   lang?: Lang;
   jsonLd?: Record<string, unknown>[];
-  disclaimerVariant?: 'default' | 'digest';
+  disclaimerVariant?: 'default' | 'weekly';
 }
 
 const {
@@ -170,10 +170,10 @@ const isActive = (key: string) =>
             ><span data-i18n="archive">{label('archive', lang)}</span></a
           >
           <a
-            href={localeHref(base, lang, 'digest')}
-            class:list={{ active: isActive('digest') }}
-            aria-current={isActive('digest') ? 'page' : undefined}
-            ><span data-i18n="digest">{label('digest', lang)}</span></a
+            href={localeHref(base, lang, 'weekly')}
+            class:list={{ active: isActive('weekly') }}
+            aria-current={isActive('weekly') ? 'page' : undefined}
+            ><span data-i18n="weekly">{label('weekly', lang)}</span></a
           >
           <a
             href={localeHref(base, lang, 'methodology')}
