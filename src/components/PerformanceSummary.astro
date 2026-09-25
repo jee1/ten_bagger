@@ -1,6 +1,7 @@
 ---
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
+import { localeHref } from '../lib/staticNav';
 import type { CumulativePoint, MarketPerformanceView } from '../lib/performanceAggregate';
 
 interface Props {
@@ -129,8 +130,8 @@ const wide = buildChart(880, 220, 52, 18, 16, 30);
 const narrow = buildChart(358, 180, 40, 8, 12, 26, true);
 
 const benchmarkKey = view.market === 'KR' ? 'performanceBenchmarkIdKR' : 'performanceBenchmarkIdUS';
-const priceBasisNoteUrl =
-  'https://github.com/jee1/ten_bagger/blob/main/docs/architecture/price-basis-validation-002780.md';
+const base = import.meta.env.BASE_URL;
+const priceBasisNoteUrl = localeHref(base, lang, 'methodology/price-basis');
 const priceAdjustmentLabel =
   view.priceAdjustment === 'adjusted_auto'
     ? label('performancePriceAdjustmentAdjustedAuto', lang)

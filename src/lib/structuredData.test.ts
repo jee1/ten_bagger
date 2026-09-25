@@ -32,4 +32,13 @@ describe('aboutFaqJsonLd', () => {
     assert.equal(aboutFaqItems('ko').length, 8);
     assert.equal(aboutFaqItems('en').length, 8);
   });
+
+  it('does not mention GitHub Pages in signup FAQ answers', () => {
+    const signupKo = aboutFaqItems('ko')[6].answer;
+    const signupEn = aboutFaqItems('en')[6].answer;
+    assert.equal(signupKo.includes('GitHub Pages'), false);
+    assert.equal(signupEn.includes('GitHub Pages'), false);
+    assert.equal(signupKo.includes('RSS'), true);
+    assert.equal(signupEn.includes('RSS'), true);
+  });
 });

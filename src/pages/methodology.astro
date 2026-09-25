@@ -2,8 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import { label } from '../lib/i18n';
 import { localeToLang } from '../lib/i18n';
+import { localeHref } from '../lib/staticNav';
 
 const lang = localeToLang(Astro.currentLocale);
+const base = import.meta.env.BASE_URL;
+const priceBasisNoteHref = localeHref(base, lang, 'methodology/price-basis');
 
 /** Live Score v2 weights — the stacked bar and the rows read from one source. */
 const weights = [
@@ -311,22 +314,6 @@ const toc = [
               >
             </li>
         </ul>
-        <p style="margin-top: 0.75rem; font-size: 0.85rem;">
-          <span data-i18n-show="ko" hidden={lang !== 'ko'}
-            >엔지니어 플랜:{' '}
-            <a
-              href="https://github.com/jee1/ten_bagger/blob/main/docs/plans/issue-126-excess-gate.md"
-              >docs/plans/issue-126-excess-gate.md</a
-            ></span
-          >
-          <span data-i18n-show="en" hidden={lang !== 'en'}
-            >Engineer plan:{' '}
-            <a
-              href="https://github.com/jee1/ten_bagger/blob/main/docs/plans/issue-126-excess-gate.md"
-              >docs/plans/issue-126-excess-gate.md</a
-            ></span
-          >
-        </p>
       </section>
 
       <section id="data">
@@ -367,35 +354,23 @@ const toc = [
             <p>
               <span data-i18n-show="ko" hidden={lang !== 'ko'}
                 >Yahoo Finance (yfinance) · 가격은 vendor 조정(분할·배당, auto_adjust=True).{' '}
-                <a
-                  href="https://github.com/jee1/ten_bagger/blob/main/docs/architecture/price-basis-validation-002780.md"
-                  >002780.KS 가격 기준 검증 노트</a
-                ></span
+                <a href={priceBasisNoteHref}>002780.KS 가격 기준 검증 노트</a></span
               >
               <span data-i18n-show="en" hidden={lang !== 'en'}
                 >Yahoo Finance (yfinance) · prices are vendor-adjusted (splits and dividends, auto_adjust=True).{' '}
-                <a
-                  href="https://github.com/jee1/ten_bagger/blob/main/docs/architecture/price-basis-validation-002780.md"
-                  >002780.KS price-basis validation note</a
-                ></span
+                <a href={priceBasisNoteHref}>002780.KS price-basis validation note</a></span
               >
             </p>
           </div>
         </div>
-        <p style="margin-top: 1rem; font-size: 0.85rem;">
+        <p style="margin-top: 1rem; font-size: 0.85rem;" class="muted">
           <span data-i18n-show="ko" hidden={lang !== 'ko'}
-            >엔지니어링 노트 — Score v3 후보 팩터 · 측정 게이트 · GO/NO-GO 기록:{' '}
-            <a
-              href="https://github.com/jee1/ten_bagger/blob/main/docs/architecture/score-v3-candidates.md"
-              >docs/architecture/score-v3-candidates.md</a
-            ></span
+            >Score v3 후보 팩터는 측정 게이트를 통과해야 공개 방법론에 반영됩니다. 현재는 Score v2가
+            운영 중입니다.</span
           >
           <span data-i18n-show="en" hidden={lang !== 'en'}
-            >Engineer notes — Score v3 candidate factors, measurement gate, GO/NO-GO record:{' '}
-            <a
-              href="https://github.com/jee1/ten_bagger/blob/main/docs/architecture/score-v3-candidates.md"
-              >docs/architecture/score-v3-candidates.md</a
-            ></span
+            >Score v3 candidate factors join the public methodology only after measurement gates pass.
+            Score v2 remains live today.</span
           >
         </p>
       </section>
