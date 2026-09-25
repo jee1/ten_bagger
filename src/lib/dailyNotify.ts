@@ -1,25 +1,21 @@
 import type { DailyEntry } from './types.ts';
-import { FEED_DISCLAIMER, joinSitePath } from './rss.ts';
+import { joinSitePath } from './rss.ts';
+import { appendTelegramDailyUtm } from './telegram.ts';
 
 export interface TelegramDeployMessageOptions {
   site: string;
 }
 
-function localizedPair(ko: string | undefined, en: string | undefined): string {
-  const k = (ko ?? '').trim();
-  const e = (en ?? '').trim();
-  if (k && e && k !== e) return `${k} / ${e}`;
-  return k || e || '';
-}
+const TELEGRAM_POST_FOOTER = '※ 후보 기록이며 투자 권유가 아닙니다.';
 
-/** One-line pick summary for operator Telegram deploy notifications. */
+/** Second line of the daily Telegram post (ticker + score, or no-pick wording). */
 export function telegramPickLine(entry: DailyEntry): string {
   if (entry.status === 'pick' && entry.stock?.symbol) {
-    const names = localizedPair(entry.stock.name?.ko, entry.stock.name?.en);
-    const label = names ? `${names} (${entry.stock.symbol})` : entry.stock.symbol;
-    return `Pick: ${label}`;
+    const score = entry.scores?.composite;
+    const scorePart = score != null ? ` · Score ${score}` : '';
+    return `${entry.stock.symbol}${scorePart}`;
   }
-  return `${entry.date} — 선정 없음 / No pick`;
+  return '선정 없음 (임계 점수 미충족)';
 }
 
 /** Post-deploy Telegram message derived from the daily JSON artifact. */
@@ -27,12 +23,12 @@ export function buildTelegramDeployMessage(
   entry: DailyEntry,
   options: TelegramDeployMessageOptions,
 ): string {
-  const link = joinSitePath(options.site, `daily/${entry.date}/`);
+  const link = appendTelegramDailyUtm(joinSitePath(options.site, `daily/${entry.date}/`));
+  const market = entry.market ?? 'KR';
   return [
-    `Ten Bagger Daily — ${entry.date}`,
+    `[텐베거 데일리] ${entry.date} · ${market}`,
     telegramPickLine(entry),
-    link,
-    '',
-    FEED_DISCLAIMER,
+    `기록 보기: ${link}`,
+    TELEGRAM_POST_FOOTER,
   ].join('\n');
 }

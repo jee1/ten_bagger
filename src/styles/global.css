@@ -682,6 +682,10 @@ code {
   min-width: 0;
 }
 
+.retention-block-primary {
+  flex: 1.2 1 260px;
+}
+
 .retention-hint {
   margin: 0.35rem 0 0.5rem;
   font-size: 0.8rem;

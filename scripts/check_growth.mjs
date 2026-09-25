@@ -55,8 +55,20 @@ if (!indexHtml.includes(`href="${expectedRssUrl}"`)) {
   console.error(`check_growth: RSS link must use absolute URL (${expectedRssUrl})`);
   process.exit(1);
 }
-if (!indexHtml.includes(`>${expectedRssUrl}<`)) {
-  console.error('check_growth: RSS displayed text must be absolute URL');
+if (!indexHtml.includes('RSS로 구독') || !indexHtml.includes(expectedRssUrl)) {
+  console.error('check_growth: home must offer RSS subscribe CTA and show feed URL');
+  process.exit(1);
+}
+if (!indexHtml.includes('텔레그램으로 매일 기록 받기')) {
+  console.error('check_growth: home missing Telegram primary CTA copy');
+  process.exit(1);
+}
+if (!indexHtml.includes('투자 권유 없이, 그날 스크리닝 기록만 알려 드립니다.')) {
+  console.error('check_growth: home missing Telegram sub copy');
+  process.exit(1);
+}
+if (!indexHtml.includes('준비 중')) {
+  console.error('check_growth: home must show Telegram preparing state when channel unset');
   process.exit(1);
 }
 if (!indexHtml.includes('data-i18n-attr="content:homeDescription"')) {
@@ -163,9 +175,20 @@ if (!methodologyHtml.includes('data-i18n-attr="content:tagline"')) {
   process.exit(1);
 }
 
+const pinnedDisclaimer =
+  '이 채널은 규칙 기반 일일 스크리닝 기록 알림입니다. 투자 권유·매수 신호가 아니며, 수익을 보장하지 않습니다.';
+
 const followKo = readHtml('follow/index.html');
 if (!followKo.includes(expectedRssUrl) || !followKo.includes('follow-disclaimer')) {
   console.error('check_growth: follow page must show RSS URL and disclaimer');
+  process.exit(1);
+}
+if (!followKo.includes(pinnedDisclaimer)) {
+  console.error('check_growth: follow page must include pinned disclaimer copy');
+  process.exit(1);
+}
+if (!followKo.includes('RSS로 구독')) {
+  console.error('check_growth: follow page must use RSS subscribe heading');
   process.exit(1);
 }
 if (followKo.includes('github.com')) {

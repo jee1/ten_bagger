@@ -2,6 +2,7 @@
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
 import { joinSitePath } from '../lib/rss.ts';
+import { TELEGRAM_CHANNEL_URL } from '../lib/siteConfig';
 import { localeHref } from '../lib/staticNav';
 
 interface Props {
@@ -13,32 +14,48 @@ const { lang, date } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const site = Astro.site?.href.replace(/\/+$/, '') ?? '';
 const rssUrl = site ? joinSitePath(site, 'rss.xml') : `${base}rss.xml`;
+const telegramReady = TELEGRAM_CHANNEL_URL.length > 0;
+const followHref = localeHref(base, lang, 'follow');
 ---
 
 <section
   class="retention-actions"
-  aria-label={label('rssCta', lang)}
+  aria-label={label('followTitle', lang)}
   data-retention-actions
   data-share-site={site}
   data-share-base={base}
 >
-  <div class="retention-block">
-    <h2 class="eyebrow" data-i18n="rssCta">{label('rssCta', lang)}</h2>
-    <p class="muted retention-hint" data-i18n="rssHint">{label('rssHint', lang)}</p>
-    <p class="retention-url-row">
-      <a
-        class="retention-rss-link num"
-        href={rssUrl}
-        data-growth-rss
-      >
-        {rssUrl}
-      </a>
-    </p>
+  <div class="retention-block retention-block-primary">
+    <h2 class="eyebrow" data-i18n="alertTelegramPrimary">{label('alertTelegramPrimary', lang)}</h2>
+    <p class="muted retention-hint" data-i18n="alertTelegramSub">{label('alertTelegramSub', lang)}</p>
+    {
+      telegramReady ? (
+        <p>
+          <a
+            class="btn retention-share-btn follow-telegram-btn"
+            href={TELEGRAM_CHANNEL_URL}
+            data-growth-telegram
+          >
+            <span data-i18n="alertTelegramPrimary">{label('alertTelegramPrimary', lang)}</span>
+          </a>
+        </p>
+      ) : (
+        <p class="muted follow-preparing" data-i18n="followTelegramPreparing">
+          {label('followTelegramPreparing', lang)}
+        </p>
+      )
+    }
     <p class="retention-hint">
-      <a href={localeHref(base, lang, 'follow')} data-growth-follow data-i18n="followCtaLink">
-        {label('followCtaLink', lang)}
+      <a href={followHref} data-growth-follow data-i18n="followCtaLink">{label('followCtaLink', lang)}</a>
+    </p>
+  </div>
+  <div class="retention-block">
+    <p class="retention-url-row">
+      <a class="retention-rss-link" href={rssUrl} data-growth-rss data-i18n="rssSubscribeCta">
+        {label('rssSubscribeCta', lang)}
       </a>
     </p>
+    <p class="muted retention-hint num">{rssUrl}</p>
   </div>
   <div class="retention-block">
     <button

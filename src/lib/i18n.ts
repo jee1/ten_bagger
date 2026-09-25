@@ -272,6 +272,15 @@ export const labels = {
     ko: '피드 리더에 주소를 추가해 새 기록을 받아보세요.',
     en: 'Add this feed in your reader to follow new reports.',
   } satisfies LocalizedText,
+  rssSubscribeCta: { ko: 'RSS로 구독', en: 'Subscribe via RSS' } satisfies LocalizedText,
+  alertTelegramPrimary: {
+    ko: '텔레그램으로 매일 기록 받기',
+    en: 'Get daily records on Telegram',
+  } satisfies LocalizedText,
+  alertTelegramSub: {
+    ko: '투자 권유 없이, 그날 스크리닝 기록만 알려 드립니다.',
+    en: 'Screening records only — we do not offer investment advice.',
+  } satisfies LocalizedText,
   shareCta: { ko: '일일 링크 공유', en: 'Share daily link' } satisfies LocalizedText,
   shareShared: { ko: '공유 메뉴를 열었습니다', en: 'Share menu opened' } satisfies LocalizedText,
   shareCopied: { ko: '링크를 복사했습니다', en: 'Link copied' } satisfies LocalizedText,
@@ -290,18 +299,14 @@ export const labels = {
   } satisfies LocalizedText,
   followTitle: { ko: '구독·알림', en: 'Follow & alerts' } satisfies LocalizedText,
   followDescription: {
-    ko:
-      '텐베거 데일리 일일 기록을 RSS 피드나 텔레그램으로 받는 방법입니다. 투자 매매 신호가 아닙니다.',
-    en:
-      'How to get Ten Bagger Daily reports via RSS or Telegram. These are publication alerts, not trade signals.',
+    ko: '텐베거 데일리 일일 스크리닝 기록을 텔레그램 또는 RSS로 받는 방법입니다.',
+    en: 'How to get Ten Bagger Daily screening records via Telegram or RSS.',
   } satisfies LocalizedText,
   followLead: {
-    ko:
-      '매일 오전 6시(KST) 새 기록이 올라오면 알림을 받을 수 있습니다. 아래 방법은 “오늘의 기록이 공개됐다”는 안내이며, 매수·매도 추천이 아닙니다.',
-    en:
-      'Get notified when a new daily report is published (~06:00 KST). These alerts mean the record is live — not buy or sell advice.',
+    ko: '매일 오전 6시(KST) 새 기록이 올라오면 알림을 받을 수 있습니다.',
+    en: 'Get notified when a new daily record is published (~06:00 KST).',
   } satisfies LocalizedText,
-  followRssHeading: { ko: 'RSS 피드', en: 'RSS feed' } satisfies LocalizedText,
+  followRssHeading: { ko: 'RSS로 구독', en: 'Subscribe via RSS' } satisfies LocalizedText,
   followRssIntro: {
     ko: '피드 리더에 아래 주소를 추가하면 새 일일 기록이 자동으로 표시됩니다.',
     en: 'Add the URL below in a feed reader to see each new daily report.',
@@ -327,23 +332,27 @@ export const labels = {
     en: 'New items appear when each day’s report is published.',
   } satisfies LocalizedText,
   followRssUrlLabel: { ko: '피드 주소', en: 'Feed URL' } satisfies LocalizedText,
-  followTelegramHeading: { ko: '텔레그램 채널', en: 'Telegram channel' } satisfies LocalizedText,
-  followTelegramIntro: {
-    ko:
-      '푸시 알림을 원하면 공개 텔레그램 채널을 구독할 수 있습니다. 채널이 열리면 아래에서 참여할 수 있습니다.',
-    en:
-      'For push-style alerts, join the public Telegram channel when it is available below.',
+  followTelegramHeading: {
+    ko: '텔레그램으로 매일 기록 받기',
+    en: 'Get daily records on Telegram',
   } satisfies LocalizedText,
-  followTelegramJoin: { ko: '텔레그램 채널 참여', en: 'Join Telegram channel' } satisfies LocalizedText,
+  followTelegramIntro: {
+    ko: '투자 권유 없이, 그날 스크리닝 기록만 알려 드립니다.',
+    en: 'Screening records only — we do not offer investment advice.',
+  } satisfies LocalizedText,
+  followTelegramJoin: {
+    ko: '텔레그램으로 매일 기록 받기',
+    en: 'Get daily records on Telegram',
+  } satisfies LocalizedText,
   followTelegramPreparing: { ko: '준비 중', en: 'Coming soon' } satisfies LocalizedText,
-  followDisclaimerHeading: { ko: '알림의 의미', en: 'What alerts mean' } satisfies LocalizedText,
+  followDisclaimerHeading: { ko: '알림 안내', en: 'About these alerts' } satisfies LocalizedText,
   followDisclaimerBody: {
     ko:
-      'RSS·텔레그램 알림은 “해당 날짜의 일일 기록이 공개되었다”는 뜻입니다. 투자 권유·자문·매매 신호가 아니며, 수익을 보장하지 않습니다. 모든 결정과 손실은 이용자 본인 책임입니다.',
+      '이 채널은 규칙 기반 일일 스크리닝 기록 알림입니다. 투자 권유·매수 신호가 아니며, 수익을 보장하지 않습니다. 가상 성과와 실거래는 다를 수 있습니다. 판단과 책임은 본인에게 있습니다. 상세: https://tenbagger.finnaut.com/',
     en:
-      'RSS and Telegram alerts mean “today’s daily record was published.” This is not investment advice, solicitation, or a trading signal. No returns are promised. All decisions and losses are your own responsibility.',
+      'This channel notifies you when a rule-based daily screening record is published. It is not investment advice or a buy signal; no returns are promised. Paper results may differ from real trading. You are responsible for your own decisions. Details: https://tenbagger.finnaut.com/',
   } satisfies LocalizedText,
-  followCtaLink: { ko: '구독 방법 보기', en: 'How to follow' } satisfies LocalizedText,
+  followCtaLink: { ko: '구독·알림 안내', en: 'Follow & alerts' } satisfies LocalizedText,
 } as const;
 
 export function localeToLang(locale: string | undefined): Lang {
