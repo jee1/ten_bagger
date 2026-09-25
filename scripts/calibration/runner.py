@@ -8,11 +8,6 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from typing import Any
 
-from calibration.candidates import CandidateSpec
-from calibration.config import CalibrationRunConfig, config_hash
-from calibration.is_rank import rank_candidates, select_promotees
-from calibration.report import build_report, serialize_report
-from calibration.verdict import overall_verdict, verdict_from_oos_report
 from config import CALIBRATION_SCHEMA_PATH
 from performance.write_atomic import atomic_replace
 from validate_content import load_validator
@@ -24,6 +19,12 @@ from walk_forward.folds import (
     generate_go_evidence_oos_folds,
     generate_rolling_folds,
 )
+
+from calibration.candidates import CandidateSpec
+from calibration.config import CalibrationRunConfig, config_hash
+from calibration.is_rank import rank_candidates, select_promotees
+from calibration.report import build_report, serialize_report
+from calibration.verdict import overall_verdict, verdict_from_oos_report
 
 # Guard: never use the snapshot screen comparator for GO evidence (FR-017 / FR-026).
 
