@@ -5,7 +5,7 @@
   "runMeta": {
     "provider": "yfinance",
     "priceAdjustment": "adjusted_auto",
-    "generatedAt": "2026-09-25T12:36:40.739600+00:00",
+    "generatedAt": "2026-09-25T13:22:00.982324+00:00",
     "asOfDate": "2026-09-25"
   },
   "measurements": [
@@ -1319,9 +1319,9 @@
       "dataQualityFlag": "clean",
       "asOfDate": "2026-09-25",
       "horizonDays": 20,
-      "entryPrice": 6.518207394144,
-      "exitPrice": 6.71999979019165,
-      "forwardReturn": 0.03095826564661652,
+      "entryPrice": 6.464633302679995,
+      "exitPrice": 6.664766788482666,
+      "forwardReturn": 0.03095821161576222,
       "benchmarkReturn": 0.025275269021753706
     },
     {
@@ -1350,9 +1350,9 @@
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-09-25",
-      "entryPrice": 6.518207394144,
-      "exitPrice": 6.820000171661377,
-      "forwardReturn": 0.04629996550715909,
+      "entryPrice": 6.464633302679995,
+      "exitPrice": 6.763945579528809,
+      "forwardReturn": 0.04629996209138885,
       "benchmarkReturn": 0.028335252869131446
     },
     {
@@ -2618,9 +2618,9 @@
       "asOfDate": "2026-09-25",
       "horizonDays": 20,
       "entryPrice": 49.650001525878906,
-      "exitPrice": 52.5,
-      "forwardReturn": 0.05740178019200258,
-      "benchmarkReturn": 0.0055654166954982355
+      "exitPrice": 53.119998931884766,
+      "forwardReturn": 0.0698891701785186,
+      "benchmarkReturn": 0.013213523987419368
     },
     {
       "market": "US",
@@ -2649,9 +2649,9 @@
       "dataQualityFlag": "clean",
       "asOfDate": "2026-09-25",
       "entryPrice": 49.650001525878906,
-      "exitPrice": 53.060001373291016,
-      "forwardReturn": 0.06868076017348612,
-      "benchmarkReturn": 0.013221361076884906
+      "exitPrice": 53.119998931884766,
+      "forwardReturn": 0.0698891701785186,
+      "benchmarkReturn": 0.013213523987419368
     },
     {
       "market": "US",
@@ -2738,7 +2738,7 @@
       "entryPrice": 12.720000267028809,
       "exitPrice": 13.0,
       "forwardReturn": 0.02201255716141545,
-      "benchmarkReturn": 0.0035783434466791332
+      "benchmarkReturn": 0.003825834192013637
     },
     {
       "market": "US",
