@@ -81,7 +81,7 @@
     }
   },
   "meta": {
-    "generatedAt": "2026-09-25T21:16:05+09:00",
+    "generatedAt": "2026-09-25T21:35:02+09:00",
     "candidatesScreened": 1900,
     "excludedRecent": 30,
     "skippedMarketCap": 848,
@@ -112,21 +112,21 @@
       "riskClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "moatClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "megatrendClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       }
@@ -153,21 +153,21 @@
       "riskClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "moatClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "megatrendClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       }
@@ -194,21 +194,21 @@
       "riskClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "moatClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "megatrendClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       }
@@ -235,21 +235,21 @@
       "riskClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "moatClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "megatrendClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       }
@@ -276,21 +276,21 @@
       "riskClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "moatClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       },
       "megatrendClassification": {
         "model": "jev-1.13.0",
         "sdkVersion": "0.7.0",
-        "inputAt": "2026-09-25T12:16:05+00:00",
+        "inputAt": "2026-09-25T12:35:02+00:00",
         "fallback": true,
         "fallbackReason": "missing_api_key"
       }
