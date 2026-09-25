@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && cp dist/sitemap-index.xml dist/sitemap.xml",
     "preview": "astro preview",
     "astro": "astro",
     "generate:daily": "cd scripts && python generate_daily.py",
@@ -17,7 +17,7 @@
     "gen:types": "node scripts/gen_types.mjs",
     "gen:types:check": "node scripts/gen_types.mjs --check",
     "check": "npm run gen:types:check && astro check",
-    "test:performance-ui": "node --experimental-strip-types --test src/lib/performanceAggregate.test.ts src/lib/performanceLoad.test.ts src/lib/staticNav.test.ts",
+    "test:performance-ui": "node --experimental-strip-types --test src/lib/performanceAggregate.test.ts src/lib/performanceLoad.test.ts src/lib/staticNav.test.ts src/lib/structuredData.test.ts",
     "test:static-nav": "node --experimental-strip-types --test src/lib/staticNav.test.ts",
     "test:rss": "node --experimental-strip-types --test src/lib/rss.test.ts",
     "test:daily-i18n": "node --experimental-strip-types --test src/lib/dailyDates.test.ts src/lib/i18n.test.ts src/lib/dailyCardReasoning.test.ts",

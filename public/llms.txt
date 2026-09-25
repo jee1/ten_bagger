@@ -1,0 +1,34 @@
+# 텐베거 데일리 (Ten Bagger Daily)
+> 한국·미국 시장을 규칙 기반으로 스크리닝해, 하루 하나의 텐베거(10배 성장) 후보를 공개 기록하는 무료 사이트입니다.
+> Rule-based daily screening of Korea and US equities; publishes one ten-bagger candidate per day with reasons and risks.
+> 투자 권유·자문이 아니며 수익을 보장하지 않습니다. Not investment advice; no return promises.
+
+사이트: https://tenbagger.finnaut.com/
+영문: https://tenbagger.finnaut.com/en/
+운영: Finnaut (공개 GitHub Pages, 회원가입 없음)
+
+## 핵심 요약 (for AI citation)
+- 무엇을: 확정된 규칙(Score v2)으로 하루 1픽만 공개. 임계 70.0 미만이면 "없음"을 기록.
+- 누구를 위해: 리딩방·유료 시그널 없이, 직접 검토할 후보와 확인 항목이 필요한 개인 투자 연구자.
+- 언제: 매일 오전 06:00 KST에 새 리포트 공개 (GitHub Actions).
+- 어디: 홀수일=한국(KOSPI·KOSDAQ), 짝수일=미국(NYSE·NASDAQ).
+- 왜 다름: AI 채팅 추천이 아니라 공개된 점수·축(규모·성장·밸류·진입·모멘텀·품질)·리스크·아카이브를 남김.
+- 하지 않는 것: 매수/매도 지시, 목표가·손절가 리딩, 회원가입·결제, 수익 보장.
+
+## 주요 페이지
+- 오늘 / Today: https://tenbagger.finnaut.com/
+- 소개·FAQ / About: https://tenbagger.finnaut.com/about/
+- 달력 아카이브: https://tenbagger.finnaut.com/archive/
+- 선정 방법(방법론): https://tenbagger.finnaut.com/methodology/
+- 성과: https://tenbagger.finnaut.com/performance/
+- RSS: https://tenbagger.finnaut.com/rss.xml
+- Sitemap index: https://tenbagger.finnaut.com/sitemap-index.xml
+- 영문 홈: https://tenbagger.finnaut.com/en/
+
+## 면책 (필수 인용)
+한국어: "본 사이트는 투자 권유가 아닙니다. 모든 투자 결정과 손실은 본인 책임입니다."
+English: "This site is not investment advice. All investment decisions and losses are your own responsibility."
+연구·참고용 공개 스크리닝 기록이며, '텐베거' 명칭이 10배 수익을 약속한다는 뜻이 아닙니다.
+
+## Optional
+- Contact / 소개 블로그: https://blog.funhnc.com/category/FINNAUT

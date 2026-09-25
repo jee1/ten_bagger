@@ -1,0 +1,27 @@
+---
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+import { localeHref } from '../lib/staticNav';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="home-hero" aria-labelledby="home-hero-head">
+  <h1 id="home-hero-head" class="home-hero-head" data-i18n="homeHeroHead">
+    {label('homeHeroHead', lang)}
+  </h1>
+  <p class="home-hero-sub muted" data-i18n="homeHeroSub">{label('homeHeroSub', lang)}</p>
+  <p class="home-hero-ctas">
+    <a class="btn-ghost" href={localeHref(base, lang, 'methodology')} data-i18n="homeHeroCtaMethodology">
+      {label('homeHeroCtaMethodology', lang)}
+    </a>
+    <a class="btn-ghost" href={localeHref(base, lang, 'performance')} data-i18n="homeHeroCtaPerformance">
+      {label('homeHeroCtaPerformance', lang)}
+    </a>
+  </p>
+</section>

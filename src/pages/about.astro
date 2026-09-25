@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { label, localeToLang } from '../lib/i18n';
+import { aboutFaqItems, aboutFaqJsonLd } from '../lib/structuredData';
+import { localeHref } from '../lib/staticNav';
+
+const lang = localeToLang(Astro.currentLocale);
+const base = import.meta.env.BASE_URL;
+const faqItems = aboutFaqItems(lang);
+---
+
+<Layout
+  title={label('aboutTitle', lang)}
+  titleKey="aboutTitle"
+  descriptionKey="aboutDescription"
+  lang={lang}
+  jsonLd={[aboutFaqJsonLd(lang)]}
+>
+  <article class="doc-body about-page">
+    <h1 data-i18n="aboutTitle">{label('aboutTitle', lang)}</h1>
+    <p class="muted about-lead" data-i18n="aboutLead">{label('aboutLead', lang)}</p>
+
+    <section aria-labelledby="about-brand">
+      <h2 id="about-brand" data-i18n="aboutBrandHeading">{label('aboutBrandHeading', lang)}</h2>
+      <p data-i18n="aboutBrandBody">{label('aboutBrandBody', lang)}</p>
+    </section>
+
+    <section aria-labelledby="about-faq">
+      <h2 id="about-faq" data-i18n="aboutFaqHeading">{label('aboutFaqHeading', lang)}</h2>
+      <dl class="faq-list">
+        {faqItems.map((item) => (
+          <div class="faq-item">
+            <dt>{item.question}</dt>
+            <dd>{item.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section aria-labelledby="about-links">
+      <h2 id="about-links" data-i18n="aboutLinksHeading">{label('aboutLinksHeading', lang)}</h2>
+      <ul class="about-links">
+        <li>
+          <a href={localeHref(base, lang, 'methodology')} data-i18n="methodology">
+            {label('methodology', lang)}
+          </a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'performance')} data-i18n="performance">
+            {label('performance', lang)}
+          </a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'archive')} data-i18n="archive">{label('archive', lang)}</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+</Layout>

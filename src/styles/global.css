@@ -503,6 +503,94 @@ code {
 
 /* ---------- visitor growth ---------- */
 
+.home-hero {
+  margin: 0 0 1.1rem;
+  padding: 0 0 0.25rem;
+}
+
+.home-hero-head {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  line-height: 1.25;
+  text-wrap: pretty;
+}
+
+.home-hero-sub {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  max-width: 42rem;
+}
+
+.home-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.75rem;
+  margin: 0;
+}
+
+.btn-ghost {
+  display: inline-block;
+  padding: 0.42rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.86rem;
+  color: var(--text);
+  text-decoration: none;
+  background: rgba(20, 26, 34, 0.45);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  background: rgba(61, 214, 140, 0.08);
+}
+
+.about-page .about-lead {
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+  max-width: 42rem;
+}
+
+.faq-list {
+  margin: 0;
+}
+
+.faq-item {
+  margin: 0 0 1.1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.faq-item dt {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.faq-item dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.about-links {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.about-links li {
+  margin-bottom: 0.35rem;
+}
+
 .newcomer-intro {
   margin: 0 0 1.25rem;
   padding: 1rem 1.1rem;

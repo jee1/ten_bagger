@@ -112,6 +112,46 @@ if (!sitemap.includes('/en/')) {
   process.exit(1);
 }
 
+const sitemapAliasPath = join(dist, 'sitemap.xml');
+if (!existsSync(sitemapAliasPath)) {
+  console.error('check_seo_head: dist/sitemap.xml missing (alias for sitemap-index.xml)');
+  process.exit(1);
+}
+const sitemapAlias = readFileSync(sitemapAliasPath, 'utf8');
+const sitemapIndex = readFileSync(join(dist, 'sitemap-index.xml'), 'utf8');
+if (sitemapAlias !== sitemapIndex) {
+  console.error('check_seo_head: sitemap.xml must match sitemap-index.xml');
+  process.exit(1);
+}
+
+const llmsPath = join(dist, 'llms.txt');
+if (!existsSync(llmsPath)) {
+  console.error('check_seo_head: dist/llms.txt missing');
+  process.exit(1);
+}
+const llms = readFileSync(llmsPath, 'utf8');
+if (!llms.includes('tenbagger.finnaut.com') || !llms.includes('투자 권유')) {
+  console.error('check_seo_head: llms.txt must include site URL and disclaimer');
+  process.exit(1);
+}
+
+if (!indexHtml.includes('application/ld+json')) {
+  console.error('check_seo_head: index.html must include JSON-LD');
+  process.exit(1);
+}
+if (!indexHtml.includes('"@type":"WebSite"') && !indexHtml.includes('"@type": "WebSite"')) {
+  console.error('check_seo_head: index.html JSON-LD must include WebSite schema');
+  process.exit(1);
+}
+
+readHtml('about/index.html');
+readHtml('en/about/index.html');
+const aboutHtml = readHtml('about/index.html');
+if (!aboutHtml.includes('application/ld+json') || !aboutHtml.includes('FAQPage')) {
+  console.error('check_seo_head: about/index.html must include FAQPage JSON-LD');
+  process.exit(1);
+}
+
 const enArchive = readHtml('en/archive/index.html');
 const navBlock = enArchive.match(/<div class="calendar-nav">([\s\S]*?)<\/div>/);
 if (!navBlock) {
