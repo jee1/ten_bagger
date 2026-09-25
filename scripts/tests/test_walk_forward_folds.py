@@ -104,8 +104,9 @@ def test_generate_go_evidence_oos_folds_use_is_train_not_oos_calendar():
     }
     folds = generate_go_evidence_oos_folds(is_spec, oos_spec, ["KR", "US"])
     assert len(folds) >= 2
-    is_sessions = set(build_decision_sessions(is_spec["startDate"], is_spec["endDate"], ["KR", "US"]))
-    oos_sessions = set(build_decision_sessions(oos_spec["startDate"], oos_spec["endDate"], ["KR", "US"]))
+    markets = ["KR", "US"]
+    is_sessions = set(build_decision_sessions(is_spec["startDate"], is_spec["endDate"], markets))
+    oos_sessions = set(build_decision_sessions(oos_spec["startDate"], oos_spec["endDate"], markets))
     for fold in folds:
         assert set(fold["trainSessions"]) & set(fold["oosSessions"]) == set()
         assert set(fold["trainSessions"]).issubset(is_sessions | oos_sessions)

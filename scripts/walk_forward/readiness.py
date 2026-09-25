@@ -19,7 +19,6 @@ _MIN_TOTAL_FOR_CARVE = _MIN_SIDE_PICK_DAYS * 2
 
 
 def _is_decision_session(day: str, markets: list[str]) -> bool:
-    market_set = set(markets)
     sessions = build_decision_sessions(day, day, markets)
     return bool(sessions) and day in sessions
 
@@ -117,9 +116,7 @@ def assess_search_go_evidence_readiness(
         }
     )
     projected = project_go_evidence_oos_sessions(is_spec, oos_spec, markets)
-    oos_sessions_in_range = len(
-        build_decision_sessions(oos_dates[0], oos_dates[-1], markets)
-    )
+    oos_sessions_in_range = len(build_decision_sessions(oos_dates[0], oos_dates[-1], markets))
     base.update(
         {
             "proposedIs": {"startDate": is_dates[0], "endDate": is_dates[-1]},
