@@ -11,12 +11,13 @@ export const labels = {
   today: { ko: '오늘', en: 'Today' } satisfies LocalizedText,
   archive: { ko: '달력', en: 'Archive' } satisfies LocalizedText,
   methodology: { ko: '선정 방법', en: 'Methodology' } satisfies LocalizedText,
+  about: { ko: '소개', en: 'About' } satisfies LocalizedText,
   noPickTitle: {
     ko: '오늘은 텐베거 후보가 없습니다',
     en: 'No ten-bagger candidate today',
   } satisfies LocalizedText,
   noPickBody: {
-    ko: '임계 점수를 넘는 종목이 없습니다. 기준을 만족할 때만 추천합니다.',
+    ko: '임계 점수를 넘는 종목이 없습니다. 기준을 만족할 때만 공개합니다.',
     en: 'No stock passed the score threshold. We only publish when criteria are met.',
   } satisfies LocalizedText,
   marketKR: { ko: '한국', en: 'Korea' } satisfies LocalizedText,
@@ -189,6 +190,58 @@ export const labels = {
       '한국·미국 시장에서 규칙과 데이터로 하루 하나의 텐베거 후보를 기록합니다. 선정 이유·리스크·일정을 공개하며 수익을 보장하지 않습니다.',
     en:
       'One rule-based ten-bagger candidate per day across Korea and US markets — with reasons, risks, and schedule published. No return promises.',
+  } satisfies LocalizedText,
+  homeHeroHead: {
+    ko: '규칙과 데이터로, 하루 하나의 KR/US 종목 후보를 공개합니다.',
+    en: 'One Korea or US candidate per day — by rules and data.',
+  } satisfies LocalizedText,
+  homeHeroSub: {
+    ko:
+      '회원가입 없이 Score v2 가중치·임계·선정 이유를 그대로 볼 수 있습니다. 투자 권유가 아니며 수익을 약속하지 않습니다.',
+    en:
+      'No signup. See Score v2 weights, threshold, and selection reasons as published. Not investment advice; no return promises.',
+  } satisfies LocalizedText,
+  homeHeroCtaMethodology: {
+    ko: '선정 방법 보기',
+    en: 'See methodology',
+  } satisfies LocalizedText,
+  homeHeroCtaPerformance: {
+    ko: '누적 기록(가상) 보기',
+    en: 'View modeled record',
+  } satisfies LocalizedText,
+  aboutTitle: {
+    ko: '소개·FAQ',
+    en: 'About & FAQ',
+  } satisfies LocalizedText,
+  aboutDescription: {
+    ko:
+      '텐베거 데일리(Finnaut)가 무엇인지, 투자 권유가 아닌 이유, Score v2·일일 1후보·브랜드 구분을 설명합니다.',
+    en:
+      'What Finnaut Ten Bagger Daily is: not investment advice, Score v2, one daily candidate, and brand distinction.',
+  } satisfies LocalizedText,
+  aboutLead: {
+    ko:
+      '텐베거 데일리는 Finnaut가 운영하는 규칙 기반 일일 스크리닝 기록 사이트입니다. 연구·참고용이며 투자 권유·수익 보장이 아닙니다.',
+    en:
+      'Ten Bagger Daily is Finnaut’s rule-based daily screening record. For research only — not investment advice or return promises.',
+  } satisfies LocalizedText,
+  aboutBrandHeading: {
+    ko: '다른 “텐배거” 사이트와의 차이',
+    en: 'How this differs from other “tenbagger” sites',
+  } satisfies LocalizedText,
+  aboutBrandBody: {
+    ko:
+      '유료 차트팩·리딩방·블로그형 장기 리서치와 목적이 다릅니다. 텐베거 데일리는 일일 공개 스크리닝 기록에 초점을 두며, 공식 URL은 tenbagger.finnaut.com 입니다.',
+    en:
+      'Unlike paid chart packs, signal rooms, or long-form blog research, Ten Bagger Daily focuses on a daily public screening record. Official URL: tenbagger.finnaut.com.',
+  } satisfies LocalizedText,
+  aboutFaqHeading: {
+    ko: '자주 묻는 질문',
+    en: 'Frequently asked questions',
+  } satisfies LocalizedText,
+  aboutLinksHeading: {
+    ko: '관련 페이지',
+    en: 'Related pages',
   } satisfies LocalizedText,
   newcomerTitle: {
     ko: '이 사이트는 무엇을 하나요?',

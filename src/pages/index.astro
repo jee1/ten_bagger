@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import DailyCard from '../components/DailyCard.astro';
+import HomeHero from '../components/HomeHero.astro';
 import NewcomerIntro from '../components/NewcomerIntro.astro';
 import RetentionActions from '../components/RetentionActions.astro';
+import { homeJsonLd } from '../lib/structuredData';
 import {
   getDailyEntry,
   getLatestEntryBefore,
@@ -46,7 +48,9 @@ const metaEntry = displayEntry;
   titleKey="homeTitle"
   descriptionKey="homeDescription"
   lang={lang}
+  jsonLd={homeJsonLd()}
 >
+  <HomeHero lang={lang} />
   <NewcomerIntro lang={lang} />
   <div class="page-head" style="align-items: baseline;">
     <p class="muted" style="margin: 0; font-size: 0.95rem;" data-i18n="tagline">

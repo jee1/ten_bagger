@@ -14,6 +14,7 @@ interface Props {
   descriptionKey?: keyof typeof labels;
   descriptionI18n?: { ko: string; en: string };
   lang?: Lang;
+  jsonLd?: Record<string, unknown>[];
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   descriptionKey,
   descriptionI18n,
   lang = 'ko',
+  jsonLd = [],
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const kst = getKstDate();
@@ -113,6 +115,11 @@ const isActive = (key: string) =>
     >
       {pageTitle}
     </title>
+    {
+      jsonLd.map((schema) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
     <script type="application/json" id="i18n-labels" set:html={labelsJson} />
     <script
       type="application/json"
@@ -171,6 +178,12 @@ const isActive = (key: string) =>
             class:list={{ active: isActive('performance') }}
             aria-current={isActive('performance') ? 'page' : undefined}
             ><span data-i18n="performance">{label('performance', lang)}</span></a
+          >
+          <a
+            href={localeHref(base, lang, 'about')}
+            class:list={{ active: isActive('about') }}
+            aria-current={isActive('about') ? 'page' : undefined}
+            ><span data-i18n="about">{label('about', lang)}</span></a
           >
         </nav>
       </div>
