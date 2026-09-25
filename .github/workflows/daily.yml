@@ -158,6 +158,47 @@ jobs:
             --ref main \
             -f "asOfDate=${AS_OF}"
 
+  notify-telegram:
+    needs: [generate-and-deploy, deploy]
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync latest daily content
+        run: git pull --ff-only origin main
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Notify Telegram (optional)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TARGET_DATE: ${{ needs.generate-and-deploy.outputs.target_date }}
+          SITE_URL: https://tenbagger.finnaut.com
+        run: |
+          set -euo pipefail
+          if [ -z "${TELEGRAM_BOT_TOKEN:-}" ] || [ -z "${TELEGRAM_CHAT_ID:-}" ]; then
+            echo "Telegram secrets not configured; skipping."
+            exit 0
+          fi
+          export NOTIFY_TEXT
+          NOTIFY_TEXT=$(node --experimental-strip-types scripts/telegram_daily_notify.mjs "$TARGET_DATE")
+          PAYLOAD=$(node -e '
+            process.stdout.write(JSON.stringify({
+              chat_id: process.env.TELEGRAM_CHAT_ID,
+              text: process.env.NOTIFY_TEXT,
+              disable_web_page_preview: false,
+            }));
+          ')
+          curl -sf -X POST \
+            "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -H 'Content-Type: application/json' \
+            -d "$PAYLOAD"
+
   notify-failure:
     needs: [generate-and-deploy, deploy, dispatch-ledger]
     if: ${{ always() && (needs.generate-and-deploy.result == 'failure' || needs.deploy.result == 'failure' || needs['dispatch-ledger'].result == 'failure') }}

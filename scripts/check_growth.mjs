@@ -43,6 +43,10 @@ if (!indexHtml.includes('data-growth-rss')) {
   console.error('check_growth: home missing RSS CTA');
   process.exit(1);
 }
+if (!indexHtml.includes('data-growth-follow')) {
+  console.error('check_growth: home missing follow page link');
+  process.exit(1);
+}
 if (!indexHtml.includes('data-growth-share')) {
   console.error('check_growth: home missing share CTA');
   process.exit(1);
@@ -51,9 +55,15 @@ if (!indexHtml.includes(`href="${expectedRssUrl}"`)) {
   console.error(`check_growth: RSS link must use absolute URL (${expectedRssUrl})`);
   process.exit(1);
 }
-if (!indexHtml.includes(`>${expectedRssUrl}<`)) {
-  console.error('check_growth: RSS displayed text must be absolute URL');
+if (!indexHtml.includes('RSS로 구독') || !indexHtml.includes(expectedRssUrl)) {
+  console.error('check_growth: home must offer RSS subscribe CTA and show feed URL');
   process.exit(1);
+}
+for (const forbidden of ['텔레그램', 'Telegram', '준비 중', 'Coming soon']) {
+  if (indexHtml.includes(forbidden)) {
+    console.error(`check_growth: home must not mention visitor Telegram copy (${forbidden})`);
+    process.exit(1);
+  }
 }
 if (!indexHtml.includes('data-i18n-attr="content:homeDescription"')) {
   console.error('check_growth: home meta must use service description key');
@@ -156,6 +166,49 @@ if (!titleMatch || !titleMatch[1].includes(newestDate)) {
 const methodologyHtml = readHtml('methodology/index.html');
 if (!methodologyHtml.includes('data-i18n-attr="content:tagline"')) {
   console.error('check_growth: default pages must restore tagline description localization');
+  process.exit(1);
+}
+
+const rssDisclaimer =
+  'RSS 항목은 “해당 날짜의 일일 스크리닝 기록이 공개되었다”는 뜻입니다. 투자 권유·매수 신호가 아니며';
+
+const followKo = readHtml('follow/index.html');
+if (!followKo.includes(expectedRssUrl) || !followKo.includes('follow-disclaimer')) {
+  console.error('check_growth: follow page must show RSS URL and disclaimer');
+  process.exit(1);
+}
+if (!followKo.includes(rssDisclaimer)) {
+  console.error('check_growth: follow page must include RSS record disclaimer');
+  process.exit(1);
+}
+if (!followKo.includes('RSS로 구독')) {
+  console.error('check_growth: follow page must use RSS subscribe heading');
+  process.exit(1);
+}
+if (followKo.includes('github.com')) {
+  console.error('check_growth: follow page must not link to GitHub');
+  process.exit(1);
+}
+for (const forbidden of ['텔레그램', 'Telegram', '준비 중']) {
+  if (followKo.includes(forbidden)) {
+    console.error(`check_growth: follow page must not mention Telegram (${forbidden})`);
+    process.exit(1);
+  }
+}
+
+const followEn = readHtml('en/follow/index.html');
+if (!followEn.includes(expectedRssUrl) || !followEn.includes('Subscribe via RSS')) {
+  console.error('check_growth: en follow page must show RSS URL and subscribe heading');
+  process.exit(1);
+}
+if (followEn.includes('Telegram')) {
+  console.error('check_growth: en follow page must not mention Telegram');
+  process.exit(1);
+}
+
+const aboutKo = readHtml('about/index.html');
+if (!aboutKo.includes('follow/')) {
+  console.error('check_growth: about page must link to follow page');
   process.exit(1);
 }
 

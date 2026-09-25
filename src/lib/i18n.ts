@@ -272,6 +272,7 @@ export const labels = {
     ko: '피드 리더에 주소를 추가해 새 기록을 받아보세요.',
     en: 'Add this feed in your reader to follow new reports.',
   } satisfies LocalizedText,
+  rssSubscribeCta: { ko: 'RSS로 구독', en: 'Subscribe via RSS' } satisfies LocalizedText,
   shareCta: { ko: '일일 링크 공유', en: 'Share daily link' } satisfies LocalizedText,
   shareShared: { ko: '공유 메뉴를 열었습니다', en: 'Share menu opened' } satisfies LocalizedText,
   shareCopied: { ko: '링크를 복사했습니다', en: 'Link copied' } satisfies LocalizedText,
@@ -288,6 +289,49 @@ export const labels = {
     ko: '공유할 수 없습니다. 아래 주소를 직접 복사해 주세요.',
     en: 'Could not share. Please copy the URL below.',
   } satisfies LocalizedText,
+  followTitle: { ko: 'RSS 구독', en: 'RSS subscribe' } satisfies LocalizedText,
+  followDescription: {
+    ko: '텐베거 데일리 일일 스크리닝 기록을 RSS 피드로 받는 방법입니다.',
+    en: 'How to subscribe to Ten Bagger Daily screening records via RSS.',
+  } satisfies LocalizedText,
+  followLead: {
+    ko: '피드 리더에 주소를 추가하면 매일 오전 6시(KST) 새 기록이 올라올 때 항목이 추가됩니다.',
+    en: 'Add the feed in a reader; new items appear when each daily record is published (~06:00 KST).',
+  } satisfies LocalizedText,
+  followRssHeading: { ko: 'RSS로 구독', en: 'Subscribe via RSS' } satisfies LocalizedText,
+  followRssIntro: {
+    ko: '피드 리더에 아래 주소를 추가하면 새 일일 기록이 자동으로 표시됩니다.',
+    en: 'Add the URL below in a feed reader to see each new daily report.',
+  } satisfies LocalizedText,
+  followRssStep1: {
+    ko: '아래 피드 주소를 복사합니다.',
+    en: 'Copy the feed URL below.',
+  } satisfies LocalizedText,
+  followRssStep2: {
+    ko: '피드 리더를 엽니다. (예: Feedly, Inoreader)',
+    en: 'Open a feed reader. (e.g. Feedly, Inoreader)',
+  } satisfies LocalizedText,
+  followRssStep3: {
+    ko: '“피드 추가” 또는 “구독” 메뉴를 선택합니다.',
+    en: 'Choose “Add feed” or “Subscribe”.',
+  } satisfies LocalizedText,
+  followRssStep4: {
+    ko: '복사한 주소를 붙여 넣고 저장합니다.',
+    en: 'Paste the URL and save.',
+  } satisfies LocalizedText,
+  followRssStep5: {
+    ko: '새 기록이 배포되면 피드에 항목이 추가됩니다.',
+    en: 'New items appear when each day’s report is published.',
+  } satisfies LocalizedText,
+  followRssUrlLabel: { ko: '피드 주소', en: 'Feed URL' } satisfies LocalizedText,
+  followDisclaimerHeading: { ko: '피드 안내', en: 'About this feed' } satisfies LocalizedText,
+  followDisclaimerBody: {
+    ko:
+      'RSS 항목은 “해당 날짜의 일일 스크리닝 기록이 공개되었다”는 뜻입니다. 투자 권유·매수 신호가 아니며, 수익을 보장하지 않습니다. 모든 판단과 책임은 이용자 본인에게 있습니다.',
+    en:
+      'RSS items mean “that day’s daily screening record was published.” This is not investment advice or a buy signal; no returns are promised. All decisions and losses are your own responsibility.',
+  } satisfies LocalizedText,
+  followCtaLink: { ko: 'RSS 구독 방법', en: 'How to subscribe via RSS' } satisfies LocalizedText,
 } as const;
 
 export function localeToLang(locale: string | undefined): Lang {

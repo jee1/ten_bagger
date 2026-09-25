@@ -56,7 +56,7 @@ jobs:
           npm run test:seo-head
           npm run test:growth
           BASE_PATH=/ten_bagger/ SITE_URL=https://example.github.io/ten_bagger npm run build
-          BASE_PATH=/ten_bagger/ SITE_URL=https://example.github.io/ten_bagger node scripts/check_growth.mjs
+          BASE_PATH=/ten_bagger/ SITE_URL=https://example.github.io/ten_bagger node --experimental-strip-types scripts/check_growth.mjs
           npm run test:methodology-split
 
       - name: Audit npm dependencies

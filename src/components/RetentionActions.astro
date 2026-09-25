@@ -2,6 +2,7 @@
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
 import { joinSitePath } from '../lib/rss.ts';
+import { localeHref } from '../lib/staticNav';
 
 interface Props {
   lang: Lang;
@@ -12,6 +13,7 @@ const { lang, date } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const site = Astro.site?.href.replace(/\/+$/, '') ?? '';
 const rssUrl = site ? joinSitePath(site, 'rss.xml') : `${base}rss.xml`;
+const followHref = localeHref(base, lang, 'follow');
 ---
 
 <section
@@ -25,13 +27,13 @@ const rssUrl = site ? joinSitePath(site, 'rss.xml') : `${base}rss.xml`;
     <h2 class="eyebrow" data-i18n="rssCta">{label('rssCta', lang)}</h2>
     <p class="muted retention-hint" data-i18n="rssHint">{label('rssHint', lang)}</p>
     <p class="retention-url-row">
-      <a
-        class="retention-rss-link num"
-        href={rssUrl}
-        data-growth-rss
-      >
-        {rssUrl}
+      <a class="retention-rss-link" href={rssUrl} data-growth-rss data-i18n="rssSubscribeCta">
+        {label('rssSubscribeCta', lang)}
       </a>
+    </p>
+    <p class="muted retention-hint num">{rssUrl}</p>
+    <p class="retention-hint">
+      <a href={followHref} data-growth-follow data-i18n="followCtaLink">{label('followCtaLink', lang)}</a>
     </p>
   </div>
   <div class="retention-block">
