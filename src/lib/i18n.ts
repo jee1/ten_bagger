@@ -360,6 +360,36 @@ export const labels = {
   } satisfies LocalizedText,
   digestBackToIndex: { ko: '← 주간 목록', en: '← All weeks' } satisfies LocalizedText,
   digestCtaHeading: { ko: '더 보기', en: 'Explore more' } satisfies LocalizedText,
+  digestTableTicker: { ko: '티커', en: 'Ticker' } satisfies LocalizedText,
+  digestTableLink: { ko: '일일 기록', en: 'Daily report' } satisfies LocalizedText,
+  digestMarketCounts: { ko: '시장별 게시', en: 'Published by market' } satisfies LocalizedText,
+  digestPerformanceHeading: { ko: '이번 주 성과 (요약)', en: 'This week (performance note)' } satisfies LocalizedText,
+  digestPerformanceNotComputed: {
+    ko: '이번 주 주간 수익률은 이 페이지에서 산출하지 않습니다.',
+    en: 'Weekly return is not computed on this page.',
+  } satisfies LocalizedText,
+  digestPerformanceInsufficient: {
+    ko: '완료된 측정 표본이 아직 없거나 일부 픽만 측정되었습니다(가상·픽별).',
+    en: 'Completed measurement samples are missing or only cover some picks (modeled, per-pick).',
+  } satisfies LocalizedText,
+  digestPerformanceSampleNote: {
+    ko: '완료 표본(가상·픽별, 1M–1Y 지평): KR {kr} · US {us} (총 {total})',
+    en: 'Completed samples (modeled per-pick, 1M–1Y horizons): KR {kr} · US {us} ({total} total)',
+  } satisfies LocalizedText,
+  digestPerformanceModeledNote: {
+    ko: '누적·기간별 성과는 성과 페이지의 가상·모델 수치입니다. 실제 거래 결과와 다를 수 있습니다.',
+    en: 'Cumulative and horizon stats on the performance page are modeled figures and may differ from live trading.',
+  } satisfies LocalizedText,
+  digestDisclaimer: {
+    ko:
+      '이 페이지는 규칙 기반 일일 스크리닝 기록의 주간 요약입니다. 투자 권유·매수 신호가 아니며 수익을 보장하지 않습니다. 성과는 가상·모델이며 실제 거래와 다를 수 있습니다. 모든 판단과 책임은 이용자 본인에게 있습니다.',
+    en:
+      'This page summarizes rule-based daily screening records by week. It is not investment advice or a buy signal; no returns are guaranteed. Performance figures are modeled and may differ from live trading. All decisions and losses are your own responsibility.',
+  } satisfies LocalizedText,
+  digestArchiveLink: {
+    ko: '주간 요약으로 최근 주를 한눈에 보기',
+    en: 'Browse recent weeks in the weekly digest',
+  } satisfies LocalizedText,
 } as const;
 
 export function localeToLang(locale: string | undefined): Lang {

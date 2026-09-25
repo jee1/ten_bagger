@@ -1,5 +1,8 @@
+import type { PerformanceBundle } from './content-types.generated.ts';
 import type { DailyEntry } from './types.ts';
 import type { Lang } from './i18n.ts';
+
+const PRESENTATION_HORIZONS = new Set(['1M', '3M', '6M', '1Y']);
 
 /**
  * Market-day strings (YYYY-MM-DD) are bucketed by ISO week using Asia/Seoul calendar
@@ -118,4 +121,76 @@ export function buildDigestDayRow(entry: DailyEntry): DigestDayRow {
 
 export function countWeekPicks(rows: DigestDayRow[]): number {
   return rows.filter((row) => row.status === 'pick' && row.symbol).length;
+}
+
+export interface MarketDayCounts {
+  kr: number;
+  us: number;
+}
+
+/** Published market-day counts by KR/US for a week table. */
+export function countMarketDays(rows: DigestDayRow[]): MarketDayCounts {
+  let kr = 0;
+  let us = 0;
+  for (const row of rows) {
+    if (row.market === 'KR') kr++;
+    else us++;
+  }
+  return { kr, us };
+}
+
+export interface DigestWeekPerformanceView {
+  /** Weekly rollup return is intentionally not computed on digest pages. */
+  weeklyReturnComputed: false;
+  pickDays: number;
+  completedSamples: number;
+  completedKr: number;
+  completedUs: number;
+  insufficientSample: boolean;
+}
+
+function hasCompletePickMeasurement(
+  bundle: PerformanceBundle | null,
+  pickDate: string,
+  symbol: string,
+): boolean {
+  if (!bundle) return false;
+  return bundle.measurements.some(
+    (m) =>
+      m.pickDate === pickDate &&
+      m.symbol === symbol &&
+      m.completionStatus === 'complete' &&
+      typeof m.forwardReturn === 'number' &&
+      Number.isFinite(m.forwardReturn) &&
+      PRESENTATION_HORIZONS.has(m.horizonId),
+  );
+}
+
+/**
+ * Digest-safe performance context: never computes weekly return or excess vs benchmark.
+ * Reports completed per-pick measurement count only (presentation horizons).
+ */
+export function deriveDigestWeekPerformance(
+  rows: DigestDayRow[],
+  krBundle: PerformanceBundle | null,
+  usBundle: PerformanceBundle | null,
+): DigestWeekPerformanceView {
+  const pickRows = rows.filter((row) => row.status === 'pick' && row.symbol);
+  let completedKr = 0;
+  let completedUs = 0;
+  for (const row of pickRows) {
+    const bundle = row.market === 'KR' ? krBundle : usBundle;
+    if (!row.symbol || !hasCompletePickMeasurement(bundle, row.date, row.symbol)) continue;
+    if (row.market === 'KR') completedKr++;
+    else completedUs++;
+  }
+  const completedSamples = completedKr + completedUs;
+  return {
+    weeklyReturnComputed: false,
+    pickDays: pickRows.length,
+    completedSamples,
+    completedKr,
+    completedUs,
+    insufficientSample: pickRows.length === 0 || completedSamples < pickRows.length,
+  };
 }

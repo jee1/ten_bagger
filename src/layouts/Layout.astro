@@ -15,6 +15,7 @@ interface Props {
   descriptionI18n?: { ko: string; en: string };
   lang?: Lang;
   jsonLd?: Record<string, unknown>[];
+  disclaimerVariant?: 'default' | 'digest';
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   descriptionI18n,
   lang = 'ko',
   jsonLd = [],
+  disclaimerVariant = 'default',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const kst = getKstDate();
@@ -196,7 +198,7 @@ const isActive = (key: string) =>
     </header>
     <main class="container">
       <slot />
-      <Disclaimer lang={lang} />
+      <Disclaimer lang={lang} variant={disclaimerVariant} />
     </main>
     <script>
       import {

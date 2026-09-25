@@ -33,10 +33,14 @@ const weeks = weekKeys.map((key) => {
   titleKey="digestTitle"
   descriptionKey="digestDescription"
   lang={lang}
+  disclaimerVariant="digest"
 >
   <article class="doc-body digest-page">
     <h1 data-i18n="digestTitle">{label('digestTitle', lang)}</h1>
     <p class="muted about-lead" data-i18n="digestIndexLead">{label('digestIndexLead', lang)}</p>
+    <p class="muted digest-week-note" data-i18n="calendarRotationNote">
+      {label('calendarRotationNote', lang)}
+    </p>
     <p class="muted digest-week-note" data-i18n="digestWeekNote">{label('digestWeekNote', lang)}</p>
 
     {
@@ -65,6 +69,11 @@ const weeks = weekKeys.map((key) => {
         <li>
           <a href={localeHref(base, lang, 'performance')} data-i18n="performance">
             {label('performance', lang)}
+          </a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'methodology')} data-i18n="methodology">
+            {label('methodology', lang)}
           </a>
         </li>
         <li>

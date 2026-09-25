@@ -3,7 +3,9 @@ import { describe, it } from 'node:test';
 
 import {
   buildDigestDayRow,
+  countMarketDays,
   countWeekPicks,
+  deriveDigestWeekPerformance,
   formatIsoWeekKey,
   groupDatesByIsoWeek,
   isoWeekDateRange,
@@ -12,6 +14,7 @@ import {
   listIsoWeekKeys,
   parseIsoWeekKey,
 } from './digest.ts';
+import type { PerformanceBundle } from './content-types.generated.ts';
 import type { DailyEntry } from './types.ts';
 
 function entry(partial: Partial<DailyEntry> & Pick<DailyEntry, 'date' | 'status'>): DailyEntry {
@@ -94,5 +97,76 @@ describe('buildDigestDayRow', () => {
     const row = buildDigestDayRow(entry({ date: '2026-09-04', status: 'no_pick' }));
     assert.equal(row.symbol, null);
     assert.equal(countWeekPicks([row]), 0);
+  });
+});
+
+describe('countMarketDays', () => {
+  it('counts KR and US published days', () => {
+    const rows = [
+      buildDigestDayRow(entry({ date: '2026-09-21', status: 'pick', market: 'KR' })),
+      buildDigestDayRow(entry({ date: '2026-09-22', status: 'no_pick', market: 'US' })),
+    ];
+    assert.deepEqual(countMarketDays(rows), { kr: 1, us: 1 });
+  });
+});
+
+describe('deriveDigestWeekPerformance', () => {
+  const krBundle = {
+    market: 'KR',
+    measurements: [
+      {
+        pickDate: '2026-09-21',
+        symbol: '005930.KS',
+        horizonId: '1M',
+        completionStatus: 'complete',
+        forwardReturn: 0.05,
+      },
+    ],
+  } as PerformanceBundle;
+
+  it('never computes weekly return and counts completed per-pick samples only', () => {
+    const rows = [
+      buildDigestDayRow(
+        entry({
+          date: '2026-09-21',
+          status: 'pick',
+          market: 'KR',
+          stock: {
+            symbol: '005930.KS',
+            name: { ko: '삼성', en: 'Samsung' },
+            exchange: 'KOSPI',
+            currency: 'KRW',
+          },
+        }),
+      ),
+      buildDigestDayRow(entry({ date: '2026-09-22', status: 'no_pick', market: 'US' })),
+    ];
+    const view = deriveDigestWeekPerformance(rows, krBundle, null);
+    assert.equal(view.weeklyReturnComputed, false);
+    assert.equal(view.pickDays, 1);
+    assert.equal(view.completedSamples, 1);
+    assert.equal(view.completedKr, 1);
+    assert.equal(view.insufficientSample, false);
+  });
+
+  it('marks insufficient when picks lack completed measurements', () => {
+    const rows = [
+      buildDigestDayRow(
+        entry({
+          date: '2026-09-21',
+          status: 'pick',
+          market: 'KR',
+          stock: {
+            symbol: '999999.KS',
+            name: { ko: '없음', en: 'Missing' },
+            exchange: 'KOSPI',
+            currency: 'KRW',
+          },
+        }),
+      ),
+    ];
+    const view = deriveDigestWeekPerformance(rows, krBundle, null);
+    assert.equal(view.completedSamples, 0);
+    assert.equal(view.insufficientSample, true);
   });
 });

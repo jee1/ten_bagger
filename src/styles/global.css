@@ -627,6 +627,15 @@ code {
   margin-bottom: 1rem;
 }
 
+.digest-performance {
+  margin-top: 1.5rem;
+}
+
+.digest-performance h2 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+}
+
 .digest-cta {
   margin-top: 1.5rem;
 }
