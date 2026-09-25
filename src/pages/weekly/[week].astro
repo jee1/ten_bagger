@@ -1,0 +1,239 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DualText from '../../components/DualText.astro';
+import { getAllDates, getDailyEntry } from '../../lib/daily';
+import {
+  adjacentIsoWeekKeys,
+  buildWeeklyDayRow,
+  countMarketDays,
+  countNoPickDays,
+  countWeekPicks,
+  deriveWeeklyPerformance,
+  formatScoreDelta,
+  formatWeekRangeLabel,
+  groupDatesByIsoWeek,
+  listIsoWeekKeys,
+  parseIsoWeekKey,
+  weeklyPublishIso,
+} from '../../lib/weekly';
+import { weeklyPageDescription, weeklyPageTitle } from '../../lib/weeklyMeta';
+import { weeklyPageJsonLd } from '../../lib/structuredData';
+import { label, localeToLang } from '../../lib/i18n';
+import { loadPerformanceBundle } from '../../lib/performanceLoad';
+import { localeHref } from '../../lib/staticNav';
+
+export function getStaticPaths() {
+  return listIsoWeekKeys(getAllDates()).map((week) => ({ params: { week } }));
+}
+
+const { week } = Astro.params;
+const lang = localeToLang(Astro.currentLocale);
+const base = import.meta.env.BASE_URL;
+const allWeekKeys = listIsoWeekKeys(getAllDates());
+
+let parts: ReturnType<typeof parseIsoWeekKey>;
+try {
+  parts = parseIsoWeekKey(week!);
+} catch {
+  return Astro.redirect(localeHref(base, lang, 'weekly'));
+}
+
+const weekDates = groupDatesByIsoWeek(getAllDates()).get(week!) ?? [];
+if (weekDates.length === 0) {
+  return Astro.redirect(localeHref(base, lang, 'weekly'));
+}
+
+const loaded = await Promise.all(weekDates.map(async (date) => getDailyEntry(date)));
+const entries = loaded.filter((entry) => entry != null).map((entry) => buildWeeklyDayRow(entry));
+const marketCounts = countMarketDays(entries);
+const pickCount = countWeekPicks(entries);
+const noPickCount = countNoPickDays(entries);
+const perfView = deriveWeeklyPerformance(
+  entries,
+  loadPerformanceBundle('KR'),
+  loadPerformanceBundle('US'),
+);
+const rangeLabel = formatWeekRangeLabel(parts.isoYear, parts.isoWeek, lang);
+const { prev, next } = adjacentIsoWeekKeys(allWeekKeys, week!);
+const pageTitle = weeklyPageTitle(week!, lang);
+const pageDescription = weeklyPageDescription(week!, pickCount, lang);
+const titleI18n = { ko: weeklyPageTitle(week!, 'ko'), en: weeklyPageTitle(week!, 'en') };
+const descriptionI18n = {
+  ko: weeklyPageDescription(week!, pickCount, 'ko'),
+  en: weeklyPageDescription(week!, pickCount, 'en'),
+};
+const publishIso = weeklyPublishIso(week!);
+const sampleNote = label('weeklyPerformanceSampleNote', lang)
+  .replace('{kr}', String(perfView.completedKr))
+  .replace('{us}', String(perfView.completedUs))
+  .replace('{total}', String(perfView.completedSamples));
+---
+
+<Layout
+  title={pageTitle}
+  titleI18n={titleI18n}
+  description={pageDescription}
+  descriptionI18n={descriptionI18n}
+  lang={lang}
+  disclaimerVariant="weekly"
+  jsonLd={[weeklyPageJsonLd(lang, week!, pageTitle, pageDescription, publishIso)]}
+>
+  <article class="doc-body weekly-page">
+    <p class="muted">
+      <a href={localeHref(base, lang, 'weekly')} data-i18n="weeklyBackToIndex">
+        {label('weeklyBackToIndex', lang)}
+      </a>
+    </p>
+    <h1 class="num">{week}</h1>
+    <p class="muted" data-i18n="weeklyPageLead">{label('weeklyPageLead', lang)}</p>
+    <p class="muted weekly-week-range">{rangeLabel}</p>
+    <p class="muted weekly-summary-line">
+      <span data-i18n="weeklySummaryPublished">{label('weeklySummaryPublished', lang)}</span> {pickCount}
+      {' · '}
+      <span data-i18n="weeklySummaryNone">{label('weeklySummaryNone', lang)}</span> {noPickCount}
+      {' · '}
+      <span data-i18n="marketKR">{label('marketKR', lang)}</span> {marketCounts.kr}
+      {' · '}
+      <span data-i18n="marketUS">{label('marketUS', lang)}</span> {marketCounts.us}
+    </p>
+    <p class="muted weekly-week-note" data-i18n="calendarRotationNote">
+      {label('calendarRotationNote', lang)}
+    </p>
+
+    <section aria-labelledby="weekly-pick-list">
+      <h2 id="weekly-pick-list" data-i18n="weeklyPickListHeading">
+        {label('weeklyPickListHeading', lang)}
+      </h2>
+      <table class="perf-table weekly-table">
+        <thead>
+          <tr>
+            <th data-i18n="performanceTableDate">{label('performanceTableDate', lang)}</th>
+            <th data-i18n="performanceMarket">{label('performanceMarket', lang)}</th>
+            <th data-i18n="performanceTableSymbol">{label('performanceTableSymbol', lang)}</th>
+            <th data-i18n="weeklyTableName">{label('weeklyTableName', lang)}</th>
+            <th class="right" data-i18n="composite">{label('composite', lang)}</th>
+            <th class="right" data-i18n="weeklyTableScoreDelta">{label('weeklyTableScoreDelta', lang)}</th>
+            <th data-i18n="weeklyOpenDaily">{label('weeklyOpenDaily', lang)}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            entries.map((row) => {
+              const delta = formatScoreDelta(row);
+              return (
+                <tr>
+                  <td class="num">{row.date}</td>
+                  <td>
+                    <span class={`badge ${row.market === 'KR' ? 'kr' : 'us'}`}>{row.market}</span>
+                  </td>
+                  <td class="num">{row.symbol ?? '—'}</td>
+                  <td>
+                    {row.symbol ? (
+                      <DualText text={{ ko: row.nameKo ?? '', en: row.nameEn ?? '' }} lang={lang} />
+                    ) : (
+                      <span class="muted" data-i18n="weeklyNoPickRow">{label('weeklyNoPickRow', lang)}</span>
+                    )}
+                  </td>
+                  <td class="num right">{row.composite != null ? row.composite.toFixed(1) : '—'}</td>
+                  <td class="num right">{delta ?? '—'}</td>
+                  <td>
+                    <a href={localeHref(base, lang, `daily/${row.date}`)} data-i18n="weeklyOpenDaily">
+                      {label('weeklyOpenDaily', lang)}
+                    </a>
+                  </td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section class="weekly-performance" aria-labelledby="weekly-performance-heading">
+      <h2 id="weekly-performance-heading" data-i18n="weeklyPerformanceHeading">
+        {label('weeklyPerformanceHeading', lang)}
+      </h2>
+      <p class="muted" data-i18n="performanceHypothetical">{label('performanceHypothetical', lang)}</p>
+      <p class="muted" data-i18n="performanceEqualWeight">{label('performanceEqualWeight', lang)}</p>
+      <p class="muted" data-i18n="performanceIndexNote">{label('performanceIndexNote', lang)}</p>
+      <p class="muted" data-i18n="weeklyPerformanceNotComputed">
+        {label('weeklyPerformanceNotComputed', lang)}
+      </p>
+      {
+        perfView.insufficientSample && (
+          <p class="muted" data-i18n="weeklyPerformanceInsufficient">
+            {label('weeklyPerformanceInsufficient', lang)}
+          </p>
+        )
+      }
+      {
+        perfView.completedSamples > 0 && <p class="muted num">{sampleNote}</p>
+      }
+      <p class="muted" data-i18n="weeklyPerformanceDetailLink">
+        {label('weeklyPerformanceDetailLink', lang)}
+      </p>
+      <ul class="about-links">
+        <li>
+          <a href={localeHref(base, lang, 'performance')} data-i18n="performance">
+            {label('performance', lang)}
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="weekly-methodology" aria-labelledby="weekly-methodology-heading">
+      <h2 id="weekly-methodology-heading" data-i18n="weeklyMethodologyHeading">
+        {label('weeklyMethodologyHeading', lang)}
+      </h2>
+      <p class="muted" data-i18n="weeklyMethodologyBlurb">{label('weeklyMethodologyBlurb', lang)}</p>
+      <ul class="about-links">
+        <li>
+          <a href={localeHref(base, lang, 'methodology')} data-i18n="methodology">
+            {label('methodology', lang)}
+          </a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'methodology/price-basis')} data-i18n="performancePriceBasisNoteLink">
+            {label('performancePriceBasisNoteLink', lang)}
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <nav class="weekly-adjacent" aria-label={label('weeklyCtaHeading', lang)}>
+      {
+        prev ? (
+          <a class="num" href={localeHref(base, lang, `weekly/${prev}`)}>
+            ← <span data-i18n="weeklyPrevWeek">{label('weeklyPrevWeek', lang)}</span> {prev}
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next ? (
+          <a class="num" href={localeHref(base, lang, `weekly/${next}`)}>
+            <span data-i18n="weeklyNextWeek">{label('weeklyNextWeek', lang)}</span> {next} →
+          </a>
+        ) : (
+          <span />
+        )
+      }
+    </nav>
+
+    <section class="weekly-cta" aria-labelledby="weekly-cta-heading">
+      <h2 id="weekly-cta-heading" data-i18n="weeklyCtaHeading">{label('weeklyCtaHeading', lang)}</h2>
+      <ul class="about-links">
+        <li>
+          <a href={localeHref(base, lang, 'archive')} data-i18n="archive">{label('archive', lang)}</a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'follow')} data-i18n="followTitle">{label('followTitle', lang)}</a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'about')} data-i18n="about">{label('about', lang)}</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+</Layout>

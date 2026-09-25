@@ -41,6 +41,11 @@ const faqItems = aboutFaqItems(lang);
       <h2 id="about-links" data-i18n="aboutLinksHeading">{label('aboutLinksHeading', lang)}</h2>
       <ul class="about-links">
         <li>
+          <a href={localeHref(base, lang, 'weekly')} data-i18n="weeklyHubTitle">
+            {label('weeklyHubTitle', lang)}
+          </a>
+        </li>
+        <li>
           <a href={localeHref(base, lang, 'follow')} data-i18n="followTitle">
             {label('followTitle', lang)}
           </a>

@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Calendar from '../components/Calendar.astro';
 import { getAllDates, getEntriesForMonth, getKstDate } from '../lib/daily';
 import { label, localeToLang } from '../lib/i18n';
-import { archiveYmKey } from '../lib/staticNav';
+import { archiveYmKey, localeHref } from '../lib/staticNav';
+
+const base = import.meta.env.BASE_URL;
 
 const lang = localeToLang(Astro.currentLocale);
 const kstNow = getKstDate();
@@ -44,6 +46,11 @@ const monthData = await Promise.all(
         <span data-i18n-show="en" hidden={lang !== 'en'}
           >Select a date to view that day's ten-bagger report.</span
         >
+      </p>
+      <p class="muted">
+        <a href={localeHref(base, lang, 'weekly')} data-i18n="weeklyArchiveLink">
+          {label('weeklyArchiveLink', lang)}
+        </a>
       </p>
     </div>
   </div>

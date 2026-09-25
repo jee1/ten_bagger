@@ -4,7 +4,9 @@ import { describe, it } from 'node:test';
 import {
   FEED_ITEM_LIMIT,
   buildRssItems,
+  buildWeeklyRssItem,
   joinSitePath,
+  weeklyPermalink,
   type RssDailyInput,
 } from './rss.ts';
 import type { DailyEntry } from './types.ts';
@@ -105,5 +107,25 @@ describe('buildRssItems', () => {
       { site },
     );
     assert.equal(items.length, 0);
+  });
+});
+
+describe('buildWeeklyRssItem', () => {
+  const site = 'https://example.github.io/ten_bagger';
+
+  it('builds teaser item linking to weekly page with disclaimer', () => {
+    const item = buildWeeklyRssItem(
+      {
+        weekKey: '2026-W39',
+        pickCount: 5,
+        rangeStart: '2026-09-21',
+        rangeEnd: '2026-09-27',
+      },
+      { site },
+    );
+    assert.equal(item.link, weeklyPermalink(site, '2026-W39'));
+    assert.match(item.title, /weekly record summary|주간 스크리닝/i);
+    assert.match(item.description, /투자 권유|investment advice/i);
+    assert.doesNotMatch(item.description, /매수|buy signal/i);
   });
 });

@@ -31,6 +31,11 @@ const usHref = `${localeHref(base, lang, 'performance')}?market=US`;
       <p class="muted" data-i18n="performanceHypothetical">
         {label('performanceHypothetical', lang)}
       </p>
+      <p class="muted">
+        <a href={localeHref(base, lang, 'weekly')} data-i18n="weeklyArchiveLink">
+          {label('weeklyArchiveLink', lang)}
+        </a>
+      </p>
     </div>
     <nav class="segmented" aria-label={label('performanceMarket', lang)}>
       <a href={krHref} data-market-link="KR" class:list={{ active: initialMarket === 'KR' }}

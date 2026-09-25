@@ -332,6 +332,87 @@ export const labels = {
       'RSS items mean “that day’s daily screening record was published.” This is not investment advice or a buy signal; no returns are promised. All decisions and losses are your own responsibility.',
   } satisfies LocalizedText,
   followCtaLink: { ko: 'RSS 구독 방법', en: 'How to subscribe via RSS' } satisfies LocalizedText,
+  weekly: { ko: '주간', en: 'Weekly' } satisfies LocalizedText,
+  weeklyHubTitle: { ko: '주간 스크리닝 기록', en: 'Weekly screening records' } satisfies LocalizedText,
+  weeklyHubDescription: {
+    ko: '주 단위로 Score v2 일일 후보 기록을 요약합니다. 투자 권유가 아니며 수익을 약속하지 않습니다.',
+    en: 'Week-by-week summaries of Score v2 daily candidates. Not investment advice; no return promises.',
+  } satisfies LocalizedText,
+  weeklyPageLead: {
+    ko: '주간 스크리닝 기록 요약 · Score v2 · 투자 권유가 아닙니다.',
+    en: 'Weekly screening record summary · Score v2 · Not investment advice.',
+  } satisfies LocalizedText,
+  weeklyIndexLead: {
+    ko:
+      'ISO 주(한국 표준시)별로 게시된 일일 후보 기록을 요약합니다. 상세·점수·리스크는 각 일일 기록에서 확인하세요.',
+    en:
+      'Summaries of published daily candidate records by ISO week (KST). Scores and risks live on each daily report.',
+  } satisfies LocalizedText,
+  weeklyWeekNote: {
+    ko:
+      '주는 ISO 8601 기준(월요일 시작)이며, 일자는 content에 기록된 한국 표준시(KST) 시장일입니다.',
+    en:
+      'Weeks follow ISO 8601 (Monday start); dates are KST market days from committed content.',
+  } satisfies LocalizedText,
+  weeklySummaryPublished: { ko: '공개 후보', en: 'Published candidates' } satisfies LocalizedText,
+  weeklySummaryNone: { ko: '없음', en: 'No pick' } satisfies LocalizedText,
+  weeklyPickListHeading: { ko: '이번 주 후보 목록', en: 'Candidates this week' } satisfies LocalizedText,
+  weeklyTableName: { ko: '종목명', en: 'Name' } satisfies LocalizedText,
+  weeklyTableScoreDelta: { ko: '임계 대비', en: 'vs threshold' } satisfies LocalizedText,
+  weeklyNoPickRow: {
+    ko: '임계 미달 · 없음 기록',
+    en: 'Below threshold · no pick recorded',
+  } satisfies LocalizedText,
+  weeklyOpenDaily: { ko: '일일 기록 열기', en: 'Open daily report' } satisfies LocalizedText,
+  weeklyEmpty: {
+    ko: '아직 게시된 일일 기록이 없습니다.',
+    en: 'No published daily records yet.',
+  } satisfies LocalizedText,
+  weeklyBackToIndex: { ko: '← 주간 목록', en: '← All weeks' } satisfies LocalizedText,
+  weeklyCtaHeading: { ko: '더 보기', en: 'Explore more' } satisfies LocalizedText,
+  weeklyMethodologyHeading: { ko: '선정 방법 (요약)', en: 'Methodology (summary)' } satisfies LocalizedText,
+  weeklyMethodologyBlurb: {
+    ko:
+      'Score v2 복합 점수(규모·성장·밸류·진입·모멘텀·품질)와 임계 70.0 — 상회 시에만 일 1후보를 공개 기록합니다.',
+    en:
+      'Score v2 composite (size, growth, valuation, entry, momentum, quality) with threshold 70.0 — one candidate is published only when it clears the bar.',
+  } satisfies LocalizedText,
+  weeklyPerformanceHeading: {
+    ko: '성과 스냅샷 (가상)',
+    en: 'Performance snapshot (modeled)',
+  } satisfies LocalizedText,
+  weeklyPerformanceNotComputed: {
+    ko: '이번 주 주간 수익률은 이 페이지에서 산출하지 않습니다.',
+    en: 'Weekly return is not computed on this page.',
+  } satisfies LocalizedText,
+  weeklyPerformanceInsufficient: {
+    ko: '완료된 측정 표본이 아직 없거나 일부 픽만 측정되었습니다(가상·픽별).',
+    en: 'Completed measurement samples are missing or only cover some picks (modeled, per-pick).',
+  } satisfies LocalizedText,
+  weeklyPerformanceSampleNote: {
+    ko: '완료 표본(가상·픽별, 1M–1Y 지평): KR {kr} · US {us} (총 {total})',
+    en: 'Completed samples (modeled per-pick, 1M–1Y horizons): KR {kr} · US {us} ({total} total)',
+  } satisfies LocalizedText,
+  weeklyPerformanceDetailLink: {
+    ko: '자세한 정의와 누적 수치는 성과 페이지에서 확인하세요.',
+    en: 'See the performance page for definitions and cumulative modeled figures.',
+  } satisfies LocalizedText,
+  weeklyDisclaimer: {
+    ko:
+      '본 사이트는 투자 권유가 아닙니다. 모든 투자 결정과 손실은 본인 책임입니다. 본 페이지는 주간 스크리닝 기록 요약이며 투자 권유·매수 신호가 아닙니다. 성과는 가상·모델이며 실제 거래와 다를 수 있습니다.',
+    en:
+      'This site is not investment advice. All investment decisions and losses are your own responsibility. This page is a weekly screening record summary — not investment advice or a buy signal. Performance figures are modeled and may differ from live trading.',
+  } satisfies LocalizedText,
+  weeklyArchiveLink: {
+    ko: '주간 스크리닝 기록으로 최근 주 보기',
+    en: 'Browse recent weeks in weekly screening records',
+  } satisfies LocalizedText,
+  weeklyDailyCta: {
+    ko: '이 주 주간 요약 보기',
+    en: "View this week's summary",
+  } satisfies LocalizedText,
+  weeklyPrevWeek: { ko: '이전 주', en: 'Previous week' } satisfies LocalizedText,
+  weeklyNextWeek: { ko: '다음 주', en: 'Next week' } satisfies LocalizedText,
 } as const;
 
 export function localeToLang(locale: string | undefined): Lang {

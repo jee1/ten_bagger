@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllDates } from '../../lib/daily';
+import {
+  formatWeekRangeLabel,
+  groupDatesByIsoWeek,
+  listIsoWeekKeys,
+  parseIsoWeekKey,
+} from '../../lib/weekly';
+import { weeklyHubDescription, weeklyHubTitle } from '../../lib/weeklyMeta';
+import { weeklyHubJsonLd } from '../../lib/structuredData';
+import { label, localeToLang } from '../../lib/i18n';
+import { localeHref } from '../../lib/staticNav';
+
+const lang = localeToLang(Astro.currentLocale);
+const base = import.meta.env.BASE_URL;
+const dates = getAllDates();
+const weekKeys = listIsoWeekKeys(dates);
+const byWeek = groupDatesByIsoWeek(dates);
+
+const weeks = weekKeys.map((key) => {
+  const parts = parseIsoWeekKey(key);
+  const days = byWeek.get(key) ?? [];
+  return {
+    key,
+    parts,
+    dayCount: days.length,
+    rangeLabel: formatWeekRangeLabel(parts.isoYear, parts.isoWeek, lang),
+  };
+});
+---
+
+<Layout
+  title={weeklyHubTitle(lang)}
+  titleKey="weeklyHubTitle"
+  description={weeklyHubDescription(lang)}
+  lang={lang}
+  disclaimerVariant="weekly"
+  jsonLd={[weeklyHubJsonLd(lang)]}
+>
+  <article class="doc-body weekly-page">
+    <h1 data-i18n="weeklyHubTitle">{label('weeklyHubTitle', lang)}</h1>
+    <p class="muted about-lead" data-i18n="weeklyIndexLead">{label('weeklyIndexLead', lang)}</p>
+    <p class="muted weekly-week-note" data-i18n="calendarRotationNote">
+      {label('calendarRotationNote', lang)}
+    </p>
+    <p class="muted weekly-week-note" data-i18n="weeklyWeekNote">{label('weeklyWeekNote', lang)}</p>
+
+    {
+      weeks.length === 0 ? (
+        <p class="muted" data-i18n="weeklyEmpty">{label('weeklyEmpty', lang)}</p>
+      ) : (
+        <ul class="weekly-week-list">
+          {weeks.map((week) => (
+            <li>
+              <a href={localeHref(base, lang, `weekly/${week.key}`)}>
+                <span class="num">{week.key}</span>
+                <span class="muted weekly-week-range">{week.rangeLabel}</span>
+              </a>
+              <span class="muted weekly-week-meta num">{week.dayCount}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <section class="weekly-cta" aria-labelledby="weekly-cta-heading">
+      <h2 id="weekly-cta-heading" data-i18n="weeklyCtaHeading">{label('weeklyCtaHeading', lang)}</h2>
+      <ul class="about-links">
+        <li>
+          <a href={localeHref(base, lang, 'performance')} data-i18n="performance">
+            {label('performance', lang)}
+          </a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'methodology')} data-i18n="methodology">
+            {label('methodology', lang)}
+          </a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'archive')} data-i18n="archive">{label('archive', lang)}</a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'follow')} data-i18n="followTitle">{label('followTitle', lang)}</a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'about')} data-i18n="about">{label('about', lang)}</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+</Layout>

@@ -15,6 +15,7 @@ interface Props {
   descriptionI18n?: { ko: string; en: string };
   lang?: Lang;
   jsonLd?: Record<string, unknown>[];
+  disclaimerVariant?: 'default' | 'weekly';
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   descriptionI18n,
   lang = 'ko',
   jsonLd = [],
+  disclaimerVariant = 'default',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const kst = getKstDate();
@@ -168,6 +170,12 @@ const isActive = (key: string) =>
             ><span data-i18n="archive">{label('archive', lang)}</span></a
           >
           <a
+            href={localeHref(base, lang, 'weekly')}
+            class:list={{ active: isActive('weekly') }}
+            aria-current={isActive('weekly') ? 'page' : undefined}
+            ><span data-i18n="weekly">{label('weekly', lang)}</span></a
+          >
+          <a
             href={localeHref(base, lang, 'methodology')}
             class:list={{ active: isActive('methodology') }}
             aria-current={isActive('methodology') ? 'page' : undefined}
@@ -190,7 +198,7 @@ const isActive = (key: string) =>
     </header>
     <main class="container">
       <slot />
-      <Disclaimer lang={lang} />
+      <Disclaimer lang={lang} variant={disclaimerVariant} />
     </main>
     <script>
       import {

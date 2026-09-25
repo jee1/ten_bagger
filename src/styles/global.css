@@ -591,6 +591,74 @@ code {
   margin-bottom: 0.35rem;
 }
 
+.weekly-week-list {
+  list-style: none;
+  margin: 1rem 0 1.5rem;
+  padding: 0;
+}
+
+.weekly-week-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.weekly-week-list a {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.6rem;
+}
+
+.weekly-week-range {
+  font-size: 0.88rem;
+}
+
+.weekly-week-meta {
+  font-size: 0.82rem;
+}
+
+.weekly-week-note {
+  font-size: 0.82rem;
+  margin-bottom: 1rem;
+}
+
+.weekly-summary-line {
+  font-size: 0.92rem;
+  margin-bottom: 0.75rem;
+}
+
+.weekly-performance,
+.weekly-methodology {
+  margin-top: 1.5rem;
+}
+
+.weekly-performance h2,
+.weekly-methodology h2 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+}
+
+.weekly-adjacent {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  font-size: 0.88rem;
+}
+
+.weekly-cta {
+  margin-top: 1.5rem;
+}
+
+.weekly-table {
+  margin-top: 0.75rem;
+}
+
 .follow-page section {
   margin-bottom: 1.5rem;
 }
