@@ -10,9 +10,10 @@ Informal contract for search `go_evidence` eligibility (may stay unschematized u
 | markets | string[] | e.g. `["KR","US"]` |
 | status | `"ready"` \| `"not_ready"` | |
 | h20CompletePickDays | int | Count of H20-complete ledger pick days in scope |
+| h20CompleteAlignedPickDays | int | Ledger pick days that fall on walk-forward decision sessions |
 | proposedIs | `{startDate,endDate}` \| null | |
 | proposedOos | `{startDate,endDate}` \| null | Disjoint from IS |
-| projectedOosPickDays | int \| null | Estimate for OOS window |
+| projectedOosPickDays | int \| null | Disjoint OOS decision sessions projected from `oosFoldSpec` on the carve |
 | reasons | string[] | Why not_ready / notes |
 | generatedAt | string | Deterministic preferred |
 

@@ -14,7 +14,11 @@ from validate_content import load_validator
 from walk_forward.config import RunConfig
 from walk_forward.config import config_hash as wf_config_hash
 from walk_forward.execute import execute_run, generated_at_from_config
-from walk_forward.folds import build_decision_sessions, generate_rolling_folds
+from walk_forward.folds import (
+    build_decision_sessions,
+    generate_go_evidence_oos_folds,
+    generate_rolling_folds,
+)
 
 from calibration.candidates import CandidateSpec
 from calibration.config import CalibrationRunConfig, config_hash
@@ -59,6 +63,7 @@ def _run_walk_forward_for_candidate(
     measurement_source: str,
     label: str,
     write: bool = True,
+    is_fold_spec: dict[str, Any] | None = None,
 ) -> tuple[dict[str, Any], str, str]:
     try:
         import walk_forward  # noqa: F401
@@ -75,12 +80,19 @@ def _run_walk_forward_for_candidate(
         run_intent=run_intent,
         measurement_source=measurement_source,
     )
-    sessions = build_decision_sessions(
-        fold_spec["startDate"],
-        fold_spec["endDate"],
-        cal_config.markets,
-    )
-    folds = generate_rolling_folds(fold_spec, sessions)
+    if cal_config.packageIntent == "go_evidence" and is_fold_spec is not None:
+        folds = generate_go_evidence_oos_folds(
+            is_fold_spec,
+            fold_spec,
+            cal_config.markets,
+        )
+    else:
+        sessions = build_decision_sessions(
+            fold_spec["startDate"],
+            fold_spec["endDate"],
+            cal_config.markets,
+        )
+        folds = generate_rolling_folds(fold_spec, sessions)
     with redirect_stdout(io.StringIO()):
         report = execute_run(
             wf_cfg,
@@ -154,6 +166,8 @@ def _preflight_search_go_evidence(cal_config: CalibrationRunConfig) -> int | Non
         as_of_date=cal_config.oosFoldSpec["endDate"],
         markets=cal_config.markets,
         performance_dir=cal_config.performanceDir,
+        oos_fold_spec=cal_config.oosFoldSpec,
+        is_fold_spec=cal_config.isFoldSpec,
     )
     if readiness["status"] == "ready":
         return None
@@ -209,6 +223,9 @@ def execute_calibration(
 
     oos_intent = "go_evidence" if cal_config.packageIntent == "go_evidence" else "exploratory"
     oos_source = cal_config.measurementSourceOos
+    # go_evidence: IS-seeded OOS folds; exploratory baseline compare uses oosFoldSpec only.
+    oos_is_fold_spec = cal_config.isFoldSpec if cal_config.packageIntent == "go_evidence" else None
+    oos_fold_kw = {"is_fold_spec": oos_is_fold_spec} if oos_is_fold_spec is not None else {}
     oos_evaluations: list[dict[str, Any]] = []
 
     for candidate in promotee_specs:
@@ -221,6 +238,7 @@ def execute_calibration(
                 measurement_source=oos_source,
                 label="oos",
                 write=write,
+                **oos_fold_kw,
             )
         except ImportError:
             raise
@@ -277,6 +295,7 @@ def execute_calibration(
                 measurement_source=oos_source,
                 label="oos-baseline",
                 write=write,
+                **oos_fold_kw,
             )
         except ImportError:
             raise
