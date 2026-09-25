@@ -6,7 +6,6 @@ from pathlib import Path
 from typing import Any
 
 from config import PERFORMANCE_DIR
-
 from walk_forward.folds import (
     build_decision_sessions,
     project_go_evidence_oos_sessions,

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pytest
+
 from walk_forward.folds import (
     build_decision_sessions,
     generate_go_evidence_oos_folds,
