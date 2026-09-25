@@ -1,0 +1,299 @@
+{
+  "date": "2026-09-25",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "100030.KQ",
+    "name": {
+      "ko": "인지소프트",
+      "en": "Inzisoft Co.,Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "인지소프트는 Technology 분야 Software - Application 기업입니다.",
+        "en": "Inzisoft Co.,Ltd. engages in the development and sale of software solutions for financial sector in South Korea. It offers electronic documents, such as format editor, form and electronic document management server, and electronic document creator."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Software - Application",
+        "en": "Software - Application"
+      }
+    }
+  },
+  "scores": {
+    "composite": 78.0,
+    "size": 100.0,
+    "growth": 85.0,
+    "valuation": 57.0,
+    "entry": 75.0,
+    "momentum": 64.4,
+    "quality": 88.9,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "인지소프트(100030.KQ)는 v2 복합 점수 78.0로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Inzisoft Co.,Ltd. (100030.KQ) cleared the 70.0 threshold with v2 composite 78.0; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 0.0% / 이익 100.0% (혼합 45.0%) — 지속 가능 성장 점수 85.0.",
+      "en": "Revenue 0.0% / earnings 100.0% (blended 45.0%) — sustainable growth score 85.0."
+    },
+    "valuation": {
+      "ko": "PER 데이터 없음, PEG 데이터 없음, FCF수익률 3.73%, PBR 데이터 없음 — 밸류 점수 57.0.",
+      "en": "P/E No data, PEG No data, FCF yield 3.73%, P/B No data — valuation score 57.0."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 12.75% — 보조 모멘텀 점수 64.4.",
+      "en": "6M return 12.75% — auxiliary momentum score 64.4."
+    },
+    "quality": {
+      "ko": "ROE 76.8%, ROA 1.91%, FCF/순이익 0.03 — 품질 점수 88.9.",
+      "en": "ROE 76.8%, ROA 1.91%, FCF/net income 0.03 — quality score 88.9."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 49608093696 기준 규모 점수 100.0.",
+      "en": "Market cap 49608093696 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 54.61%, 52주 고점 대비 -14.41% — 진입 점수 75.0.",
+      "en": "12M price range 54.61%, -14.41% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-25T09:05:31+09:00",
+    "candidatesScreened": 1900,
+    "excludedRecent": 30,
+    "skippedMarketCap": 848,
+    "skippedRedFlags": 369,
+    "noData": 4,
+    "errors": 1
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "100030.KQ",
+      "name": {
+        "ko": "인지소프트",
+        "en": "Inzisoft Co.,Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 78.0,
+        "size": 100.0,
+        "growth": 85.0,
+        "valuation": 57.0,
+        "entry": 75.0,
+        "momentum": 64.4,
+        "quality": 88.9,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "461300.KQ",
+      "name": {
+        "ko": "아이스크림미디어",
+        "en": "i-Scream Media CO., LTD."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 77.4,
+        "size": 100.0,
+        "growth": 73.3,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 62.5,
+        "quality": 87.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "013030.KQ",
+      "name": {
+        "ko": "하이록코리아",
+        "en": "Hy-Lok Corporation"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.9,
+        "size": 100.0,
+        "growth": 90.6,
+        "valuation": 70.0,
+        "entry": 75.0,
+        "momentum": 62.0,
+        "quality": 63.1,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "439090.KQ",
+      "name": {
+        "ko": "마녀공장",
+        "en": "Manyo Factory Co., Ltd"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.4,
+        "size": 100.0,
+        "growth": 92.5,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 73.1,
+        "quality": 58.3,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "284740.KS",
+      "name": {
+        "ko": "쿠쿠홈시스",
+        "en": "CUCKOO Homesys Co., Ltd"
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.3,
+        "size": 100.0,
+        "growth": 99.2,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 55.7,
+        "quality": 59.9,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-25T00:05:31+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
