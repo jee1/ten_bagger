@@ -223,6 +223,9 @@ def execute_calibration(
 
     oos_intent = "go_evidence" if cal_config.packageIntent == "go_evidence" else "exploratory"
     oos_source = cal_config.measurementSourceOos
+    # go_evidence: IS-seeded OOS folds; exploratory baseline compare uses oosFoldSpec only.
+    oos_is_fold_spec = cal_config.isFoldSpec if cal_config.packageIntent == "go_evidence" else None
+    oos_fold_kw = {"is_fold_spec": oos_is_fold_spec} if oos_is_fold_spec is not None else {}
     oos_evaluations: list[dict[str, Any]] = []
 
     for candidate in promotee_specs:
@@ -235,7 +238,7 @@ def execute_calibration(
                 measurement_source=oos_source,
                 label="oos",
                 write=write,
-                is_fold_spec=cal_config.isFoldSpec,
+                **oos_fold_kw,
             )
         except ImportError:
             raise
@@ -292,7 +295,7 @@ def execute_calibration(
                 measurement_source=oos_source,
                 label="oos-baseline",
                 write=write,
-                is_fold_spec=cal_config.isFoldSpec,
+                **oos_fold_kw,
             )
         except ImportError:
             raise
