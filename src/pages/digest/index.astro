@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllDates } from '../../lib/daily';
+import {
+  formatWeekRangeLabel,
+  groupDatesByIsoWeek,
+  listIsoWeekKeys,
+  parseIsoWeekKey,
+} from '../../lib/digest';
+import { label, localeToLang } from '../../lib/i18n';
+import { localeHref } from '../../lib/staticNav';
+
+const lang = localeToLang(Astro.currentLocale);
+const base = import.meta.env.BASE_URL;
+const dates = getAllDates();
+const weekKeys = listIsoWeekKeys(dates);
+const byWeek = groupDatesByIsoWeek(dates);
+
+const weeks = weekKeys.map((key) => {
+  const parts = parseIsoWeekKey(key);
+  const days = byWeek.get(key) ?? [];
+  return {
+    key,
+    parts,
+    dayCount: days.length,
+    rangeLabel: formatWeekRangeLabel(parts.isoYear, parts.isoWeek, lang),
+  };
+});
+---
+
+<Layout
+  title={label('digestTitle', lang)}
+  titleKey="digestTitle"
+  descriptionKey="digestDescription"
+  lang={lang}
+>
+  <article class="doc-body digest-page">
+    <h1 data-i18n="digestTitle">{label('digestTitle', lang)}</h1>
+    <p class="muted about-lead" data-i18n="digestIndexLead">{label('digestIndexLead', lang)}</p>
+    <p class="muted digest-week-note" data-i18n="digestWeekNote">{label('digestWeekNote', lang)}</p>
+
+    {
+      weeks.length === 0 ? (
+        <p class="muted" data-i18n="digestEmpty">{label('digestEmpty', lang)}</p>
+      ) : (
+        <ul class="digest-week-list">
+          {weeks.map((week) => (
+            <li>
+              <a href={localeHref(base, lang, `digest/${week.key}`)}>
+                <span class="num">{week.key}</span>
+                <span class="muted digest-week-range">{week.rangeLabel}</span>
+              </a>
+              <span class="muted digest-week-meta">
+                <span data-i18n="digestDayCount">{label('digestDayCount', lang)}</span>: {week.dayCount}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <section class="digest-cta" aria-labelledby="digest-cta-heading">
+      <h2 id="digest-cta-heading" data-i18n="digestCtaHeading">{label('digestCtaHeading', lang)}</h2>
+      <ul class="about-links">
+        <li>
+          <a href={localeHref(base, lang, 'performance')} data-i18n="performance">
+            {label('performance', lang)}
+          </a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'archive')} data-i18n="archive">{label('archive', lang)}</a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'follow')} data-i18n="followTitle">{label('followTitle', lang)}</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+</Layout>

@@ -332,6 +332,34 @@ export const labels = {
       'RSS items mean “that day’s daily screening record was published.” This is not investment advice or a buy signal; no returns are promised. All decisions and losses are your own responsibility.',
   } satisfies LocalizedText,
   followCtaLink: { ko: 'RSS 구독 방법', en: 'How to subscribe via RSS' } satisfies LocalizedText,
+  digest: { ko: '주간 요약', en: 'Weekly digest' } satisfies LocalizedText,
+  digestTitle: { ko: '주간 요약', en: 'Weekly digest' } satisfies LocalizedText,
+  digestDescription: {
+    ko:
+      '게시된 일일 스크리닝 기록을 ISO 주(한국 표준시)별로 묶어 보는 온사이트 요약입니다. 투자 권유가 아닙니다.',
+    en:
+      'On-site rollup of published daily screening records by ISO week (KST). Not investment advice.',
+  } satisfies LocalizedText,
+  digestIndexLead: {
+    ko:
+      '이메일 없이 지난 주간의 공개 기록을 한눈에 보고, 각 일자 상세 페이지로 바로 이동할 수 있습니다.',
+    en:
+      'Browse recent weeks without email signup and jump to each day’s full report.',
+  } satisfies LocalizedText,
+  digestWeekNote: {
+    ko:
+      '주는 ISO 8601 기준(월요일 시작)이며, 일자는 content에 기록된 한국 표준시(KST) 시장일입니다.',
+    en:
+      'Weeks follow ISO 8601 (Monday start); dates are KST market days from committed content.',
+  } satisfies LocalizedText,
+  digestDayCount: { ko: '게시 일수', en: 'Published days' } satisfies LocalizedText,
+  digestPickCount: { ko: '선정 일수', en: 'Pick days' } satisfies LocalizedText,
+  digestEmpty: {
+    ko: '아직 게시된 일일 기록이 없습니다.',
+    en: 'No published daily records yet.',
+  } satisfies LocalizedText,
+  digestBackToIndex: { ko: '← 주간 목록', en: '← All weeks' } satisfies LocalizedText,
+  digestCtaHeading: { ko: '더 보기', en: 'Explore more' } satisfies LocalizedText,
 } as const;
 
 export function localeToLang(locale: string | undefined): Lang {

@@ -19,6 +19,8 @@
 - 오늘 / Today: https://tenbagger.finnaut.com/
 - 소개·FAQ / About: https://tenbagger.finnaut.com/about/
 - 달력 아카이브: https://tenbagger.finnaut.com/archive/
+- 주간 요약 / Weekly digest: https://tenbagger.finnaut.com/digest/
+- 주간 요약 (영문): https://tenbagger.finnaut.com/en/digest/
 - 선정 방법(방법론): https://tenbagger.finnaut.com/methodology/
 - 성과: https://tenbagger.finnaut.com/performance/
 - RSS: https://tenbagger.finnaut.com/rss.xml

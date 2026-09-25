@@ -168,6 +168,12 @@ const isActive = (key: string) =>
             ><span data-i18n="archive">{label('archive', lang)}</span></a
           >
           <a
+            href={localeHref(base, lang, 'digest')}
+            class:list={{ active: isActive('digest') }}
+            aria-current={isActive('digest') ? 'page' : undefined}
+            ><span data-i18n="digest">{label('digest', lang)}</span></a
+          >
+          <a
             href={localeHref(base, lang, 'methodology')}
             class:list={{ active: isActive('methodology') }}
             aria-current={isActive('methodology') ? 'page' : undefined}

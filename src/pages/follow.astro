@@ -46,6 +46,8 @@ const rssUrl = site ? joinSitePath(site, 'rss.xml') : `${base}rss.xml`;
     <p class="muted follow-back">
       <a href={localeHref(base, lang, '')} data-i18n="today">{label('today', lang)}</a>
       ·
+      <a href={localeHref(base, lang, 'digest')} data-i18n="digest">{label('digest', lang)}</a>
+      ·
       <a href={localeHref(base, lang, 'about')} data-i18n="about">{label('about', lang)}</a>
     </p>
   </article>

@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DualText from '../../components/DualText.astro';
+import { getAllDates, getDailyEntry } from '../../lib/daily';
+import {
+  buildDigestDayRow,
+  countWeekPicks,
+  formatWeekRangeLabel,
+  groupDatesByIsoWeek,
+  listIsoWeekKeys,
+  parseIsoWeekKey,
+} from '../../lib/digest';
+import { label, localeToLang } from '../../lib/i18n';
+import { localeHref } from '../../lib/staticNav';
+
+export function getStaticPaths() {
+  return listIsoWeekKeys(getAllDates()).map((week) => ({ params: { week } }));
+}
+
+const { week } = Astro.params;
+const lang = localeToLang(Astro.currentLocale);
+const base = import.meta.env.BASE_URL;
+
+let parts: ReturnType<typeof parseIsoWeekKey>;
+try {
+  parts = parseIsoWeekKey(week!);
+} catch {
+  return Astro.redirect(localeHref(base, lang, 'digest'));
+}
+
+const weekDates = groupDatesByIsoWeek(getAllDates()).get(week!) ?? [];
+if (weekDates.length === 0) {
+  return Astro.redirect(localeHref(base, lang, 'digest'));
+}
+
+const loaded = await Promise.all(weekDates.map(async (date) => getDailyEntry(date)));
+const entries = loaded.filter((entry) => entry != null).map((entry) => buildDigestDayRow(entry));
+const rangeLabel = formatWeekRangeLabel(parts.isoYear, parts.isoWeek, lang);
+const pickCount = countWeekPicks(entries);
+const pageTitle = `${week} | ${label('digestTitle', lang)}`;
+---
+
+<Layout title={pageTitle} titleKey="digestTitle" descriptionKey="digestDescription" lang={lang}>
+  <article class="doc-body digest-page">
+    <p class="muted">
+      <a href={localeHref(base, lang, 'digest')} data-i18n="digestBackToIndex">
+        {label('digestBackToIndex', lang)}
+      </a>
+    </p>
+    <h1 class="num">{week}</h1>
+    <p class="muted digest-week-range">{rangeLabel}</p>
+    <p class="muted">
+      <span data-i18n="digestDayCount">{label('digestDayCount', lang)}</span>: {entries.length}
+      {' · '}
+      <span data-i18n="digestPickCount">{label('digestPickCount', lang)}</span>: {pickCount}
+    </p>
+    <p class="muted digest-week-note" data-i18n="digestWeekNote">{label('digestWeekNote', lang)}</p>
+
+    <table class="perf-table digest-table">
+      <thead>
+        <tr>
+          <th data-i18n="performanceTableDate">{label('performanceTableDate', lang)}</th>
+          <th data-i18n="performanceMarket">{label('performanceMarket', lang)}</th>
+          <th data-i18n="pick">{label('pick', lang)}</th>
+          <th class="right" data-i18n="composite">{label('composite', lang)}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          entries.map((row) => (
+            <tr>
+              <td>
+                <a class="num" href={localeHref(base, lang, `daily/${row.date}`)}>{row.date}</a>
+              </td>
+              <td>
+                <span class={`badge ${row.market === 'KR' ? 'kr' : 'us'}`}>
+                  {row.market === 'KR' ? (
+                    <span data-i18n="marketKR">{label('marketKR', lang)}</span>
+                  ) : (
+                    <span data-i18n="marketUS">{label('marketUS', lang)}</span>
+                  )}
+                </span>
+              </td>
+              <td>
+                {row.symbol ? (
+                  <span>
+                    <span class="num">{row.symbol}</span>
+                    {(row.nameKo || row.nameEn) && (
+                      <span class="muted">
+                        {' '}
+                        (
+                        <DualText
+                          text={{ ko: row.nameKo ?? '', en: row.nameEn ?? '' }}
+                          lang={lang}
+                        />
+                        )
+                      </span>
+                    )}
+                  </span>
+                ) : (
+                  <span class="muted" data-i18n="none">{label('none', lang)}</span>
+                )}
+              </td>
+              <td class="num right">{row.composite != null ? row.composite.toFixed(1) : '—'}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+
+    <section class="digest-cta" aria-labelledby="digest-cta-heading">
+      <h2 id="digest-cta-heading" data-i18n="digestCtaHeading">{label('digestCtaHeading', lang)}</h2>
+      <ul class="about-links">
+        <li>
+          <a href={localeHref(base, lang, 'performance')} data-i18n="performance">
+            {label('performance', lang)}
+          </a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'archive')} data-i18n="archive">{label('archive', lang)}</a>
+        </li>
+        <li>
+          <a href={localeHref(base, lang, 'follow')} data-i18n="followTitle">{label('followTitle', lang)}</a>
+        </li>
+      </ul>
+    </section>
+  </article>
+</Layout>
