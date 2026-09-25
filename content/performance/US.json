@@ -5,7 +5,7 @@
   "runMeta": {
     "provider": "yfinance",
     "priceAdjustment": "adjusted_auto",
-    "generatedAt": "2026-09-25T00:07:01.395592+00:00",
+    "generatedAt": "2026-09-25T12:17:43.252604+00:00",
     "asOfDate": "2026-09-25"
   },
   "measurements": [
@@ -2729,14 +2729,16 @@
       "symbol": "DDI",
       "horizonId": "H20",
       "benchmarkId": "US-SPX",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-09-25",
       "horizonDays": 20,
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series"
+      "entryPrice": 12.720000267028809,
+      "exitPrice": 13.0,
+      "forwardReturn": 0.02201255716141545,
+      "benchmarkReturn": 0.0035783434466791332
     },
     {
       "market": "US",
@@ -2759,13 +2761,15 @@
       "symbol": "DDI",
       "horizonId": "1M",
       "benchmarkId": "US-SPX",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-09-25",
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series"
+      "entryPrice": 12.720000267028809,
+      "exitPrice": 13.0,
+      "forwardReturn": 0.02201255716141545,
+      "benchmarkReturn": 0.0035783434466791332
     },
     {
       "market": "US",
