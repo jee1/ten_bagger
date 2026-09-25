@@ -2,6 +2,7 @@
 import { label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
 import { joinSitePath } from '../lib/rss.ts';
+import { localeHref } from '../lib/staticNav';
 
 interface Props {
   lang: Lang;
@@ -31,6 +32,11 @@ const rssUrl = site ? joinSitePath(site, 'rss.xml') : `${base}rss.xml`;
         data-growth-rss
       >
         {rssUrl}
+      </a>
+    </p>
+    <p class="retention-hint">
+      <a href={localeHref(base, lang, 'follow')} data-growth-follow data-i18n="followCtaLink">
+        {label('followCtaLink', lang)}
       </a>
     </p>
   </div>

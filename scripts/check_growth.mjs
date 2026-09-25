@@ -43,6 +43,10 @@ if (!indexHtml.includes('data-growth-rss')) {
   console.error('check_growth: home missing RSS CTA');
   process.exit(1);
 }
+if (!indexHtml.includes('data-growth-follow')) {
+  console.error('check_growth: home missing follow page link');
+  process.exit(1);
+}
 if (!indexHtml.includes('data-growth-share')) {
   console.error('check_growth: home missing share CTA');
   process.exit(1);
@@ -156,6 +160,32 @@ if (!titleMatch || !titleMatch[1].includes(newestDate)) {
 const methodologyHtml = readHtml('methodology/index.html');
 if (!methodologyHtml.includes('data-i18n-attr="content:tagline"')) {
   console.error('check_growth: default pages must restore tagline description localization');
+  process.exit(1);
+}
+
+const followKo = readHtml('follow/index.html');
+if (!followKo.includes(expectedRssUrl) || !followKo.includes('follow-disclaimer')) {
+  console.error('check_growth: follow page must show RSS URL and disclaimer');
+  process.exit(1);
+}
+if (followKo.includes('github.com')) {
+  console.error('check_growth: follow page must not link to GitHub');
+  process.exit(1);
+}
+if (!followKo.includes('준비 중')) {
+  console.error('check_growth: follow page must show Telegram preparing state when channel unset');
+  process.exit(1);
+}
+
+const followEn = readHtml('en/follow/index.html');
+if (!followEn.includes('Coming soon') || !followEn.includes(expectedRssUrl)) {
+  console.error('check_growth: en follow page must show RSS URL and Telegram preparing state');
+  process.exit(1);
+}
+
+const aboutKo = readHtml('about/index.html');
+if (!aboutKo.includes('follow/')) {
+  console.error('check_growth: about page must link to follow page');
   process.exit(1);
 }
 

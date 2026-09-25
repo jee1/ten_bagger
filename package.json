@@ -23,7 +23,7 @@
     "test:daily-i18n": "node --experimental-strip-types --test src/lib/dailyDates.test.ts src/lib/i18n.test.ts src/lib/dailyCardReasoning.test.ts",
     "test:market-scope": "node scripts/check_market_scope.mjs",
     "test:seo-head": "node scripts/check_seo_head.mjs",
-    "test:growth": "node --experimental-strip-types --test src/lib/dailyMeta.test.ts src/lib/share.test.ts src/lib/growthTrack.test.ts && node scripts/check_growth.mjs",
+    "test:growth": "node --experimental-strip-types --test src/lib/dailyMeta.test.ts src/lib/dailyNotify.test.ts src/lib/share.test.ts src/lib/growthTrack.test.ts && node --experimental-strip-types scripts/check_growth.mjs",
     "test:methodology-split": "node scripts/check_methodology_split.mjs",
     "walk-forward": "cd scripts && python walk_forward.py",
     "walk-forward:smoke": "cd scripts && python -m pytest tests/test_walk_forward_smoke.py -q",

@@ -288,6 +288,62 @@ export const labels = {
     ko: '공유할 수 없습니다. 아래 주소를 직접 복사해 주세요.',
     en: 'Could not share. Please copy the URL below.',
   } satisfies LocalizedText,
+  followTitle: { ko: '구독·알림', en: 'Follow & alerts' } satisfies LocalizedText,
+  followDescription: {
+    ko:
+      '텐베거 데일리 일일 기록을 RSS 피드나 텔레그램으로 받는 방법입니다. 투자 매매 신호가 아닙니다.',
+    en:
+      'How to get Ten Bagger Daily reports via RSS or Telegram. These are publication alerts, not trade signals.',
+  } satisfies LocalizedText,
+  followLead: {
+    ko:
+      '매일 오전 6시(KST) 새 기록이 올라오면 알림을 받을 수 있습니다. 아래 방법은 “오늘의 기록이 공개됐다”는 안내이며, 매수·매도 추천이 아닙니다.',
+    en:
+      'Get notified when a new daily report is published (~06:00 KST). These alerts mean the record is live — not buy or sell advice.',
+  } satisfies LocalizedText,
+  followRssHeading: { ko: 'RSS 피드', en: 'RSS feed' } satisfies LocalizedText,
+  followRssIntro: {
+    ko: '피드 리더에 아래 주소를 추가하면 새 일일 기록이 자동으로 표시됩니다.',
+    en: 'Add the URL below in a feed reader to see each new daily report.',
+  } satisfies LocalizedText,
+  followRssStep1: {
+    ko: '아래 피드 주소를 복사합니다.',
+    en: 'Copy the feed URL below.',
+  } satisfies LocalizedText,
+  followRssStep2: {
+    ko: '피드 리더를 엽니다. (예: Feedly, Inoreader)',
+    en: 'Open a feed reader. (e.g. Feedly, Inoreader)',
+  } satisfies LocalizedText,
+  followRssStep3: {
+    ko: '“피드 추가” 또는 “구독” 메뉴를 선택합니다.',
+    en: 'Choose “Add feed” or “Subscribe”.',
+  } satisfies LocalizedText,
+  followRssStep4: {
+    ko: '복사한 주소를 붙여 넣고 저장합니다.',
+    en: 'Paste the URL and save.',
+  } satisfies LocalizedText,
+  followRssStep5: {
+    ko: '새 기록이 배포되면 피드에 항목이 추가됩니다.',
+    en: 'New items appear when each day’s report is published.',
+  } satisfies LocalizedText,
+  followRssUrlLabel: { ko: '피드 주소', en: 'Feed URL' } satisfies LocalizedText,
+  followTelegramHeading: { ko: '텔레그램 채널', en: 'Telegram channel' } satisfies LocalizedText,
+  followTelegramIntro: {
+    ko:
+      '푸시 알림을 원하면 공개 텔레그램 채널을 구독할 수 있습니다. 채널이 열리면 아래에서 참여할 수 있습니다.',
+    en:
+      'For push-style alerts, join the public Telegram channel when it is available below.',
+  } satisfies LocalizedText,
+  followTelegramJoin: { ko: '텔레그램 채널 참여', en: 'Join Telegram channel' } satisfies LocalizedText,
+  followTelegramPreparing: { ko: '준비 중', en: 'Coming soon' } satisfies LocalizedText,
+  followDisclaimerHeading: { ko: '알림의 의미', en: 'What alerts mean' } satisfies LocalizedText,
+  followDisclaimerBody: {
+    ko:
+      'RSS·텔레그램 알림은 “해당 날짜의 일일 기록이 공개되었다”는 뜻입니다. 투자 권유·자문·매매 신호가 아니며, 수익을 보장하지 않습니다. 모든 결정과 손실은 이용자 본인 책임입니다.',
+    en:
+      'RSS and Telegram alerts mean “today’s daily record was published.” This is not investment advice, solicitation, or a trading signal. No returns are promised. All decisions and losses are your own responsibility.',
+  } satisfies LocalizedText,
+  followCtaLink: { ko: '구독 방법 보기', en: 'How to follow' } satisfies LocalizedText,
 } as const;
 
 export function localeToLang(locale: string | undefined): Lang {

@@ -591,6 +591,52 @@ code {
   margin-bottom: 0.35rem;
 }
 
+.follow-page section {
+  margin-bottom: 1.5rem;
+}
+
+.follow-steps {
+  margin: 0.65rem 0 1rem;
+  padding-left: 1.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.follow-steps li {
+  margin-bottom: 0.35rem;
+}
+
+.follow-url-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+}
+
+.follow-telegram-btn {
+  display: inline-block;
+  width: auto;
+  max-width: none;
+  text-decoration: none;
+  text-align: center;
+}
+
+.follow-preparing {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.follow-disclaimer {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  background: rgba(20, 26, 34, 0.45);
+}
+
+.follow-back {
+  margin: 1.25rem 0 0;
+  font-size: 0.85rem;
+}
+
 .newcomer-intro {
   margin: 0 0 1.25rem;
   padding: 1rem 1.1rem;

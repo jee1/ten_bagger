@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { label, localeToLang } from '../lib/i18n';
+import { joinSitePath } from '../lib/rss.ts';
+import { TELEGRAM_CHANNEL_URL } from '../lib/siteConfig';
+import { localeHref } from '../lib/staticNav';
+
+const lang = localeToLang(Astro.currentLocale);
+const base = import.meta.env.BASE_URL;
+const site = Astro.site?.href.replace(/\/+$/, '') ?? '';
+const rssUrl = site ? joinSitePath(site, 'rss.xml') : `${base}rss.xml`;
+const telegramReady = TELEGRAM_CHANNEL_URL.length > 0;
+---
+
+<Layout
+  title={label('followTitle', lang)}
+  titleKey="followTitle"
+  descriptionKey="followDescription"
+  lang={lang}
+>
+  <article class="doc-body about-page follow-page">
+    <h1 data-i18n="followTitle">{label('followTitle', lang)}</h1>
+    <p class="muted about-lead" data-i18n="followLead">{label('followLead', lang)}</p>
+
+    <section aria-labelledby="follow-rss">
+      <h2 id="follow-rss" data-i18n="followRssHeading">{label('followRssHeading', lang)}</h2>
+      <p data-i18n="followRssIntro">{label('followRssIntro', lang)}</p>
+      <ol class="follow-steps">
+        <li data-i18n="followRssStep1">{label('followRssStep1', lang)}</li>
+        <li data-i18n="followRssStep2">{label('followRssStep2', lang)}</li>
+        <li data-i18n="followRssStep3">{label('followRssStep3', lang)}</li>
+        <li data-i18n="followRssStep4">{label('followRssStep4', lang)}</li>
+        <li data-i18n="followRssStep5">{label('followRssStep5', lang)}</li>
+      </ol>
+      <p class="follow-url-label muted" data-i18n="followRssUrlLabel">{label('followRssUrlLabel', lang)}</p>
+      <p class="retention-url-row">
+        <a class="retention-rss-link num" href={rssUrl}>{rssUrl}</a>
+      </p>
+    </section>
+
+    <section aria-labelledby="follow-telegram">
+      <h2 id="follow-telegram" data-i18n="followTelegramHeading">
+        {label('followTelegramHeading', lang)}
+      </h2>
+      <p data-i18n="followTelegramIntro">{label('followTelegramIntro', lang)}</p>
+      {
+        telegramReady ? (
+          <p>
+            <a class="btn retention-share-btn follow-telegram-btn" href={TELEGRAM_CHANNEL_URL}>
+              <span data-i18n="followTelegramJoin">{label('followTelegramJoin', lang)}</span>
+            </a>
+          </p>
+        ) : (
+          <p class="muted follow-preparing" data-i18n="followTelegramPreparing">
+            {label('followTelegramPreparing', lang)}
+          </p>
+        )
+      }
+    </section>
+
+    <section aria-labelledby="follow-disclaimer" class="follow-disclaimer">
+      <h2 id="follow-disclaimer" data-i18n="followDisclaimerHeading">
+        {label('followDisclaimerHeading', lang)}
+      </h2>
+      <p data-i18n="followDisclaimerBody">{label('followDisclaimerBody', lang)}</p>
+    </section>
+
+    <p class="muted follow-back">
+      <a href={localeHref(base, lang, '')} data-i18n="today">{label('today', lang)}</a>
+      ·
+      <a href={localeHref(base, lang, 'about')} data-i18n="about">{label('about', lang)}</a>
+    </p>
+  </article>
+</Layout>
