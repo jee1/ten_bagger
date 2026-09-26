@@ -1,0 +1,299 @@
+{
+  "date": "2026-09-26",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "DDI",
+    "name": {
+      "ko": "DoubleDown Interactive Co Ltd ADR",
+      "en": "DoubleDown Interactive Co., Ltd."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "DoubleDown Interactive Co Ltd ADR는 Communication Services 분야 Electronic Gaming & Multimedia 기업입니다.",
+        "en": "DoubleDown Interactive Co., Ltd. develops and publishes casual games and mobile applications in South Korea, the United States, the United Kingdom, Germany, and internationally. The company operates through Social Casino Games and iGaming segments."
+      },
+      "sector": {
+        "ko": "Communication Services",
+        "en": "Communication Services"
+      },
+      "industry": {
+        "ko": "Electronic Gaming & Multimedia",
+        "en": "Electronic Gaming & Multimedia"
+      }
+    }
+  },
+  "scores": {
+    "composite": 84.2,
+    "size": 92.0,
+    "growth": 98.9,
+    "valuation": 83.5,
+    "entry": 59.0,
+    "momentum": 100.0,
+    "quality": 69.5,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "DoubleDown Interactive Co Ltd ADR(DDI)는 v2 복합 점수 84.2로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "DoubleDown Interactive Co., Ltd. (DDI) cleared the 70.0 threshold with v2 composite 84.2; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 11.2% / 이익 50.5% (혼합 28.89%) — 지속 가능 성장 점수 98.9.",
+      "en": "Revenue 11.2% / earnings 50.5% (blended 28.89%) — sustainable growth score 98.9."
+    },
+    "valuation": {
+      "ko": "PER 5.16, PEG 데이터 없음, FCF수익률 15.1%, PBR 0.64 — 밸류 점수 83.5.",
+      "en": "P/E 5.16, PEG No data, FCF yield 15.1%, P/B 0.64 — valuation score 83.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 데이터 없음 — 보조 모멘텀 점수 100.0. (일부 가격 입력 없음; 모멘텀 점수 100.0는 가용 데이터로 계산; 복합에 포함, 선정은 복합 임계 70.0 기준)",
+      "en": "6M return No data — auxiliary momentum score 100.0. (some price inputs missing; momentum score 100.0 from available data; still enters composite; selection uses composite threshold 70.0)"
+    },
+    "quality": {
+      "ko": "ROE 13.13%, ROA 8.73%, FCF/순이익 0.78 — 품질 점수 69.5.",
+      "en": "ROE 13.13%, ROA 8.73%, FCF/net income 0.78 — quality score 69.5."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 644194688 기준 규모 점수 92.0.",
+      "en": "Market cap 644194688 — size score 92.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 데이터 없음, 52주 고점 대비 데이터 없음 — 진입 점수 59.0. (일부 가격 입력 없음; 진입 점수 59.0는 가용 데이터로 계산; 복합에 포함, 선정은 복합 임계 70.0 기준)",
+      "en": "12M price range No data, No data from 52W high — entry score 59.0. (some price inputs missing; entry score 59.0 from available data; still enters composite; selection uses composite threshold 70.0)"
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-26T09:42:51+09:00",
+    "candidatesScreened": 6273,
+    "excludedRecent": 30,
+    "skippedMarketCap": 1965,
+    "skippedRedFlags": 983,
+    "noData": 64,
+    "errors": 5
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "DDI",
+      "name": {
+        "ko": "DoubleDown Interactive Co Ltd ADR",
+        "en": "DoubleDown Interactive Co., Ltd."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 84.2,
+        "size": 92.0,
+        "growth": 98.9,
+        "valuation": 83.5,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 69.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "EBS",
+      "name": {
+        "ko": "Emergent BioSolutions Inc.",
+        "en": "Emergent BioSolutions Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.7,
+        "size": 100.0,
+        "growth": 93.5,
+        "valuation": 90.7,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 57.2,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "VOXR",
+      "name": {
+        "ko": "Vox Royalty Corp",
+        "en": "Vox Royalty Corp."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.7,
+        "size": 92.0,
+        "growth": 74.0,
+        "valuation": 83.5,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 91.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "GCT",
+      "name": {
+        "ko": "Gigacloud Technology Inc",
+        "en": "GigaCloud Technology Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.5,
+        "size": 100.0,
+        "growth": 97.6,
+        "valuation": 74.8,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 71.6,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "LRN",
+      "name": {
+        "ko": "Stride Inc",
+        "en": "Stride, Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.4,
+        "size": 83.0,
+        "growth": 98.7,
+        "valuation": 87.1,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 67.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-26T00:42:51+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
