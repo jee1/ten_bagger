@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-09-25",
+  "asOfDate": "2026-09-26",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -234,6 +234,12 @@
     {
       "pickDate": "2026-09-24",
       "symbol": "SENEB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-26",
+      "symbol": "DDI",
       "status": "pick",
       "scoreVersion": "2"
     }
