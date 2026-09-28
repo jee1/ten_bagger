@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-09-27",
+  "asOfDate": "2026-09-28",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -240,6 +240,12 @@
     {
       "pickDate": "2026-09-26",
       "symbol": "DDI",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-09-28",
+      "symbol": "BLKB",
       "status": "pick",
       "scoreVersion": "2"
     }
