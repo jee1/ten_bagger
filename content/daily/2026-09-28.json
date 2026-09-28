@@ -1,0 +1,299 @@
+{
+  "date": "2026-09-28",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "BLKB",
+    "name": {
+      "ko": "Blackbaud  Inc.",
+      "en": "Blackbaud, Inc."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Blackbaud  Inc.는 Technology 분야 Software - Application 기업입니다.",
+        "en": "Blackbaud, Inc. engages in the providing AI-powered solutions in the United States and internationally."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Software - Application",
+        "en": "Software - Application"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.8,
+    "size": 100.0,
+    "growth": 91.3,
+    "valuation": 74.8,
+    "entry": 66.0,
+    "momentum": 65.3,
+    "quality": 78.4,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Blackbaud  Inc.(BLKB)는 v2 복합 점수 80.8로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Blackbaud, Inc. (BLKB) cleared the 70.0 threshold with v2 composite 80.8; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 3.0% / 이익 43.6% (혼합 21.27%) — 지속 가능 성장 점수 91.3.",
+      "en": "Revenue 3.0% / earnings 43.6% (blended 21.27%) — sustainable growth score 91.3."
+    },
+    "valuation": {
+      "ko": "PER 13.5, PEG 0.46, FCF수익률 10.92%, PBR 28.89 — 밸류 점수 74.8.",
+      "en": "P/E 13.5, PEG 0.46, FCF yield 10.92%, P/B 28.89 — valuation score 74.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 14.56% — 보조 모멘텀 점수 65.3.",
+      "en": "6M return 14.56% — auxiliary momentum score 65.3."
+    },
+    "quality": {
+      "ko": "ROE 194.45%, ROA 5.5%, FCF/순이익 1.42 — 품질 점수 78.4.",
+      "en": "ROE 194.45%, ROA 5.5%, FCF/net income 1.42 — quality score 78.4."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1960398208 기준 규모 점수 100.0.",
+      "en": "Market cap 1960398208 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 40.21%, 52주 고점 대비 -36.44% — 진입 점수 66.0.",
+      "en": "12M price range 40.21%, -36.44% from 52W high — entry score 66.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-28T09:31:20+09:00",
+    "candidatesScreened": 6266,
+    "excludedRecent": 30,
+    "skippedMarketCap": 2002,
+    "skippedRedFlags": 983,
+    "noData": 65,
+    "errors": 7
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "BLKB",
+      "name": {
+        "ko": "Blackbaud  Inc.",
+        "en": "Blackbaud, Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.8,
+        "size": 100.0,
+        "growth": 91.3,
+        "valuation": 74.8,
+        "entry": 66.0,
+        "momentum": 65.3,
+        "quality": 78.4,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "MAKO",
+      "name": {
+        "ko": "Mako Mining Corp",
+        "en": "Mako Mining Corp."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.5,
+        "size": 100.0,
+        "growth": 79.6,
+        "valuation": 69.2,
+        "entry": 47.0,
+        "momentum": 89.6,
+        "quality": 93.0,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "ITRN",
+      "name": {
+        "ko": "Ituran Location and Control Ltd",
+        "en": "Ituran Location and Control Ltd."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.1,
+        "size": 100.0,
+        "growth": 94.7,
+        "valuation": 66.5,
+        "entry": 75.0,
+        "momentum": 61.0,
+        "quality": 79.8,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "MCI",
+      "name": {
+        "ko": "Barings Corporate Investors",
+        "en": "Barings Corporate Investors"
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.1,
+        "size": 100.0,
+        "growth": 96.6,
+        "valuation": 74.7,
+        "entry": 75.0,
+        "momentum": 62.5,
+        "quality": 66.9,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "VOXR",
+      "name": {
+        "ko": "Vox Royalty Corp",
+        "en": "Vox Royalty Corp."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.0,
+        "size": 92.0,
+        "growth": 74.0,
+        "valuation": 83.5,
+        "entry": 57.5,
+        "momentum": 64.6,
+        "quality": 91.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-28T00:31:20+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
