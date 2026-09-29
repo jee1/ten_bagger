@@ -1,0 +1,299 @@
+{
+  "date": "2026-09-29",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "211050.KQ",
+    "name": {
+      "ko": "인카금융서비스",
+      "en": "INCAR FINANCIAL SERVICE Co., Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "인카금융서비스는 Financial Services 분야 Financial Conglomerates 기업입니다.",
+        "en": "INCAR FINANCIAL SERVICE Co., Ltd. operates as an independent insurance agency in South Korea. The company offers non-life, life, general, and automobile insurance products."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Financial Conglomerates",
+        "en": "Financial Conglomerates"
+      }
+    }
+  },
+  "scores": {
+    "composite": 77.8,
+    "size": 100.0,
+    "growth": 97.5,
+    "valuation": 65.8,
+    "entry": 59.0,
+    "momentum": 47.0,
+    "quality": 81.6,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "인카금융서비스(211050.KQ)는 v2 복합 점수 77.8로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "INCAR FINANCIAL SERVICE Co., Ltd. (211050.KQ) cleared the 70.0 threshold with v2 composite 77.8; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 41.9% / 이익 21.1% (혼합 32.54%) — 지속 가능 성장 점수 97.5.",
+      "en": "Revenue 41.9% / earnings 21.1% (blended 32.54%) — sustainable growth score 97.5."
+    },
+    "valuation": {
+      "ko": "PER 데이터 없음, PEG 데이터 없음, FCF수익률 15.33%, PBR 데이터 없음 — 밸류 점수 65.8.",
+      "en": "P/E No data, PEG No data, FCF yield 15.33%, P/B No data — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -20.73% — 보조 모멘텀 점수 47.0.",
+      "en": "6M return -20.73% — auxiliary momentum score 47.0."
+    },
+    "quality": {
+      "ko": "ROE 39.78%, ROA 7.15%, FCF/순이익 0.87 — 품질 점수 81.6.",
+      "en": "ROE 39.78%, ROA 7.15%, FCF/net income 0.87 — quality score 81.6."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 469927755776 기준 규모 점수 100.0.",
+      "en": "Market cap 469927755776 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 9.21%, 52주 고점 대비 -43.5% — 진입 점수 59.0.",
+      "en": "12M price range 9.21%, -43.5% from 52W high — entry score 59.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-09-29T10:17:29+09:00",
+    "candidatesScreened": 2750,
+    "excludedRecent": 30,
+    "skippedMarketCap": 0,
+    "skippedRedFlags": 584,
+    "noData": 5,
+    "errors": 2
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "211050.KQ",
+      "name": {
+        "ko": "인카금융서비스",
+        "en": "INCAR FINANCIAL SERVICE Co., Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 77.8,
+        "size": 100.0,
+        "growth": 97.5,
+        "valuation": 65.8,
+        "entry": 59.0,
+        "momentum": 47.0,
+        "quality": 81.6,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "013030.KQ",
+      "name": {
+        "ko": "하이록코리아",
+        "en": "Hy-Lok Corporation"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.6,
+        "size": 100.0,
+        "growth": 90.6,
+        "valuation": 70.0,
+        "entry": 75.0,
+        "momentum": 58.7,
+        "quality": 63.1,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "143240.KQ",
+      "name": {
+        "ko": "사람인",
+        "en": "Saramin Co.,Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.5,
+        "size": 100.0,
+        "growth": 95.7,
+        "valuation": 62.2,
+        "entry": 36.5,
+        "momentum": 61.8,
+        "quality": 84.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "284740.KS",
+      "name": {
+        "ko": "쿠쿠홈시스",
+        "en": "CUCKOO Homesys Co., Ltd"
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.4,
+        "size": 100.0,
+        "growth": 99.2,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 56.8,
+        "quality": 59.9,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "000240.KS",
+      "name": {
+        "ko": "한국앤컴퍼니",
+        "en": "Hankook & Company Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.2,
+        "size": 83.0,
+        "growth": 98.9,
+        "valuation": 73.5,
+        "entry": 75.0,
+        "momentum": 55.9,
+        "quality": 62.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-09-29T01:17:29+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
