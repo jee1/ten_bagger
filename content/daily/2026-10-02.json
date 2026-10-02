@@ -1,0 +1,299 @@
+{
+  "date": "2026-10-02",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "TILE",
+    "name": {
+      "ko": "Interface  Inc.",
+      "en": "Interface, Inc."
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Interface  Inc.는 Consumer Cyclical 분야 Furnishings, Fixtures & Appliances 기업입니다.",
+        "en": "Interface, Inc. designs, produces, and sells modular carpet products in the United States, Canada, Latin America, Europe, Africa, Asia, and Australia."
+      },
+      "sector": {
+        "ko": "Consumer Cyclical",
+        "en": "Consumer Cyclical"
+      },
+      "industry": {
+        "ko": "Furnishings, Fixtures & Appliances",
+        "en": "Furnishings, Fixtures & Appliances"
+      }
+    }
+  },
+  "scores": {
+    "composite": 84.3,
+    "size": 100.0,
+    "growth": 100.0,
+    "valuation": 77.4,
+    "entry": 59.0,
+    "momentum": 100.0,
+    "quality": 70.1,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Interface  Inc.(TILE)는 v2 복합 점수 84.3로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Interface, Inc. (TILE) cleared the 70.0 threshold with v2 composite 84.3; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 5.4% / 이익 60.0% (혼합 29.97%) — 지속 가능 성장 점수 100.0.",
+      "en": "Revenue 5.4% / earnings 60.0% (blended 29.97%) — sustainable growth score 100.0."
+    },
+    "valuation": {
+      "ko": "PER 13.95, PEG 0.94, FCF수익률 5.2%, PBR 2.94 — 밸류 점수 77.4.",
+      "en": "P/E 13.95, PEG 0.94, FCF yield 5.2%, P/B 2.94 — valuation score 77.4."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 데이터 없음 — 보조 모멘텀 점수 100.0. (일부 가격 입력 없음; 모멘텀 점수 100.0는 가용 데이터로 계산; 복합에 포함, 선정은 복합 임계 70.0 기준)",
+      "en": "6M return No data — auxiliary momentum score 100.0. (some price inputs missing; momentum score 100.0 from available data; still enters composite; selection uses composite threshold 70.0)"
+    },
+    "quality": {
+      "ko": "ROE 23.23%, ROA 9.34%, FCF/순이익 0.71 — 품질 점수 70.1.",
+      "en": "ROE 23.23%, ROA 9.34%, FCF/net income 0.71 — quality score 70.1."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1991225856 기준 규모 점수 100.0.",
+      "en": "Market cap 1991225856 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 데이터 없음, 52주 고점 대비 데이터 없음 — 진입 점수 59.0. (일부 가격 입력 없음; 진입 점수 59.0는 가용 데이터로 계산; 복합에 포함, 선정은 복합 임계 70.0 기준)",
+      "en": "12M price range No data, No data from 52W high — entry score 59.0. (some price inputs missing; entry score 59.0 from available data; still enters composite; selection uses composite threshold 70.0)"
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-10-02T10:25:33+09:00",
+    "candidatesScreened": 6268,
+    "excludedRecent": 30,
+    "skippedMarketCap": 1972,
+    "skippedRedFlags": 974,
+    "noData": 66,
+    "errors": 8
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "TILE",
+      "name": {
+        "ko": "Interface  Inc.",
+        "en": "Interface, Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 84.3,
+        "size": 100.0,
+        "growth": 100.0,
+        "valuation": 77.4,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 70.1,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "VOXR",
+      "name": {
+        "ko": "Vox Royalty Corp",
+        "en": "Vox Royalty Corp."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.7,
+        "size": 92.0,
+        "growth": 74.0,
+        "valuation": 83.5,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 91.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "GCT",
+      "name": {
+        "ko": "Gigacloud Technology Inc",
+        "en": "GigaCloud Technology Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.5,
+        "size": 100.0,
+        "growth": 97.6,
+        "valuation": 74.8,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 71.6,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "EPAC",
+      "name": {
+        "ko": "Enerpac Tool Group Corp.",
+        "en": "Enerpac Tool Group Corp."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.4,
+        "size": 100.0,
+        "growth": 92.1,
+        "valuation": 76.3,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 74.8,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "LRN",
+      "name": {
+        "ko": "Stride Inc",
+        "en": "Stride, Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.4,
+        "size": 83.0,
+        "growth": 98.7,
+        "valuation": 87.1,
+        "entry": 59.0,
+        "momentum": 100.0,
+        "quality": 67.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.0",
+        "inputAt": "2026-10-02T01:25:33+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
