@@ -57,9 +57,7 @@ def test_config_hash_includes_measurement_as_of_date():
     )
     assert cfg.measurementAsOfDate == "2026-10-04"
     h_with = config_hash(cfg)
-    without = cfg.__class__(
-        **{**cfg.__dict__, "measurementAsOfDate": None}
-    )
+    without = cfg.__class__(**{**cfg.__dict__, "measurementAsOfDate": None})
     assert config_hash(without) != h_with
 
 
