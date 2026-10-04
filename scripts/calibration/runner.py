@@ -48,6 +48,7 @@ def _candidate_to_wf_config(
         foldSpec=dict(fold_spec),
         weightOverrides=dict(candidate.weights) if candidate and candidate.weights else None,
         thresholdOverride=candidate.threshold if candidate else None,
+        measurementAsOfDate=cal_config.measurementAsOfDate,
         ledgerDir=cal_config.ledgerDir,
         performanceDir=cal_config.performanceDir,
         outputDir=cal_config.walkForwardOutputDir,
@@ -334,7 +335,8 @@ def execute_calibration(
             )
 
     run_id = config_hash(cal_config)[:16]
-    generated_at = f"{cal_config.oosFoldSpec['endDate']}T23:59:59Z"
+    measurement_cutoff = cal_config.measurementAsOfDate or cal_config.oosFoldSpec["endDate"]
+    generated_at = f"{measurement_cutoff}T23:59:59Z"
     report = build_report(
         cal_config=cal_config,
         run_id=run_id,

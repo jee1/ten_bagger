@@ -10,7 +10,7 @@ from config import WALK_FORWARD_DIR, WALK_FORWARD_SCHEMA_PATH
 from performance.write_atomic import atomic_replace
 from validate_content import load_validator
 
-from walk_forward.config import RunConfig, config_hash
+from walk_forward.config import RunConfig, config_hash, effective_measurement_as_of
 from walk_forward.ledger_picks import ledger_pick_day
 from walk_forward.measure import (
     fixture_benchmark_provider,
@@ -27,12 +27,12 @@ def run_id(run_config: RunConfig) -> str:
 
 
 def generated_at_from_config(run_config: RunConfig) -> str:
-    """Deterministic stamp from fold end date (SC-005 / FR-011)."""
-    return f"{run_config.foldSpec['endDate']}T23:59:59Z"
+    """Deterministic stamp from measurement cutoff (falls back to fold end)."""
+    return f"{effective_measurement_as_of(run_config)}T23:59:59Z"
 
 
 def make_measure_fn(run_config: RunConfig):
-    as_of = run_config.foldSpec["endDate"]
+    as_of = effective_measurement_as_of(run_config)
     price_provider = fixture_price_provider(as_of)
     benchmark_provider = fixture_benchmark_provider(as_of)
 
@@ -69,7 +69,7 @@ def execute_run(
     generated_at: str | None = None,
     write: bool = True,
 ) -> dict[str, Any]:
-    as_of = run_config.foldSpec["endDate"]
+    as_of = effective_measurement_as_of(run_config)
     measure_fn = make_measure_fn(run_config)
     pit_fn = None
     if run_config.thresholdOverride is not None or run_config.weightOverrides:

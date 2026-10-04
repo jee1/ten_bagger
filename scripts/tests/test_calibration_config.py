@@ -48,6 +48,21 @@ def test_rejects_go_evidence_without_ledger_oos(tmp_path):
         load_calibration_config(path)
 
 
+def test_config_hash_includes_measurement_as_of_date():
+    cfg = load_calibration_config(
+        Path(__file__).resolve().parents[1]
+        / "calibration"
+        / "configs"
+        / "score-v3-search-go-evidence.json"
+    )
+    assert cfg.measurementAsOfDate == "2026-10-04"
+    h_with = config_hash(cfg)
+    without = cfg.__class__(
+        **{**cfg.__dict__, "measurementAsOfDate": None}
+    )
+    assert config_hash(without) != h_with
+
+
 def test_baseline_only_rejects_candidate_grid():
     data = json.loads((FIX / "smoke-baseline-only-config.json").read_text(encoding="utf-8"))
     data["candidates"] = [{"candidateId": "x", "threshold": None, "weights": None}]

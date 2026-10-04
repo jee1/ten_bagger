@@ -22,9 +22,15 @@ class RunConfig:
     foldSpec: dict[str, Any]
     weightOverrides: dict[str, Any] | None = None
     thresholdOverride: float | None = None
+    measurementAsOfDate: str | None = None
     ledgerDir: Path | None = None
     performanceDir: Path | None = None
     outputDir: Path | None = None
+
+
+def effective_measurement_as_of(cfg: RunConfig) -> str:
+    """Horizon measurement cutoff; legacy standalone runs default to fold end."""
+    return cfg.measurementAsOfDate or cfg.foldSpec["endDate"]
 
 
 def _validate_overrides(data: dict[str, Any]) -> None:
@@ -83,6 +89,7 @@ def load_run_config(path: Path | str) -> RunConfig:
         foldSpec=dict(data["foldSpec"]),
         weightOverrides=weight_overrides,
         thresholdOverride=float(threshold) if threshold is not None else None,
+        measurementAsOfDate=data.get("measurementAsOfDate"),
         ledgerDir=Path(data["ledgerDir"]) if data.get("ledgerDir") else LEDGER_DIR,
         performanceDir=(
             Path(data["performanceDir"]) if data.get("performanceDir") else PERFORMANCE_DIR
@@ -108,6 +115,8 @@ def config_hash(cfg: RunConfig) -> str:
         payload["performanceDir"] = str(cfg.performanceDir)
     if cfg.outputDir is not None:
         payload["outputDir"] = str(cfg.outputDir)
+    if cfg.measurementAsOfDate is not None:
+        payload["measurementAsOfDate"] = cfg.measurementAsOfDate
 
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()

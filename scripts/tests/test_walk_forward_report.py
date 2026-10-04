@@ -65,6 +65,26 @@ def test_build_report_has_required_top_level_fields():
         assert key in report
     assert report["schemaVersion"] == SCHEMA_VERSION
     assert report["configHash"] == config_hash(RUN_CONFIG)
+    assert report["measurementAsOfDate"] == FOLD_SPEC["endDate"]
+
+
+def test_build_report_measurement_as_of_exceeds_fold_end():
+    cfg = RunConfig(
+        runIntent="exploratory",
+        measurementSource="fixture-recompute",
+        candidateId="score-v2-baseline",
+        markets=["KR"],
+        foldSpec=FOLD_SPEC,
+        measurementAsOfDate="2026-10-04",
+    )
+    report = build_report(
+        run_config=cfg,
+        fold_results=FOLD_RESULTS,
+        run_id="cutoff-run",
+        generated_at="2026-10-04T23:59:59Z",
+    )
+    assert report["measurementAsOfDate"] == "2026-10-04"
+    assert report["foldSpec"]["endDate"] == "2025-01-31"
 
 
 def test_serialize_report_is_deterministic():

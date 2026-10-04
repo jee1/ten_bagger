@@ -6,7 +6,7 @@ import json
 from typing import Any
 
 from walk_forward.aggregate import aggregate_report, enrich_fold_results
-from walk_forward.config import RunConfig, config_hash
+from walk_forward.config import RunConfig, config_hash, effective_measurement_as_of
 
 SCHEMA_VERSION = "0.1.0"
 
@@ -43,6 +43,7 @@ def build_report(
         "generatedAt": generated_at,
         "candidateId": run_config.candidateId,
         "foldSpec": dict(run_config.foldSpec),
+        "measurementAsOfDate": effective_measurement_as_of(run_config),
         "folds": report_folds,
         "aggregate": {"horizons": aggregate_horizons},
         "coverage": coverage,

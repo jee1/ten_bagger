@@ -41,6 +41,9 @@ def build_report(
         "packageIntent": cal_config.packageIntent,
         "mode": cal_config.mode,
         "configHash": config_hash(cal_config),
+        "measurementAsOfDate": (
+            cal_config.measurementAsOfDate or cal_config.oosFoldSpec["endDate"]
+        ),
         "generatedAt": generated_at,
         "liveConstantsSnapshot": live_constants_snapshot(),
         "isRanking": list(is_ranking),

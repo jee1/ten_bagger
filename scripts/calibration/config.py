@@ -185,5 +185,7 @@ def config_hash(cfg: CalibrationRunConfig) -> str:
         "promoteTopN": cfg.promoteTopN,
         "compareToLiveBaseline": cfg.compareToLiveBaseline,
     }
+    if cfg.measurementAsOfDate is not None:
+        payload["measurementAsOfDate"] = cfg.measurementAsOfDate
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()

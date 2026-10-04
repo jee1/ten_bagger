@@ -8,7 +8,7 @@ from typing import Any
 
 from config import DUPLICATE_BAN_DAYS, market_for_date
 
-from walk_forward.config import RunConfig
+from walk_forward.config import RunConfig, effective_measurement_as_of
 from walk_forward.pit_screen import pit_screen_day
 
 PitFn = Callable[[str, str, set[str]], tuple[str | None, bool]]
@@ -58,7 +58,7 @@ def run_folds(
     """Execute rolling folds; collect OOS picks and measurements per fold."""
     pit = pit_fn or pit_screen_day
     markets = set(run_config.markets)
-    as_of = as_of_date or run_config.foldSpec["endDate"]
+    as_of = as_of_date or effective_measurement_as_of(run_config)
     recent: list[tuple[str, date]] = []
     results: list[dict[str, Any]] = []
 
