@@ -162,8 +162,9 @@ def _preflight_search_go_evidence(cal_config: CalibrationRunConfig) -> int | Non
         return None
     from walk_forward.readiness import assess_search_go_evidence_readiness
 
+    as_of = cal_config.measurementAsOfDate or cal_config.oosFoldSpec["endDate"]
     readiness = assess_search_go_evidence_readiness(
-        as_of_date=cal_config.oosFoldSpec["endDate"],
+        as_of_date=as_of,
         markets=cal_config.markets,
         performance_dir=cal_config.performanceDir,
         oos_fold_spec=cal_config.oosFoldSpec,

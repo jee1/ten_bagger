@@ -12,7 +12,7 @@
     "oosSessions": 2,
     "stepSessions": 2,
     "startDate": "2026-07-03",
-    "endDate": "2026-08-02"
+    "endDate": "2026-07-31"
   },
   "oosFoldSpec": {
     "mode": "rolling",
@@ -20,8 +20,9 @@
     "oosSessions": 2,
     "stepSessions": 2,
     "startDate": "2026-08-03",
-    "endDate": "2026-10-02"
+    "endDate": "2026-09-02"
   },
+  "measurementAsOfDate": "2026-10-04",
   "candidates": [
     {
       "candidateId": "growth_shrink_05_vq",
@@ -76,5 +77,5 @@
       }
     }
   ],
-  "notes": "Issue #93 Score v3 search go_evidence (growth grid). IS 2026-07-03..2026-08-02, OOS 2026-08-03..2026-10-02 (readiness carve, ledger asOfDate 2026-10-02); oosFoldSpec train=6/oos=2/step=2 with IS-seeded OOS folds. #68/#70 grids follow same pattern."
+  "notes": "Issue #93 Score v3 search go_evidence (growth grid). Pick carve IS 2026-07-03..2026-07-31, OOS 2026-08-03..2026-09-02; measurementAsOfDate 2026-10-04 (ledger KR/US); oosFoldSpec train=6/oos=2/step=2 with IS-seeded OOS folds. #68/#70 grids follow same pattern."
 }

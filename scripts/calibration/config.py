@@ -30,6 +30,7 @@ class CalibrationRunConfig:
     outputDir: Path
     walkForwardOutputDir: Path
     compareToLiveBaseline: bool = False
+    measurementAsOfDate: str | None = None
 
 
 def _validate_fold_spec(name: str, fold_spec: dict[str, Any]) -> None:
@@ -160,6 +161,7 @@ def load_calibration_config(path: Path | str) -> CalibrationRunConfig:
         if data.get("walkForwardOutputDir")
         else WALK_FORWARD_DIR,
         compareToLiveBaseline=compare_raw,
+        measurementAsOfDate=data.get("measurementAsOfDate"),
     )
 
 
