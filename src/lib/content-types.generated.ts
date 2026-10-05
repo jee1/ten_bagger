@@ -203,6 +203,10 @@ export type WalkForwardReport = {
   candidateId: string;
   foldSpec: FoldSpec;
   /**
+   * Horizon measurement cutoff (may exceed foldSpec.endDate)
+   */
+  measurementAsOfDate?: string;
+  /**
    * @minItems 1
    */
   folds: [Fold, ...Fold[]];
@@ -260,6 +264,10 @@ export interface CalibrationReport {
   packageIntent: "exploratory" | "go_evidence";
   mode: "search" | "baseline-only";
   configHash: string;
+  /**
+   * Horizon measurement cutoff for IS/OOS evaluation
+   */
+  measurementAsOfDate?: string;
   generatedAt: string;
   liveConstantsSnapshot: {
     compositeThreshold: number;

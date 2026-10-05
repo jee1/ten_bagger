@@ -30,6 +30,7 @@ class CalibrationRunConfig:
     outputDir: Path
     walkForwardOutputDir: Path
     compareToLiveBaseline: bool = False
+    measurementAsOfDate: str | None = None
 
 
 def _validate_fold_spec(name: str, fold_spec: dict[str, Any]) -> None:
@@ -160,6 +161,7 @@ def load_calibration_config(path: Path | str) -> CalibrationRunConfig:
         if data.get("walkForwardOutputDir")
         else WALK_FORWARD_DIR,
         compareToLiveBaseline=compare_raw,
+        measurementAsOfDate=data.get("measurementAsOfDate"),
     )
 
 
@@ -183,5 +185,7 @@ def config_hash(cfg: CalibrationRunConfig) -> str:
         "promoteTopN": cfg.promoteTopN,
         "compareToLiveBaseline": cfg.compareToLiveBaseline,
     }
+    if cfg.measurementAsOfDate is not None:
+        payload["measurementAsOfDate"] = cfg.measurementAsOfDate
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()

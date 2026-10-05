@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "0.1.0",
+  "runId": "589c07083ebf8c1c",
+  "packageIntent": "go_evidence",
+  "mode": "search",
+  "configHash": "589c07083ebf8c1cb668cb670cd1b0d54322c079eccaf6a31e07d189a03d90ca",
+  "generatedAt": "2026-09-02T23:59:59Z",
+  "liveConstantsSnapshot": {
+    "compositeThreshold": 70.0,
+    "weights": {
+      "WEIGHT_SIZE": 0.15,
+      "WEIGHT_VALUATION": 0.25,
+      "WEIGHT_GROWTH": 0.2,
+      "WEIGHT_QUALITY": 0.2,
+      "WEIGHT_ENTRY": 0.1,
+      "WEIGHT_MOMENTUM": 0.1
+    }
+  },
+  "isRanking": [
+    {
+      "candidateId": "growth_shrink_05_vq",
+      "rank": 1,
+      "isMetricH20ExcessMean": 0.04583005798588944,
+      "isPickDays": 16,
+      "walkForwardReportPath": "walk-forward/6e610db308b9dd47.json",
+      "walkForwardConfigHash": "6e610db308b9dd47e2a018cacf8c98be4d2cd26cce6faf1775d700350dcc52bf",
+      "status": "ranked"
+    },
+    {
+      "candidateId": "growth_shrink_10_vq",
+      "rank": 2,
+      "isMetricH20ExcessMean": 0.04583005798588944,
+      "isPickDays": 16,
+      "walkForwardReportPath": "walk-forward/cf483e4ee33607ce.json",
+      "walkForwardConfigHash": "cf483e4ee33607ced7f7270262e0e0179c05e6b548e3ffe833af924fa3515602",
+      "status": "ranked"
+    },
+    {
+      "candidateId": "growth_shrink_10_vqs",
+      "rank": 3,
+      "isMetricH20ExcessMean": null,
+      "isPickDays": 16,
+      "walkForwardReportPath": "walk-forward/e16dc6cb77b0b963.json",
+      "walkForwardConfigHash": "e16dc6cb77b0b963a61733f8d42c3adeef7d1888fdf5b8f286184f4b04e2dbae",
+      "status": "ranked"
+    },
+    {
+      "candidateId": "growth_shrink_15_vq",
+      "rank": 4,
+      "isMetricH20ExcessMean": null,
+      "isPickDays": 16,
+      "walkForwardReportPath": "walk-forward/a29760fb29955f11.json",
+      "walkForwardConfigHash": "a29760fb29955f11179ced4190ca9d180c763ffcbafe30fae17c2e1985499f8f",
+      "status": "ranked"
+    }
+  ],
+  "selectionRationale": "IS ranking by H20 excess return mean (desc), tie-break isPickDays then candidateId",
+  "oosEvaluations": [
+    {
+      "candidateId": "growth_shrink_05_vq",
+      "walkForwardReportPath": "walk-forward/50660303a7171fa1.json",
+      "walkForwardConfigHash": "50660303a7171fa1882fb042a6e3e2d2a960fe4441bb6d1cab37476ad3c27030",
+      "oosPickDays": 22,
+      "noPickRatio": 0.0,
+      "h20ExcessReturnMean": null,
+      "h60ExcessReturnMean": null,
+      "insufficientCoverage": false,
+      "contaminationFindings": [],
+      "verdict": "NO-GO",
+      "failedBullets": [
+        "h20_excess_not_positive",
+        "incomplete_horizons"
+      ]
+    },
+    {
+      "candidateId": "score-v2-baseline",
+      "walkForwardReportPath": "walk-forward/1d483f1fc7c8156c.json",
+      "walkForwardConfigHash": "1d483f1fc7c8156c1c67e9389dd71aa300944173114e362cdc3f0dc4664dad3b",
+      "oosPickDays": 19,
+      "noPickRatio": 0.13636363636363635,
+      "h20ExcessReturnMean": -0.010685456658381292,
+      "h60ExcessReturnMean": null,
+      "insufficientCoverage": true,
+      "contaminationFindings": [],
+      "verdict": "NO-GO",
+      "failedBullets": [
+        "insufficient_coverage",
+        "h20_excess_not_positive"
+      ]
+    }
+  ],
+  "overallVerdict": "NO-GO",
+  "failedBullets": [
+    "h20_excess_not_positive",
+    "incomplete_horizons"
+  ],
+  "mergeCriteriaRef": "docs/architecture/threshold-weight-merge-criteria.md"
+}

@@ -11,17 +11,18 @@
     "trainSessions": 4,
     "oosSessions": 2,
     "stepSessions": 2,
-    "startDate": "2026-06-01",
-    "endDate": "2026-07-15"
+    "startDate": "2026-07-03",
+    "endDate": "2026-07-31"
   },
   "oosFoldSpec": {
     "mode": "rolling",
     "trainSessions": 6,
-    "oosSessions": 3,
-    "stepSessions": 3,
-    "startDate": "2026-07-16",
-    "endDate": "2026-08-04"
+    "oosSessions": 2,
+    "stepSessions": 2,
+    "startDate": "2026-08-03",
+    "endDate": "2026-09-02"
   },
+  "measurementAsOfDate": "2026-10-04",
   "candidates": [
     {
       "candidateId": "growth_shrink_05_vq",
@@ -76,5 +77,5 @@
       }
     }
   ],
-  "notes": "Issue #91 Score v3 search go_evidence (growth grid first). Run readiness first; expect not_ready until H20-complete carve ≥40 pick days. #68/#70 grids follow same pattern."
+  "notes": "Issue #93 Score v3 search go_evidence (growth grid). Pick carve IS 2026-07-03..2026-07-31, OOS 2026-08-03..2026-09-02; measurementAsOfDate 2026-10-04 (ledger KR/US); oosFoldSpec train=6/oos=2/step=2 with IS-seeded OOS folds. #68/#70 grids follow same pattern."
 }
