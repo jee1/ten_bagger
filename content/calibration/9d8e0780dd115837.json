@@ -19,36 +19,36 @@
   },
   "isRanking": [
     {
-      "candidateId": "growth_shrink_05_vq",
-      "rank": 1,
-      "isMetricH20ExcessMean": 0.04583005798588944,
-      "isPickDays": 16,
-      "walkForwardReportPath": "walk-forward/a22a682cb0090ee6.json",
-      "walkForwardConfigHash": "a22a682cb0090ee67bc00051dc3ba6af87265979272886a1e30b944e543bf592",
-      "status": "ranked"
-    },
-    {
-      "candidateId": "growth_shrink_10_vq",
-      "rank": 2,
-      "isMetricH20ExcessMean": 0.04583005798588944,
-      "isPickDays": 16,
-      "walkForwardReportPath": "walk-forward/10343f5e45ddb10f.json",
-      "walkForwardConfigHash": "10343f5e45ddb10fc5e1c12cf7baca7c406174110470b38089661a3ab1f5adb4",
-      "status": "ranked"
-    },
-    {
       "candidateId": "growth_shrink_10_vqs",
-      "rank": 3,
-      "isMetricH20ExcessMean": null,
+      "rank": 1,
+      "isMetricH20ExcessMean": 0.07001741739881223,
       "isPickDays": 16,
       "walkForwardReportPath": "walk-forward/70b4279e61ab4222.json",
       "walkForwardConfigHash": "70b4279e61ab422203d377b10436efa6934045362531f0a8883a542a55399571",
       "status": "ranked"
     },
     {
+      "candidateId": "growth_shrink_10_vq",
+      "rank": 2,
+      "isMetricH20ExcessMean": 0.06082207004164817,
+      "isPickDays": 16,
+      "walkForwardReportPath": "walk-forward/10343f5e45ddb10f.json",
+      "walkForwardConfigHash": "10343f5e45ddb10fc5e1c12cf7baca7c406174110470b38089661a3ab1f5adb4",
+      "status": "ranked"
+    },
+    {
+      "candidateId": "growth_shrink_05_vq",
+      "rank": 3,
+      "isMetricH20ExcessMean": 0.032382829384159276,
+      "isPickDays": 16,
+      "walkForwardReportPath": "walk-forward/a22a682cb0090ee6.json",
+      "walkForwardConfigHash": "a22a682cb0090ee67bc00051dc3ba6af87265979272886a1e30b944e543bf592",
+      "status": "ranked"
+    },
+    {
       "candidateId": "growth_shrink_15_vq",
       "rank": 4,
-      "isMetricH20ExcessMean": null,
+      "isMetricH20ExcessMean": 0.015100896723167244,
       "isPickDays": 16,
       "walkForwardReportPath": "walk-forward/ad039ae229c650d4.json",
       "walkForwardConfigHash": "ad039ae229c650d4c5a7b4e93ba14ef09e745864cc2e0ceb2dfdf8cee8e0b091",
@@ -58,19 +58,18 @@
   "selectionRationale": "IS ranking by H20 excess return mean (desc), tie-break isPickDays then candidateId",
   "oosEvaluations": [
     {
-      "candidateId": "growth_shrink_05_vq",
-      "walkForwardReportPath": "walk-forward/0c8512a10630695a.json",
-      "walkForwardConfigHash": "0c8512a10630695a16adea6e1c6422d62312d98ec49953e986a92702e8b402a9",
+      "candidateId": "growth_shrink_10_vqs",
+      "walkForwardReportPath": "walk-forward/37e9dc26d73d4820.json",
+      "walkForwardConfigHash": "37e9dc26d73d4820ca82b895b8085c33fc9d3acfc5782734145ef01b459bfc68",
       "oosPickDays": 22,
       "noPickRatio": 0.0,
-      "h20ExcessReturnMean": null,
+      "h20ExcessReturnMean": -0.040017219704323155,
       "h60ExcessReturnMean": null,
       "insufficientCoverage": false,
       "contaminationFindings": [],
       "verdict": "NO-GO",
       "failedBullets": [
-        "h20_excess_not_positive",
-        "incomplete_horizons"
+        "h20_excess_not_positive"
       ]
     },
     {
@@ -92,8 +91,7 @@
   ],
   "overallVerdict": "NO-GO",
   "failedBullets": [
-    "h20_excess_not_positive",
-    "incomplete_horizons"
+    "h20_excess_not_positive"
   ],
   "mergeCriteriaRef": "docs/architecture/threshold-weight-merge-criteria.md"
 }

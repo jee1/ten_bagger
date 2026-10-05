@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from config import WALK_FORWARD_DIR, WALK_FORWARD_SCHEMA_PATH
+from performance.prices_live import default_benchmark_provider, default_price_provider
 from performance.write_atomic import atomic_replace
 from validate_content import load_validator
 
@@ -31,10 +32,15 @@ def generated_at_from_config(run_config: RunConfig) -> str:
     return f"{effective_measurement_as_of(run_config)}T23:59:59Z"
 
 
+def _measurement_providers(run_config: RunConfig, as_of: str):
+    if run_config.measurementSource == "fixture-recompute":
+        return fixture_price_provider(as_of), fixture_benchmark_provider(as_of)
+    return default_price_provider(as_of), default_benchmark_provider(as_of)
+
+
 def make_measure_fn(run_config: RunConfig):
     as_of = effective_measurement_as_of(run_config)
-    price_provider = fixture_price_provider(as_of)
-    benchmark_provider = fixture_benchmark_provider(as_of)
+    price_provider, benchmark_provider = _measurement_providers(run_config, as_of)
 
     def measure_fn(picks, cfg, as_of_date):
         return measure_oos_picks(
