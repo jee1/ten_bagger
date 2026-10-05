@@ -1,0 +1,299 @@
+{
+  "date": "2026-10-05",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "013030.KQ",
+    "name": {
+      "ko": "하이록코리아",
+      "en": "Hy-Lok Corporation"
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "하이록코리아는 Industrials 분야 Specialty Industrial Machinery 기업입니다.",
+        "en": "Hy-Lok Corporation operates in the fluid and control system industry worldwide. It offers fittings, including tube, high pressure, RS, hose, clean, o-ring face seal, instrument thread and weld, and pipe fittings, as well as quick connectors, flanges, pre-insulated tubing, and Teflon flexible hose."
+      },
+      "sector": {
+        "ko": "Industrials",
+        "en": "Industrials"
+      },
+      "industry": {
+        "ko": "Specialty Industrial Machinery",
+        "en": "Specialty Industrial Machinery"
+      }
+    }
+  },
+  "scores": {
+    "composite": 76.7,
+    "size": 100.0,
+    "growth": 90.6,
+    "valuation": 70.0,
+    "entry": 75.0,
+    "momentum": 59.8,
+    "quality": 63.1,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "하이록코리아(013030.KQ)는 v2 복합 점수 76.7로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Hy-Lok Corporation (013030.KQ) cleared the 70.0 threshold with v2 composite 76.7; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 9.1% / 이익 34.6% (혼합 20.57%) — 지속 가능 성장 점수 90.6.",
+      "en": "Revenue 9.1% / earnings 34.6% (blended 20.57%) — sustainable growth score 90.6."
+    },
+    "valuation": {
+      "ko": "PER 6.74, PEG 데이터 없음, FCF수익률 6.4%, PBR 데이터 없음 — 밸류 점수 70.0.",
+      "en": "P/E 6.74, PEG No data, FCF yield 6.4%, P/B No data — valuation score 70.0."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 3.86% — 보조 모멘텀 점수 59.8.",
+      "en": "6M return 3.86% — auxiliary momentum score 59.8."
+    },
+    "quality": {
+      "ko": "ROE 12.85%, ROA 7.96%, FCF/순이익 0.48 — 품질 점수 63.1.",
+      "en": "ROE 12.85%, ROA 7.96%, FCF/net income 0.48 — quality score 63.1."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 427183636480 기준 규모 점수 100.0.",
+      "en": "Market cap 427183636480 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 43.66%, 52주 고점 대비 -21.34% — 진입 점수 75.0.",
+      "en": "12M price range 43.66%, -21.34% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-10-05T09:09:05+09:00",
+    "candidatesScreened": 1910,
+    "excludedRecent": 30,
+    "skippedMarketCap": 841,
+    "skippedRedFlags": 371,
+    "noData": 4,
+    "errors": 1
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "013030.KQ",
+      "name": {
+        "ko": "하이록코리아",
+        "en": "Hy-Lok Corporation"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.7,
+        "size": 100.0,
+        "growth": 90.6,
+        "valuation": 70.0,
+        "entry": 75.0,
+        "momentum": 59.8,
+        "quality": 63.1,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "445180.KQ",
+      "name": {
+        "ko": "퓨릿",
+        "en": "Purit Co., Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.5,
+        "size": 100.0,
+        "growth": 98.3,
+        "valuation": 57.7,
+        "entry": 75.0,
+        "momentum": 73.9,
+        "quality": 62.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "143240.KQ",
+      "name": {
+        "ko": "사람인",
+        "en": "Saramin Co.,Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.2,
+        "size": 100.0,
+        "growth": 95.7,
+        "valuation": 62.2,
+        "entry": 36.5,
+        "momentum": 59.3,
+        "quality": 84.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "439090.KQ",
+      "name": {
+        "ko": "마녀공장",
+        "en": "Manyo Factory Co., Ltd"
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.2,
+        "size": 100.0,
+        "growth": 92.5,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 70.9,
+        "quality": 58.3,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "040420.KQ",
+      "name": {
+        "ko": "정상제이엘에스",
+        "en": "JLS Co.,Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.0,
+        "size": 100.0,
+        "growth": 95.1,
+        "valuation": 73.5,
+        "entry": 64.5,
+        "momentum": 58.3,
+        "quality": 56.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-05T00:09:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
