@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-05",
+  "asOfDate": "2026-10-06",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -264,6 +264,12 @@
     {
       "pickDate": "2026-10-04",
       "symbol": "UVE",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-10-06",
+      "symbol": "IIPR",
       "status": "pick",
       "scoreVersion": "2"
     }
