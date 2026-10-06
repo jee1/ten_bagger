@@ -1,0 +1,299 @@
+{
+  "date": "2026-10-06",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "IIPR",
+    "name": {
+      "ko": "Innovative Industrial Properties Inc",
+      "en": "Innovative Industrial Properties, Inc."
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Innovative Industrial Properties Inc는 Real Estate 분야 REIT - Industrial 기업입니다.",
+        "en": "Innovative Industrial Properties, Inc. is an internally managed real estate investment trust focused on the acquisition, ownership and management of specialized industrial properties and financial investments in the life science industry."
+      },
+      "sector": {
+        "ko": "Real Estate",
+        "en": "Real Estate"
+      },
+      "industry": {
+        "ko": "REIT - Industrial",
+        "en": "REIT - Industrial"
+      }
+    }
+  },
+  "scores": {
+    "composite": 80.8,
+    "size": 100.0,
+    "growth": 96.3,
+    "valuation": 80.0,
+    "entry": 75.0,
+    "momentum": 61.9,
+    "quality": 64.5,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Innovative Industrial Properties Inc(IIPR)는 v2 복합 점수 80.8로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Innovative Industrial Properties, Inc. (IIPR) cleared the 70.0 threshold with v2 composite 80.8; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 0.7% / 이익 57.7% (혼합 26.35%) — 지속 가능 성장 점수 96.3.",
+      "en": "Revenue 0.7% / earnings 57.7% (blended 26.35%) — sustainable growth score 96.3."
+    },
+    "valuation": {
+      "ko": "PER 11.43, PEG 데이터 없음, FCF수익률 7.17%, PBR 0.81 — 밸류 점수 80.0.",
+      "en": "P/E 11.43, PEG No data, FCF yield 7.17%, P/B 0.81 — valuation score 80.0."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 8.04% — 보조 모멘텀 점수 61.9.",
+      "en": "6M return 8.04% — auxiliary momentum score 61.9."
+    },
+    "quality": {
+      "ko": "ROE 7.39%, ROA 3.28%, FCF/순이익 0.79 — 품질 점수 64.5.",
+      "en": "ROE 7.39%, ROA 3.28%, FCF/net income 0.79 — quality score 64.5."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 1393456000 기준 규모 점수 100.0.",
+      "en": "Market cap 1393456000 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 50.05%, 52주 고점 대비 -19.03% — 진입 점수 75.0.",
+      "en": "12M price range 50.05%, -19.03% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-10-06T11:35:22+09:00",
+    "candidatesScreened": 6257,
+    "excludedRecent": 30,
+    "skippedMarketCap": 1977,
+    "skippedRedFlags": 973,
+    "noData": 66,
+    "errors": 6
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "IIPR",
+      "name": {
+        "ko": "Innovative Industrial Properties Inc",
+        "en": "Innovative Industrial Properties, Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.8,
+        "size": 100.0,
+        "growth": 96.3,
+        "valuation": 80.0,
+        "entry": 75.0,
+        "momentum": 61.9,
+        "quality": 64.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "VOXR",
+      "name": {
+        "ko": "Vox Royalty Corp",
+        "en": "Vox Royalty Corp."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.8,
+        "size": 92.0,
+        "growth": 74.0,
+        "valuation": 83.5,
+        "entry": 75.0,
+        "momentum": 55.6,
+        "quality": 91.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "HBB",
+      "name": {
+        "ko": "Hamilton Beach Brands Holding Company",
+        "en": "Hamilton Beach Brands Holding Company"
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.5,
+        "size": 100.0,
+        "growth": 78.3,
+        "valuation": 83.5,
+        "entry": 47.0,
+        "momentum": 100.0,
+        "quality": 71.2,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "MAKO",
+      "name": {
+        "ko": "Mako Mining Corp",
+        "en": "Mako Mining Corp."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.5,
+        "size": 100.0,
+        "growth": 79.6,
+        "valuation": 69.2,
+        "entry": 57.5,
+        "momentum": 78.8,
+        "quality": 93.0,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "MCI",
+      "name": {
+        "ko": "Barings Corporate Investors",
+        "en": "Barings Corporate Investors"
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.0,
+        "size": 100.0,
+        "growth": 96.6,
+        "valuation": 74.7,
+        "entry": 75.0,
+        "momentum": 61.4,
+        "quality": 66.9,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-10-06T02:35:22+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
