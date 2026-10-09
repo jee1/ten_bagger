@@ -8,7 +8,8 @@
 At each OOS decision session `t`, screening uses only information knowable on or before `t`:
 
 - Price history passed to scoring is filtered with `performance.pit_prices.filter_session_bars(bars, as_of_date=t)` before momentum/entry inputs. Offline folds use the default `as_of_session_closed=True`; live fetch infers closed vs open via market TZ regular close (not host `date.today()` — see #99).
-- Fundamentals (`get_ticker_info`) are **not** point-in-time filtered in v1 production runs — live yfinance snapshots may include post-`t` revisions. Use `go_evidence` ledger outcomes for merge claims; treat live screening replay as exploratory only until fundamentals PIT is added.
+- Fundamentals (`get_ticker_info`) are **not** point-in-time filtered in v1 production runs — live yfinance snapshots may include post-`t` revisions. **Stage 0 (#175):** weight/threshold override re-screening counts each decision session without a fundamentals snapshot as non-PIT; walk-forward reports emit `contaminationFindings` (`fundamentals_not_pit:<count>`), and calibration GO/NO-GO treats that as hard `contamination` failure. **Ledger path** (committed `content/daily/` picks, no overrides) is not tagged. Use `go_evidence` ledger outcomes for merge claims; treat override re-screen as exploratory until snapshot-backed PIT lands (stages 1–2).
+- Calibration run `9d8e0780dd115837` (Score v3 search, IS 2026-07-03..07-31 / OOS 2026-08-03..09-02) used override live re-screen with non-PIT fundamentals — classify that search as **exploratory-level evidence** only. **NO-GO overall verdict and `SCORE_VERSION=2` remain unchanged.**
 - No bar, feature, or return observation dated after `t` may influence pick selection for that session.
 
 ## Horizons (ADR 0003)

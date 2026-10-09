@@ -84,3 +84,16 @@ def test_overall_incomplete():
 def test_overall_na_for_exploratory():
     v, _ = overall_verdict([], package_intent="exploratory")
     assert v == "N/A"
+
+
+def test_nogo_contamination_from_wf_report():
+    report = _wf(picks=25, excess=0.02)
+    report["contaminationFindings"] = ["fundamentals_not_pit:42"]
+    entry = verdict_from_oos_report(
+        report,
+        candidate_id="c1",
+        walk_forward_report_path="p",
+        walk_forward_config_hash="a" * 64,
+    )
+    assert entry["verdict"] == "NO-GO"
+    assert "contamination" in entry["failedBullets"]
