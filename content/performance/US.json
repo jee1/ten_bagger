@@ -5,7 +5,7 @@
   "runMeta": {
     "provider": "yfinance",
     "priceAdjustment": "adjusted_auto",
-    "generatedAt": "2026-10-09T01:19:48.344000+00:00",
+    "generatedAt": "2026-10-09T05:56:33.939337+00:00",
     "asOfDate": "2026-10-09"
   },
   "measurements": [
@@ -309,13 +309,15 @@
       "symbol": "DDI",
       "horizonId": "3M",
       "benchmarkId": "US-SPX",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-10-09",
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series"
+      "entryPrice": 11.390000343322754,
+      "exitPrice": 13.569999694824219,
+      "forwardReturn": 0.19139589866469692,
+      "benchmarkReturn": 0.03654222890389543
     },
     {
       "market": "US",
@@ -636,14 +638,16 @@
       "symbol": "ZVRA",
       "horizonId": "H60",
       "benchmarkId": "US-SPX",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-10-09",
       "horizonDays": 60,
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series"
+      "entryPrice": 13.020000457763672,
+      "exitPrice": 11.0,
+      "forwardReturn": -0.15514595904327866,
+      "benchmarkReturn": 0.025574062821006646
     },
     {
       "market": "US",
@@ -1333,9 +1337,9 @@
       "dataQualityFlag": "clean",
       "asOfDate": "2026-10-09",
       "horizonDays": 20,
-      "entryPrice": 6.464633302679995,
+      "entryPrice": 6.464632825115935,
       "exitPrice": 6.664766788482666,
-      "forwardReturn": 0.03095821161576222,
+      "forwardReturn": 0.030958287776095352,
       "benchmarkReturn": 0.025275269021753706
     },
     {
@@ -1364,9 +1368,9 @@
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-10-09",
-      "entryPrice": 6.464633302679995,
+      "entryPrice": 6.464632825115935,
       "exitPrice": 6.763945579528809,
-      "forwardReturn": 0.04629996209138885,
+      "forwardReturn": 0.04630003938506843,
       "benchmarkReturn": 0.028335252869131446
     },
     {
@@ -3601,13 +3605,15 @@
       "symbol": "EVER",
       "horizonId": "1M",
       "benchmarkId": "US-SPX",
-      "completionStatus": "incomplete",
-      "benchmarkCompletionStatus": "incomplete",
+      "completionStatus": "complete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-10-09",
-      "incompleteReason": "missing_exit",
-      "benchmarkIncompleteReason": "missing_benchmark_series"
+      "entryPrice": 24.770000457763672,
+      "exitPrice": 20.739999771118164,
+      "forwardReturn": -0.1626968353721763,
+      "benchmarkReturn": 0.01366454219443048
     },
     {
       "market": "US",

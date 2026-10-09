@@ -5,7 +5,7 @@
   "runMeta": {
     "provider": "yfinance",
     "priceAdjustment": "adjusted_auto",
-    "generatedAt": "2026-10-09T01:19:34.138137+00:00",
+    "generatedAt": "2026-10-09T05:56:20.362936+00:00",
     "asOfDate": "2026-10-09"
   },
   "measurements": [
@@ -430,14 +430,14 @@
       "horizonId": "3M",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "complete",
-      "benchmarkCompletionStatus": "incomplete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-10-09",
       "entryPrice": 13500.0,
       "exitPrice": 15720.0,
       "forwardReturn": 0.16444444444444445,
-      "benchmarkIncompleteReason": "missing_benchmark_exit"
+      "benchmarkReturn": -0.12268272183610797
     },
     {
       "market": "KR",
@@ -3688,7 +3688,7 @@
       "horizonId": "H20",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "complete",
-      "benchmarkCompletionStatus": "incomplete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-10-09",
@@ -3696,7 +3696,7 @@
       "entryPrice": 8340.0,
       "exitPrice": 6530.0,
       "forwardReturn": -0.2170263788968825,
-      "benchmarkIncompleteReason": "missing_benchmark_exit"
+      "benchmarkReturn": -0.0412181574627558
     },
     {
       "market": "KR",
@@ -3952,14 +3952,14 @@
       "horizonId": "1M",
       "benchmarkId": "KR-KOSPI",
       "completionStatus": "complete",
-      "benchmarkCompletionStatus": "incomplete",
+      "benchmarkCompletionStatus": "complete",
       "survivorshipFlag": "unknown",
       "dataQualityFlag": "clean",
       "asOfDate": "2026-10-09",
       "entryPrice": 16310.0,
       "exitPrice": 15780.0,
       "forwardReturn": -0.03249540159411404,
-      "benchmarkIncompleteReason": "missing_benchmark_exit"
+      "benchmarkReturn": -0.05866297991095042
     },
     {
       "market": "KR",
