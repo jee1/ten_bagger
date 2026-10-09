@@ -9,6 +9,7 @@ from datetime import date
 import generate_daily
 import pytest
 from config import COMPOSITE_THRESHOLD, SCORE_VERSION, UniverseSymbol
+from pit_snapshot import PitWriteResult
 from screen import ScoreResult, ScreenStats
 
 
@@ -52,6 +53,11 @@ def content_dirs(tmp_path, monkeypatch):
     monkeypatch.setattr(generate_daily, "DAILY_DIR", daily_dir)
     monkeypatch.setattr("sync_manifest.DAILY_DIR", daily_dir)
     monkeypatch.setattr("sync_manifest.MANIFEST_PATH", manifest_path)
+    monkeypatch.setattr(
+        generate_daily,
+        "write_daily_pit_snapshots",
+        lambda *_a, **_k: PitWriteResult(skipped=True, reason="test"),
+    )
 
     return daily_dir, manifest_path
 
@@ -63,7 +69,9 @@ def test_generate_daily_writes_pick_and_syncs_manifest(content_dirs, monkeypatch
     runner = _fake_pick("MSFT")
     runner.composite = 60.0  # below threshold near-miss
 
-    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex: ([pick, runner], stats))
+    monkeypatch.setattr(
+        generate_daily, "screen_market", lambda _m, _ex, **_k: ([pick, runner], stats)
+    )
     monkeypatch.setattr(generate_daily, "get_ticker_info", lambda _s: {"longName": "Apple Inc"})
     monkeypatch.setattr(generate_daily, "build_stock_profile", lambda *_a, **_k: None)
     monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-08"])
@@ -99,7 +107,7 @@ def test_generate_daily_writes_no_pick(content_dirs, monkeypatch):
     daily_dir, manifest_path = content_dirs
     stats = _fake_stats(passed_threshold=0)
 
-    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex: ([], stats))
+    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex, **_k: ([], stats))
     monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-09"])
 
     assert generate_daily.main() == 0
@@ -121,7 +129,7 @@ def test_generate_daily_no_pick_with_near_miss_top_n(content_dirs, monkeypatch):
     near = _fake_pick("NEAR")
     near.composite = 55.0
 
-    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex: ([near], stats))
+    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex, **_k: ([near], stats))
     monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-09"])
 
     assert generate_daily.main() == 0

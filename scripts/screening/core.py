@@ -6,7 +6,7 @@ import json
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from config import (
     COMPOSITE_THRESHOLD,
@@ -27,7 +27,10 @@ from scoring.quality import _score_quality
 from scoring.size import _score_size
 from scoring.valuation import _score_valuation
 from top_n import rank_key
-from yf_cache import get_ticker_history, get_ticker_info
+from yf_cache import get_ticker_history, get_ticker_info, get_ticker_info_with_provenance
+
+if TYPE_CHECKING:
+    from pit_snapshot import PitFundamentalsCollector
 
 logger = logging.getLogger(__name__)
 
@@ -180,6 +183,7 @@ def screen_market(
     exclude_symbols: set[str],
     *,
     score_version: int = SCORE_VERSION,
+    pit_collector: PitFundamentalsCollector | None = None,
 ) -> tuple[list[ScoreResult], ScreenStats]:
     universe = load_universe(market)
     stats = ScreenStats(skipped_recent=len(exclude_symbols))
@@ -197,7 +201,11 @@ def screen_market(
     results: list[ScoreResult] = []
 
     def _score_one(meta: UniverseSymbol) -> tuple[str, ScoreResult | None]:
-        info = get_ticker_info(meta.symbol)
+        if pit_collector is not None:
+            info, provenance = get_ticker_info_with_provenance(meta.symbol)
+            pit_collector.record(meta.symbol, info, provenance)
+        else:
+            info = get_ticker_info(meta.symbol)
         if not info.get("symbol") and not info.get("shortName"):
             return ("no_data", None)
         if not passes_market_cap_filter(meta, market, info):

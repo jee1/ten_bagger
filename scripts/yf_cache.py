@@ -12,6 +12,8 @@ import re
 import threading
 import time
 from collections.abc import Callable
+from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -25,6 +27,7 @@ from config import (
     YF_RATE_LIMIT_DELAY,
     YF_RETRY_BASE_DELAY,
 )
+from time_utils import KST
 
 logger = logging.getLogger(__name__)
 
@@ -85,9 +88,45 @@ def _read_json(path: Path) -> dict[str, Any] | None:
         return None
 
 
+@dataclass(frozen=True)
+class InfoProvenance:
+    known_at: str
+    cache_hit: bool
+    provider: str = "yfinance"
+
+
+def _iso_fetched_at_from_mtime(path: Path) -> str:
+    return datetime.fromtimestamp(path.stat().st_mtime, tz=KST).isoformat(timespec="seconds")
+
+
+def _unwrap_info_payload(payload: dict[str, Any]) -> tuple[dict[str, Any], str | None]:
+    if isinstance(payload.get("info"), dict):
+        fetched = payload.get("fetchedAt")
+        return payload["info"], str(fetched) if fetched else None
+    return payload, None
+
+
 def _read_info_cache(path: Path) -> dict[str, Any] | None:
     payload = _read_json(path)
-    return payload if payload else None
+    if not payload:
+        return None
+    info, _ = _unwrap_info_payload(payload)
+    return info if info else None
+
+
+def _read_info_cache_with_provenance(path: Path) -> tuple[dict[str, Any], InfoProvenance] | None:
+    payload = _read_json(path)
+    if not payload:
+        return None
+    info, fetched_at = _unwrap_info_payload(payload)
+    if not info:
+        return None
+    known_at = fetched_at or _iso_fetched_at_from_mtime(path)
+    return info, InfoProvenance(known_at=known_at, cache_hit=True)
+
+
+def _write_info_cache(path: Path, info: dict[str, Any], fetched_at: str) -> None:
+    _write_json(path, {"info": info, "fetchedAt": fetched_at})
 
 
 def _read_history_cache(path: Path) -> pd.DataFrame | None:
@@ -175,12 +214,17 @@ def _with_retry[T](
     raise last_exc
 
 
-def get_ticker_info(symbol: str) -> dict[str, Any]:
+def _now_fetched_at() -> str:
+    return datetime.now(KST).isoformat(timespec="seconds")
+
+
+def get_ticker_info_with_provenance(symbol: str) -> tuple[dict[str, Any], InfoProvenance]:
     path = _cache_path(symbol, "info")
     if _is_fresh(path):
-        cached = _read_info_cache(path)
+        cached = _read_info_cache_with_provenance(path)
         if cached is not None:
-            return cached
+            info, prov = cached
+            return info, prov
 
     def _fetch() -> dict[str, Any]:
         return yf.Ticker(symbol).info or {}
@@ -193,18 +237,28 @@ def get_ticker_info(symbol: str) -> dict[str, Any]:
     except Exception as exc:
         if _is_rate_limited(exc):
             _note_fundamental_rate_limit(symbol, where="exhausted", exc=exc)
-        stale = _read_info_cache(path)
+        stale = _read_info_cache_with_provenance(path)
         if stale is not None and _is_transient_failure(exc):
             logger.warning(
                 "Using stale yfinance info cache for %s after fetch failure: %s",
                 symbol,
                 exc,
             )
-            return stale
+            info, prov = stale
+            return info, InfoProvenance(
+                known_at=prov.known_at,
+                cache_hit=False,
+                provider=prov.provider,
+            )
         raise
+    fetched_at = _now_fetched_at()
     if info:
-        _write_json(path, info)
-    return info
+        _write_info_cache(path, info, fetched_at)
+    return info, InfoProvenance(known_at=fetched_at, cache_hit=False)
+
+
+def get_ticker_info(symbol: str) -> dict[str, Any]:
+    return get_ticker_info_with_provenance(symbol)[0]
 
 
 def get_ticker_history_with_provider(symbol: str, period: str = "1y") -> tuple[pd.DataFrame, str]:

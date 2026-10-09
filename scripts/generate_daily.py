@@ -17,6 +17,7 @@ from config import (
     market_for_date,
 )
 from moat_megatrend_classification import classify_top_candidate_moat_megatrend
+from pit_snapshot import PitFundamentalsCollector, write_daily_pit_snapshots
 from risk_classification import apply_pick_risk_reasoning, classify_top_candidate_risks
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
@@ -147,7 +148,8 @@ def main() -> int:
 
     excluded_symbols = recent_pick_symbols(DUPLICATE_BAN_DAYS, before)
 
-    candidates, stats = screen_market(market, excluded_symbols)
+    pit_collector = PitFundamentalsCollector(market=market)
+    candidates, stats = screen_market(market, excluded_symbols, pit_collector=pit_collector)
     pick = select_pick(candidates)
     top_candidates = build_top_candidates(candidates)
     top_candidates = classify_top_candidate_risks(top_candidates)
@@ -171,6 +173,16 @@ def main() -> int:
     out_path.write_text(json.dumps(entry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     sync_manifest()
+
+    pit_result = write_daily_pit_snapshots(target, market, pit_collector)
+    if pit_result.skipped:
+        logger.warning("PIT snapshot skipped: %s", pit_result.reason)
+    elif pit_result.manifest_entry:
+        logger.info(
+            "PIT staging written for %s %s (manifest after pit-repo push)",
+            market,
+            target,
+        )
 
     print(f"Wrote {out_path} status={entry['status']} market={market}")
     return 0
