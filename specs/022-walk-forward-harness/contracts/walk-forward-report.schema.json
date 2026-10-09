@@ -45,7 +45,12 @@
       "items": { "$ref": "#/$defs/fold" }
     },
     "aggregate": { "$ref": "#/$defs/aggregateMetrics" },
-    "coverage": { "$ref": "#/$defs/coverageBlock" }
+    "coverage": { "$ref": "#/$defs/coverageBlock" },
+    "contaminationFindings": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Non-PIT or other evidence contamination tags (#175)"
+    }
   },
   "allOf": [
     {

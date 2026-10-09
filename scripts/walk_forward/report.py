@@ -7,6 +7,7 @@ from typing import Any
 
 from walk_forward.aggregate import aggregate_report, enrich_fold_results
 from walk_forward.config import RunConfig, config_hash, effective_measurement_as_of
+from walk_forward.fundamentals_pit import contamination_findings_for_run
 
 SCHEMA_VERSION = "0.1.0"
 
@@ -34,7 +35,8 @@ def build_report(
     enriched = enrich_fold_results(fold_results)
     report_folds = [_report_fold(f) for f in enriched]
     aggregate_horizons, coverage = aggregate_report(enriched, run_config.runIntent)
-    return {
+    contamination = contamination_findings_for_run(run_config, enriched)
+    report: dict[str, Any] = {
         "schemaVersion": SCHEMA_VERSION,
         "runId": run_id,
         "runIntent": run_config.runIntent,
@@ -48,6 +50,9 @@ def build_report(
         "aggregate": {"horizons": aggregate_horizons},
         "coverage": coverage,
     }
+    if contamination:
+        report["contaminationFindings"] = contamination
+    return report
 
 
 def serialize_report(report: dict[str, Any]) -> bytes:

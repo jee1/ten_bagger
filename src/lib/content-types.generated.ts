@@ -212,6 +212,10 @@ export type WalkForwardReport = {
   folds: [Fold, ...Fold[]];
   aggregate: AggregateMetrics;
   coverage: CoverageBlock;
+  /**
+   * Non-PIT or other evidence contamination tags (#175)
+   */
+  contaminationFindings?: string[];
 };
 export type FoldStatus = "complete" | "incomplete_horizon" | "skipped_empty_train";
 export type WalkForwardHorizonId = "H20" | "H60";
