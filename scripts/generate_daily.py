@@ -178,7 +178,11 @@ def main() -> int:
     if pit_result.skipped:
         logger.warning("PIT snapshot skipped: %s", pit_result.reason)
     elif pit_result.manifest_entry:
-        logger.info("PIT manifest updated for %s %s", market, target)
+        logger.info(
+            "PIT staging written for %s %s (manifest after pit-repo push)",
+            market,
+            target,
+        )
 
     print(f"Wrote {out_path} status={entry['status']} market={market}")
     return 0

@@ -7,6 +7,7 @@ import hashlib
 import json
 import logging
 import subprocess
+import threading
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -60,10 +61,12 @@ class PitManifestShaMismatchError(Exception):
 class PitFundamentalsCollector:
     market: str
     rows: dict[str, dict[str, Any]] = field(default_factory=dict)
+    _lock: threading.Lock = field(default_factory=threading.Lock, repr=False)
 
     def record(self, symbol: str, info: dict[str, Any], provenance: InfoProvenance) -> None:
         row = extract_fundamental_row(symbol, self.market, info, provenance)
-        self.rows[symbol] = row
+        with self._lock:
+            self.rows[symbol] = row
 
 
 def extract_fundamental_row(
@@ -240,6 +243,51 @@ def upsert_manifest_entry(manifest: dict[str, Any], entry: dict[str, Any]) -> di
     }
 
 
+def _pending_entry_path(staging_dir: Path, market: str, target_date: str) -> Path:
+    return staging_dir / "_pending" / f"{market}_{target_date}.json"
+
+
+def write_pending_manifest_entry(
+    entry: dict[str, Any],
+    *,
+    staging_dir: Path = PIT_STAGING_DIR,
+) -> Path:
+    path = _pending_entry_path(staging_dir, entry["market"], entry["date"])
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(entry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return path
+
+
+def load_pending_manifest_entry(
+    market: str,
+    target_date: str,
+    *,
+    staging_dir: Path = PIT_STAGING_DIR,
+) -> dict[str, Any] | None:
+    path = _pending_entry_path(staging_dir, market, target_date)
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def clear_pending_manifest_entry(
+    market: str,
+    target_date: str,
+    *,
+    staging_dir: Path = PIT_STAGING_DIR,
+) -> None:
+    path = _pending_entry_path(staging_dir, market, target_date)
+    if path.exists():
+        path.unlink()
+
+
+def record_manifest_entry_after_push(entry: dict[str, Any]) -> None:
+    """Upsert public manifest only after ten_bagger-pit push succeeded."""
+    manifest = load_pit_manifest()
+    manifest = upsert_manifest_entry(manifest, entry)
+    write_pit_manifest(manifest)
+
+
 def write_pit_manifest(manifest: dict[str, Any], path: Path | None = None) -> None:
     manifest_path = path or PIT_MANIFEST_PATH
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
@@ -306,9 +354,16 @@ def write_daily_pit_snapshots(
         },
     }
     verify_manifest_entry_files(entry, repo_root=staging_dir)
-    manifest = upsert_manifest_entry(manifest, entry)
-    write_pit_manifest(manifest)
+    write_pending_manifest_entry(entry, staging_dir=staging_dir)
     return PitWriteResult(skipped=False, manifest_entry=entry)
+
+
+def _run_git_step(label: str, args: list[str]) -> None:
+    try:
+        subprocess.run(args, check=True, capture_output=True, text=True)
+    except subprocess.CalledProcessError as exc:
+        stderr = (exc.stderr or "").strip()
+        raise RuntimeError(f"{label} failed (exit {exc.returncode}): {stderr}") from exc
 
 
 def push_staging_to_pit_repo(
@@ -329,11 +384,7 @@ def push_staging_to_pit_repo(
         subprocess.run(["rm", "-rf", str(work_dir)], check=True)
 
     clone_url = f"https://x-access-token:{token}@github.com/{repo}.git"
-    subprocess.run(
-        ["git", "clone", "--depth", "1", clone_url, str(work_dir)],
-        check=True,
-        capture_output=True,
-    )
+    _run_git_step("git clone", ["git", "clone", "--depth", "1", clone_url, str(work_dir)])
 
     copied = 0
     for sub in ("fundamentals", "universe"):
@@ -357,40 +408,71 @@ def push_staging_to_pit_repo(
         return False
 
     bot_email = "41898282+github-actions[bot]@users.noreply.github.com"
-    subprocess.run(
-        ["git", "-C", str(work_dir), "config", "user.email", bot_email],
-        check=True,
-    )
-    subprocess.run(
-        ["git", "-C", str(work_dir), "config", "user.name", "github-actions[bot]"],
-        check=True,
-    )
-    subprocess.run(["git", "-C", str(work_dir), "add", "fundamentals", "universe"], check=True)
+    git_c = ["git", "-C", str(work_dir)]
+    _run_git_step("git config email", [*git_c, "config", "user.email", bot_email])
+    _run_git_step("git config name", [*git_c, "config", "user.name", "github-actions[bot]"])
+    _run_git_step("git add", [*git_c, "add", "fundamentals", "universe"])
     status = subprocess.run(
-        ["git", "-C", str(work_dir), "status", "--porcelain"],
+        [*git_c, "status", "--porcelain"],
         check=True,
         capture_output=True,
         text=True,
     )
     if not status.stdout.strip():
         return False
-    subprocess.run(
-        ["git", "-C", str(work_dir), "commit", "-m", f"chore(pit): snapshot files ({copied} new)"],
-        check=True,
+    _run_git_step(
+        "git commit",
+        [*git_c, "commit", "-m", f"chore(pit): snapshot files ({copied} new)"],
     )
-    subprocess.run(["git", "-C", str(work_dir), "push", "origin", "HEAD"], check=True)
+    _run_git_step("git push", [*git_c, "push", "origin", "HEAD"])
     logger.info("Pushed %d PIT file(s) to %s", copied, repo)
+    return True
+
+
+def push_and_record_manifest(
+    target_date: str,
+    market: str,
+    *,
+    token: str | None,
+    staging_dir: Path = PIT_STAGING_DIR,
+) -> bool:
+    """Push staging to pit repo; on success upsert content/pit/manifest.json."""
+    pending = load_pending_manifest_entry(market, target_date, staging_dir=staging_dir)
+    if pending is None:
+        logger.info("No pending PIT manifest entry for %s %s", market, target_date)
+        return False
+    if not token:
+        logger.warning("PIT_DATA_TOKEN not set; manifest unchanged")
+        return False
+    try:
+        pushed = push_staging_to_pit_repo(staging_dir, token=token)
+    except Exception as exc:
+        logger.warning("PIT push failed; manifest unchanged: %s", exc)
+        return False
+    if not pushed:
+        logger.warning("PIT push produced no new remote files; manifest unchanged")
+        return False
+    record_manifest_entry_after_push(pending)
+    clear_pending_manifest_entry(market, target_date, staging_dir=staging_dir)
+    logger.info("PIT manifest updated for %s %s after successful push", market, target_date)
     return True
 
 
 def main() -> int:
     import os
 
+    from config import market_for_date
+
     token = os.environ.get("PIT_DATA_TOKEN")
-    if not token:
-        logger.warning("PIT_DATA_TOKEN not set; skipping pit repo push")
+    target = os.environ.get("PIT_TARGET_DATE")
+    if not target:
+        logger.warning("PIT_TARGET_DATE not set; skipping pit push/manifest")
         return 0
-    push_staging_to_pit_repo(PIT_STAGING_DIR, token=token)
+    market = market_for_date(target)
+    try:
+        push_and_record_manifest(target, market, token=token)
+    except Exception as exc:
+        logger.warning("PIT finalize failed (daily continues): %s", exc)
     return 0
 
 

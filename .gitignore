@@ -28,6 +28,7 @@ __pycache__/
 *.pyc
 scripts/cache/
 scripts/pit-staging/
+scripts/pit-staging/_pending/
 scripts/.pit-repo-clone/
 
 # local agent / browser tooling output
