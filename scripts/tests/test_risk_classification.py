@@ -161,7 +161,7 @@ def test_api_failure_static_fallback_and_batch_succeeds(monkeypatch, content_dir
             now=_fixed_now,
         ),
     )
-    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex: ([pick], stats))
+    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex, **_k: ([pick], stats))
     monkeypatch.setattr(generate_daily, "get_ticker_info", lambda _s: {"longName": "Apple Inc"})
     monkeypatch.setattr(generate_daily, "build_stock_profile", lambda *_a, **_k: None)
     monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-08"])
@@ -213,7 +213,9 @@ def test_pick_and_rank_invariants_unchanged(content_dirs, monkeypatch):
     runner = _fake_pick("MSFT")
     runner.composite = 60.0
 
-    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex: ([pick, runner], stats))
+    monkeypatch.setattr(
+        generate_daily, "screen_market", lambda _m, _ex, **_k: ([pick, runner], stats)
+    )
     monkeypatch.setattr(generate_daily, "get_ticker_info", lambda _s: {"longName": "x"})
     monkeypatch.setattr(generate_daily, "build_stock_profile", lambda *_a, **_k: None)
     monkeypatch.setattr(
@@ -431,5 +433,12 @@ def content_dirs(tmp_path, monkeypatch):
     monkeypatch.setattr(generate_daily, "DAILY_DIR", daily_dir)
     monkeypatch.setattr("sync_manifest.DAILY_DIR", daily_dir)
     monkeypatch.setattr("sync_manifest.MANIFEST_PATH", manifest_path)
+    from pit_snapshot import PitWriteResult
+
+    monkeypatch.setattr(
+        generate_daily,
+        "write_daily_pit_snapshots",
+        lambda *_a, **_k: PitWriteResult(skipped=True, reason="test"),
+    )
 
     return daily_dir, manifest_path

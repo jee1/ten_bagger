@@ -80,6 +80,16 @@ jobs:
         # Must not write content/ledger/** or content/performance/** (#63 isolation).
         run: cd scripts && python generate_daily.py "${{ steps.target_date.outputs.date }}"
 
+      - name: Push PIT snapshots to ten_bagger-pit
+        env:
+          PIT_DATA_TOKEN: ${{ secrets.PIT_DATA_TOKEN }}
+        run: |
+          if [ -z "${PIT_DATA_TOKEN:-}" ]; then
+            echo "::warning title=PIT push skipped::PIT_DATA_TOKEN not configured; daily continues."
+            exit 0
+          fi
+          cd scripts && python pit_snapshot.py
+
       - name: Validate daily JSON
         run: |
           cd scripts && python sync_manifest.py

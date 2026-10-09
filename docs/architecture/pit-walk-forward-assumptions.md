@@ -60,3 +60,19 @@ Symbols picked within the prior `DUPLICATE_BAN_DAYS` (30 calendar days) are excl
 ## Artifacts
 
 Walk-forward reports write to `content/walk-forward/{runId}.json` only. **No writes to `content/daily/`** (SC-006).
+
+## Forward fundamentals & universe snapshots (issue #175 stage 1)
+
+Daily production runs capture immutable point-in-time inputs without extra yfinance calls:
+
+| Artifact | Private data repo (`jee1/ten_bagger-pit`) | Public manifest (`content/pit/manifest.json`) |
+|----------|-------------------------------------------|-----------------------------------------------|
+| Fundamentals | `fundamentals/{market}/{YYYY-MM-DD}.jsonl.gz` | `sha256`, `bytes`, `rowCount`, `knownAtMin`/`knownAtMax` |
+| Universe | `universe/{market}/{YYYY-MM-DD}.json.gz` | `sha256`, `bytes`, `symbolCount`, `builtAt` |
+
+- **Target date** matches `generate_daily.py` KST session date (`YYYY-MM-DD`).
+- **Fundamentals row**: `symbol`, `market`, `knownAt`, `provider`, `cacheHit`, plus scoring `info` fields only (same set as `scripts/pit_snapshot.SCORING_INFO_FIELDS`; `longBusinessSummary` excluded).
+- **`knownAt`**: timestamp of the yfinance info fetch stored in disk cache (`fetchedAt`). TTL cache hits and stale fallbacks use the cached fetch time, not the daily job clock.
+- **Universe**: full screening symbol list from `scripts/universe/{kr,us}.json` plus `builtAt` (universe file mtime).
+- **Immutability**: existing `date`+`market` files are never overwritten (skip + warning). Manifest `sha256` must match gzip bytes (`pit_snapshot.verify_file_sha256` / `verify_manifest_entry_files`).
+- **Stage 2** will patch `get_ticker_info` to read these snapshots for walk-forward re-screening; until then live daily screening behavior is unchanged aside from capture.
