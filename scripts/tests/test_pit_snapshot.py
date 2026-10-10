@@ -92,9 +92,33 @@ def test_verify_file_sha256_mismatch(tmp_path):
         verify_file_sha256(path, "0" * 64)
 
 
-def test_content_pit_manifest_has_no_committed_entries():
+def test_content_pit_manifest_has_valid_structure():
     manifest = json.loads(PIT_MANIFEST_PATH.read_text(encoding="utf-8"))
-    assert manifest.get("entries") == []
+    entries = manifest.get("entries", [])
+    
+    assert isinstance(entries, list)
+    assert "schemaVersion" in manifest
+    
+    for entry in entries:
+        assert "date" in entry
+        assert "market" in entry
+        assert "fundamentals" in entry
+        assert "universe" in entry
+        
+        fund = entry["fundamentals"]
+        assert "path" in fund
+        assert "sha256" in fund
+        assert "bytes" in fund
+        assert "rowCount" in fund
+        assert "knownAtMin" in fund
+        assert "knownAtMax" in fund
+        
+        univ = entry["universe"]
+        assert "path" in univ
+        assert "sha256" in univ
+        assert "bytes" in univ
+        assert "symbolCount" in univ
+        assert "builtAt" in univ
 
 
 def test_write_daily_pit_snapshots_staging_only_not_public_manifest(tmp_path, monkeypatch):
