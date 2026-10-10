@@ -95,16 +95,16 @@ def test_verify_file_sha256_mismatch(tmp_path):
 def test_content_pit_manifest_has_valid_structure():
     manifest = json.loads(PIT_MANIFEST_PATH.read_text(encoding="utf-8"))
     entries = manifest.get("entries", [])
-    
+
     assert isinstance(entries, list)
     assert "schemaVersion" in manifest
-    
+
     for entry in entries:
         assert "date" in entry
         assert "market" in entry
         assert "fundamentals" in entry
         assert "universe" in entry
-        
+
         fund = entry["fundamentals"]
         assert "path" in fund
         assert "sha256" in fund
@@ -112,7 +112,7 @@ def test_content_pit_manifest_has_valid_structure():
         assert "rowCount" in fund
         assert "knownAtMin" in fund
         assert "knownAtMax" in fund
-        
+
         univ = entry["universe"]
         assert "path" in univ
         assert "sha256" in univ
