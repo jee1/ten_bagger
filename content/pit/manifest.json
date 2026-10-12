@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "lastUpdated": "2026-10-12T10:06:29+09:00",
+  "lastUpdated": "2026-10-12T11:24:38+09:00",
   "entries": [
     {
       "date": "2026-10-12",
@@ -38,6 +38,25 @@
         "bytes": 7697,
         "symbolCount": 2765,
         "builtAt": "2026-10-11T09:04:21+09:00"
+      }
+    },
+    {
+      "date": "2026-10-10",
+      "market": "US",
+      "fundamentals": {
+        "path": "fundamentals/US/2026-10-10.jsonl.gz",
+        "sha256": "04e1d6a4782afbf377a6b36212f6b49afd3a153c98e3753df5eb1a6d4f58b879",
+        "bytes": 567640,
+        "rowCount": 6250,
+        "knownAtMin": "2026-10-12T09:11:05+09:00",
+        "knownAtMax": "2026-10-12T10:06:27+09:00"
+      },
+      "universe": {
+        "path": "universe/US/2026-10-10.json.gz",
+        "sha256": "418f86aa736bc12442ca7aa14ee7e886b3717bec920101608eba5e8843e5dffb",
+        "bytes": 15495,
+        "symbolCount": 6265,
+        "builtAt": "2026-10-12T11:24:21+09:00"
       }
     },
     {
