@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-12",
+  "asOfDate": "2026-10-10",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -280,7 +280,7 @@
       "scoreVersion": "2"
     },
     {
-      "pickDate": "2026-10-12",
+      "pickDate": "2026-10-10",
       "symbol": "EVER",
       "status": "pick",
       "scoreVersion": "2"
