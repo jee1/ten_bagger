@@ -11,7 +11,7 @@ Consumer: https://github.com/jee1/finnaut-ohlc/issues/4
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -110,7 +110,7 @@ def main() -> None:
             "schemaVersion": "0.1.0",
             "market": market_code,
             "asOfDate": as_of_date,
-            "generatedAt": datetime.now(timezone.utc).isoformat(),
+            "generatedAt": datetime.now(UTC).isoformat(),
             "count": len(immature),
             "picks": immature,
         }

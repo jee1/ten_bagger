@@ -4,10 +4,8 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
-
-import pytest
 
 # Add parent to sys.path for import
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -72,7 +70,7 @@ def test_export_picks_schema_kr(tmp_path: Path):
         "schemaVersion": "0.1.0",
         "market": "KR",
         "asOfDate": "2026-10-15",
-        "generatedAt": datetime.utcnow().isoformat(),
+        "generatedAt": datetime.now(UTC).isoformat(),
         "count": len(immature),
         "picks": immature,
     }
