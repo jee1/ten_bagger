@@ -163,6 +163,60 @@ Public Methodology stays the reader-facing score explanation;
 architecture docs govern engineering decisions. Score v2 selection stays frozen
 until the merge-gate ADR allows GO.
 
+## Exports (finnaut-ohlc integration)
+
+Issue #174 tracks the export of immature picks for external price collection by
+[finnaut-ohlc](https://github.com/jee1/finnaut-ohlc) (see
+[finnaut-ohlc#4](https://github.com/jee1/finnaut-ohlc/issues/4)).
+
+Two JSON files are generated daily:
+
+- `content/exports/tenbagger-picks-kr.json` — KR picks needing H20/H60 closing prices
+- `content/exports/tenbagger-picks-us.json` — US picks needing H20/H60 closing prices
+
+### Export Format
+
+Each file contains:
+
+```json
+{
+  "schemaVersion": "0.1.0",
+  "market": "KR" | "US",
+  "asOfDate": "YYYY-MM-DD",
+  "generatedAt": "ISO8601 timestamp",
+  "count": 42,
+  "picks": [
+    {
+      "symbol": "005930.KS",
+      "pickDate": "2026-10-01",
+      "horizonsNeeded": ["H20", "H60"],
+      "latestHorizon": "H60"
+    }
+  ]
+}
+```
+
+**Fields:**
+- `symbol` — Yahoo-style ticker (KR: `XXXXXX.KS` or `.KQ`, US: plain symbol)
+- `pickDate` — Pick date (YYYY-MM-DD)
+- `horizonsNeeded` — List of incomplete horizons (`["H20"]`, `["H60"]`, or `["H20", "H60"]`)
+- `latestHorizon` — The furthest horizon still needed (`"H20"` or `"H60"`)
+
+**Immature definition:** A pick is included if either H20 (20 sessions) or H60 (60 sessions)
+has not completed (`completionStatus != "complete"` in `content/performance/*.json`).
+
+### Access via GitHub API
+
+finnaut-ohlc reads these files via GitHub Contents API with a read token:
+
+```bash
+curl -H "Authorization: token <PAT>" \
+  https://api.github.com/repos/jee1/ten_bagger/contents/content/exports/tenbagger-picks-kr.json
+```
+
+The files are regenerated automatically during the daily ledger workflow
+(`.github/workflows/ledger.yml`) with minimal overhead (< 0.5s).
+
 ## 면책
 
 본 프로젝트는 투자 권유가 아닙니다. 모든 투자 결정과 손실은 본인 책임입니다.

@@ -42,6 +42,9 @@ jobs:
       - name: Validate content
         run: cd scripts && python sync_manifest.py && python validate_content.py
 
+      - name: Export immature picks for finnaut-ohlc
+        run: python3 scripts/export_picks.py
+
       - name: Set up Node
         uses: actions/setup-node@v7
         with:
@@ -57,13 +60,13 @@ jobs:
           npm run check
           npm run build
 
-      - name: Commit ledger and performance only
+      - name: Commit ledger, performance, and exports
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/ledger/ content/performance/
+          git add content/ledger/ content/performance/ content/exports/
           if git diff --staged --quiet; then
-            echo "No ledger/performance changes"
+            echo "No ledger/performance/exports changes"
           else
             git commit -m "chore: ledger regenerate asOfDate=${{ inputs.asOfDate }}"
             # sync/validate/build may leave tracked dirt outside ledger/performance;

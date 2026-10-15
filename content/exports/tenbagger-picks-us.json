@@ -1,0 +1,344 @@
+{
+  "schemaVersion": "0.1.0",
+  "market": "US",
+  "asOfDate": "2026-10-15",
+  "generatedAt": "2026-10-15T06:42:55.256535+00:00",
+  "count": 40,
+  "picks": [
+    {
+      "symbol": "GCT",
+      "pickDate": "2026-07-22",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "AUPH",
+      "pickDate": "2026-07-24",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "TEI",
+      "pickDate": "2026-07-26",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "EPAC",
+      "pickDate": "2026-07-30",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "UVE",
+      "pickDate": "2026-08-02",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "UFCS",
+      "pickDate": "2026-08-04",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "CBL",
+      "pickDate": "2026-08-06",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "EVER",
+      "pickDate": "2026-08-08",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "HBB",
+      "pickDate": "2026-08-10",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "SENEA",
+      "pickDate": "2026-08-12",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "ZVRA",
+      "pickDate": "2026-08-14",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "AII",
+      "pickDate": "2026-08-16",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "SENEB",
+      "pickDate": "2026-08-18",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "GCT",
+      "pickDate": "2026-08-22",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "DDI",
+      "pickDate": "2026-08-24",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "ITRN",
+      "pickDate": "2026-08-26",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "SBC",
+      "pickDate": "2026-08-28",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "MCY",
+      "pickDate": "2026-08-30",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "UVE",
+      "pickDate": "2026-09-02",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "CRMD",
+      "pickDate": "2026-09-04",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "CBL",
+      "pickDate": "2026-09-06",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "EVER",
+      "pickDate": "2026-09-08",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "HAPN",
+      "pickDate": "2026-09-10",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "HMN",
+      "pickDate": "2026-09-12",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "ZVRA",
+      "pickDate": "2026-09-14",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "YB",
+      "pickDate": "2026-09-16",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "UFCS",
+      "pickDate": "2026-09-18",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "AII",
+      "pickDate": "2026-09-20",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "SENEA",
+      "pickDate": "2026-09-22",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "SENEB",
+      "pickDate": "2026-09-24",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "DDI",
+      "pickDate": "2026-09-26",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "BLKB",
+      "pickDate": "2026-09-28",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "EBS",
+      "pickDate": "2026-09-30",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "TILE",
+      "pickDate": "2026-10-02",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "UVE",
+      "pickDate": "2026-10-04",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "IIPR",
+      "pickDate": "2026-10-06",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "CBL",
+      "pickDate": "2026-10-08",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "EVER",
+      "pickDate": "2026-10-10",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "EVER",
+      "pickDate": "2026-10-12",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "MCY",
+      "pickDate": "2026-10-14",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    }
+  ]
+}

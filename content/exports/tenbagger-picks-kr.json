@@ -1,0 +1,395 @@
+{
+  "schemaVersion": "0.1.0",
+  "market": "KR",
+  "asOfDate": "2026-10-15",
+  "generatedAt": "2026-10-15T06:42:55.254296+00:00",
+  "count": 46,
+  "picks": [
+    {
+      "symbol": "002990.KS",
+      "pickDate": "2026-07-15",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "143240.KQ",
+      "pickDate": "2026-07-17",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "064850.KQ",
+      "pickDate": "2026-07-19",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "339950.KQ",
+      "pickDate": "2026-07-21",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "036800.KQ",
+      "pickDate": "2026-07-23",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "192080.KS",
+      "pickDate": "2026-07-25",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "211050.KQ",
+      "pickDate": "2026-07-27",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "178920.KS",
+      "pickDate": "2026-07-29",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "002780.KS",
+      "pickDate": "2026-07-31",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "066620.KQ",
+      "pickDate": "2026-08-01",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "408920.KQ",
+      "pickDate": "2026-08-03",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "095570.KS",
+      "pickDate": "2026-08-05",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "187870.KQ",
+      "pickDate": "2026-08-09",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "204610.KQ",
+      "pickDate": "2026-08-11",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "001060.KS",
+      "pickDate": "2026-08-15",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "002990.KS",
+      "pickDate": "2026-08-17",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "052400.KQ",
+      "pickDate": "2026-08-19",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "339950.KQ",
+      "pickDate": "2026-08-21",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "439260.KS",
+      "pickDate": "2026-08-23",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "100030.KQ",
+      "pickDate": "2026-08-25",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "143240.KQ",
+      "pickDate": "2026-08-27",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "211050.KQ",
+      "pickDate": "2026-08-29",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "214320.KS",
+      "pickDate": "2026-08-31",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "078520.KS",
+      "pickDate": "2026-09-01",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "147830.KQ",
+      "pickDate": "2026-09-03",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "002780.KS",
+      "pickDate": "2026-09-05",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "260970.KQ",
+      "pickDate": "2026-09-07",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "069260.KS",
+      "pickDate": "2026-09-09",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "134380.KS",
+      "pickDate": "2026-09-11",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "065710.KQ",
+      "pickDate": "2026-09-13",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "178920.KS",
+      "pickDate": "2026-09-15",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "483650.KS",
+      "pickDate": "2026-09-17",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "052400.KQ",
+      "pickDate": "2026-09-19",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "404990.KS",
+      "pickDate": "2026-09-21",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "439260.KS",
+      "pickDate": "2026-09-23",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "100030.KQ",
+      "pickDate": "2026-09-25",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "461300.KQ",
+      "pickDate": "2026-09-27",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "211050.KQ",
+      "pickDate": "2026-09-29",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "214320.KS",
+      "pickDate": "2026-10-01",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "000240.KS",
+      "pickDate": "2026-10-03",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "013030.KQ",
+      "pickDate": "2026-10-05",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "439090.KQ",
+      "pickDate": "2026-10-07",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "260970.KQ",
+      "pickDate": "2026-10-09",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "143240.KQ",
+      "pickDate": "2026-10-11",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "119850.KQ",
+      "pickDate": "2026-10-13",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "284740.KS",
+      "pickDate": "2026-10-15",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    }
+  ]
+}
