@@ -36,37 +36,37 @@ def get_immature_picks(
     market: str,
 ) -> list[dict[str, Any]]:
     """Extract picks where H20 or H60 haven't matured yet.
-    
+
     Returns list of picks with symbol, pickDate, and latest horizon end date.
     Only includes picks with status='pick' (skip no_pick entries).
     """
     immature: list[dict[str, Any]] = []
-    
+
     # Build index: (pickDate, symbol, horizonId) -> measurement
     perf_index: dict[tuple[str, str, str], dict[str, Any]] = {}
     for m in performance.get("measurements", []):
         key = (m["pickDate"], m["symbol"], m["horizonId"])
         perf_index[key] = m
-    
+
     for entry in ledger.get("entries", []):
         # Skip no_pick entries
         if entry.get("status") != "pick":
             continue
-            
+
         pick_date = entry["pickDate"]
         symbol = entry["symbol"]
-        
+
         # Check H20 and H60 completion status
         h20_key = (pick_date, symbol, "H20")
         h60_key = (pick_date, symbol, "H60")
-        
+
         h20 = perf_index.get(h20_key)
         h60 = perf_index.get(h60_key)
-        
+
         # If either H20 or H60 is incomplete, this pick is immature
         h20_incomplete = h20 is None or h20.get("completionStatus") != "complete"
         h60_incomplete = h60 is None or h60.get("completionStatus") != "complete"
-        
+
         if h20_incomplete or h60_incomplete:
             # Determine the latest horizon end date needed
             # H20 = entry + 20 sessions, H60 = entry + 60 sessions
@@ -76,34 +76,36 @@ def get_immature_picks(
                 horizons_needed.append("H20")
             if h60_incomplete:
                 horizons_needed.append("H60")
-            
-            immature.append({
-                "symbol": symbol,
-                "pickDate": pick_date,
-                "horizonsNeeded": horizons_needed,
-                "latestHorizon": "H60" if h60_incomplete else "H20",
-            })
-    
+
+            immature.append(
+                {
+                    "symbol": symbol,
+                    "pickDate": pick_date,
+                    "horizonsNeeded": horizons_needed,
+                    "latestHorizon": "H60" if h60_incomplete else "H20",
+                }
+            )
+
     return immature
 
 
 def main() -> None:
     """Generate tenbagger-picks-{kr,us}.json for finnaut-ohlc."""
     root = Path(__file__).parent.parent
-    
+
     for market_code in ["KR", "US"]:
         ledger_path = root / "content" / "ledger" / f"{market_code}.json"
         perf_path = root / "content" / "performance" / f"{market_code}.json"
-        
+
         if not ledger_path.exists() or not perf_path.exists():
             print(f"⚠️  Skipping {market_code}: missing ledger or performance file")
             continue
-        
+
         ledger = load_json(ledger_path)
         performance = load_json(perf_path)
-        
+
         immature = get_immature_picks(ledger, performance, market_code)
-        
+
         # Build export
         as_of_date = ledger.get("asOfDate", "unknown")
         export_data = {
@@ -114,11 +116,11 @@ def main() -> None:
             "count": len(immature),
             "picks": immature,
         }
-        
+
         # Write to content/exports/
         output_path = root / "content" / "exports" / f"tenbagger-picks-{market_code.lower()}.json"
         write_json(output_path, export_data)
-        
+
         print(f"✓ {market_code}: {len(immature)} immature picks → {output_path}")
 
 
