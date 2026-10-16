@@ -9,9 +9,12 @@ from unittest.mock import patch
 
 import screening.core as screening_core
 from calibration.overrides import apply_candidate_overrides
+from config import UniverseSymbol
 from performance.pit_prices import filter_session_bars
 from screening.core import screen_market
 from top_n import select_pick
+
+from walk_forward.fundamentals_pit import load_fundamentals_snapshot
 
 
 @contextmanager
@@ -25,6 +28,48 @@ def _pit_history(as_of_date: str) -> Iterator[None]:
         yield
 
 
+@contextmanager
+def _pit_fundamentals(market: str, as_of_date: str) -> Iterator[None]:
+    """Screen the daily run's captured symbols with their captured info (#175 stage 2).
+
+    Without a snapshot, live info stays in place; the report flags that session as
+    ``fundamentals_not_pit``.
+
+    ponytail: the universe is the set the daily run screened that day, so symbols it
+    excluded as recent picks (~30) cannot be selected even when this run's own
+    exclusions differ. Upgrade: capture info for excluded symbols too.
+    """
+    snapshot = load_fundamentals_snapshot(market, as_of_date)
+    if snapshot is None:
+        yield
+        return
+
+    current = {meta.symbol: meta for meta in screening_core.load_universe(market)}
+    currency = "KRW" if market == "KR" else "USD"
+    # market_cap=None: the daily run already applied its listing-cap prefilter.
+    universe = [
+        UniverseSymbol(
+            symbol=symbol,
+            name_ko=current[symbol].name_ko if symbol in current else symbol,
+            name_en=current[symbol].name_en if symbol in current else symbol,
+            exchange=current[symbol].exchange if symbol in current else "",
+            currency=current[symbol].currency if symbol in current else currency,
+            market_cap=None,
+        )
+        for symbol in sorted(snapshot.infos)
+    ]
+
+    def snapshot_info(symbol: str) -> dict:
+        info = snapshot.infos.get(symbol)
+        return {"symbol": symbol, **info} if info else {}
+
+    with (
+        patch.object(screening_core, "load_universe", lambda _market: universe),
+        patch.object(screening_core, "get_ticker_info", snapshot_info),
+    ):
+        yield
+
+
 def pit_screen_day(
     market: str,
     as_of_date: str,
@@ -34,7 +79,7 @@ def pit_screen_day(
     threshold_override: float | None = None,
     weight_overrides: dict[str, Any] | None = None,
 ) -> tuple[str | None, bool]:
-    """Run screen_market at *as_of_date* with PIT-filtered price history.
+    """Run screen_market at *as_of_date* with PIT-filtered prices and fundamentals.
 
     Returns ``(symbol, no_pick)`` — top pick symbol or ``(None, True)``.
     Optional analysis overrides are process-local and never write ``config.py``.
@@ -42,6 +87,7 @@ def pit_screen_day(
     with (
         apply_candidate_overrides(threshold_override, weight_overrides),
         _pit_history(as_of_date),
+        _pit_fundamentals(market, as_of_date),
     ):
         results, _stats = screen_market(
             market,

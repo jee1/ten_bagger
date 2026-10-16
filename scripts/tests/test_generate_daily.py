@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import date
+from datetime import date, datetime
 
 import generate_daily
 import pytest
@@ -199,3 +199,25 @@ def test_generate_daily_rejects_weekend_target(content_dirs, monkeypatch):
     with pytest.raises(SystemExit, match="weekend"):
         generate_daily.main()
     assert not (daily_dir / "2026-10-10.json").exists()
+
+
+@pytest.mark.parametrize(("today", "captured"), [("2026-07-09", True), ("2026-07-13", False)])
+def test_pit_snapshot_only_for_same_day_run(content_dirs, monkeypatch, today, captured):
+    calls = []
+    monkeypatch.setattr(
+        generate_daily,
+        "write_daily_pit_snapshots",
+        lambda *a, **_k: calls.append(a) or PitWriteResult(skipped=True, reason="test"),
+    )
+    monkeypatch.setattr(
+        generate_daily,
+        "now_kst",
+        lambda: datetime.fromisoformat(f"{today}T06:00:00+09:00"),
+    )
+    monkeypatch.setattr(
+        generate_daily, "screen_market", lambda _m, _ex, **_k: ([], _fake_stats(passed_threshold=0))
+    )
+    monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-09"])
+
+    assert generate_daily.main() == 0
+    assert bool(calls) is captured

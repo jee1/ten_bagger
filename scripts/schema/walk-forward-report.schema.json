@@ -50,6 +50,21 @@
       "type": "array",
       "items": { "type": "string", "minLength": 1 },
       "description": "Non-PIT or other evidence contamination tags (#175)"
+    },
+    "fundamentalsSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "sha256"],
+      "properties": {
+        "from": { "type": "string", "format": "date" },
+        "to": { "type": "string", "format": "date" },
+        "sha256": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      },
+      "description": "PIT fundamentals snapshots read by override re-screen (#175 stage 2)"
     }
   },
   "allOf": [

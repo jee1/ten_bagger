@@ -17,7 +17,7 @@ from config import (
     market_for_date,
 )
 from moat_megatrend_classification import classify_top_candidate_moat_megatrend
-from pit_snapshot import PitFundamentalsCollector, write_daily_pit_snapshots
+from pit_snapshot import PitFundamentalsCollector, PitWriteResult, write_daily_pit_snapshots
 from risk_classification import apply_pick_risk_reasoning, classify_top_candidate_risks
 from screen import build_reasoning, screen_market
 from sync_manifest import sync_manifest
@@ -175,7 +175,11 @@ def main() -> int:
 
     sync_manifest()
 
-    pit_result = write_daily_pit_snapshots(target, market, pit_collector)
+    if target == now_kst().date().isoformat():
+        pit_result = write_daily_pit_snapshots(target, market, pit_collector)
+    else:
+        # A backfill fetches today's info; filing it under a past date is look-ahead.
+        pit_result = PitWriteResult(skipped=True, reason="backfill_not_pit")
     if pit_result.skipped:
         logger.warning("PIT snapshot skipped: %s", pit_result.reason)
     elif pit_result.manifest_entry:

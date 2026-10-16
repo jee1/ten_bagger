@@ -30,6 +30,7 @@ scripts/cache/
 scripts/pit-staging/
 scripts/pit-staging/_pending/
 scripts/.pit-repo-clone/
+scripts/pit-data/
 
 # local agent / browser tooling output
 .playwright-mcp/
