@@ -1,9 +1,9 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-15",
-  "generatedAt": "2026-10-15T06:42:55.256535+00:00",
-  "count": 40,
+  "asOfDate": "2026-10-16",
+  "generatedAt": "2026-10-16T00:30:12.760067+00:00",
+  "count": 41,
   "picks": [
     {
       "symbol": "GCT",
@@ -334,6 +334,15 @@
     {
       "symbol": "MCY",
       "pickDate": "2026-10-14",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "ZVRA",
+      "pickDate": "2026-10-16",
       "horizonsNeeded": [
         "H20",
         "H60"
