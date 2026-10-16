@@ -184,8 +184,8 @@ export const labels = {
   pickFreshToday: { ko: '오늘의 픽', en: "Today's pick" } satisfies LocalizedText,
   pickFreshLatest: { ko: '최신 픽', en: 'Latest pick' } satisfies LocalizedText,
   pickFreshHint: {
-    ko: '오늘 리포트는 아직 준비되지 않았습니다. 새 픽은 매일 오전 6시(KST)에 공개됩니다.',
-    en: "Today's report isn't ready yet. New picks publish daily at 06:00 KST.",
+    ko: '오늘 리포트는 아직 준비되지 않았습니다. 새 픽은 평일 오전 6시(KST)에 공개됩니다.',
+    en: "Today's report isn't ready yet. New picks publish weekdays at 06:00 KST.",
   } satisfies LocalizedText,
   homeReportGenerated: {
     ko: '리포트 생성',
@@ -259,9 +259,9 @@ export const labels = {
   } satisfies LocalizedText,
   newcomerBody: {
     ko:
-      '한국·미국 시장을 번갈아 스크리닝해 규칙 기반으로 하루 하나의 후보 종목을 기록합니다. 선정 이유와 리스크를 함께 공개하고, 매일 오전 6시(KST)에 새 리포트가 올라갑니다. 연구·참고용이며 투자 수익을 약속하지 않습니다.',
+      '한국·미국 시장을 번갈아 스크리닝해 규칙 기반으로 하루 하나의 후보 종목을 기록합니다. 선정 이유와 리스크를 함께 공개하고, 평일 오전 6시(KST)에 새 리포트가 올라갑니다. 연구·참고용이며 투자 수익을 약속하지 않습니다.',
     en:
-      'We screen Korea and US markets on a schedule and record one rule-based candidate per day. Each report includes selection reasons and risks; new reports publish daily at 06:00 KST. For research only — no return promises.',
+      'We screen Korea and US markets on a schedule and record one rule-based candidate per day. Each report includes selection reasons and risks; new reports publish weekdays at 06:00 KST. For research only — no return promises.',
   } satisfies LocalizedText,
   newcomerLinks: {
     ko: '선정 방법과 누적 성과를 확인하세요.',
@@ -295,8 +295,8 @@ export const labels = {
     en: 'How to subscribe to Ten Bagger Daily screening records via RSS.',
   } satisfies LocalizedText,
   followLead: {
-    ko: '피드 리더에 주소를 추가하면 매일 오전 6시(KST) 새 기록이 올라올 때 항목이 추가됩니다.',
-    en: 'Add the feed in a reader; new items appear when each daily record is published (~06:00 KST).',
+    ko: '피드 리더에 주소를 추가하면 평일 오전 6시(KST) 새 기록이 올라올 때 항목이 추가됩니다.',
+    en: 'Add the feed in a reader; new items appear when each daily record is published (~06:00 KST, Mon-Fri).',
   } satisfies LocalizedText,
   followRssHeading: { ko: 'RSS로 구독', en: 'Subscribe via RSS' } satisfies LocalizedText,
   followRssIntro: {
