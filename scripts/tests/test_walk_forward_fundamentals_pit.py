@@ -4,7 +4,10 @@ from __future__ import annotations
 
 from calibration.verdict import verdict_from_oos_report
 from walk_forward.config import RunConfig
-from walk_forward.fundamentals_pit import fundamentals_pit_available
+from walk_forward.fundamentals_pit import (
+    contamination_findings_for_run,
+    fundamentals_pit_available,
+)
 from walk_forward.report import build_report
 
 FOLD_SPEC = {
@@ -129,3 +132,16 @@ def test_no_finding_when_fundamentals_pit_available(monkeypatch):
 
 def test_fundamentals_pit_available_default_false():
     assert fundamentals_pit_available("KR", "2026-01-08") is False
+
+
+def test_overlapping_folds_count_each_session_once():
+    cfg = RunConfig(
+        runIntent="exploratory",
+        measurementSource="fixture-recompute",
+        candidateId="growth-candidate",
+        markets=["KR"],
+        foldSpec=FOLD_SPEC,
+        thresholdOverride=75.0,
+    )
+    overlapping = [*FOLD_RESULTS, {**FOLD_RESULTS[0], "foldIndex": 1}]
+    assert contamination_findings_for_run(cfg, overlapping) == ["fundamentals_not_pit:3"]

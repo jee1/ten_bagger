@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import time
 
 import pit_snapshot
@@ -153,33 +154,87 @@ def test_write_daily_pit_snapshots_staging_only_not_public_manifest(tmp_path, mo
     assert again.skipped
 
 
-def test_manifest_updated_only_after_successful_push(tmp_path, monkeypatch):
-    pit_manifest = tmp_path / "manifest.json"
-    staging = tmp_path / "staging"
-    universe_dir = tmp_path / "universe"
-    universe_dir.mkdir()
-    (universe_dir / "kr.json").write_text(json.dumps([{"symbol": "AAA.KS"}]), encoding="utf-8")
-    monkeypatch.setattr(pit_snapshot, "PIT_MANIFEST_PATH", pit_manifest)
-    monkeypatch.setattr(pit_snapshot, "UNIVERSE_DIR", universe_dir)
+def _bare_pit_remote(tmp_path, monkeypatch):
+    remote = tmp_path / "pit-remote.git"
+    seed = tmp_path / "pit-seed"
+    subprocess.run(
+        ["git", "init", "--bare", "-b", "main", str(remote)], check=True, capture_output=True
+    )
+    subprocess.run(["git", "init", "-b", "main", str(seed)], check=True, capture_output=True)
+    git = ["git", "-C", str(seed), "-c", "user.email=t@t", "-c", "user.name=t"]
+    subprocess.run([*git, "commit", "--allow-empty", "-m", "init"], check=True, capture_output=True)
+    subprocess.run([*git, "push", str(remote), "main"], check=True, capture_output=True)
+    monkeypatch.setattr(pit_snapshot, "_pit_clone_url", lambda _repo, _token: str(remote))
+    return remote
 
+
+def _remote_commit_count(remote) -> int:
+    out = subprocess.run(
+        ["git", "-C", str(remote), "rev-list", "--count", "main"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return int(out.stdout.strip())
+
+
+def _capture_kr(tmp_path, monkeypatch, staging, target, market_cap):
+    universe_dir = tmp_path / "universe"
+    universe_dir.mkdir(exist_ok=True)
+    (universe_dir / "kr.json").write_text(json.dumps([{"symbol": "AAA.KS"}]), encoding="utf-8")
+    monkeypatch.setattr(pit_snapshot, "UNIVERSE_DIR", universe_dir)
     collector = PitFundamentalsCollector(market="KR")
     prov = InfoProvenance(known_at="2026-01-01T00:00:00+09:00", cache_hit=True)
-    collector.record("AAA.KS", _sample_info("AAA.KS"), prov)
-    write_daily_pit_snapshots("2026-01-03", "KR", collector, staging_dir=staging)
+    collector.record("AAA.KS", {**_sample_info("AAA.KS"), "marketCap": market_cap}, prov)
+    return write_daily_pit_snapshots(target, "KR", collector, staging_dir=staging)
+
+
+def test_manifest_updated_only_after_successful_push(tmp_path, monkeypatch):
+    pit_manifest = tmp_path / "manifest.json"
+    monkeypatch.setattr(pit_snapshot, "PIT_MANIFEST_PATH", pit_manifest)
+    remote = _bare_pit_remote(tmp_path, monkeypatch)
+    staging = tmp_path / "staging"
+    _capture_kr(tmp_path, monkeypatch, staging, "2026-01-03", 1_000_000)
     assert not pit_manifest.exists()
 
     assert not push_and_record_manifest("2026-01-03", "KR", token=None, staging_dir=staging)
     assert not pit_manifest.exists()
 
-    monkeypatch.setattr(
-        pit_snapshot,
-        "push_staging_to_pit_repo",
-        lambda *_a, **_k: True,
-    )
     assert push_and_record_manifest("2026-01-03", "KR", token="fake-token", staging_dir=staging)
     manifest = json.loads(pit_manifest.read_text(encoding="utf-8"))
     assert len(manifest["entries"]) == 1
     assert manifest["entries"][0]["date"] == "2026-01-03"
+    assert _remote_commit_count(remote) == 2
+
+
+def test_rerun_after_pushed_but_unrecorded_converges_to_remote(tmp_path, monkeypatch):
+    pit_manifest = tmp_path / "manifest.json"
+    monkeypatch.setattr(pit_snapshot, "PIT_MANIFEST_PATH", pit_manifest)
+    remote = _bare_pit_remote(tmp_path, monkeypatch)
+
+    first = tmp_path / "run1" / "staging"
+    first_entry = _capture_kr(tmp_path, monkeypatch, first, "2026-01-05", 1_000_000).manifest_entry
+    assert push_staging_to_pit_repo(first, token="fake-token")
+    assert not pit_manifest.exists()
+
+    second = tmp_path / "run2" / "staging"
+    _capture_kr(tmp_path, monkeypatch, second, "2026-01-05", 2_000_000)
+    assert push_and_record_manifest("2026-01-05", "KR", token="fake-token", staging_dir=second)
+
+    entry = json.loads(pit_manifest.read_text(encoding="utf-8"))["entries"][0]
+    assert entry["fundamentals"]["sha256"] == first_entry["fundamentals"]["sha256"]
+    assert entry["universe"]["sha256"] == first_entry["universe"]["sha256"]
+    assert _remote_commit_count(remote) == 2
+    assert load_pending_manifest_entry("KR", "2026-01-05", staging_dir=second) is None
+
+
+def test_same_rows_produce_same_sha256(tmp_path):
+    prov = InfoProvenance(known_at="2026-01-01T00:00:00+09:00", cache_hit=True)
+    rows = [extract_fundamental_row("AAA.KS", "KR", _sample_info("AAA.KS"), prov)]
+    _, sha_a, _, _ = write_fundamentals_snapshot(rows, tmp_path / "a", "KR", "2026-01-07")
+    time.sleep(1.1)
+    _, sha_b, _, _ = write_fundamentals_snapshot(rows, tmp_path / "b", "KR", "2026-01-07")
+    assert sha_a == sha_b
 
 
 def test_push_failure_does_not_update_manifest(tmp_path, monkeypatch):

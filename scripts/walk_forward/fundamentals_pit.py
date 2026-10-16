@@ -32,7 +32,8 @@ def contamination_findings_for_run(
         return []
 
     markets = set(run_config.markets)
-    count = 0
+    # Rolling folds overlap; count each session once (#178).
+    contaminated: set[str] = set()
     for fold in fold_results:
         sessions = list(fold.get("trainSessions") or []) + list(fold.get("oosSessions") or [])
         for session_str in sessions:
@@ -40,7 +41,7 @@ def contamination_findings_for_run(
             if market not in markets:
                 continue
             if not fundamentals_pit_available(market, session_str):
-                count += 1
-    if count == 0:
+                contaminated.add(session_str)
+    if not contaminated:
         return []
-    return [f"fundamentals_not_pit:{count}"]
+    return [f"fundamentals_not_pit:{len(contaminated)}"]
