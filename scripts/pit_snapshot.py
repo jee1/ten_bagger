@@ -130,22 +130,6 @@ def verify_file_sha256(path: Path, expected_sha256: str) -> None:
         )
 
 
-def verify_manifest_entry_files(
-    entry: dict[str, Any],
-    *,
-    repo_root: Path,
-) -> None:
-    for key in ("fundamentals", "universe"):
-        block = entry.get(key)
-        if not isinstance(block, dict):
-            raise PitManifestShaMismatchError(f"entry missing {key} block")
-        rel = block.get("path")
-        expected = block.get("sha256")
-        if not rel or not expected:
-            raise PitManifestShaMismatchError(f"entry {key} missing path or sha256")
-        verify_file_sha256(repo_root / rel, expected)
-
-
 def _fundamentals_rel(market: str, target_date: str) -> str:
     return f"fundamentals/{market}/{target_date}.jsonl.gz"
 
@@ -176,7 +160,7 @@ def write_fundamentals_snapshot(
     path = staging_dir / rel
     lines = [json.dumps(row, ensure_ascii=False, separators=(",", ":")) for row in rows]
     body = ("\n".join(lines) + ("\n" if lines else "")).encode("utf-8")
-    compressed = gzip.compress(body)
+    compressed = gzip.compress(body, mtime=0)
     _write_gz_atomic(path, compressed, allow_existing=allow_existing)
     digest = sha256_bytes(compressed)
     known_ats = [str(r.get("knownAt") or "") for r in rows if r.get("knownAt")]
@@ -204,7 +188,7 @@ def write_universe_snapshot(
     rel = _universe_rel(market, target_date)
     path = staging_dir / rel
     raw = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    compressed = gzip.compress(raw)
+    compressed = gzip.compress(raw, mtime=0)
     _write_gz_atomic(path, compressed, allow_existing=allow_existing)
     digest = sha256_bytes(compressed)
     symbol_count = len(payload.get("symbols") or [])
@@ -217,6 +201,36 @@ def write_universe_snapshot(
         digest,
     )
     return path, digest, len(compressed), symbol_count
+
+
+def build_manifest_entry(market: str, target_date: str, root: Path) -> dict[str, Any]:
+    """Manifest entry describing the snapshot files under *root* as they are on disk."""
+    f_rel = _fundamentals_rel(market, target_date)
+    u_rel = _universe_rel(market, target_date)
+    f_bytes = (root / f_rel).read_bytes()
+    u_bytes = (root / u_rel).read_bytes()
+    rows = [json.loads(line) for line in gzip.decompress(f_bytes).decode("utf-8").splitlines()]
+    universe = json.loads(gzip.decompress(u_bytes))
+    known_ats = [str(r["knownAt"]) for r in rows if r.get("knownAt")]
+    return {
+        "date": target_date,
+        "market": market,
+        "fundamentals": {
+            "path": f_rel,
+            "sha256": sha256_bytes(f_bytes),
+            "bytes": len(f_bytes),
+            "rowCount": len(rows),
+            "knownAtMin": min(known_ats) if known_ats else None,
+            "knownAtMax": max(known_ats) if known_ats else None,
+        },
+        "universe": {
+            "path": u_rel,
+            "sha256": sha256_bytes(u_bytes),
+            "bytes": len(u_bytes),
+            "symbolCount": len(universe.get("symbols") or []),
+            "builtAt": universe["builtAt"],
+        },
+    }
 
 
 def load_pit_manifest(path: Path | None = None) -> dict[str, Any]:
@@ -323,37 +337,15 @@ def write_daily_pit_snapshots(
     universe_payload = build_universe_snapshot(market, target_date)
 
     try:
-        _, f_sha, f_bytes, f_rows = write_fundamentals_snapshot(
-            rows, staging_dir, market, target_date, allow_existing=False
-        )
-        _, u_sha, u_bytes, u_symbols = write_universe_snapshot(
+        write_fundamentals_snapshot(rows, staging_dir, market, target_date, allow_existing=False)
+        write_universe_snapshot(
             universe_payload, staging_dir, market, target_date, allow_existing=False
         )
     except PitSnapshotExistsError as exc:
         logger.warning("PIT snapshot write skipped: %s", exc)
         return PitWriteResult(skipped=True, reason="file_exists")
 
-    known_ats = [str(r.get("knownAt") or "") for r in rows if r.get("knownAt")]
-    entry = {
-        "date": target_date,
-        "market": market,
-        "fundamentals": {
-            "path": _fundamentals_rel(market, target_date),
-            "sha256": f_sha,
-            "bytes": f_bytes,
-            "rowCount": f_rows,
-            "knownAtMin": min(known_ats) if known_ats else None,
-            "knownAtMax": max(known_ats) if known_ats else None,
-        },
-        "universe": {
-            "path": _universe_rel(market, target_date),
-            "sha256": u_sha,
-            "bytes": u_bytes,
-            "symbolCount": u_symbols,
-            "builtAt": universe_payload["builtAt"],
-        },
-    }
-    verify_manifest_entry_files(entry, repo_root=staging_dir)
+    entry = build_manifest_entry(market, target_date, staging_dir)
     write_pending_manifest_entry(entry, staging_dir=staging_dir)
     return PitWriteResult(skipped=False, manifest_entry=entry)
 
@@ -366,6 +358,14 @@ def _run_git_step(label: str, args: list[str]) -> None:
         raise RuntimeError(f"{label} failed (exit {exc.returncode}): {stderr}") from exc
 
 
+def _pit_clone_url(repo: str, token: str) -> str:
+    return f"https://x-access-token:{token}@github.com/{repo}.git"
+
+
+def _pit_work_dir(staging_dir: Path) -> Path:
+    return staging_dir.parent / ".pit-repo-clone"
+
+
 def push_staging_to_pit_repo(
     staging_dir: Path,
     *,
@@ -373,20 +373,28 @@ def push_staging_to_pit_repo(
     repo: str = PIT_DATA_REPO,
     work_dir: Path | None = None,
 ) -> bool:
-    """Push new snapshot files to private pit data repo. Returns True if pushed."""
+    """Push new snapshot files to private pit data repo.
+
+    Returns True when the remote holds every staged path afterwards. A path that
+    already exists remotely is left untouched (immutable), so a same-day rerun
+    after an earlier successful push still converges (#178).
+    """
     if not token:
         logger.warning("PIT_DATA_TOKEN not set; skipping push to %s", repo)
         return False
 
     if work_dir is None:
-        work_dir = staging_dir.parent / ".pit-repo-clone"
+        work_dir = _pit_work_dir(staging_dir)
     if work_dir.exists():
         subprocess.run(["rm", "-rf", str(work_dir)], check=True)
 
-    clone_url = f"https://x-access-token:{token}@github.com/{repo}.git"
-    _run_git_step("git clone", ["git", "clone", "--depth", "1", clone_url, str(work_dir)])
+    _run_git_step(
+        "git clone",
+        ["git", "clone", "--depth", "1", _pit_clone_url(repo, token), str(work_dir)],
+    )
 
     copied = 0
+    existing = 0
     for sub in ("fundamentals", "universe"):
         src_root = staging_dir / sub
         if not src_root.exists():
@@ -397,29 +405,23 @@ def push_staging_to_pit_repo(
             rel = src.relative_to(staging_dir)
             dest = work_dir / rel
             if dest.exists():
-                logger.warning("PIT remote file exists; skip push for %s", rel)
+                if dest.read_bytes() != src.read_bytes():
+                    logger.warning("PIT remote file differs from staging; keeping remote: %s", rel)
+                existing += 1
                 continue
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_bytes(src.read_bytes())
             copied += 1
 
     if copied == 0:
-        logger.info("No new PIT files to push")
-        return False
+        logger.info("No new PIT files to push (%d already on remote)", existing)
+        return existing > 0
 
     bot_email = "41898282+github-actions[bot]@users.noreply.github.com"
     git_c = ["git", "-C", str(work_dir)]
     _run_git_step("git config email", [*git_c, "config", "user.email", bot_email])
     _run_git_step("git config name", [*git_c, "config", "user.name", "github-actions[bot]"])
     _run_git_step("git add", [*git_c, "add", "fundamentals", "universe"])
-    status = subprocess.run(
-        [*git_c, "status", "--porcelain"],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    if not status.stdout.strip():
-        return False
     _run_git_step(
         "git commit",
         [*git_c, "commit", "-m", f"chore(pit): snapshot files ({copied} new)"],
@@ -436,7 +438,11 @@ def push_and_record_manifest(
     token: str | None,
     staging_dir: Path = PIT_STAGING_DIR,
 ) -> bool:
-    """Push staging to pit repo; on success upsert content/pit/manifest.json."""
+    """Push staging to pit repo; on success upsert content/pit/manifest.json.
+
+    The entry is rebuilt from the pushed clone, so it describes the remote bytes
+    even when an earlier run already stored different bytes for this date.
+    """
     pending = load_pending_manifest_entry(market, target_date, staging_dir=staging_dir)
     if pending is None:
         logger.info("No pending PIT manifest entry for %s %s", market, target_date)
@@ -444,15 +450,17 @@ def push_and_record_manifest(
     if not token:
         logger.warning("PIT_DATA_TOKEN not set; manifest unchanged")
         return False
+    work_dir = _pit_work_dir(staging_dir)
     try:
-        pushed = push_staging_to_pit_repo(staging_dir, token=token)
+        pushed = push_staging_to_pit_repo(staging_dir, token=token, work_dir=work_dir)
+        entry = build_manifest_entry(market, target_date, work_dir) if pushed else None
     except Exception as exc:
         logger.warning("PIT push failed; manifest unchanged: %s", exc)
         return False
-    if not pushed:
-        logger.warning("PIT push produced no new remote files; manifest unchanged")
+    if entry is None:
+        logger.warning("PIT remote has no snapshot files; manifest unchanged")
         return False
-    record_manifest_entry_after_push(pending)
+    record_manifest_entry_after_push(entry)
     clear_pending_manifest_entry(market, target_date, staging_dir=staging_dir)
     logger.info("PIT manifest updated for %s %s after successful push", market, target_date)
     return True
