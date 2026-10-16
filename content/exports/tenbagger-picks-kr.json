@@ -1,18 +1,10 @@
 {
   "schemaVersion": "0.1.0",
   "market": "KR",
-  "asOfDate": "2026-10-16",
-  "generatedAt": "2026-10-16T00:30:12.757694+00:00",
+  "asOfDate": "2026-10-17",
+  "generatedAt": "2026-10-16T23:36:41.849732+00:00",
   "count": 46,
   "picks": [
-    {
-      "symbol": "002990.KS",
-      "pickDate": "2026-07-15",
-      "horizonsNeeded": [
-        "H60"
-      ],
-      "latestHorizon": "H60"
-    },
     {
       "symbol": "143240.KQ",
       "pickDate": "2026-07-17",
@@ -233,7 +225,6 @@
       "symbol": "134380.KS",
       "pickDate": "2026-09-11",
       "horizonsNeeded": [
-        "H20",
         "H60"
       ],
       "latestHorizon": "H60"
@@ -242,7 +233,6 @@
       "symbol": "065710.KQ",
       "pickDate": "2026-09-13",
       "horizonsNeeded": [
-        "H20",
         "H60"
       ],
       "latestHorizon": "H60"
@@ -385,6 +375,15 @@
     {
       "symbol": "284740.KS",
       "pickDate": "2026-10-15",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "178920.KS",
+      "pickDate": "2026-10-17",
       "horizonsNeeded": [
         "H20",
         "H60"

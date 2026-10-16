@@ -1,18 +1,10 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-16",
-  "generatedAt": "2026-10-16T00:30:12.760067+00:00",
-  "count": 41,
+  "asOfDate": "2026-10-17",
+  "generatedAt": "2026-10-16T23:36:41.852038+00:00",
+  "count": 40,
   "picks": [
-    {
-      "symbol": "GCT",
-      "pickDate": "2026-07-22",
-      "horizonsNeeded": [
-        "H60"
-      ],
-      "latestHorizon": "H60"
-    },
     {
       "symbol": "AUPH",
       "pickDate": "2026-07-24",
@@ -209,7 +201,6 @@
       "symbol": "YB",
       "pickDate": "2026-09-16",
       "horizonsNeeded": [
-        "H20",
         "H60"
       ],
       "latestHorizon": "H60"
