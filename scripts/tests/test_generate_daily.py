@@ -164,3 +164,38 @@ def test_recent_pick_symbols_ignores_outside_window(content_dirs, monkeypatch):
 
     excluded = generate_daily.recent_pick_symbols(30, date.fromisoformat("2026-07-05"))
     assert "STALE.KS" not in excluded
+
+
+def test_recent_pick_symbols_excludes_later_picks_for_backfill(content_dirs, monkeypatch):
+    daily_dir, _ = content_dirs
+    later = {
+        "date": "2026-10-12",
+        "status": "pick",
+        "stock": {"symbol": "EVER"},
+    }
+    (daily_dir / "2026-10-12.json").write_text(json.dumps(later), encoding="utf-8")
+
+    excluded = generate_daily.recent_pick_symbols(30, date.fromisoformat("2026-10-10"))
+    assert "EVER" in excluded
+
+
+def test_recent_pick_symbols_ignores_own_date_on_rerun(content_dirs, monkeypatch):
+    daily_dir, _ = content_dirs
+    same = {
+        "date": "2026-10-12",
+        "status": "pick",
+        "stock": {"symbol": "EVER"},
+    }
+    (daily_dir / "2026-10-12.json").write_text(json.dumps(same), encoding="utf-8")
+
+    excluded = generate_daily.recent_pick_symbols(30, date.fromisoformat("2026-10-12"))
+    assert "EVER" not in excluded
+
+
+def test_generate_daily_rejects_weekend_target(content_dirs, monkeypatch):
+    daily_dir, _ = content_dirs
+    monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-10-10"])
+
+    with pytest.raises(SystemExit, match="weekend"):
+        generate_daily.main()
+    assert not (daily_dir / "2026-10-10.json").exists()
