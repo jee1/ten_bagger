@@ -3,7 +3,7 @@
 매일 하나의 **텐베거(5년 10배) 후보**를 규칙 기반으로 선정해 공개하는 정적 사이트입니다.
 
 - **DB 없음**: `content/daily/YYYY-MM-DD.json`이 기록의 원천
-- **매일 06:00 KST**: GitHub Actions가 스크리닝 → JSON 커밋 → Astro 빌드 → GitHub Pages 배포
+- **평일 06:00 KST**: GitHub Actions가 스크리닝 → JSON 커밋 → Astro 빌드 → GitHub Pages 배포
 - **한·미 교대**: 날짜(일) 홀수=한국, 짝수=미국
 - **없음 표시**: 복합 점수 70 미만이면 해당 일 `no_pick`
 - **Score v2**: 규모·FCF·지속 성장·진입 타이밍 반영 (Methodology 참고)
@@ -115,7 +115,7 @@ Yahoo가 429/rate limit 또는 일시적 네트워크 오류를 반환하면 스
 3. **Settings → Pages → Custom domain**: `tenbagger.finnaut.com` (DNS CNAME → `jee1.github.io`)
 4. **Settings → Pages → Enforce HTTPS**: 체크 (인증서 발급 완료 후 활성화됨).
    확인: `gh api repos/:owner/:repo/pages --jq '.https_enforced'` → `true`
-5. `.github/workflows/daily.yml`이 매일 06:00 KST에 실행됩니다
+5. `.github/workflows/daily.yml`이 평일(월~금) 06:00 KST에 실행됩니다
 6. `workflow_dispatch`로 날짜 지정 수동 실행도 가능합니다
 
 도메인·base를 바꾸면 `astro.config.mjs` 기본값, workflow env, `public/CNAME`을 함께 맞춰 주세요.

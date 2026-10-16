@@ -33,7 +33,7 @@ def _parse_date(value: str) -> date:
     return date.fromisoformat(value)
 
 
-def recent_pick_symbols(days: int, before: date) -> set[str]:
+def recent_pick_symbols(days: int, target: date) -> set[str]:
     symbols: set[str] = set()
     if not DAILY_DIR.exists():
         return symbols
@@ -44,9 +44,8 @@ def recent_pick_symbols(days: int, before: date) -> set[str]:
         except json.JSONDecodeError:
             continue
         entry_date = _parse_date(entry["date"])
-        if entry_date >= before:
-            continue
-        if before - entry_date > timedelta(days=days):
+        # Both directions: a backfilled date must not repeat a pick already published after it.
+        if entry_date == target or abs(target - entry_date) > timedelta(days=days):
             continue
         if entry.get("status") == "pick" and entry.get("stock"):
             symbols.add(entry["stock"]["symbol"])
@@ -143,10 +142,12 @@ def build_pick(target: str, market: str, result, stats, top_candidates=None) -> 
 
 def main() -> int:
     target = sys.argv[1] if len(sys.argv) > 1 else now_kst().date().isoformat()
+    target_date = _parse_date(target)
+    if target_date.weekday() >= 5:
+        raise SystemExit(f"{target} is a weekend; daily reports run Mon-Fri only")
     market = market_for_date(target)
-    before = _parse_date(target)
 
-    excluded_symbols = recent_pick_symbols(DUPLICATE_BAN_DAYS, before)
+    excluded_symbols = recent_pick_symbols(DUPLICATE_BAN_DAYS, target_date)
 
     pit_collector = PitFundamentalsCollector(market=market)
     candidates, stats = screen_market(market, excluded_symbols, pit_collector=pit_collector)

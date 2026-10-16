@@ -74,7 +74,7 @@ const aboutFaqKo: FaqItem[] = [
   {
     question: '언제·어느 시장을 보나요?',
     answer:
-      '매일 06:00 KST. 홀수일=한국(KOSPI·KOSDAQ), 짝수일=미국(NYSE·NASDAQ). 유니버스는 거래소 상장 종목을 매일 갱신합니다.',
+      '평일(월~금) 06:00 KST. 홀수일=한국(KOSPI·KOSDAQ), 짝수일=미국(NYSE·NASDAQ). 유니버스는 거래소 상장 종목을 매일 갱신합니다.',
   },
   {
     question: '점수는 어떻게 구성되나요?',
@@ -117,7 +117,7 @@ const aboutFaqEn: FaqItem[] = [
   {
     question: 'When and which markets?',
     answer:
-      'Daily at 06:00 KST. Odd days: Korea (KOSPI·KOSDAQ). Even days: US (NYSE·NASDAQ). The universe is refreshed daily from exchange listings.',
+      'Weekdays (Mon-Fri) at 06:00 KST. Odd days: Korea (KOSPI·KOSDAQ). Even days: US (NYSE·NASDAQ). The universe is refreshed daily from exchange listings.',
   },
   {
     question: 'How is the score built?',
