@@ -216,6 +216,17 @@ export type WalkForwardReport = {
    * Non-PIT or other evidence contamination tags (#175)
    */
   contaminationFindings?: string[];
+  /**
+   * PIT fundamentals snapshots read by override re-screen (#175 stage 2)
+   */
+  fundamentalsSnapshot?: {
+    from: string;
+    to: string;
+    /**
+     * @minItems 1
+     */
+    sha256: [string, ...string[]];
+  };
 };
 export type FoldStatus = "complete" | "incomplete_horizon" | "skipped_empty_train";
 export type WalkForwardHorizonId = "H20" | "H60";

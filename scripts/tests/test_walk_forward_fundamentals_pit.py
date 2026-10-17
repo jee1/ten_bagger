@@ -4,10 +4,7 @@ from __future__ import annotations
 
 from calibration.verdict import verdict_from_oos_report
 from walk_forward.config import RunConfig
-from walk_forward.fundamentals_pit import (
-    contamination_findings_for_run,
-    fundamentals_pit_available,
-)
+from walk_forward.fundamentals_pit import fundamentals_pit_audit, fundamentals_pit_status
 from walk_forward.report import build_report
 
 FOLD_SPEC = {
@@ -110,8 +107,8 @@ def test_ledger_path_no_contamination_finding():
 
 def test_no_finding_when_fundamentals_pit_available(monkeypatch):
     monkeypatch.setattr(
-        "walk_forward.fundamentals_pit.fundamentals_pit_available",
-        lambda _m, _d: True,
+        "walk_forward.fundamentals_pit.fundamentals_pit_status",
+        lambda _m, _d: "ok",
     )
     cfg = RunConfig(
         runIntent="exploratory",
@@ -130,8 +127,8 @@ def test_no_finding_when_fundamentals_pit_available(monkeypatch):
     assert "contaminationFindings" not in report
 
 
-def test_fundamentals_pit_available_default_false():
-    assert fundamentals_pit_available("KR", "2026-01-08") is False
+def test_session_without_manifest_entry_is_missing():
+    assert fundamentals_pit_status("KR", "2026-01-08") == "missing"
 
 
 def test_overlapping_folds_count_each_session_once():
@@ -144,4 +141,4 @@ def test_overlapping_folds_count_each_session_once():
         thresholdOverride=75.0,
     )
     overlapping = [*FOLD_RESULTS, {**FOLD_RESULTS[0], "foldIndex": 1}]
-    assert contamination_findings_for_run(cfg, overlapping) == ["fundamentals_not_pit:3"]
+    assert fundamentals_pit_audit(cfg, overlapping)[0] == ["fundamentals_not_pit:3"]
