@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { label } from '../lib/i18n';
 import { localeToLang } from '../lib/i18n';
@@ -7,6 +8,11 @@ import { localeHref } from '../lib/staticNav';
 const lang = localeToLang(Astro.currentLocale);
 const base = import.meta.env.BASE_URL;
 const priceBasisNoteHref = localeHref(base, lang, 'methodology/price-basis');
+
+const dailies = (await getCollection('daily')).map((entry) => entry.data);
+const noPickDays = dailies.filter((d) => d.status === 'no_pick').length;
+const pickScores = dailies.filter((d) => d.status === 'pick').map((d) => d.scores.composite);
+const lowestPickScore = pickScores.length ? Math.min(...pickScores).toFixed(1) : null;
 
 /** Live Score v2 weights — the stacked bar and the rows read from one source. */
 const weights = [
@@ -254,6 +260,16 @@ const toc = [
             </p>
           </div>
         </div>
+        {lowestPickScore && (
+          <p id="threshold-record" class="muted">
+            <span data-i18n-show="ko" hidden={lang !== 'ko'}
+              >지금까지 {dailies.length}개 시장일 중 '없음'은 {noPickDays}일입니다. 선정 종목의 최저 점수는 {lowestPickScore}점입니다. {noPickDays === 0 && '기준선이 아직 걸러낸 날이 없어 사실상 매일 최고 점수 1종목이 공개됩니다.'}</span
+            >
+            <span data-i18n-show="en" hidden={lang !== 'en'}
+              >So far, {noPickDays} of {dailies.length} market days had no pick. The lowest published score is {lowestPickScore}. {noPickDays === 0 && 'The cutoff has not filtered anything yet: in practice the top-scoring candidate is published every day.'}</span
+            >
+          </p>
+        )}
       </section>
 
       <section id="performance-excess">
