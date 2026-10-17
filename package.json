@@ -12,6 +12,7 @@
     "astro": "astro",
     "generate:daily": "cd scripts && python generate_daily.py",
     "regenerate:ledger": "cd scripts && python regenerate_ledger.py",
+    "edge-baseline": "cd scripts && python edge_baseline.py",
     "test:python": "cd scripts && python -m pytest tests/ -q",
     "validate:content": "cd scripts && python sync_manifest.py && python validate_content.py",
     "gen:types": "node scripts/gen_types.mjs",
