@@ -11,7 +11,8 @@
   "limitations": [
     "US listings carry no market cap, so only KR random applies the cap floor",
     "survivorship: random arm samples the current listing, delisted names are absent",
-    "overlapping windows: consecutive H20 windows overlap, so tStat is overstated",
+    "per-arm tStat treats same-date rows as independent; read pickMinus (paired by date) instead",
+    "overlapping windows: consecutive H20 windows overlap, so even paired tStat is overstated",
     "small n: tens of observations per arm; tStat near zero is not proof of equality",
     "top2_5 and random arms were never published; only the measurement semantics match"
   ],
@@ -41,7 +42,24 @@
         "tStat": 6.104437698144882,
         "beatRate": 0.6106442577030813
       },
-      "pickMinusRandomMeanExcess": -0.06374539215044529
+      "pickMinus": {
+        "top2_5": {
+          "n": 4,
+          "meanExcess": 0.05164417942786899,
+          "medianExcess": 0.023096096118176833,
+          "sdExcess": 0.1172901476167979,
+          "tStat": 0.8806226350161517,
+          "beatRate": 0.5
+        },
+        "random": {
+          "n": 36,
+          "meanExcess": -0.06360646753732102,
+          "medianExcess": -0.0608762233942156,
+          "sdExcess": 0.12434226574351659,
+          "tStat": -3.0692605039958054,
+          "beatRate": 0.2222222222222222
+        }
+      }
     },
     "US": {
       "pick": {
@@ -68,7 +86,24 @@
         "tStat": -4.4811957127320445,
         "beatRate": 0.31470588235294117
       },
-      "pickMinusRandomMeanExcess": 0.03365005872446954
+      "pickMinus": {
+        "top2_5": {
+          "n": 6,
+          "meanExcess": -0.09860361863615498,
+          "medianExcess": -0.11344232279701771,
+          "sdExcess": 0.0601104409318332,
+          "tStat": -4.018079866099559,
+          "beatRate": 0.0
+        },
+        "random": {
+          "n": 35,
+          "meanExcess": 0.033390654786346785,
+          "medianExcess": 0.03459145269059261,
+          "sdExcess": 0.09758482513977693,
+          "tStat": 2.0243083639593866,
+          "beatRate": 0.6285714285714286
+        }
+      }
     }
   },
   "rows": [

@@ -28,7 +28,8 @@ EDGE_DIR = Path(__file__).resolve().parent.parent / "content" / "edge-baseline"
 LIMITATIONS = [
     "US listings carry no market cap, so only KR random applies the cap floor",
     "survivorship: random arm samples the current listing, delisted names are absent",
-    "overlapping windows: consecutive H20 windows overlap, so tStat is overstated",
+    "per-arm tStat treats same-date rows as independent; read pickMinus (paired by date) instead",
+    "overlapping windows: consecutive H20 windows overlap, so even paired tStat is overstated",
     "small n: tens of observations per arm; tStat near zero is not proof of equality",
     "top2_5 and random arms were never published; only the measurement semantics match",
 ]
@@ -80,10 +81,25 @@ def build_summary(rows: list[dict]) -> dict[str, Any]:
             )
             for arm in ARMS
         }
-        p, q = arms["pick"].get("meanExcess"), arms["random"].get("meanExcess")
-        arms["pickMinusRandomMeanExcess"] = None if p is None or q is None else p - q
+        arms["pickMinus"] = {
+            arm: summarize(_paired_by_date(rows, market, arm)) for arm in ARMS if arm != "pick"
+        }
         out[market] = arms
     return out
+
+
+def _paired_by_date(rows: list[dict], market: str, arm: str) -> list[float]:
+    # Rows sharing a pickDate share the benchmark window, so they are not independent;
+    # the comparison unit is the date: pick excess minus that date's arm mean.
+    by_date: dict[str, dict[str, list[float]]] = {}
+    for r in rows:
+        if r["market"] == market and r["excess"] is not None and r["arm"] in ("pick", arm):
+            by_date.setdefault(r["pickDate"], {}).setdefault(r["arm"], []).append(r["excess"])
+    return [
+        g["pick"][0] - statistics.fmean(g[arm])
+        for _, g in sorted(by_date.items())
+        if "pick" in g and arm in g
+    ]
 
 
 def _row(m: dict, arm: str) -> dict:
