@@ -8,8 +8,9 @@ import { label, localeToLang } from '../../lib/i18n';
 import { isoWeekKeyFromDate } from '../../lib/weekly';
 import { localeHref } from '../../lib/staticNav';
 
-export function getStaticPaths() {
-  return getAllDates().map((date) => ({ params: { date } }));
+export async function getStaticPaths() {
+  const dates = await getAllDates();
+  return dates.map((date) => ({ params: { date } }));
 }
 
 const { date } = Astro.params;
