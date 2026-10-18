@@ -221,3 +221,42 @@ def test_pit_snapshot_only_for_same_day_run(content_dirs, monkeypatch, today, ca
 
     assert generate_daily.main() == 0
     assert bool(calls) is captured
+
+
+def test_generate_daily_refuses_publish_when_provider_error_rate_is_high(content_dirs, monkeypatch):
+    daily_dir, manifest_path = content_dirs
+    stats = _fake_stats(screened=10, errors=2, no_data=1, passed_threshold=0)
+
+    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex, **_k: ([], stats))
+    monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-09"])
+
+    assert generate_daily.main() != 0
+    assert not (daily_dir / "2026-07-09.json").exists()
+    assert not manifest_path.exists()
+
+
+def test_generate_daily_writes_no_pick_when_provider_error_rate_is_at_threshold(
+    content_dirs, monkeypatch
+):
+    daily_dir, manifest_path = content_dirs
+    stats = _fake_stats(screened=10, errors=2, no_data=0, passed_threshold=0)
+
+    monkeypatch.setattr(generate_daily, "screen_market", lambda _m, _ex, **_k: ([], stats))
+    monkeypatch.setattr(sys, "argv", ["generate_daily.py", "2026-07-09"])
+
+    assert generate_daily.main() == 0
+    entry = json.loads((daily_dir / "2026-07-09.json").read_text(encoding="utf-8"))
+    assert entry["status"] == "no_pick"
+    assert entry["meta"]["errors"] == 2
+    assert entry["meta"]["noData"] == 0
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    assert manifest["dates"] == ["2026-07-09"]
+
+
+def test_recent_pick_symbols_raises_on_corrupt_daily_json(content_dirs):
+    daily_dir, _ = content_dirs
+    bad = daily_dir / "2026-07-01.json"
+    bad.write_text("{not-json", encoding="utf-8")
+
+    with pytest.raises(json.JSONDecodeError, match="2026-07-01.json"):
+        generate_daily.recent_pick_symbols(30, date.fromisoformat("2026-07-05"))
