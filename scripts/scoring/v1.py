@@ -1,7 +1,7 @@
-"""Score v1 — retained only for backtest_screen.py comparisons (Epic #27 / #34).
+"""Score v1 formulas for score_symbol when score_version < 2.
 
-Not used on the production path (score_version=2); kept isolated here so the
-v2 modules (growth.py, quality.py, ...) stay free of legacy branches.
+Live SCORE_VERSION is 2. screening.core imports this module only inside that branch,
+so the v2 modules stay free of the old formulas.
 """
 
 from __future__ import annotations
