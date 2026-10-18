@@ -22,14 +22,16 @@ import { label, localeToLang } from '../../lib/i18n';
 import { loadPerformanceBundle } from '../../lib/performanceLoad';
 import { localeHref } from '../../lib/staticNav';
 
-export function getStaticPaths() {
-  return listIsoWeekKeys(getAllDates()).map((week) => ({ params: { week } }));
+export async function getStaticPaths() {
+  const dates = await getAllDates();
+  return listIsoWeekKeys(dates).map((week) => ({ params: { week } }));
 }
 
 const { week } = Astro.params;
 const lang = localeToLang(Astro.currentLocale);
 const base = import.meta.env.BASE_URL;
-const allWeekKeys = listIsoWeekKeys(getAllDates());
+const dates = await getAllDates();
+const allWeekKeys = listIsoWeekKeys(dates);
 
 let parts: ReturnType<typeof parseIsoWeekKey>;
 try {
@@ -38,7 +40,7 @@ try {
   return Astro.redirect(localeHref(base, lang, 'weekly'));
 }
 
-const weekDates = groupDatesByIsoWeek(getAllDates()).get(week!) ?? [];
+const weekDates = groupDatesByIsoWeek(dates).get(week!) ?? [];
 if (weekDates.length === 0) {
   return Astro.redirect(localeHref(base, lang, 'weekly'));
 }

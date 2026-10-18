@@ -17,7 +17,7 @@ export async function GET(context: APIContext) {
   const siteUrl = context.site ?? new URL(import.meta.env.SITE || 'https://tenbagger.finnaut.com');
   const site = siteUrl.href.replace(/\/+$/, '');
 
-  const dates = getAllDates();
+  const dates = await getAllDates();
   const loaded = await Promise.all(
     dates.map(async (date) => {
       const entry = await getDailyEntry(date);

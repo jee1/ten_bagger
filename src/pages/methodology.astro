@@ -11,7 +11,9 @@ const priceBasisNoteHref = localeHref(base, lang, 'methodology/price-basis');
 
 const dailies = (await getCollection('daily')).map((entry) => entry.data);
 const noPickDays = dailies.filter((d) => d.status === 'no_pick').length;
-const pickScores = dailies.filter((d) => d.status === 'pick').map((d) => d.scores.composite);
+const pickScores = dailies.flatMap((d) =>
+  d.status === 'pick' && d.scores ? [d.scores.composite] : [],
+);
 const lowestPickScore = pickScores.length ? Math.min(...pickScores).toFixed(1) : null;
 
 /** Live Score v2 weights — the stacked bar and the rows read from one source. */

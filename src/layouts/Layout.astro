@@ -3,7 +3,7 @@ import '../styles/global.css';
 import { labels, label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
 import Disclaimer from '../components/Disclaimer.astro';
-import { getKstDate } from '../lib/daily';
+import { getTodayDateString } from '../lib/daily';
 import { splitLocalePath, localeHref } from '../lib/staticNav';
 
 interface Props {
@@ -30,9 +30,9 @@ const {
   disclaimerVariant = 'default',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const kst = getKstDate();
-const defaultYear = kst.getFullYear();
-const defaultMonth = kst.getMonth() + 1;
+const today = getTodayDateString();
+const defaultYear = Number(today.slice(0, 4));
+const defaultMonth = Number(today.slice(5, 7));
 
 const { rel, prefixed } = splitLocalePath(Astro.url.pathname, base);
 const koUrl = localeHref(base, 'ko', rel);

@@ -216,12 +216,4 @@ export function formatGeneratedAtKst(iso: string, lang: 'ko' | 'en'): string {
   return `${formatted} KST`;
 }
 
-/** KST calendar date as YYYY-MM-DD. Browser-safe — no node:fs, unlike dailyDates.ts. */
-export function kstDateString(now: Date = new Date()): string {
-  return new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Asia/Seoul',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(now);
-}
+export { getTodayDateString as kstDateString } from './dailyDates.ts';
