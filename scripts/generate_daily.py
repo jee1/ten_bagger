@@ -41,8 +41,8 @@ def recent_pick_symbols(days: int, target: date) -> set[str]:
     for path in sorted(DAILY_DIR.glob("*.json")):
         try:
             entry = json.loads(path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            continue
+        except json.JSONDecodeError as exc:
+            raise json.JSONDecodeError(f"{path}: {exc.msg}", exc.doc, exc.pos) from exc
         entry_date = _parse_date(entry["date"])
         # Both directions: a backfilled date must not repeat a pick already published after it.
         if entry_date == target or abs(target - entry_date) > timedelta(days=days):
@@ -140,6 +140,16 @@ def build_pick(target: str, market: str, result, stats, top_candidates=None) -> 
     return entry
 
 
+MAX_PROVIDER_ERROR_RATE = 0.20
+
+
+def _provider_error_rate_exceeds(stats) -> bool:
+    screened = stats.screened
+    if screened <= 0:
+        return False
+    return (stats.errors + stats.no_data) / screened > MAX_PROVIDER_ERROR_RATE
+
+
 def main() -> int:
     target = sys.argv[1] if len(sys.argv) > 1 else now_kst().date().isoformat()
     target_date = _parse_date(target)
@@ -151,6 +161,17 @@ def main() -> int:
 
     pit_collector = PitFundamentalsCollector(market=market)
     candidates, stats = screen_market(market, excluded_symbols, pit_collector=pit_collector)
+    if _provider_error_rate_exceeds(stats):
+        failed = stats.errors + stats.no_data
+        logger.error(
+            "Refusing %s: provider failures %d/%d exceed %.0f%%",
+            target,
+            failed,
+            stats.screened,
+            MAX_PROVIDER_ERROR_RATE * 100,
+        )
+        return 1
+
     pick = select_pick(candidates)
     top_candidates = build_top_candidates(candidates)
     top_candidates = classify_top_candidate_risks(top_candidates)
