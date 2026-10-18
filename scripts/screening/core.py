@@ -122,10 +122,6 @@ def score_symbol(
         info = get_ticker_info(meta.symbol)
     if not info.get("symbol") and not info.get("shortName"):
         return None
-    if not passes_market_cap_filter(meta, market, info):
-        return None
-    if score_version >= 2 and not passes_red_flags(info):
-        return None
 
     long_name = info.get("longName") or info.get("shortName")
     if long_name:
@@ -179,6 +175,7 @@ def score_symbol(
         composite=round(composite, 1),
         metrics={**s_m, **g_m, **v_m, **e_m, **m_m, **q_m},
         score_version=version,
+        info=info,
     )
 
 

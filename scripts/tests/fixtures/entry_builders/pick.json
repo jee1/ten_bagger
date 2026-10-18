@@ -1,0 +1,134 @@
+{
+  "date": "2026-07-08",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "AAPL",
+    "name": {
+      "ko": "테스트",
+      "en": "Test Co"
+    },
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "테스트는 Technology 분야 Consumer Electronics 기업입니다.",
+        "en": "Apple designs phones. It sells them worldwide."
+      },
+      "sector": {
+        "ko": "Technology",
+        "en": "Technology"
+      },
+      "industry": {
+        "ko": "Consumer Electronics",
+        "en": "Consumer Electronics"
+      }
+    }
+  },
+  "scores": {
+    "composite": 76.5,
+    "size": 80.0,
+    "growth": 75.0,
+    "valuation": 78.0,
+    "entry": 70.0,
+    "momentum": 65.0,
+    "quality": 72.0,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "테스트(AAPL)는 v2 복합 점수 76.5로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Test Co (AAPL) cleared the 70.0 threshold with v2 composite 76.5; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 데이터 없음 / 이익 데이터 없음 (혼합 데이터 없음) — 지속 가능 성장 점수 75.0.",
+      "en": "Revenue No data / earnings No data (blended No data) — sustainable growth score 75.0."
+    },
+    "valuation": {
+      "ko": "PER 데이터 없음, PEG 데이터 없음, FCF수익률 데이터 없음, PBR 데이터 없음 — 밸류 점수 78.0.",
+      "en": "P/E No data, PEG No data, FCF yield No data, P/B No data — valuation score 78.0."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 데이터 없음 — 보조 모멘텀 점수 65.0. (일부 가격 입력 없음; 모멘텀 점수 65.0는 가용 데이터로 계산; 복합에 포함, 선정은 복합 임계 70.0 기준)",
+      "en": "6M return No data — auxiliary momentum score 65.0. (some price inputs missing; momentum score 65.0 from available data; still enters composite; selection uses composite threshold 70.0)"
+    },
+    "quality": {
+      "ko": "ROE 데이터 없음, ROA 데이터 없음, FCF/순이익 데이터 없음 — 품질 점수 72.0.",
+      "en": "ROE No data, ROA No data, FCF/net income No data — quality score 72.0."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 데이터 없음 기준 규모 점수 80.0.",
+      "en": "Market cap No data — size score 80.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 데이터 없음, 52주 고점 대비 데이터 없음 — 진입 점수 70.0. (일부 가격 입력 없음; 진입 점수 70.0는 가용 데이터로 계산; 복합에 포함, 선정은 복합 임계 70.0 기준)",
+      "en": "12M price range No data, No data from 52W high — entry score 70.0. (some price inputs missing; entry score 70.0 from available data; still enters composite; selection uses composite threshold 70.0)"
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-07-08T06:00:00+09:00",
+    "candidatesScreened": 10,
+    "excludedRecent": 1,
+    "skippedMarketCap": 2,
+    "skippedRedFlags": 3,
+    "noData": 4,
+    "errors": 0
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "AAPL",
+      "name": {
+        "ko": "테스트",
+        "en": "Test Co"
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 76.5,
+        "size": 80.0,
+        "growth": 75.0,
+        "valuation": 78.0,
+        "entry": 70.0,
+        "momentum": 65.0,
+        "quality": 72.0,
+        "version": 2
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "MSFT",
+      "name": {
+        "ko": "테스트",
+        "en": "Test Co"
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 60.0,
+        "size": 80.0,
+        "growth": 75.0,
+        "valuation": 78.0,
+        "entry": 70.0,
+        "momentum": 65.0,
+        "quality": 72.0,
+        "version": 2
+      }
+    }
+  ]
+}

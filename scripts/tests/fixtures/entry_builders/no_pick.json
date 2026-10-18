@@ -1,0 +1,67 @@
+{
+  "date": "2026-07-08",
+  "market": "US",
+  "status": "no_pick",
+  "scores": {
+    "composite": 0,
+    "size": 0,
+    "growth": 0,
+    "valuation": 0,
+    "entry": 0,
+    "momentum": 0,
+    "quality": 0,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "meta": {
+    "generatedAt": "2026-07-08T06:00:00+09:00",
+    "candidatesScreened": 10,
+    "excludedRecent": 1,
+    "skippedMarketCap": 2,
+    "skippedRedFlags": 3,
+    "noData": 4,
+    "errors": 0
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "AAPL",
+      "name": {
+        "ko": "테스트",
+        "en": "Test Co"
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 76.5,
+        "size": 80.0,
+        "growth": 75.0,
+        "valuation": 78.0,
+        "entry": 70.0,
+        "momentum": 65.0,
+        "quality": 72.0,
+        "version": 2
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "MSFT",
+      "name": {
+        "ko": "테스트",
+        "en": "Test Co"
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 60.0,
+        "size": 80.0,
+        "growth": 75.0,
+        "valuation": 78.0,
+        "entry": 70.0,
+        "momentum": 65.0,
+        "quality": 72.0,
+        "version": 2
+      }
+    }
+  ]
+}
