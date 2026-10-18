@@ -76,3 +76,7 @@ Daily production runs capture immutable point-in-time inputs without extra yfina
 - **Universe**: full screening symbol list from `scripts/universe/{kr,us}.json` plus `builtAt` (universe file mtime).
 - **Immutability**: existing `date`+`market` files are never overwritten (skip + warning). Manifest `sha256` must match gzip bytes (`pit_snapshot.verify_file_sha256` / `verify_manifest_entry_files`).
 - **Stage 2** will patch `get_ticker_info` to read these snapshots for walk-forward re-screening; until then live daily screening behavior is unchanged aside from capture.
+
+## Frozen post-S carve
+
+`scripts/calibration/configs/score-v3-search-go-evidence-pit-post-s.json` freezes the #175 stage 3 go_evidence search carve. In-sample decision sessions run from 2026-10-09 through 2026-11-06. Out-of-sample decision sessions run from 2026-11-09 through 2026-12-09. The measurement date is 2027-01-10, about 20 trading sessions after the out-of-sample end, so H20 returns can mature. Both windows start on 2026-10-09 or later. Run the config only when readiness finds at least 20 H20-complete pick days in each window. Do not retune the weights and then score this same window again.
