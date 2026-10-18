@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
@@ -113,7 +114,10 @@ def score_symbol(
     info: dict[str, Any] | None = None,
     *,
     score_version: int = SCORE_VERSION,
+    history_fn: Callable[..., Any] | None = None,
 ) -> ScoreResult | None:
+    if history_fn is None:
+        history_fn = get_ticker_history
     if info is None:
         info = get_ticker_info(meta.symbol)
     if not info.get("symbol") and not info.get("shortName"):
@@ -134,7 +138,7 @@ def score_symbol(
             market_cap=meta.market_cap,
         )
 
-    hist = get_ticker_history(meta.symbol)
+    hist = history_fn(meta.symbol)
 
     if score_version < 2:
         # Lazy import: keep Score v1 off the live SCORE_VERSION=2 import graph (#103).
@@ -184,8 +188,16 @@ def screen_market(
     *,
     score_version: int = SCORE_VERSION,
     pit_collector: PitFundamentalsCollector | None = None,
+    info_fn: Callable[[str], dict[str, Any]] | None = None,
+    history_fn: Callable[..., Any] | None = None,
+    universe: list[UniverseSymbol] | None = None,
 ) -> tuple[list[ScoreResult], ScreenStats]:
-    universe = load_universe(market)
+    if info_fn is None:
+        info_fn = get_ticker_info
+    if history_fn is None:
+        history_fn = get_ticker_history
+    if universe is None:
+        universe = load_universe(market)
     stats = ScreenStats(skipped_recent=len(exclude_symbols))
 
     to_screen: list[UniverseSymbol] = []
@@ -205,14 +217,23 @@ def screen_market(
             info, provenance = get_ticker_info_with_provenance(meta.symbol)
             pit_collector.record(meta.symbol, info, provenance)
         else:
-            info = get_ticker_info(meta.symbol)
+            info = info_fn(meta.symbol)
         if not info.get("symbol") and not info.get("shortName"):
             return ("no_data", None)
         if not passes_market_cap_filter(meta, market, info):
             return ("skip_mcap", None)
         if score_version >= 2 and not passes_red_flags(info):
             return ("skip_red", None)
-        return ("ok", score_symbol(meta, market, info, score_version=score_version))
+        return (
+            "ok",
+            score_symbol(
+                meta,
+                market,
+                info,
+                score_version=score_version,
+                history_fn=history_fn,
+            ),
+        )
 
     workers = min(SCREEN_WORKERS, max(1, stats.screened))
     with ThreadPoolExecutor(max_workers=workers) as pool:

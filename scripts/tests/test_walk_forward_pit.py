@@ -6,7 +6,9 @@ import json
 from pathlib import Path
 
 import pandas as pd
+
 from config import UniverseSymbol
+from screening.core import screen_market
 from tests.fixtures.price_loader import load_price_fixture
 from walk_forward.pit_screen import pit_screen_day
 
@@ -54,6 +56,48 @@ def _history_for_symbol(symbol: str, period: str = "1y") -> pd.DataFrame:
     dates = pd.date_range("2025-06-01", periods=200, freq="B")
     close = [100.0] * 74 + [80.0] * 52 + [92.0] * 74
     return pd.DataFrame({"Close": close}, index=dates)
+
+
+def test_screen_market_uses_injected_sources():
+    only = UniverseSymbol("ONLY.KR", "온리", "Only", "KOSPI", "KRW", 500_000_000_000)
+    dates = pd.date_range("2025-06-01", periods=200, freq="B")
+    close = [100.0] * 74 + [80.0] * 52 + [92.0] * 74
+    hist = pd.DataFrame({"Close": close}, index=dates)
+
+    def info_fn(symbol: str) -> dict:
+        return _good_info(symbol)
+
+    def history_fn(symbol: str, period: str = "1y") -> pd.DataFrame:
+        return hist
+
+    results, stats = screen_market(
+        "KR",
+        set(),
+        info_fn=info_fn,
+        history_fn=history_fn,
+        universe=[only],
+    )
+    assert [row.symbol for row in results] == ["ONLY.KR"]
+    assert stats.screened == 1
+    assert stats.errors == 0
+
+
+def test_screen_market_empty_universe_does_not_fetch():
+    def info_fn(symbol: str) -> dict:
+        raise AssertionError(symbol)
+
+    def history_fn(symbol: str, period: str = "1y") -> pd.DataFrame:
+        raise AssertionError(symbol)
+
+    results, stats = screen_market(
+        "KR",
+        set(),
+        info_fn=info_fn,
+        history_fn=history_fn,
+        universe=[],
+    )
+    assert results == []
+    assert stats.screened == 0
 
 
 def test_pit_screen_excludes_post_t_bars(monkeypatch):
