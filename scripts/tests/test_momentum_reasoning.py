@@ -69,7 +69,7 @@ def test_us_market_cap_filter():
     assert passes_market_cap_filter(small, "US", {}) is True
 
 
-def test_score_symbol_skips_low_us_cap(monkeypatch):
+def test_score_symbol_scores_low_us_cap(monkeypatch):
     meta = UniverseSymbol("SMALL", "소형", "Small Inc", "NASDAQ", "USD")
 
     monkeypatch.setattr(
@@ -96,10 +96,12 @@ def test_score_symbol_skips_low_us_cap(monkeypatch):
         lambda _symbol, period="1y": pd.DataFrame({"Close": [1.0] * 40}),
     )
 
-    assert score_symbol(meta, "US") is None
+    scored = score_symbol(meta, "US")
+    assert scored is not None
+    assert scored.symbol == "SMALL"
 
 
-def test_score_symbol_skips_red_flags(monkeypatch):
+def test_score_symbol_scores_red_flag_names(monkeypatch):
     meta = UniverseSymbol("BAD", "나쁨", "Bad Inc", "NASDAQ", "USD")
 
     monkeypatch.setattr(
@@ -117,4 +119,6 @@ def test_score_symbol_skips_red_flags(monkeypatch):
         lambda _symbol, period="1y": pd.DataFrame({"Close": [1.0] * 40}),
     )
 
-    assert score_symbol(meta, "US") is None
+    scored = score_symbol(meta, "US")
+    assert scored is not None
+    assert scored.symbol == "BAD"

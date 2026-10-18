@@ -20,6 +20,34 @@ def select_pick(
     return None
 
 
+_SCORE_AXES = ("composite", "size", "growth", "valuation", "entry", "momentum", "quality")
+
+
+def _scores_dict(result: ScoreResult | None, *, include_threshold: bool) -> dict[str, Any]:
+    if result is None:
+        scores: dict[str, Any] = {axis: 0 for axis in _SCORE_AXES}
+        version = cfg.SCORE_VERSION
+    else:
+        scores = {axis: getattr(result, axis) for axis in _SCORE_AXES}
+        version = result.score_version
+    if include_threshold:
+        scores["threshold"] = cfg.COMPOSITE_THRESHOLD
+    scores["version"] = version
+    return scores
+
+
+def _meta_dict(stats: Any, generated_at: str) -> dict[str, Any]:
+    return {
+        "generatedAt": generated_at,
+        "candidatesScreened": stats.screened,
+        "excludedRecent": stats.skipped_recent,
+        "skippedMarketCap": stats.skipped_market_cap,
+        "skippedRedFlags": stats.skipped_red_flags,
+        "noData": stats.no_data,
+        "errors": stats.errors,
+    }
+
+
 def build_top_candidates(
     results: list[ScoreResult],
     n: int | None = None,
@@ -37,16 +65,7 @@ def build_top_candidates(
                 "name": {"ko": result.meta.name_ko, "en": result.meta.name_en},
                 "exchange": result.meta.exchange,
                 "currency": result.meta.currency,
-                "scores": {
-                    "composite": result.composite,
-                    "size": result.size,
-                    "growth": result.growth,
-                    "valuation": result.valuation,
-                    "entry": result.entry,
-                    "momentum": result.momentum,
-                    "quality": result.quality,
-                    "version": result.score_version,
-                },
+                "scores": _scores_dict(result, include_threshold=False),
             }
         )
     return out

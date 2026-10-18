@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 from config import SCORE_VERSION, UniverseSymbol
@@ -21,3 +21,4 @@ class ScoreResult:
     composite: float
     metrics: dict[str, Any]
     score_version: int = SCORE_VERSION
+    info: dict[str, Any] | None = field(default=None, repr=False, compare=False)

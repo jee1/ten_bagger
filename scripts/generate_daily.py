@@ -9,10 +9,8 @@ import sys
 from datetime import date, timedelta
 
 from config import (
-    COMPOSITE_THRESHOLD,
     DAILY_DIR,
     DUPLICATE_BAN_DAYS,
-    SCORE_VERSION,
     market_for_date,
 )
 from moat_megatrend_classification import classify_top_candidate_moat_megatrend
@@ -23,7 +21,7 @@ from screening.core import screen_market
 from stock_profile import build_stock_profile
 from sync_manifest import sync_manifest
 from time_utils import now_kst
-from top_n import build_top_candidates, select_pick
+from top_n import _meta_dict, _scores_dict, build_top_candidates, select_pick
 from yf_cache import get_ticker_info
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -59,26 +57,8 @@ def build_no_pick(target: str, market: str, stats, top_candidates=None) -> dict:
         "date": target,
         "market": market,
         "status": "no_pick",
-        "scores": {
-            "composite": 0,
-            "size": 0,
-            "growth": 0,
-            "valuation": 0,
-            "entry": 0,
-            "momentum": 0,
-            "quality": 0,
-            "threshold": COMPOSITE_THRESHOLD,
-            "version": SCORE_VERSION,
-        },
-        "meta": {
-            "generatedAt": now,
-            "candidatesScreened": stats.screened,
-            "excludedRecent": stats.skipped_recent,
-            "skippedMarketCap": stats.skipped_market_cap,
-            "skippedRedFlags": stats.skipped_red_flags,
-            "noData": stats.no_data,
-            "errors": stats.errors,
-        },
+        "scores": _scores_dict(None, include_threshold=True),
+        "meta": _meta_dict(stats, now),
     }
     if top_candidates:
         entry["topCandidates"] = top_candidates
@@ -93,7 +73,7 @@ def build_pick(target: str, market: str, result, stats, top_candidates=None) -> 
         "exchange": result.meta.exchange,
         "currency": result.meta.currency,
     }
-    info = get_ticker_info(result.symbol)
+    info = result.info if result.info is not None else get_ticker_info(result.symbol)
     profile = build_stock_profile(
         info,
         name_ko=result.meta.name_ko,
@@ -114,27 +94,9 @@ def build_pick(target: str, market: str, result, stats, top_candidates=None) -> 
         "market": market,
         "status": "pick",
         "stock": stock,
-        "scores": {
-            "composite": result.composite,
-            "size": result.size,
-            "growth": result.growth,
-            "valuation": result.valuation,
-            "entry": result.entry,
-            "momentum": result.momentum,
-            "quality": result.quality,
-            "threshold": COMPOSITE_THRESHOLD,
-            "version": result.score_version,
-        },
+        "scores": _scores_dict(result, include_threshold=True),
         "reasoning": reasoning,
-        "meta": {
-            "generatedAt": now,
-            "candidatesScreened": stats.screened,
-            "excludedRecent": stats.skipped_recent,
-            "skippedMarketCap": stats.skipped_market_cap,
-            "skippedRedFlags": stats.skipped_red_flags,
-            "noData": stats.no_data,
-            "errors": stats.errors,
-        },
+        "meta": _meta_dict(stats, now),
     }
     if top_candidates:
         entry["topCandidates"] = top_candidates
