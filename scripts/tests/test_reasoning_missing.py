@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import pytest
 from config import COMPOSITE_THRESHOLD, ENTRY_DEFAULT_SCORE, MOMENTUM_DEFAULT_SCORE, UniverseSymbol
-from missing_metrics_fixture import build_missing_metrics_pick_entry
 from reasoning import MISSING_LABEL, build_reasoning, reasoning_has_forbidden_tokens
 from scoring.models import ScoreResult
+from tests.missing_metrics_fixture import build_missing_metrics_pick_entry
 
 
 def _pick(**metrics) -> ScoreResult:

@@ -29,7 +29,7 @@
     "test:seo-head": "node scripts/check_seo_head.mjs",
     "test:growth": "node --experimental-strip-types --test src/lib/dailyMeta.test.ts src/lib/dailyNotify.test.ts src/lib/telegram.test.ts src/lib/share.test.ts src/lib/growthTrack.test.ts && node --experimental-strip-types scripts/check_growth.mjs",
     "test:methodology-split": "node scripts/check_methodology_split.mjs",
-    "walk-forward": "cd scripts && python walk_forward.py",
+    "walk-forward": "cd scripts && python walk_forward_cli.py",
     "walk-forward:smoke": "cd scripts && python -m pytest tests/test_walk_forward_smoke.py -q",
     "calibrate": "cd scripts && python calibrate.py",
     "calibrate:smoke": "cd scripts && python -m pytest tests/test_calibration_smoke.py -q"

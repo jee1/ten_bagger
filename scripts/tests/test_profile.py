@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from profile import build_stock_profile, short_overview, truncate_summary
+from stock_profile import build_stock_profile, short_overview, truncate_summary
 
 
 def test_truncate_summary_limits_sentences_and_chars():

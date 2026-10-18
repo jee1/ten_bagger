@@ -9,7 +9,7 @@ import generate_daily
 from config import ENTRY_DEFAULT_SCORE, MOMENTUM_DEFAULT_SCORE, UniverseSymbol
 from generate_daily import build_pick
 from scoring.models import ScoreResult
-from screen import ScreenStats
+from screening.core import ScreenStats
 
 
 def build_missing_metrics_pick_entry() -> dict:

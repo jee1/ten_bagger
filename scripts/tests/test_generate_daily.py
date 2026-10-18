@@ -10,7 +10,8 @@ import generate_daily
 import pytest
 from config import COMPOSITE_THRESHOLD, SCORE_VERSION, UniverseSymbol
 from pit_snapshot import PitWriteResult
-from screen import ScoreResult, ScreenStats
+from scoring.models import ScoreResult
+from screening.core import ScreenStats
 
 
 def _fake_stats(**kwargs) -> ScreenStats:

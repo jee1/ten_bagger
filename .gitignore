@@ -38,3 +38,9 @@ scripts/pit-data/
 # tech-debt harness: per-run snapshots + transient fix state (registry.json is tracked)
 docs/tech-debt/*-audit.json
 docs/tech-debt/.active-fix.json
+
+# local agent artifacts
+.agents/
+.serena/
+skills-lock.json
+docs/plans/*REVIEW*.md

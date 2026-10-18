@@ -49,7 +49,7 @@ def test_survivorship_weekday_gap_not_weekend_inflated() -> None:
     assert survivorship_flag(bars, "2026-01-16") == "delisted"  # next Fri (≥5 weekdays)
 
 
-def test_screen_import_does_not_load_scoring_v1() -> None:
+def test_screening_core_import_does_not_load_scoring_v1() -> None:
     """Live import graph must not pull scoring.v1 (subprocess isolation)."""
     import subprocess
 
@@ -58,7 +58,7 @@ def test_screen_import_does_not_load_scoring_v1() -> None:
         [
             sys.executable,
             "-c",
-            "import screen; import sys; assert 'scoring.v1' not in sys.modules",
+            "import screening.core; import sys; assert 'scoring.v1' not in sys.modules",
         ],
         cwd=scripts_dir,
         check=False,

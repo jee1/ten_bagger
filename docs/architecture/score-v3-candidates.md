@@ -62,8 +62,6 @@ via #66/#67 OOS on/off comparison.
 [Phase 2 measurement note](./074-phase2-measurement-note.md) (baseline GO, freeze-only) ·
 `specs/030-score-v3-live-merge-go-evidence/`
 
-## Local backtest (v1 vs v2)
+## Local measurement
 
-```
-cd scripts && python backtest_screen.py KR
-```
+The v1 versus v2 snapshot script is gone. Measure candidates with `npm run walk-forward`.

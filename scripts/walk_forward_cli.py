@@ -69,7 +69,7 @@ def _run(args: argparse.Namespace) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="walk_forward.py")
+    parser = argparse.ArgumentParser(prog="walk_forward_cli.py")
     sub = parser.add_subparsers(dest="command")
 
     run_parser = sub.add_parser("run", help="Execute walk-forward evaluation")

@@ -4,13 +4,10 @@ from __future__ import annotations
 
 import pandas as pd
 from config import MAX_GROWTH_PCT, MIN_MARKET_CAP_US, UniverseSymbol
-from screen import (
-    ScoreResult,
-    _score_momentum,
-    build_reasoning,
-    passes_market_cap_filter,
-    score_symbol,
-)
+from reasoning import build_reasoning
+from scoring.models import ScoreResult
+from scoring.momentum import _score_momentum
+from screening.core import passes_market_cap_filter, score_symbol
 
 
 def test_score_momentum_recovery_zone():

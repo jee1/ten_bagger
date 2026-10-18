@@ -31,14 +31,14 @@ Entry/exit price basis follows [ADR 0002](./adr/0002-forward-return-price-basis.
 
 **Anchored mode is deferred** to a follow-up release. Semantics will be documented before implementation; no anchored CLI flag in v1.
 
-## Distinction from `backtest_screen`
+## Distinction from the old snapshot comparator
 
 | Tool | Purpose |
 |------|---------|
-| `backtest_screen.py` | Legacy snapshot comparator — not PIT walk-forward |
-| `walk_forward.py` | PIT rolling OOS evaluation with reproducible report artifact |
+| removed `backtest_screen.py` | Was a snapshot comparator, not PIT walk-forward |
+| `walk_forward_cli.py` | PIT rolling OOS evaluation with a reproducible report |
 
-Do not extend `backtest_screen.py` for walk-forward evidence (FR-031).
+Do not treat a snapshot comparator as walk-forward evidence (FR-031).
 
 ## Calendar & markets
 

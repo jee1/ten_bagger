@@ -51,7 +51,6 @@ npm run test:python          # 스코어링 단위 테스트
 npm run validate:content     # manifest 동기화 + daily JSON 스키마 검증
 npm run regenerate:ledger -- --as-of-date YYYY-MM-DD  # ledger/performance 재생성 (#63)
 npm run check                # Astro 타입·템플릿 검사
-cd scripts && python backfill_daily.py  # 기존 daily JSON meta/reasoning 보정
 pre-commit run --all-files   # ruff (CI에서도 실행, pip install pre-commit 후)
 ```
 

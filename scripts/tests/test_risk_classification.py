@@ -17,7 +17,8 @@ from risk_classification import (
     classify_candidate_risk,
     classify_top_candidate_risks,
 )
-from screen import ScoreResult, ScreenStats
+from scoring.models import ScoreResult
+from screening.core import ScreenStats
 
 
 def _candidate(symbol: str, rank: int = 1) -> dict:

@@ -91,7 +91,7 @@ def _stub_pit(_market: str, as_of_date: str, _exclude: set[str]):
 
 def test_cli_help_exits_zero():
     result = subprocess.run(
-        [sys.executable, "walk_forward.py", "--help"],
+        [sys.executable, "walk_forward_cli.py", "--help"],
         cwd=SCRIPTS_DIR,
         capture_output=True,
         text=True,

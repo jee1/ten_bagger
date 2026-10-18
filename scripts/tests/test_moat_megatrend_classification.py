@@ -16,7 +16,8 @@ from moat_megatrend_classification import (
     megatrend_text_for_theme,
     moat_text_for_width,
 )
-from screen import ScoreResult, ScreenStats
+from scoring.models import ScoreResult
+from screening.core import ScreenStats
 
 
 def _candidate(symbol: str, rank: int = 1) -> dict:

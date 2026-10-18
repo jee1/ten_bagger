@@ -15,20 +15,19 @@ from config import (
     SCORE_VERSION,
     UniverseSymbol,
 )
-from screen import (
-    _clip_growth_pct,
-    _composite_v2,
-    _score_entry,
+from scoring.common import _clip_growth_pct
+from scoring.composite import _composite_v2
+from scoring.entry import _score_entry
+from scoring.growth import _score_growth
+from scoring.quality import _score_quality
+from scoring.size import _score_size
+from scoring.valuation import (
     _score_fcf_yield,
-    _score_growth,
     _score_pe_peg,
     _score_price_to_book,
-    _score_quality,
-    _score_size,
     _score_valuation,
-    passes_market_cap_filter,
-    passes_red_flags,
 )
+from screening.core import passes_market_cap_filter, passes_red_flags
 
 
 def test_clip_growth_pct_caps_spike():
