@@ -23,6 +23,7 @@ concurrency:
 jobs:
   generate-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     outputs:
       target_date: ${{ steps.target_date.outputs.date }}
     steps:

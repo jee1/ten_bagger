@@ -48,16 +48,11 @@ jobs:
         run: |
           npm ci
           npm run check
-          npm run test:performance-ui
-          npm run test:rss
-          npm run test:daily-i18n
+          npm run test:ts
           npm run build
-          npm run test:market-scope
-          npm run test:seo-head
-          npm run test:growth
+          npm run test:checks
           BASE_PATH=/ten_bagger/ SITE_URL=https://example.github.io/ten_bagger npm run build
           BASE_PATH=/ten_bagger/ SITE_URL=https://example.github.io/ten_bagger node --experimental-strip-types scripts/check_growth.mjs
-          npm run test:methodology-split
 
       - name: Audit npm dependencies
         run: npm audit --audit-level=high
