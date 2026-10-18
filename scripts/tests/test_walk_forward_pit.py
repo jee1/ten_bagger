@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 
 import pandas as pd
-
 from config import UniverseSymbol
 from screening.core import screen_market
 from tests.fixtures.price_loader import load_price_fixture
