@@ -272,3 +272,47 @@ def test_pit_snapshot_main_survives_push_failure(monkeypatch):
 
 def test_push_staging_without_token_returns_false(tmp_path):
     assert push_staging_to_pit_repo(tmp_path, token=None) is False
+
+
+def _screen_with_collector(monkeypatch, fail: set[str] = frozenset()):
+    from config import UniverseSymbol
+    from screening import core
+
+    def fake_info(symbol):
+        if symbol in fail:
+            raise RuntimeError("provider down")
+        return {"symbol": symbol, "shortName": symbol}, InfoProvenance(
+            known_at="2026-10-16T00:00:00Z", provider="yfinance", cache_hit=False
+        )
+
+    monkeypatch.setattr(core, "get_ticker_info_with_provenance", fake_info)
+    monkeypatch.setattr(
+        core,
+        "score_symbol",
+        lambda meta, *a, **k: type("R", (), {"symbol": meta.symbol, "composite": 0.0})(),
+    )
+    universe = [
+        UniverseSymbol(
+            symbol=s, name_ko=s, name_en=s, exchange="X", currency="USD", market_cap=None
+        )
+        for s in ("AAA", "BAN", "CCC")
+    ]
+    collector = PitFundamentalsCollector(market="US")
+    results, stats = core.screen_market(
+        "US", {"BAN"}, pit_collector=collector, universe=universe, history_fn=lambda *a, **k: None
+    )
+    return collector, results, stats
+
+
+def test_screen_market_records_excluded_without_scoring_or_counting(monkeypatch):
+    collector, results, stats = _screen_with_collector(monkeypatch)
+    assert set(collector.rows) == {"AAA", "BAN", "CCC"}
+    assert {r.symbol for r in results} == {"AAA", "CCC"}
+    assert (stats.screened, stats.errors, stats.no_data) == (2, 0, 0)
+    assert stats.skipped_recent == 1
+
+
+def test_screen_market_excluded_capture_failure_is_not_a_run_error(monkeypatch):
+    collector, _results, stats = _screen_with_collector(monkeypatch, fail={"BAN"})
+    assert set(collector.rows) == {"AAA", "CCC"}
+    assert (stats.screened, stats.errors, stats.no_data) == (2, 0, 0)

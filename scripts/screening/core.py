@@ -198,8 +198,11 @@ def screen_market(
     stats = ScreenStats(skipped_recent=len(exclude_symbols))
 
     to_screen: list[UniverseSymbol] = []
+    capture_only: list[UniverseSymbol] = []
     for meta in universe:
         if meta.symbol in exclude_symbols:
+            if pit_collector is not None:
+                capture_only.append(meta)
             continue
         if not passes_market_cap_filter(meta, market):
             stats.skipped_market_cap += 1
@@ -232,8 +235,19 @@ def screen_market(
             ),
         )
 
+    def _capture_excluded(meta: UniverseSymbol) -> None:
+        # Not scored or counted: a counterfactual re-screen bans different symbols (#175).
+        # Below-floor KR symbols stay uncaptured: no candidate can pick them.
+        try:
+            info, provenance = get_ticker_info_with_provenance(meta.symbol)
+            pit_collector.record(meta.symbol, info, provenance)
+        except Exception as exc:
+            logger.warning("PIT capture skipped for excluded %s: %s", meta.symbol, exc)
+
     workers = min(SCREEN_WORKERS, max(1, stats.screened))
     with ThreadPoolExecutor(max_workers=workers) as pool:
+        for meta in capture_only:
+            pool.submit(_capture_excluded, meta)
         futures = {pool.submit(_score_one, meta): meta for meta in to_screen}
         for future in as_completed(futures):
             meta = futures[future]
