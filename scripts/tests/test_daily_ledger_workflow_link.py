@@ -11,21 +11,27 @@ LEDGER = (REPO_ROOT / ".github" / "workflows" / "ledger.yml").read_text(encoding
 
 def test_daily_chains_ledger_after_pages_deploy() -> None:
     assert "dispatch-ledger:" in DAILY
-    assert "needs: [generate-and-deploy, deploy]" in DAILY
+    assert "needs: [gate, generate-and-deploy, deploy]" in DAILY
     assert DAILY.count("gh workflow run ledger.yml") == 1
     assert "--ref main" in DAILY
     assert "asOfDate=${AS_OF}" in DAILY or "asOfDate=${AS_OF}" in DAILY
-    assert "needs.generate-and-deploy.outputs.target_date" in DAILY
+    assert "AS_OF: ${{ needs.gate.outputs.date }}" in DAILY
     assert "gh run list" not in DAILY
     assert "gh run watch" not in DAILY
     assert "MARKER=" not in DAILY
-    assert "needs: [generate-and-deploy, deploy, dispatch-ledger]" in DAILY
+    assert "needs: [gate, generate-and-deploy, deploy, dispatch-ledger]" in DAILY
     assert "dispatch-ledger'].result == 'failure'" in DAILY
     dispatch_idx = DAILY.index("dispatch-ledger:")
     assert "permissions:" in DAILY[dispatch_idx:]
     assert "actions: write" in DAILY[dispatch_idx : DAILY.index("notify-failure:")]
     top_perms_end = DAILY.index("concurrency:")
     assert "actions: write" not in DAILY[:top_perms_end]
+
+
+def test_daily_skips_when_today_is_already_published() -> None:
+    assert "if: needs.gate.outputs.skip != 'true'" in DAILY
+    assert 'git cat-file -e "origin/main:content/daily/${TARGET}.json"' in DAILY
+    assert "needs.gate.result == 'failure'" in DAILY
 
 
 def test_daily_never_writes_ledger_or_performance() -> None:
