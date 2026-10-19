@@ -184,8 +184,8 @@ export const labels = {
   pickFreshToday: { ko: '오늘의 픽', en: "Today's pick" } satisfies LocalizedText,
   pickFreshLatest: { ko: '최신 픽', en: 'Latest pick' } satisfies LocalizedText,
   pickFreshHint: {
-    ko: '오늘 리포트는 아직 준비되지 않았습니다. 새 픽은 평일 오전 6시(KST)에 공개됩니다.',
-    en: "Today's report isn't ready yet. New picks publish weekdays at 06:00 KST.",
+    ko: '오늘 리포트는 아직 준비되지 않았습니다. 새 픽은 평일 오전 6시(KST)에 생성을 시작해 보통 오전 중에 공개됩니다.',
+    en: "Today's report isn't ready yet. New picks start generating weekdays at 06:00 KST and usually appear in the morning.",
   } satisfies LocalizedText,
   homeReportGenerated: {
     ko: '리포트 생성',
@@ -259,9 +259,9 @@ export const labels = {
   } satisfies LocalizedText,
   newcomerBody: {
     ko:
-      '한국·미국 시장을 번갈아 스크리닝해 규칙 기반으로 하루 하나의 후보 종목을 기록합니다. 선정 이유와 리스크를 함께 공개하고, 평일 오전 6시(KST)에 새 리포트가 올라갑니다. 연구·참고용이며 투자 수익을 약속하지 않습니다.',
+      '한국·미국 시장을 번갈아 스크리닝해 규칙 기반으로 하루 하나의 후보 종목을 기록합니다. 선정 이유와 리스크를 함께 공개하고, 평일 오전 6시(KST)에 생성을 시작해 보통 오전 중에 올라옵니다. 연구·참고용이며 투자 수익을 약속하지 않습니다.',
     en:
-      'We screen Korea and US markets on a schedule and record one rule-based candidate per day. Each report includes selection reasons and risks; new reports publish weekdays at 06:00 KST. For research only — no return promises.',
+      'We screen Korea and US markets on a schedule and record one rule-based candidate per day. Each report includes selection reasons and risks; generation starts weekdays at 06:00 KST and reports usually appear in the morning. For research only — no return promises.',
   } satisfies LocalizedText,
   newcomerLinks: {
     ko: '선정 방법과 누적 성과를 확인하세요.',
@@ -295,8 +295,8 @@ export const labels = {
     en: 'How to subscribe to Ten Bagger Daily screening records via RSS.',
   } satisfies LocalizedText,
   followLead: {
-    ko: '피드 리더에 주소를 추가하면 평일 오전 6시(KST) 새 기록이 올라올 때 항목이 추가됩니다.',
-    en: 'Add the feed in a reader; new items appear when each daily record is published (~06:00 KST, Mon-Fri).',
+    ko: '피드 리더에 주소를 추가하면 새 기록이 올라올 때(평일 오전, 06:00 KST 생성 시작) 항목이 추가됩니다.',
+    en: 'Add the feed in a reader; new items appear when each daily record is published (weekday mornings; generation starts 06:00 KST).',
   } satisfies LocalizedText,
   followRssHeading: { ko: 'RSS로 구독', en: 'Subscribe via RSS' } satisfies LocalizedText,
   followRssIntro: {

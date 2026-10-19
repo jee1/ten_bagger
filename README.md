@@ -3,7 +3,7 @@
 매일 하나의 **텐베거(5년 10배) 후보**를 규칙 기반으로 선정해 공개하는 정적 사이트입니다.
 
 - **DB 없음**: `content/daily/YYYY-MM-DD.json`이 기록의 원천
-- **평일 06:00 KST**: GitHub Actions가 스크리닝 → JSON 커밋 → Astro 빌드 → GitHub Pages 배포
+- **평일 06:00 KST 시작**: GitHub Actions가 스크리닝 → JSON 커밋 → Astro 빌드 → GitHub Pages 배포
 - **한·미 교대**: 날짜(일) 홀수=한국, 짝수=미국
 - **없음 표시**: 복합 점수 70 미만이면 해당 일 `no_pick` (2026-10-17 기준 실제 `no_pick`은 0건, 선정 최저 점수 76.2. 사실상 매일 1위 종목 공개. 현황은 Methodology 페이지에 빌드 시 자동 집계)
 - **Score v2**: 규모·FCF·지속 성장·진입 타이밍 반영 (Methodology 참고)
@@ -116,8 +116,18 @@ Yahoo가 429/rate limit 또는 일시적 네트워크 오류를 반환하면 스
 3. **Settings → Pages → Custom domain**: `tenbagger.finnaut.com` (DNS CNAME → `jee1.github.io`)
 4. **Settings → Pages → Enforce HTTPS**: 체크 (인증서 발급 완료 후 활성화됨).
    확인: `gh api repos/:owner/:repo/pages --jq '.https_enforced'` → `true`
-5. `.github/workflows/daily.yml`이 평일(월~금) 06:00 KST에 실행됩니다
+5. `.github/workflows/daily.yml`이 평일(월~금) 06:00 KST에 시작됩니다. GitHub Actions 지연으로 리포트는 보통 오전 중에 올라옵니다
 6. `workflow_dispatch`로 날짜 지정 수동 실행도 가능합니다
+
+### 외부 스케줄러 (선택)
+
+GitHub 스케줄은 부하에 따라 수 시간 지연되기도 합니다. 정시 실행이 필요하면 외부 cron이 `workflow_dispatch`를 호출합니다.
+
+1. 이 저장소만 대상으로 하는 fine-grained PAT을 만들고 **Actions: Read and write** 권한을 줍니다
+2. cron-job.org 같은 서비스에서 일~목 21:05 UTC에 `POST https://api.github.com/repos/jee1/ten_bagger/actions/workflows/daily.yml/dispatches`를 호출합니다
+   - 헤더: `Authorization: Bearer <PAT>`, `Accept: application/vnd.github+json`
+   - 본문: `{"ref":"main"}`
+3. 저장소 내 스케줄은 예비로 남깁니다. `gate` job이 오늘(KST) `content/daily/<날짜>.json`이 이미 `main`에 있으면 건너뛰므로 이중 실행해도 안전합니다. `date` 입력을 준 수동 실행만 강제로 재생성합니다
 
 도메인·base를 바꾸면 `astro.config.mjs` 기본값, workflow env, `public/CNAME`을 함께 맞춰 주세요.
 
