@@ -2,8 +2,9 @@ name: Daily Ten Bagger
 
 on:
   schedule:
-    # 21:00 UTC Sun-Thu = 06:00 KST Mon-Fri
-    - cron: '0 21 * * 0-4'
+    # 21:07 UTC Sun-Thu = 06:07 KST Mon-Fri. Off :00 because GitHub delays
+    # top-of-hour schedules most. Not earlier: US close is 20:00Z (EDT) / 21:00Z (EST).
+    - cron: '7 21 * * 0-4'
   workflow_dispatch:
     inputs:
       date:
@@ -21,11 +22,39 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      date: ${{ steps.resolve.outputs.date }}
+      skip: ${{ steps.resolve.outputs.skip }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve target date and skip if already published
+        id: resolve
+        env:
+          INPUT_DATE: ${{ github.event.inputs.date }}
+        run: |
+          set -euo pipefail
+          SKIP=false
+          if [ -n "$INPUT_DATE" ]; then
+            TARGET="$INPUT_DATE"
+          else
+            TARGET=$(TZ=Asia/Seoul date +%F)
+            git fetch --depth=1 origin main
+            if git cat-file -e "origin/main:content/daily/${TARGET}.json" 2>/dev/null; then
+              SKIP=true
+            fi
+          fi
+          echo "date=$TARGET" >> "$GITHUB_OUTPUT"
+          echo "skip=$SKIP" >> "$GITHUB_OUTPUT"
+
   generate-and-deploy:
+    needs: gate
+    if: needs.gate.outputs.skip != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 90
-    outputs:
-      target_date: ${{ steps.target_date.outputs.date }}
     steps:
       - uses: actions/checkout@v4
 
@@ -68,23 +97,14 @@ jobs:
           restore-keys: |
             yf-cache-${{ runner.os }}-
 
-      - name: Resolve target date
-        id: target_date
-        run: |
-          TARGET="${{ github.event.inputs.date }}"
-          if [ -z "$TARGET" ]; then
-            TARGET=$(TZ=Asia/Seoul date +%F)
-          fi
-          echo "date=$TARGET" >> "$GITHUB_OUTPUT"
-
       - name: Generate daily report
         # Must not write content/ledger/** or content/performance/** (#63 isolation).
-        run: cd scripts && python generate_daily.py "${{ steps.target_date.outputs.date }}"
+        run: cd scripts && python generate_daily.py "${{ needs.gate.outputs.date }}"
 
       - name: Push PIT snapshots to ten_bagger-pit
         env:
           PIT_DATA_TOKEN: ${{ secrets.PIT_DATA_TOKEN }}
-          PIT_TARGET_DATE: ${{ steps.target_date.outputs.date }}
+          PIT_TARGET_DATE: ${{ needs.gate.outputs.date }}
         run: cd scripts && python pit_snapshot.py
 
       - name: Validate daily JSON
@@ -148,7 +168,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   dispatch-ledger:
-    needs: [generate-and-deploy, deploy]
+    needs: [gate, generate-and-deploy, deploy]
     if: success()
     runs-on: ubuntu-latest
     permissions:
@@ -157,7 +177,7 @@ jobs:
       - name: Dispatch Ledger Regenerate for target date
         env:
           GH_TOKEN: ${{ github.token }}
-          AS_OF: ${{ needs.generate-and-deploy.outputs.target_date }}
+          AS_OF: ${{ needs.gate.outputs.date }}
         run: |
           set -euo pipefail
           gh workflow run ledger.yml \
@@ -166,7 +186,7 @@ jobs:
             -f "asOfDate=${AS_OF}"
 
   notify-telegram:
-    needs: [generate-and-deploy, deploy]
+    needs: [gate, generate-and-deploy, deploy]
     if: success()
     runs-on: ubuntu-latest
     steps:
@@ -184,7 +204,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          TARGET_DATE: ${{ needs.generate-and-deploy.outputs.target_date }}
+          TARGET_DATE: ${{ needs.gate.outputs.date }}
           SITE_URL: https://tenbagger.finnaut.com
         run: |
           set -euo pipefail
@@ -207,8 +227,8 @@ jobs:
             -d "$PAYLOAD"
 
   notify-failure:
-    needs: [generate-and-deploy, deploy, dispatch-ledger]
-    if: ${{ always() && (needs.generate-and-deploy.result == 'failure' || needs.deploy.result == 'failure' || needs['dispatch-ledger'].result == 'failure') }}
+    needs: [gate, generate-and-deploy, deploy, dispatch-ledger]
+    if: ${{ always() && (needs.gate.result == 'failure' || needs.generate-and-deploy.result == 'failure' || needs.deploy.result == 'failure' || needs['dispatch-ledger'].result == 'failure') }}
     runs-on: ubuntu-latest
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
