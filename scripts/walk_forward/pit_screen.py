@@ -28,9 +28,9 @@ def _snapshot_sources(market: str, as_of_date: str):
     Without a snapshot, live info stays in place; the report flags that session as
     ``fundamentals_not_pit``.
 
-    ponytail: the universe is the set the daily run screened that day, so symbols it
-    excluded as recent picks (~30) cannot be selected even when this run's own
-    exclusions differ. Upgrade: capture info for excluded symbols too.
+    The daily run also captures its recent-pick exclusions, so the snapshot universe
+    holds them and this run's own ``exclude_symbols`` decides what is banned.
+    Snapshots taken before that capture lack those symbols.
     """
     snapshot = load_fundamentals_snapshot(market, as_of_date)
     if snapshot is None:
