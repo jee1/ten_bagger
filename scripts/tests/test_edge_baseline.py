@@ -34,10 +34,8 @@ FLOOR = MIN_MARKET_CAP_US
 
 
 def _estimator(latest: dict, snapshots: dict | None = None):
-    snapshots = snapshots or {}
-    return CapEstimator(
-        "US", "2026-10-09", latest, snapshots.get, frozenset(snapshots) | {"2026-10-09"}
-    )
+    snapshots = {**(snapshots or {}), "2026-10-09": latest}
+    return CapEstimator("US", "2026-10-09", latest, snapshots.get, frozenset(snapshots))
 
 
 def _rows(latest, bars, snapshots=None):
@@ -84,6 +82,20 @@ def test_pit_snapshot_cap_wins_over_rescaling():
     assert est.cap_at("X", "2026-10-01", _bars(1, 2)) == (7.0, "pit_snapshot")
     assert est.cap_at("X", "2026-10-05", _bars(1, 2)) == (50.0, "price_rescaled")
     assert est.cap_at("Y", "2026-10-05", _bars(1, 2)) is None
+
+
+def test_older_snapshot_rescaled_when_latest_lacks_symbol():
+    snaps = {"2026-10-09": {"X": 80.0}, "2026-10-12": {"Y": 1.0}}
+    est = CapEstimator("US", "2026-10-12", snaps["2026-10-12"], snaps.get, frozenset(snaps))
+    # newest snapshot holding X is 10-09 (close 2); pick close is 1
+    assert est.cap_at("X", "2026-10-01", _bars(1, 2)) == (40.0, "price_rescaled")
+
+
+def test_info_cap_last_resort_rescaled_by_last_close():
+    est = CapEstimator("US", "2026-10-09", {}, {}.get, frozenset({"2026-10-09"}), lambda s: 200.0)
+    assert est.cap_at("X", "2026-10-01", _bars(1, 4)) == (50.0, "info_rescaled")
+    no_info = CapEstimator("US", "2026-10-09", {}, {}.get, frozenset(), lambda s: None)
+    assert no_info.cap_at("X", "2026-10-01", _bars(1, 4)) is None
 
 
 def test_cap_at_reads_date_column_bars():

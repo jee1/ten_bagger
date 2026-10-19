@@ -36,8 +36,10 @@ PREFILTER_BAND = 4  # candidate pool narrowed on latest-snapshot cap before fetc
 MAX_ATTEMPTS_PER_K = 5
 LIMITATIONS = [
     "random and size_matched filter on the cap at pick date: the PIT snapshot cap when one exists, "
-    "otherwise the latest snapshot cap rescaled by close(pick)/close(latest), which assumes a "
-    "constant share count",
+    "otherwise the newest snapshot cap holding the symbol rescaled by close(pick)/close(snapshot), "
+    "which assumes a constant share count",
+    "info_rescaled (symbols in no snapshot) uses today's marketCap from a live yfinance quote, "
+    "so its share count is today's, not the pick date's",
     "survivorship: names delisted before the first PIT snapshot (2026-10-09) are absent; "
     "rows with survivorshipBias=current_universe sample today's listing",
     "per-arm tStat treats same-date rows as independent; read pickMinus (paired by date) instead",
@@ -57,6 +59,7 @@ class CapEstimator:
     latest_caps: dict[str, float]
     snapshot_caps: Callable[[str], dict[str, float] | None]  # date -> caps, None if no snapshot
     pit_dates: frozenset[str]  # dates with a fundamentals + universe snapshot
+    info_cap: Callable[[str], float | None] | None = None  # live yfinance marketCap, last resort
 
     def cap_at(
         self, symbol: str, pick_date: str, bars: pd.DataFrame | None
@@ -64,14 +67,23 @@ class CapEstimator:
         snap = self.snapshot_caps(pick_date) if pick_date in self.pit_dates else None
         if snap and symbol in snap:
             return snap[symbol], "pit_snapshot"
-        latest = self.latest_caps.get(symbol)
-        if latest is None or bars is None or bars.empty:
+        if bars is None or bars.empty:
             return None
         at_pick = _close_on_or_before(bars, pick_date)
-        at_latest = _close_on_or_before(bars, self.latest_date)
-        if not at_pick or not at_latest:
+        if not at_pick:
             return None
-        return latest * at_pick / at_latest, "price_rescaled"
+        # Snapshots omit symbols dropped before scoring (duplicate ban, cap floor), so walk back
+        # to the newest snapshot that holds the symbol.
+        for date in sorted(self.pit_dates, reverse=True):
+            cap = (self.snapshot_caps(date) or {}).get(symbol)
+            at_snap = _close_on_or_before(bars, date) if cap else None
+            if cap and at_snap:
+                return cap * at_pick / at_snap, "price_rescaled"
+        live = self.info_cap(symbol) if self.info_cap else None
+        at_last = _close_on_or_before(bars, "9999-12-31")
+        if live and at_last:
+            return live * at_pick / at_last, "info_rescaled"
+        return None
 
 
 def _close_on_or_before(bars: pd.DataFrame, session: str) -> float | None:
@@ -105,7 +117,18 @@ def load_cap_estimator(market: str) -> CapEstimator | None:
     latest = caps(dates[-1]) if dates else None
     if not latest:
         return None
-    return CapEstimator(market, dates[-1], latest, caps, frozenset(dates))
+    return CapEstimator(market, dates[-1], latest, caps, frozenset(dates), _live_info_cap)
+
+
+def _live_info_cap(symbol: str) -> float | None:
+    from yf_cache import get_ticker_info
+
+    try:
+        cap = get_ticker_info(symbol).get("marketCap")
+    except Exception as exc:
+        print(f"warn: info failed {symbol}: {exc}", file=sys.stderr)
+        return None
+    return float(cap) if isinstance(cap, int | float) and cap > 0 else None
 
 
 @dataclass(frozen=True)
