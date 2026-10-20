@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-19",
+  "asOfDate": "2026-10-20",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -300,6 +300,12 @@
     {
       "pickDate": "2026-10-16",
       "symbol": "ZVRA",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-10-20",
+      "symbol": "YB",
       "status": "pick",
       "scoreVersion": "2"
     }

@@ -1,9 +1,9 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-19",
-  "generatedAt": "2026-10-19T02:46:20.289973+00:00",
-  "count": 40,
+  "asOfDate": "2026-10-20",
+  "generatedAt": "2026-10-20T01:11:39.062835+00:00",
+  "count": 41,
   "picks": [
     {
       "symbol": "AUPH",
@@ -334,6 +334,15 @@
     {
       "symbol": "ZVRA",
       "pickDate": "2026-10-16",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "YB",
+      "pickDate": "2026-10-20",
       "horizonsNeeded": [
         "H20",
         "H60"
