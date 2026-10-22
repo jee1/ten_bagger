@@ -257,8 +257,8 @@ const toc = [
             <p class="num score" style="color: var(--faint);">&lt; 70.0</p>
             <p class="label muted" data-i18n="none">{label('none', lang)}</p>
             <p class="hint">
-              <span data-i18n-show="ko" hidden={lang !== 'ko'}>기준을 만족할 때만 추천합니다</span>
-              <span data-i18n-show="en" hidden={lang !== 'en'}>Published only when criteria are met</span>
+              <span data-i18n-show="ko" hidden={lang !== 'ko'}>최고 점수가 70 미만인 날은 '없음'으로 표시합니다</span>
+              <span data-i18n-show="en" hidden={lang !== 'en'}>Days whose top score is below 70 show no pick</span>
             </p>
           </div>
         </div>
