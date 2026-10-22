@@ -62,9 +62,11 @@ jobs:
 
       - name: Refresh edge baseline (#209)
         # Advisory only: a provider failure must not block the ledger commit.
+        # Weekly (Friday asOfDate): one run takes about 18 minutes.
         continue-on-error: true
-        timeout-minutes: 30
+        timeout-minutes: 40
         run: |
+          [ "$(date -d "${{ inputs.asOfDate }}" +%u)" = 5 ] || { echo "Not Friday, skip"; exit 0; }
           cd scripts && python build_universe.py
           python edge_baseline.py --as-of-date "${{ inputs.asOfDate }}"
           find ../content/edge-baseline -name '*.json' ! -name "${{ inputs.asOfDate }}.json" -delete
