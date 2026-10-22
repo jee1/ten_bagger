@@ -12,6 +12,7 @@ on:
         required: false
 
 permissions:
+  actions: read
   contents: write
   pages: write
   id-token: write
@@ -239,8 +240,20 @@ jobs:
         run: |
           TITLE="Daily Ten Bagger failed — $(TZ=Asia/Seoul date +%F)"
           RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          # The run is still in progress, so read finished failed jobs one by one,
+          # cut at the first error marker (post-job cleanup lines follow it).
+          LOG_TAIL=""
+          for JOB_ID in $(gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs" --jq '.jobs[] | select(.conclusion == "failure") | .id' || true); do
+            LOG_TAIL+=$(gh api "repos/${{ github.repository }}/actions/jobs/${JOB_ID}/logs" 2>/dev/null | awk '{print} /##\[error\]/{exit}' | tail -n 40 | cut -c1-300 || true)
+            LOG_TAIL+=$'\n'
+          done
           BODY=$(cat <<EOF
           Daily workflow failed. See [Actions run](${RUN_URL}).
+
+          **Last log lines of failed jobs**
+          \`\`\`
+          ${LOG_TAIL:-unavailable}
+          \`\`\`
 
           **Recovery**
           1. Open the run log above
@@ -257,7 +270,7 @@ jobs:
 
           COMMENTED=0
           if [ -n "$EXISTING" ] && [ "$EXISTING" != "null" ]; then
-            if gh issue comment "$EXISTING" --repo "${{ github.repository }}" --body "Failed again: ${RUN_URL}"; then
+            if gh issue comment "$EXISTING" --repo "${{ github.repository }}" --body "$(printf 'Failed again: %s\n\n```\n%s\n```' "$RUN_URL" "${LOG_TAIL:-unavailable}")"; then
               COMMENTED=1
             fi
           fi
