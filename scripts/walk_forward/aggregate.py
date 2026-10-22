@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from statistics import median
 from typing import Any
 
 from performance.returns import BENCHMARK_IDS
@@ -27,6 +28,7 @@ def _horizon_metrics(
     pick_return_mean: float | None = None
     hit_rate: float | None = None
     excess_return_mean: float | None = None
+    excess_return_median: float | None = None
 
     if complete:
         returns = [float(m["forwardReturn"]) for m in complete]
@@ -38,6 +40,7 @@ def _horizon_metrics(
                 excess.append(float(m["forwardReturn"]) - float(m["benchmarkReturn"]))
         if excess:
             excess_return_mean = sum(excess) / len(excess)
+            excess_return_median = median(excess)
 
     return {
         "horizonId": horizon_id,
@@ -46,6 +49,7 @@ def _horizon_metrics(
         "pickReturnMean": pick_return_mean,
         "hitRate": hit_rate,
         "excessReturnMean": excess_return_mean,
+        "excessReturnMedian": excess_return_median,
         "status": status,
         "sampleCount": sample_count,
     }

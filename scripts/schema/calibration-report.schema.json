@@ -142,6 +142,7 @@
         "oosPickDays": { "type": "integer", "minimum": 0 },
         "noPickRatio": { "type": "number", "minimum": 0, "maximum": 1 },
         "h20ExcessReturnMean": { "type": ["number", "null"] },
+        "h20ExcessReturnMedianMin": { "type": ["number", "null"] },
         "h60ExcessReturnMean": { "type": ["number", "null"] },
         "insufficientCoverage": { "type": "boolean" },
         "contaminationFindings": {

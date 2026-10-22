@@ -5,7 +5,14 @@ from __future__ import annotations
 from calibration.verdict import overall_verdict, verdict_from_oos_report
 
 
-def _wf(*, picks: int, excess: float | None, intent: str = "go_evidence") -> dict:
+def _wf(
+    *,
+    picks: int,
+    excess: float | None,
+    median: float | None | str = "same",
+    intent: str = "go_evidence",
+) -> dict:
+    median = excess if median == "same" else median
     return {
         "runIntent": intent,
         "coverage": {
@@ -19,6 +26,7 @@ def _wf(*, picks: int, excess: float | None, intent: str = "go_evidence") -> dic
                 {
                     "horizonId": "H20",
                     "excessReturnMean": excess,
+                    "excessReturnMedian": median,
                     "status": "complete",
                 },
                 {
@@ -97,3 +105,48 @@ def test_nogo_contamination_from_wf_report():
     )
     assert entry["verdict"] == "NO-GO"
     assert "contamination" in entry["failedBullets"]
+
+
+def test_nogo_when_one_outlier_lifts_mean_but_median_negative():
+    entry = verdict_from_oos_report(
+        _wf(picks=23, excess=0.05, median=-0.007),
+        candidate_id="c1",
+        walk_forward_report_path="p",
+        walk_forward_config_hash="a" * 64,
+    )
+    assert entry["verdict"] == "NO-GO"
+    assert entry["failedBullets"] == ["h20_median_excess_not_positive"]
+
+
+def test_nogo_when_any_market_median_not_positive():
+    report = _wf(picks=25, excess=0.02)
+    report["aggregate"]["horizons"].append(
+        {
+            "horizonId": "H20",
+            "market": "US",
+            "excessReturnMean": 0.03,
+            "excessReturnMedian": -0.001,
+            "status": "complete",
+        }
+    )
+    entry = verdict_from_oos_report(
+        report,
+        candidate_id="c1",
+        walk_forward_report_path="p",
+        walk_forward_config_hash="a" * 64,
+    )
+    assert entry["h20ExcessReturnMedianMin"] == -0.001
+    assert "h20_median_excess_not_positive" in entry["failedBullets"]
+
+
+def test_nogo_when_report_predates_median_field():
+    report = _wf(picks=25, excess=0.02, median=None)
+    for h in report["aggregate"]["horizons"]:
+        h.pop("excessReturnMedian", None)
+    entry = verdict_from_oos_report(
+        report,
+        candidate_id="c1",
+        walk_forward_report_path="p",
+        walk_forward_config_hash="a" * 64,
+    )
+    assert "h20_median_excess_not_positive" in entry["failedBullets"]
