@@ -86,6 +86,26 @@ export const labels = {
     ko: '일부 종목은 상장폐지되었거나 생존 상태가 불확실합니다.',
     en: 'Some names are delisted or have uncertain survivorship status.',
   } satisfies LocalizedText,
+  performanceEdgeTitle: {
+    ko: '단순 비교 대상보다 나은가',
+    en: 'Does the pick beat simple baselines?',
+  } satisfies LocalizedText,
+  performanceEdgeIntro: {
+    ko: '같은 날짜끼리 짝지어 H20(20거래일) 초과수익 차이를 봅니다. 음수면 공개 픽이 비교 대상보다 낮았습니다.',
+    en: 'H20 (20 trading days) excess return, paired by date. Negative means the published pick trailed the baseline.',
+  } satisfies LocalizedText,
+  edgeArmRandom: { ko: '같은 시장 무작위 10종목', en: 'Random 10, same market' } satisfies LocalizedText,
+  edgeArmSizeMatched: { ko: '같은 규모대 무작위', en: 'Random, size-matched' } satisfies LocalizedText,
+  edgeArmTop2_5: { ko: '같은 날 2~5위 후보', en: 'Same-day ranks 2 to 5' } satisfies LocalizedText,
+  edgeColDays: { ko: '비교 일수', en: 'Days' } satisfies LocalizedText,
+  edgeColMean: { ko: '평균 차이', en: 'Mean diff' } satisfies LocalizedText,
+  edgeColMedian: { ko: '중앙값 차이', en: 'Median diff' } satisfies LocalizedText,
+  edgeColBeat: { ko: '픽 우위 비율', en: 'Pick ahead' } satisfies LocalizedText,
+  edgeColT: { ko: 't값', en: 't-stat' } satisfies LocalizedText,
+  performanceEdgeLimits: {
+    ko: '잠정 수치입니다. 비교 일수가 적고 20거래일 구간이 서로 겹칩니다. 2026-10-09 이전에 상장폐지된 종목은 무작위 표본에 없습니다(생존 편향). 2~5위와 무작위 후보는 실제로 공개된 적이 없습니다.',
+    en: 'Provisional. Few days, and consecutive 20-day windows overlap. Names delisted before 2026-10-09 are missing from the random samples (survivorship bias). Ranks 2 to 5 and random names were never published.',
+  } satisfies LocalizedText,
   performanceEmptyTitle: {
     ko: '표시할 성과 데이터가 없습니다',
     en: 'No performance data to show',
