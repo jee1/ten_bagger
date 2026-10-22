@@ -122,6 +122,7 @@
         "pickReturnMean": { "type": ["number", "null"] },
         "hitRate": { "type": ["number", "null"] },
         "excessReturnMean": { "type": ["number", "null"] },
+        "excessReturnMedian": { "type": ["number", "null"] },
         "status": { "type": "string", "enum": ["complete", "incomplete"] },
         "sampleCount": { "type": "integer", "minimum": 0 }
       }
