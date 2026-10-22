@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-21",
+  "asOfDate": "2026-10-22",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -306,6 +306,12 @@
     {
       "pickDate": "2026-10-20",
       "symbol": "YB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-10-22",
+      "symbol": "AII",
       "status": "pick",
       "scoreVersion": "2"
     }

@@ -1,18 +1,10 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-21",
-  "generatedAt": "2026-10-21T00:10:07.027048+00:00",
+  "asOfDate": "2026-10-22",
+  "generatedAt": "2026-10-22T00:57:39.130837+00:00",
   "count": 40,
   "picks": [
-    {
-      "symbol": "AUPH",
-      "pickDate": "2026-07-24",
-      "horizonsNeeded": [
-        "H60"
-      ],
-      "latestHorizon": "H60"
-    },
     {
       "symbol": "EPAC",
       "pickDate": "2026-07-30",
@@ -333,6 +325,15 @@
     {
       "symbol": "YB",
       "pickDate": "2026-10-20",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "AII",
+      "pickDate": "2026-10-22",
       "horizonsNeeded": [
         "H20",
         "H60"
