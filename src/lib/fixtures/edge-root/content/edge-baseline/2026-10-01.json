@@ -1,0 +1,1 @@
+{ "asOfDate": "2026-10-01", "summary": { "KR": { "pickMinus": { "random": { "n": 1, "meanExcess": 0.5, "medianExcess": 0.5, "beatRate": 1, "tStat": null } } } } }

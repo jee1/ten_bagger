@@ -1,0 +1,12 @@
+{
+  "asOfDate": "2026-10-17",
+  "summary": {
+    "KR": {
+      "pickMinus": {
+        "top2_5": { "n": 4, "meanExcess": 0.05, "medianExcess": 0.02, "beatRate": 0.5, "tStat": 0.88 },
+        "random": { "n": 36, "meanExcess": -0.048, "medianExcess": -0.05, "beatRate": 0.28, "tStat": -2.52 },
+        "size_matched": { "n": 0, "meanExcess": 0, "medianExcess": 0, "beatRate": 0, "tStat": null }
+      }
+    }
+  }
+}

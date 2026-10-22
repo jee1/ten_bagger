@@ -1,0 +1,55 @@
+---
+import { label } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
+import type { EdgeArm, EdgeSummary } from '../lib/edgeLoad';
+
+interface Props {
+  lang: Lang;
+  summary: EdgeSummary;
+}
+
+const { lang, summary } = Astro.props;
+
+const armKey = {
+  random: 'edgeArmRandom',
+  size_matched: 'edgeArmSizeMatched',
+  top2_5: 'edgeArmTop2_5',
+} as const satisfies Record<EdgeArm, string>;
+
+function pp(n: number): string {
+  return `${n >= 0 ? '+' : ''}${(n * 100).toFixed(2)}%p`;
+}
+---
+
+<section>
+  <h2 class="section-title" data-i18n="performanceEdgeTitle">{label('performanceEdgeTitle', lang)}</h2>
+  <p class="muted" style="margin: 0 0 0.6rem; font-size: 0.85rem;" data-i18n="performanceEdgeIntro">{label('performanceEdgeIntro', lang)}</p>
+  <table class="perf-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="right" data-i18n="edgeColDays">{label('edgeColDays', lang)}</th>
+        <th class="right" data-i18n="edgeColMean">{label('edgeColMean', lang)}</th>
+        <th class="right" data-i18n="edgeColMedian">{label('edgeColMedian', lang)}</th>
+        <th class="right" data-i18n="edgeColBeat">{label('edgeColBeat', lang)}</th>
+        <th class="right" data-i18n="edgeColT">{label('edgeColT', lang)}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {summary.comparisons.map((c) => (
+        <tr data-edge-arm={c.arm}>
+          <td data-i18n={armKey[c.arm]}>{label(armKey[c.arm], lang)}</td>
+          <td class="num right">{c.n}</td>
+          <td class={`num right ${c.meanExcess >= 0 ? 'pos' : 'neg'}`}>{pp(c.meanExcess)}</td>
+          <td class={`num right ${c.medianExcess >= 0 ? 'pos' : 'neg'}`}>{pp(c.medianExcess)}</td>
+          <td class="num right">{Math.round(c.beatRate * 100)}%</td>
+          <td class="num right">{c.tStat == null ? '—' : c.tStat.toFixed(2)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <p class="muted" style="margin: 0.6rem 0 0; font-size: 0.78rem;">
+    <span data-i18n="performanceAsOf">{label('performanceAsOf', lang)}</span> {summary.asOfDate}{'. '}
+    <span data-i18n="performanceEdgeLimits">{label('performanceEdgeLimits', lang)}</span>
+  </p>
+</section>
