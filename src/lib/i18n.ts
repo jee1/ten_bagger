@@ -42,8 +42,8 @@ export const labels = {
   quality: { ko: '품질', en: 'Quality' } satisfies LocalizedText,
   risks: { ko: '리스크', en: 'Risks' } satisfies LocalizedText,
   disclaimer: {
-    ko: '본 사이트는 투자 권유가 아닙니다. 모든 투자 결정과 손실은 본인 책임입니다.',
-    en: 'This site is not investment advice. All investment decisions and losses are your own responsibility.',
+    ko: '본 사이트는 투자 권유가 아닙니다. 모든 투자 결정과 손실은 본인 책임입니다. 운영자는 공개 종목을 보유하지 않으며, 공개일 전후 5거래일 동안 해당 종목을 매매하지 않습니다. 종목 발행사나 제3자로부터 대가를 받지 않습니다.',
+    en: 'This site is not investment advice. All investment decisions and losses are your own responsibility. The operator holds none of the published names and does not trade a name within 5 trading days before or after it is published. No issuer or third party pays for coverage.',
   } satisfies LocalizedText,
   viewDetail: { ko: '상세 보기', en: 'View details' } satisfies LocalizedText,
   prevMonth: { ko: '이전 달', en: 'Previous' } satisfies LocalizedText,
