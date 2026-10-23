@@ -1,0 +1,41 @@
+name: OpenDART smoke
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: One KOSPI filing
+        working-directory: scripts
+        env:
+          OPENDART_API_KEY: ${{ secrets.OPENDART_API_KEY }}
+        run: |
+          python - <<'PY'
+          from data_sources.opendart import OpenDartError, fetch_fundamentals
+          try:
+              rows = fetch_fundamentals(
+                  ["005930.KS"],
+                  bsns_year="2024",
+                  reprt_code="11011",
+                  bgn_de="20250101",
+                  end_de="20261231",
+              )
+          except OpenDartError as exc:
+              print(f"opendart_error {exc}")
+              raise SystemExit(1)
+          fields = sorted({row.field for row in rows})
+          print(f"rows {len(rows)} fields {fields}")
+          if not rows:
+              raise SystemExit("no rows")
+          PY
