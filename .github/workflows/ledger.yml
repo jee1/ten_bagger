@@ -36,6 +36,41 @@ jobs:
         run: |
           cd scripts && python regenerate_ledger.py --as-of-date "${{ inputs.asOfDate }}"
 
+      - name: Check out PIT snapshots for size-matched baseline
+        uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          repository: jee1/ten_bagger-pit
+          token: ${{ secrets.PIT_DATA_TOKEN }}
+          path: scripts/pit-data
+
+      - name: Restore universe listings
+        uses: actions/cache/restore@v6
+        with:
+          path: scripts/universe
+          key: universe-${{ runner.os }}-${{ hashFiles('scripts/build_universe.py', 'scripts/requirements.txt') }}
+          restore-keys: |
+            universe-${{ runner.os }}-
+
+      - name: Restore yfinance responses
+        uses: actions/cache/restore@v6
+        with:
+          path: scripts/cache
+          key: yf-cache-${{ runner.os }}-
+          restore-keys: |
+            yf-cache-${{ runner.os }}-
+
+      - name: Refresh edge baseline (#209)
+        # Advisory only: a provider failure must not block the ledger commit.
+        # Weekly (Friday asOfDate): one run takes about 18 minutes.
+        continue-on-error: true
+        timeout-minutes: 40
+        run: |
+          [ "$(date -d "${{ inputs.asOfDate }}" +%u)" = 5 ] || { echo "Not Friday, skip"; exit 0; }
+          cd scripts && python build_universe.py
+          python edge_baseline.py --as-of-date "${{ inputs.asOfDate }}"
+          find ../content/edge-baseline -name '*.json' ! -name "${{ inputs.asOfDate }}.json" -delete
+
       - name: Run Python fixture tests
         run: cd scripts && python -m pytest tests/test_forward_returns.py tests/test_regenerate_ledger.py -q
 
@@ -64,9 +99,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/ledger/ content/performance/ content/exports/
+          git add content/ledger/ content/performance/ content/exports/ content/edge-baseline/
           if git diff --staged --quiet; then
-            echo "No ledger/performance/exports changes"
+            echo "No ledger/performance/exports/edge-baseline changes"
           else
             git commit -m "chore: ledger regenerate asOfDate=${{ inputs.asOfDate }}"
             # sync/validate/build may leave tracked dirt outside ledger/performance;

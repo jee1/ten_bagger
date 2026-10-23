@@ -19,6 +19,18 @@ def _mean_excess(report: dict[str, Any], horizon_id: str) -> float | None:
     return sum(values) / len(values)
 
 
+def _min_median_excess(report: dict[str, Any], horizon_id: str) -> float | None:
+    """Smallest per-market median, so one market cannot carry the other (ADR 0004)."""
+    horizons = [
+        h
+        for h in (report.get("aggregate") or {}).get("horizons") or []
+        if h.get("horizonId") == horizon_id
+    ]
+    if not horizons or any(h.get("excessReturnMedian") is None for h in horizons):
+        return None
+    return min(float(h["excessReturnMedian"]) for h in horizons)
+
+
 def _contamination(report: dict[str, Any]) -> list[str]:
     findings = report.get("contaminationFindings")
     if isinstance(findings, list):
@@ -43,7 +55,8 @@ def verdict_from_oos_report(
 ) -> dict[str, Any]:
     """Map WF OOS report → OosEvaluationEntry with GO/NO-GO.
 
-    Hard bullets: coverage ≥20, H20 excess > 0, no contamination, complete folds.
+    Hard bullets: coverage ≥20, H20 mean excess > 0, H20 median excess > 0 in every
+    market, no contamination, complete folds.
     ``no_pick`` ratio is informational only.
     """
     intent = package_intent or report.get("runIntent") or "go_evidence"
@@ -55,6 +68,7 @@ def verdict_from_oos_report(
         insufficient = True
 
     h20 = _mean_excess(report, "H20")
+    h20_median_min = _min_median_excess(report, "H20")
     h60 = _mean_excess(report, "H60")
     contamination = _contamination(report)
     failed: list[str] = []
@@ -63,6 +77,8 @@ def verdict_from_oos_report(
         failed.append("insufficient_coverage")
     if h20 is None or h20 <= 0:
         failed.append("h20_excess_not_positive")
+    if h20_median_min is None or h20_median_min <= 0:
+        failed.append("h20_median_excess_not_positive")
     if contamination:
         failed.append("contamination")
     if _folds_incomplete(report):
@@ -78,6 +94,7 @@ def verdict_from_oos_report(
         "oosPickDays": oos_pick_days,
         "noPickRatio": no_pick_ratio,
         "h20ExcessReturnMean": h20,
+        "h20ExcessReturnMedianMin": h20_median_min,
         "h60ExcessReturnMean": h60,
         "insufficientCoverage": insufficient,
         "contaminationFindings": contamination,

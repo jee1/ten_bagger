@@ -16,6 +16,9 @@ reports alone never change live selection.
    `runIntent: go_evidence` and `measurementSource: ledger`.
 2. **H20 primary**: aggregate mean pick **excess return vs market benchmark**  
    on H20 is **strictly positive**. H60 is reported, not a substitute for H20.
+2a. **H20 median**: the median excess return vs benchmark on H20 is **strictly
+   positive in every market** (`h20_median_excess_not_positive` otherwise).
+   Pre-registered 2026-10-22 per ADR 0004 amendment.
 3. **Coverage**: aggregate OOS scored `pick` days **≥ 20**. Below floor →  
    `insufficient_coverage` → **NO-GO**.
 4. **No contamination**: no unresolved look-ahead / four-axis risk findings for  

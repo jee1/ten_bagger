@@ -4,10 +4,12 @@ import PerformanceEmpty from '../components/PerformanceEmpty.astro';
 import PerformanceSummary from '../components/PerformanceSummary.astro';
 import HorizonCards from '../components/HorizonCards.astro';
 import PerformanceTable from '../components/PerformanceTable.astro';
+import EdgeBaseline from '../components/EdgeBaseline.astro';
 import { label, localeToLang } from '../lib/i18n';
 import { localeHref } from '../lib/staticNav';
 import { loadPerformanceBundle, type Market } from '../lib/performanceLoad';
 import { aggregateMarket } from '../lib/performanceAggregate';
+import { loadLatestEdgeSummary } from '../lib/edgeLoad';
 
 const lang = localeToLang(Astro.currentLocale);
 const marketParam = Astro.url.searchParams.get('market');
@@ -17,7 +19,7 @@ const base = import.meta.env.BASE_URL;
 const markets: Market[] = ['KR', 'US'];
 const views = markets.map((market) => {
   const bundle = loadPerformanceBundle(market);
-  return { market, view: aggregateMarket(bundle, market) };
+  return { market, view: aggregateMarket(bundle, market), edge: loadLatestEdgeSummary(market) };
 });
 
 const krHref = `${localeHref(base, lang, 'performance')}?market=KR`;
@@ -48,7 +50,7 @@ const usHref = `${localeHref(base, lang, 'performance')}?market=US`;
   </div>
 
   {
-    views.map(({ market, view }) => (
+    views.map(({ market, view, edge }) => (
       <section data-market-panel={market} hidden={market !== initialMarket}>
         {view.pageEmpty ? (
           <PerformanceEmpty lang={lang} />
@@ -56,6 +58,7 @@ const usHref = `${localeHref(base, lang, 'performance')}?market=US`;
           <>
             <PerformanceSummary lang={lang} view={view} />
             <HorizonCards lang={lang} horizons={view.horizons} />
+            {edge && <EdgeBaseline lang={lang} summary={edge} />}
             <PerformanceTable lang={lang} view={view} />
             {view.empty && (
               <p class="muted">

@@ -18,6 +18,14 @@ const forbidden = [
   'gated-box',
 ];
 const requiredWeights = ['25%', '20%', '15%', '10%'];
+/** #222: the edge table is a same-date difference, not the unpublished Excess %. */
+const requiredEdgeCopy = [
+  'id="edge-baseline"',
+  '벤치마크는 상쇄됩니다',
+  'the benchmark cancels',
+  '이 게이트 대상이 아닙니다',
+  'the gate does not cover it',
+];
 
 function readHtml(rel) {
   const path = join(dist, rel);
@@ -41,6 +49,12 @@ for (const rel of pages) {
   if (!html.includes('70.0')) {
     console.error(`check_methodology_split: ${rel} must contain 70.0 threshold`);
     process.exit(1);
+  }
+  for (const needle of requiredEdgeCopy) {
+    if (!html.includes(needle)) {
+      console.error(`check_methodology_split: ${rel} must contain "${needle}"`);
+      process.exit(1);
+    }
   }
   for (const pct of requiredWeights) {
     if (!html.includes(pct)) {

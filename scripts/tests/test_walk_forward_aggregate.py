@@ -49,6 +49,7 @@ def test_hit_rate_and_excess_return():
     h20 = aggregate_fold_horizons(measurements, market="KR")[0]
     assert h20["hitRate"] == 0.5
     assert h20["excessReturnMean"] == 0.02
+    assert h20["excessReturnMedian"] == 0.02
 
 
 def test_insufficient_coverage_for_go_evidence():

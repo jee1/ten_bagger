@@ -260,6 +260,7 @@ export interface HorizonMetrics {
   pickReturnMean?: number | null;
   hitRate?: number | null;
   excessReturnMean?: number | null;
+  excessReturnMedian?: number | null;
   status: "complete" | "incomplete";
   sampleCount?: number;
 }
@@ -318,6 +319,7 @@ export interface OosEvaluationEntry {
   oosPickDays: number;
   noPickRatio: number;
   h20ExcessReturnMean: number | null;
+  h20ExcessReturnMedianMin?: number | null;
   h60ExcessReturnMean: number | null;
   insufficientCoverage: boolean;
   contaminationFindings: string[];
