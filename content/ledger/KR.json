@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "KR",
-  "asOfDate": "2026-10-22",
+  "asOfDate": "2026-10-23",
   "entries": [
     {
       "pickDate": "2026-07-03",
@@ -330,6 +330,12 @@
     {
       "pickDate": "2026-10-21",
       "symbol": "052400.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-10-23",
+      "symbol": "404990.KS",
       "status": "pick",
       "scoreVersion": "2"
     }
