@@ -308,12 +308,14 @@ const toc = [
         </p>
         <p>
           <span data-i18n-show="ko" hidden={lang !== 'ko'}
-            >비교 일수가 작습니다. 이어지는 20거래일 구간은 서로 겹칩니다. 2026-10-09 이전에
-            상장폐지된 종목은 무작위 표본에 없어 생존 편향이 남습니다.</span
+            >비교 일수가 작습니다. 이어지는 20거래일 구간은 서로 겹칩니다. 스냅샷이 있는 날의
+            무작위 표본은 그날의 상장 목록입니다. 2026-10-09 이전 상장폐지 종목과 스냅샷이 없는
+            날은 오늘 목록이라 생존 편향이 남습니다.</span
           >
           <span data-i18n-show="en" hidden={lang !== 'en'}
-            >The day count is small. Consecutive 20-trading-day windows overlap. Names delisted before
-            2026-10-09 are absent from the random samples, so survivorship bias remains.</span
+            >The day count is small. Consecutive 20-trading-day windows overlap. On a day with a
+            snapshot the random sample is that day's listing. Names delisted before 2026-10-09, and
+            days without a snapshot, still use today's listing, so survivorship bias remains.</span
           >
         </p>
       </section>
