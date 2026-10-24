@@ -33,12 +33,14 @@ DAILY = {"market": "US", "date": "2026-10-01", "status": "pick", "stock": {"symb
 FLOOR = MIN_MARKET_CAP_US
 
 
-def _estimator(latest: dict, snapshots: dict | None = None):
+def _estimator(latest: dict, snapshots: dict | None = None, universe_at=None):
     snapshots = {**(snapshots or {}), "2026-10-09": latest}
-    return CapEstimator("US", "2026-10-09", latest, snapshots.get, frozenset(snapshots))
+    return CapEstimator(
+        "US", "2026-10-09", latest, snapshots.get, frozenset(snapshots), universe_at=universe_at
+    )
 
 
-def _rows(latest, bars, snapshots=None):
+def _rows(latest, bars, snapshots=None, universe_at=None):
     prices = {s: _bars(*b) for s, b in bars.items()}
     rows = build_rows(
         dailies=[DAILY],
@@ -48,7 +50,7 @@ def _rows(latest, bars, snapshots=None):
         benchmark_provider=lambda _id: _bars(100, 100),
         random_k=5,
         seed=0,
-        estimators={"US": _estimator(latest, snapshots)},
+        estimators={"US": _estimator(latest, snapshots, universe_at)},
     )
     return {a: [r for r in rows if r["arm"] == a] for a in ARMS}
 
@@ -104,10 +106,75 @@ def test_cap_at_reads_date_column_bars():
 
 
 def test_rows_carry_cap_and_survivorship_flag():
-    by_arm = _rows({"PICK": 10 * FLOOR}, {"PICK": (1, 1)}, {"2026-10-01": {"PICK": 3.0}})
+    by_arm = _rows(
+        {"PICK": 10 * FLOOR},
+        {"PICK": (1, 1)},
+        {"2026-10-01": {"PICK": 3.0}},
+        universe_at=lambda _date: ["PICK"],
+    )
     (pick,) = by_arm["pick"]
     assert (pick["capAtPick"], pick["capBasis"]) == (3.0, "pit_snapshot")
     assert pick["survivorshipBias"] == "pit_universe"
+
+
+def test_random_uses_that_days_listing_and_splits_the_paired_summary():
+    cap = 10 * FLOOR
+    pit_day = {"market": "US", "date": "2026-10-09", "status": "pick", "stock": {"symbol": "PICK"}}
+    old_day = {"market": "US", "date": "2026-09-01", "status": "pick", "stock": {"symbol": "PICK"}}
+    snaps = {"2026-10-09": {"PICK": cap, "GONE": cap, "TODAY": cap}}
+    est = CapEstimator(
+        "US",
+        "2026-10-09",
+        snaps["2026-10-09"],
+        snaps.get,
+        frozenset(snaps),
+        universe_at=lambda date: ["PICK", "GONE"] if date == "2026-10-09" else None,
+    )
+    idx = pd.to_datetime(["2026-08-01", "2026-10-09", "2026-11-20"])
+    bars = pd.DataFrame({"Open": 1.0, "Close": 1.0}, index=idx)
+    prices = {"PICK": bars, "GONE": bars, "TODAY": bars}
+    rows = build_rows(
+        dailies=[pit_day, old_day],
+        universes={"US": ["PICK", "TODAY"], "KR": []},
+        as_of_date="2026-12-01",
+        price_provider=lambda sym, _mkt: prices[sym],
+        benchmark_provider=lambda _id: _bars(100, 100),
+        random_k=5,
+        seed=0,
+        estimators={"US": est},
+    )
+
+    def _syms(date: str) -> set[str]:
+        return {r["symbol"] for r in rows if r["arm"] == "random" and r["pickDate"] == date}
+
+    def _bias(date: str) -> set[str]:
+        return {r["survivorshipBias"] for r in rows if r["pickDate"] == date}
+
+    assert _syms("2026-10-09") == {"PICK", "GONE"}
+    assert _syms("2026-09-01") == {"PICK", "TODAY"}
+    assert _bias("2026-10-09") == {"pit_universe"}
+    assert _bias("2026-09-01") == {"current_universe"}
+
+    def _paired(date: str, arm: str, excess: float, bias: str) -> dict:
+        return {
+            "market": "US",
+            "arm": arm,
+            "pickDate": date,
+            "excess": excess,
+            "survivorshipBias": bias,
+        }
+
+    summary = build_summary(
+        [
+            _paired("2026-10-09", "pick", 0.2, "pit_universe"),
+            _paired("2026-10-09", "random", 0.0, "pit_universe"),
+            _paired("2026-09-01", "pick", 0.1, "current_universe"),
+            _paired("2026-09-01", "random", 0.1, "current_universe"),
+        ]
+    )
+    assert summary["US"]["pickMinus"]["random"]["n"] == 2
+    assert summary["US"]["pickMinus"]["randomPitUniverse"]["n"] == 1
+    assert summary["US"]["pickMinus"]["randomCurrentUniverse"]["n"] == 1
 
 
 def test_missing_pit_skips_size_matched_and_random_falls_back():

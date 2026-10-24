@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import type { Market } from './performanceLoad.ts';
 
 /** Baselines the published pick is paired against, by date (scripts/edge_baseline.py). */
-export const EDGE_ARMS = ['random', 'size_matched', 'top2_5'] as const;
+export const EDGE_ARMS = ['random', 'size_matched', 'top2_5', 'randomPitUniverse'] as const;
 export type EdgeArm = (typeof EDGE_ARMS)[number];
 
 export interface EdgeComparison {

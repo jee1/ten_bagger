@@ -18,7 +18,7 @@ describe('loadLatestEdgeSummary', () => {
     assert.equal(s?.asOfDate, '2026-10-17');
     assert.deepEqual(
       s?.comparisons.map((c) => c.arm),
-      ['random', 'top2_5'],
+      ['random', 'top2_5', 'randomPitUniverse'],
       'arm with n=0 is dropped',
     );
     assert.equal(s?.comparisons[0].tStat, -2.52);

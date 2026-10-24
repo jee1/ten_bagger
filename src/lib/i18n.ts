@@ -95,6 +95,10 @@ export const labels = {
     en: 'H20 (20 trading days) excess return, paired by date. Negative means the published pick trailed the baseline.',
   } satisfies LocalizedText,
   edgeArmRandom: { ko: '같은 시장 무작위 10종목', en: 'Random 10, same market' } satisfies LocalizedText,
+  edgeArmRandomPit: {
+    ko: '그날 상장 목록의 무작위 10종목',
+    en: "Random 10 from that day's listing",
+  } satisfies LocalizedText,
   edgeArmSizeMatched: { ko: '같은 규모대 무작위', en: 'Random, size-matched' } satisfies LocalizedText,
   edgeArmTop2_5: { ko: '같은 날 2~5위 후보', en: 'Same-day ranks 2 to 5' } satisfies LocalizedText,
   edgeColDays: { ko: '비교 일수', en: 'Days' } satisfies LocalizedText,
@@ -103,8 +107,8 @@ export const labels = {
   edgeColBeat: { ko: '픽 우위 비율', en: 'Pick ahead' } satisfies LocalizedText,
   edgeColT: { ko: 't값', en: 't-stat' } satisfies LocalizedText,
   performanceEdgeLimits: {
-    ko: '잠정 수치입니다. 비교 일수가 적고 20거래일 구간이 서로 겹칩니다. 2026-10-09 이전에 상장폐지된 종목은 무작위 표본에 없습니다(생존 편향). 2~5위와 무작위 후보는 실제로 공개된 적이 없습니다.',
-    en: 'Provisional. Few days, and consecutive 20-day windows overlap. Names delisted before 2026-10-09 are missing from the random samples (survivorship bias). Ranks 2 to 5 and random names were never published.',
+    ko: '잠정 수치입니다. 비교 일수가 적고 20거래일 구간이 서로 겹칩니다. 스냅샷이 있는 날은 그날의 상장 목록에서 뽑습니다. 2026-10-09 이전 상장폐지 종목과 스냅샷이 없는 날은 오늘 목록이라 생존 편향이 남습니다. 2~5위와 무작위 후보는 실제로 공개된 적이 없습니다.',
+    en: "Provisional. Few days, and consecutive 20-day windows overlap. A day with a snapshot is drawn from that day's listing. Names delisted before 2026-10-09, and days without a snapshot, still use today's listing, so survivorship bias remains. Ranks 2 to 5 and random names were never published.",
   } satisfies LocalizedText,
   performanceEmptyTitle: {
     ko: '표시할 성과 데이터가 없습니다',

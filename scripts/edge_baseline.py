@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import math
 import random
@@ -40,8 +41,10 @@ LIMITATIONS = [
     "which assumes a constant share count",
     "info_rescaled (symbols in no snapshot) uses today's marketCap from a live yfinance quote, "
     "so its share count is today's, not the pick date's",
-    "survivorship: names delisted before the first PIT snapshot (2026-10-09) are absent; "
-    "rows with survivorshipBias=current_universe sample today's listing",
+    "survivorship: a date with a universe snapshot samples that day's listing "
+    "(pickMinus.randomPitUniverse); names delisted before the first snapshot (2026-10-09) "
+    "are still absent; dates without a snapshot sample today's listing "
+    "(pickMinus.randomCurrentUniverse)",
     "per-arm tStat treats same-date rows as independent; read pickMinus (paired by date) instead",
     "overlapping windows: consecutive H20 windows overlap, so even paired tStat is overstated",
     "small n: tens of observations per arm; tStat near zero is not proof of equality",
@@ -60,6 +63,7 @@ class CapEstimator:
     snapshot_caps: Callable[[str], dict[str, float] | None]  # date -> caps, None if no snapshot
     pit_dates: frozenset[str]  # dates with a fundamentals + universe snapshot
     info_cap: Callable[[str], float | None] | None = None  # live yfinance marketCap, last resort
+    universe_at: Callable[[str], list[str] | None] | None = None  # that day's listing, or None
 
     def cap_at(
         self, symbol: str, pick_date: str, bars: pd.DataFrame | None
@@ -96,6 +100,21 @@ def _close_on_or_before(bars: pd.DataFrame, session: str) -> float | None:
     return float(close.iloc[-1]) if len(close) else None
 
 
+def _universe_on(market: str, date: str) -> list[str] | None:
+    path = pit_data_dir() / "universe" / market / f"{date}.json.gz"
+    if not path.is_file():
+        return None
+    try:
+        payload = json.loads(gzip.decompress(path.read_bytes()))
+    except (OSError, json.JSONDecodeError, gzip.BadGzipFile):
+        print(f"warn: universe snapshot unreadable {path}", file=sys.stderr)
+        return None
+    symbols = payload.get("symbols") if isinstance(payload, dict) else None
+    if not isinstance(symbols, list) or not symbols:
+        return None
+    return [str(symbol) for symbol in symbols]
+
+
 def load_cap_estimator(market: str) -> CapEstimator | None:
     """None when the PIT clone or its manifest entries for *market* are unavailable."""
     if not PIT_MANIFEST_PATH.exists() or not pit_data_dir().is_dir():
@@ -117,7 +136,15 @@ def load_cap_estimator(market: str) -> CapEstimator | None:
     latest = caps(dates[-1]) if dates else None
     if not latest:
         return None
-    return CapEstimator(market, dates[-1], latest, caps, frozenset(dates), _live_info_cap)
+    return CapEstimator(
+        market,
+        dates[-1],
+        latest,
+        caps,
+        frozenset(dates),
+        _live_info_cap,
+        lambda date, m=market: _universe_on(m, date),
+    )
 
 
 def _live_info_cap(symbol: str) -> float | None:
@@ -164,8 +191,21 @@ def _top2_5_symbols(ctx: ArmContext) -> list[str]:
     return [c["symbol"] for c in ctx.daily.get("topCandidates") or [] if 2 <= c["rank"] <= 5]
 
 
+def _listed_on_pick_date(ctx: ArmContext) -> list[str] | None:
+    est = ctx.est
+    date = ctx.daily["date"]
+    if est is None or est.universe_at is None or date not in est.pit_dates:
+        return None
+    symbols = est.universe_at(date)
+    if not symbols:
+        return None
+    return symbols
+
+
 def _random_candidates(ctx: ArmContext) -> list[str]:
-    return ctx.shuffled(ctx.universe if ctx.est else ctx.floor_universe)
+    listed = _listed_on_pick_date(ctx)
+    pool = listed if listed is not None else (ctx.universe if ctx.est else ctx.floor_universe)
+    return ctx.shuffled(pool)
 
 
 def _random_accepts(ctx: ArmContext, cap: float | None) -> bool:
@@ -233,15 +273,25 @@ def build_summary(rows: list[dict]) -> dict[str, Any]:
         arms["pickMinus"] = {
             arm: summarize(_paired_by_date(rows, market, arm)) for arm in ARMS if arm != "pick"
         }
+        arms["pickMinus"]["randomPitUniverse"] = summarize(
+            _paired_by_date(rows, market, "random", "pit_universe")
+        )
+        arms["pickMinus"]["randomCurrentUniverse"] = summarize(
+            _paired_by_date(rows, market, "random", "current_universe")
+        )
         out[market] = arms
     return out
 
 
-def _paired_by_date(rows: list[dict], market: str, arm: str) -> list[float]:
+def _paired_by_date(
+    rows: list[dict], market: str, arm: str, survivorship: str | None = None
+) -> list[float]:
     # Rows sharing a pickDate share the benchmark window, so they are not independent;
     # the comparison unit is the date: pick excess minus that date's arm mean.
     by_date: dict[str, dict[str, list[float]]] = {}
     for r in rows:
+        if survivorship is not None and r.get("survivorshipBias") != survivorship:
+            continue
         if r["market"] == market and r["excess"] is not None and r["arm"] in ("pick", arm):
             by_date.setdefault(r["pickDate"], {}).setdefault(r["arm"], []).append(r["excess"])
     return [
@@ -317,9 +367,7 @@ def build_rows(
             est=est,
             pick_cap=pick_cap[0] if pick_cap else None,
         )
-        survivorship = (
-            "pit_universe" if est and daily["date"] in est.pit_dates else "current_universe"
-        )
+        survivorship = "pit_universe" if _listed_on_pick_date(ctx) else "current_universe"
         for arm, spec in ARMS.items():
             if spec.needs_pit and est is None:
                 continue
