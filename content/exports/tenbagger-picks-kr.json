@@ -1,18 +1,10 @@
 {
   "schemaVersion": "0.1.0",
   "market": "KR",
-  "asOfDate": "2026-10-23",
-  "generatedAt": "2026-10-23T00:40:24.685902+00:00",
-  "count": 46,
+  "asOfDate": "2026-10-26",
+  "generatedAt": "2026-10-26T00:08:21.667729+00:00",
+  "count": 45,
   "picks": [
-    {
-      "symbol": "036800.KQ",
-      "pickDate": "2026-07-23",
-      "horizonsNeeded": [
-        "H60"
-      ],
-      "latestHorizon": "H60"
-    },
     {
       "symbol": "192080.KS",
       "pickDate": "2026-07-25",
@@ -233,7 +225,6 @@
       "symbol": "052400.KQ",
       "pickDate": "2026-09-19",
       "horizonsNeeded": [
-        "H20",
         "H60"
       ],
       "latestHorizon": "H60"

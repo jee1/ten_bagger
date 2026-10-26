@@ -1,9 +1,9 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-23",
-  "generatedAt": "2026-10-23T00:40:24.687585+00:00",
-  "count": 40,
+  "asOfDate": "2026-10-26",
+  "generatedAt": "2026-10-26T00:08:21.670267+00:00",
+  "count": 41,
   "picks": [
     {
       "symbol": "EPAC",
@@ -217,7 +217,6 @@
       "symbol": "SENEB",
       "pickDate": "2026-09-24",
       "horizonsNeeded": [
-        "H20",
         "H60"
       ],
       "latestHorizon": "H60"
@@ -333,6 +332,15 @@
     {
       "symbol": "AII",
       "pickDate": "2026-10-22",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "SENEA",
+      "pickDate": "2026-10-26",
       "horizonsNeeded": [
         "H20",
         "H60"
