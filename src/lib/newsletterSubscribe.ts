@@ -1,4 +1,6 @@
-import { trimPublicEnv } from './siteMeasurement.ts';
+function trimPublicEnv(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
 
 export type NewsletterProvider = 'buttondown' | 'stibee';
 
