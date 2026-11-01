@@ -327,6 +327,21 @@ export const labels = {
     ko: '피드 리더에 아래 주소를 추가하면 새 일일 기록이 자동으로 표시됩니다.',
     en: 'Add the URL below in a feed reader to see each new daily report.',
   } satisfies LocalizedText,
+  newsletterHeading: { ko: '무료 뉴스레터', en: 'Free newsletter' } satisfies LocalizedText,
+  newsletterLede: {
+    ko: '새 글과 사이트 소식만 보냅니다. 시그널 선공개나 투자 조언은 포함하지 않습니다.',
+    en: 'Site updates and articles only. No early signals or investment advice.',
+  } satisfies LocalizedText,
+  newsletterEmailLabel: { ko: '이메일', en: 'Email' } satisfies LocalizedText,
+  newsletterEmailPlaceholder: {
+    ko: 'you@example.com',
+    en: 'you@example.com',
+  } satisfies LocalizedText,
+  newsletterSubmit: { ko: '구독하기', en: 'Subscribe' } satisfies LocalizedText,
+  newsletterConfirmNote: {
+    ko: '구독 확인 메일의 링크를 눌러야 수신이 시작됩니다.',
+    en: 'Confirm the link in the email before mailings start.',
+  } satisfies LocalizedText,
   followRssStep1: {
     ko: '아래 피드 주소를 복사합니다.',
     en: 'Copy the feed URL below.',

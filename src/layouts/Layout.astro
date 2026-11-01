@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { labels, label } from '../lib/i18n';
 import type { Lang } from '../lib/i18n';
 import Disclaimer from '../components/Disclaimer.astro';
+import NewsletterSubscribe from '../components/NewsletterSubscribe.astro';
 import SiteMeasurement from '../components/SiteMeasurement.astro';
 import { getTodayDateString } from '../lib/daily';
 import { splitLocalePath, localeHref } from '../lib/staticNav';
@@ -196,6 +197,7 @@ const isActive = (key: string) =>
     </header>
     <main class="container">
       <slot />
+      <NewsletterSubscribe lang={lang} sourceSite="tenbagger" />
       <Disclaimer lang={lang} variant={disclaimerVariant} />
     </main>
     <script>
