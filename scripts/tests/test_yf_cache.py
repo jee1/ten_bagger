@@ -39,7 +39,10 @@ def test_with_retry_raises_after_max_attempts(monkeypatch):
 
 def test_get_ticker_info_uses_stale_cache_after_rate_limit(monkeypatch, tmp_path):
     path = tmp_path / "TEST_info.json"
-    path.write_text(json.dumps({"longName": "Cached Test Corp", "symbol": "TEST"}), encoding="utf-8")
+    path.write_text(
+        json.dumps({"longName": "Cached Test Corp", "symbol": "TEST"}),
+        encoding="utf-8",
+    )
     old_time = time.time() - 10_000
     os.utime(path, (old_time, old_time))
 
@@ -61,7 +64,10 @@ def test_get_ticker_info_uses_stale_cache_after_rate_limit(monkeypatch, tmp_path
 
 def test_get_ticker_info_uses_stale_cache_after_empty_live_response(monkeypatch, tmp_path):
     path = tmp_path / "EMPTY_info.json"
-    path.write_text(json.dumps({"longName": "Cached Empty Corp", "symbol": "EMPTY"}), encoding="utf-8")
+    path.write_text(
+        json.dumps({"longName": "Cached Empty Corp", "symbol": "EMPTY"}),
+        encoding="utf-8",
+    )
     old_time = time.time() - 10_000
     os.utime(path, (old_time, old_time))
 
