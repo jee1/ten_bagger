@@ -32,7 +32,34 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r scripts/requirements.txt
 
+      - name: Check out finnaut-ohlc snapshot (#174)
+        # Read-only fine-grained PAT. Without it the ledger falls back to yfinance/stooq.
+        id: ohlc
+        continue-on-error: true
+        env:
+          OHLC_TOKEN: ${{ secrets.OHLC_READ_TOKEN }}
+          AS_OF: ${{ inputs.asOfDate }}
+        run: |
+          set -euo pipefail
+          [ -n "$OHLC_TOKEN" ] || { echo "::warning::OHLC_READ_TOKEN not set, using yfinance"; exit 1; }
+          dir="$RUNNER_TEMP/finnaut-ohlc"
+          git clone --quiet --depth 1 --filter=blob:none --sparse \
+            "https://x-access-token:${OHLC_TOKEN}@github.com/jee1/finnaut-ohlc.git" "$dir"
+          cd "$dir"
+          # Only the latest session folder <= asOfDate per market (folders are session dates).
+          folders=()
+          for market in krx us; do
+            latest=$(git ls-tree --name-only HEAD "bars/$market/" | awk -F/ -v a="$AS_OF" '$3 <= a' | sort | tail -1)
+            [ -n "$latest" ] && folders+=("$latest")
+          done
+          [ "${#folders[@]}" -gt 0 ] || { echo "::warning::no finnaut-ohlc snapshot <= $AS_OF"; exit 1; }
+          git sparse-checkout set "${folders[@]}"
+          echo "finnaut-ohlc snapshots: ${folders[*]}"
+          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+
       - name: Regenerate ledger and performance
+        env:
+          FINNAUT_OHLC_DIR: ${{ steps.ohlc.outputs.dir }}
         run: |
           cd scripts && python regenerate_ledger.py --as-of-date "${{ inputs.asOfDate }}"
 

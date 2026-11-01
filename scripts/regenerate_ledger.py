@@ -43,8 +43,9 @@ def _validate_as_of_date(value: str | None) -> str | None:
     return value
 
 
-PriceProvider = Callable[[str, str], pd.DataFrame]
-BenchmarkProvider = Callable[[str], pd.DataFrame | None]
+# Called as (symbol, market, since=pickDate) and (benchmark_id, since=earliest pickDate).
+PriceProvider = Callable[..., pd.DataFrame]
+BenchmarkProvider = Callable[..., pd.DataFrame | None]
 
 
 def _resolve_meta(values: set[str], fallback: str) -> str:
@@ -86,25 +87,32 @@ def build_market_snapshots(
     bench_cache: dict[str, pd.DataFrame | None] = {}
     adj_labels: set[str] = set()
     providers: set[str] = set()
+    ohlc_as_of: set[str] = set()
+    pick_dates = [d["date"] for d in market_dailies if d["status"] == "pick"]
 
     for daily in market_dailies:
         if daily["status"] != "pick":
             continue
         symbol = daily["stock"]["symbol"]
-        bars = price_provider(symbol, market)
+        bars = price_provider(symbol, market, since=daily["date"])
         basis = bars.attrs.get("priceBasis", "unknown")
         providers.add(bars.attrs.get("provider", "unknown"))
+        if "ohlcAsOf" in bars.attrs:
+            ohlc_as_of.add(bars.attrs["ohlcAsOf"])
         _, label = prefer_adjusted(bars, default_label=basis)
         adj_labels.add(label)
         bench_id = "KR-KOSPI" if market == "KR" else "US-SPX"
         if bench_id not in bench_cache:
-            bench_cache[bench_id] = benchmark_provider(bench_id)
+            bench_cache[bench_id] = benchmark_provider(bench_id, since=min(pick_dates))
+        # T-1 ohlc bars: measure up to the last bar so missing sessions stay immature
+        # instead of a calendar horizon exiting one session early.
+        measure_as_of = min(as_of_date, bars.attrs.get("lastSession", as_of_date))
         measurements.extend(
             measure_all_horizons(
                 bars=bars,
                 benchmark_bars=bench_cache[bench_id],
                 pick_date=daily["date"],
-                as_of_date=as_of_date,
+                as_of_date=measure_as_of,
                 market=market,
                 symbol=symbol,
             )
@@ -113,6 +121,9 @@ def build_market_snapshots(
     if price_adjustment is None:
         price_adjustment = _resolve_meta(adj_labels, "unknown")
     provider = _resolve_meta(providers, provider_label)
+    bench = next(iter(bench_cache.values()), None)
+    if bench is not None and "ohlcAsOf" in bench.attrs:
+        ohlc_as_of.add(bench.attrs["ohlcAsOf"])
 
     ledger = {
         "schemaVersion": SCHEMA_VERSION,
@@ -132,6 +143,9 @@ def build_market_snapshots(
         },
         "measurements": measurements,
     }
+    if ohlc_as_of:
+        # Adjusted bars change on splits/dividends; the snapshot date makes runs reproducible.
+        performance["runMeta"]["ohlcAsOf"] = max(ohlc_as_of)
     return ledger, performance
 
 

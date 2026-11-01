@@ -108,10 +108,10 @@ def test_no_pick_produces_zero_measurements_via_regenerate(tmp_path, monkeypatch
     monkeypatch.setattr(
         regenerate_ledger,
         "default_price_provider",
-        lambda _as_of: (lambda _s, _m: load_price_fixture("simple_kr_h20")),
+        lambda _as_of: (lambda _s, _m, **_kw: load_price_fixture("simple_kr_h20")),
     )
     monkeypatch.setattr(
-        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b, **_kw: None
     )
 
     summary = regenerate_ledger.regenerate(
@@ -142,10 +142,10 @@ def test_empty_eligible_set_valid_empty_snapshots(tmp_path, monkeypatch):
     monkeypatch.setattr(
         regenerate_ledger,
         "default_price_provider",
-        lambda _as_of: (lambda _s, _m: load_price_fixture("simple_kr_h20")),
+        lambda _as_of: (lambda _s, _m, **_kw: load_price_fixture("simple_kr_h20")),
     )
     monkeypatch.setattr(
-        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b, **_kw: None
     )
 
     regenerate_ledger.regenerate(
@@ -481,11 +481,11 @@ def test_second_regenerate_identical(tmp_path, monkeypatch):
     bars = load_price_fixture("simple_kr_h20")
 
     def price_provider(_as_of):
-        return lambda _s, _m: bars.copy()
+        return lambda _s, _m, **_kw: bars.copy()
 
     monkeypatch.setattr(regenerate_ledger, "default_price_provider", price_provider)
     monkeypatch.setattr(
-        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b, **_kw: None
     )
     fixed_meta = {
         "provider": "fixture",

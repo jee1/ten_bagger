@@ -143,10 +143,10 @@ def test_success_path_writes_schema_valid_outputs(tmp_path, monkeypatch):
     monkeypatch.setattr(
         regenerate_ledger,
         "default_price_provider",
-        lambda _as_of: (lambda _s, _m: bars),
+        lambda _as_of: (lambda _s, _m, **_kw: bars),
     )
     monkeypatch.setattr(
-        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b, **_kw: None
     )
 
     regenerate_ledger.regenerate(
@@ -176,10 +176,10 @@ def test_unstamped_bars_publish_unknown_basis(tmp_path, monkeypatch):
     monkeypatch.setattr(
         regenerate_ledger,
         "default_price_provider",
-        lambda _as_of: (lambda _s, _m: bars),
+        lambda _as_of: (lambda _s, _m, **_kw: bars),
     )
     monkeypatch.setattr(
-        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b, **_kw: None
     )
 
     regenerate_ledger.regenerate(
@@ -208,10 +208,10 @@ def test_stooq_stamped_bars_publish_unadjusted_fallback(tmp_path, monkeypatch):
     monkeypatch.setattr(
         regenerate_ledger,
         "default_price_provider",
-        lambda _as_of: (lambda _s, _m: bars),
+        lambda _as_of: (lambda _s, _m, **_kw: bars),
     )
     monkeypatch.setattr(
-        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b, **_kw: None
     )
 
     regenerate_ledger.regenerate(
@@ -246,7 +246,7 @@ def test_mixed_providers_publish_mixed_meta(tmp_path, monkeypatch):
     stooq_bars.attrs["provider"] = "stooq"
     stooq_bars.attrs["priceBasis"] = "unadjusted_fallback"
 
-    def provider(symbol: str, _market: str):
+    def provider(symbol: str, _market: str, **_kw):
         return yf_bars if symbol == "AAA.KR" else stooq_bars
 
     monkeypatch.setattr(
@@ -255,7 +255,7 @@ def test_mixed_providers_publish_mixed_meta(tmp_path, monkeypatch):
         lambda _as_of: provider,
     )
     monkeypatch.setattr(
-        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b, **_kw: None
     )
 
     regenerate_ledger.regenerate(
@@ -280,10 +280,10 @@ def test_dry_run_leaves_targets_unwritten(tmp_path, monkeypatch):
     monkeypatch.setattr(
         regenerate_ledger,
         "default_price_provider",
-        lambda _as_of: (lambda _s, _m: load_price_fixture("simple_kr_h20")),
+        lambda _as_of: (lambda _s, _m, **_kw: load_price_fixture("simple_kr_h20")),
     )
     monkeypatch.setattr(
-        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b, **_kw: None
     )
 
     regenerate_ledger.regenerate(
@@ -309,10 +309,10 @@ def test_daily_files_untouched(tmp_path, monkeypatch):
     monkeypatch.setattr(
         regenerate_ledger,
         "default_price_provider",
-        lambda _as_of: (lambda _s, _m: load_price_fixture("simple_kr_h20")),
+        lambda _as_of: (lambda _s, _m, **_kw: load_price_fixture("simple_kr_h20")),
     )
     monkeypatch.setattr(
-        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b: None
+        regenerate_ledger, "default_benchmark_provider", lambda _as_of: lambda _b, **_kw: None
     )
 
     regenerate_ledger.regenerate(
