@@ -1,0 +1,37 @@
+---
+import {
+  cfWebAnalyticsBeaconJson,
+  resolveGoogleSiteVerification,
+  trimPublicEnv,
+} from '../lib/siteMeasurement';
+
+interface Props {
+  /** Used when PUBLIC_GOOGLE_SITE_VERIFICATION is empty (existing Search Console HTML tag). */
+  googleVerificationFallback?: string;
+}
+
+const { googleVerificationFallback = '' } = Astro.props;
+
+const cfBeacon = cfWebAnalyticsBeaconJson(import.meta.env.PUBLIC_CF_WEB_ANALYTICS_TOKEN);
+const googleVerification = resolveGoogleSiteVerification(
+  import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION,
+  googleVerificationFallback,
+);
+const naverVerification = trimPublicEnv(import.meta.env.PUBLIC_NAVER_SITE_VERIFICATION);
+---
+
+{
+  googleVerification ? (
+    <meta name="google-site-verification" content={googleVerification} />
+  ) : null
+}
+{naverVerification ? <meta name="naver-site-verification" content={naverVerification} /> : null}
+{
+  cfBeacon ? (
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={cfBeacon}
+    />
+  ) : null
+}
