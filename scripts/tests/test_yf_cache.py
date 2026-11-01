@@ -39,7 +39,7 @@ def test_with_retry_raises_after_max_attempts(monkeypatch):
 
 def test_get_ticker_info_uses_stale_cache_after_rate_limit(monkeypatch, tmp_path):
     path = tmp_path / "TEST_info.json"
-    path.write_text(json.dumps({"longName": "Cached Test Corp"}), encoding="utf-8")
+    path.write_text(json.dumps({"longName": "Cached Test Corp", "symbol": "TEST"}), encoding="utf-8")
     old_time = time.time() - 10_000
     os.utime(path, (old_time, old_time))
 
@@ -53,7 +53,33 @@ def test_get_ticker_info_uses_stale_cache_after_rate_limit(monkeypatch, tmp_path
     monkeypatch.setattr(yf_cache, "YF_MAX_RETRIES", 1)
     monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: RateLimitedTicker())
 
-    assert yf_cache.get_ticker_info("TEST") == {"longName": "Cached Test Corp"}
+    assert yf_cache.get_ticker_info("TEST") == {
+        "longName": "Cached Test Corp",
+        "symbol": "TEST",
+    }
+
+
+def test_get_ticker_info_uses_stale_cache_after_empty_live_response(monkeypatch, tmp_path):
+    path = tmp_path / "EMPTY_info.json"
+    path.write_text(json.dumps({"longName": "Cached Empty Corp", "symbol": "EMPTY"}), encoding="utf-8")
+    old_time = time.time() - 10_000
+    os.utime(path, (old_time, old_time))
+
+    class EmptyTicker:
+        @property
+        def info(self) -> dict[str, str]:
+            return {}
+
+    monkeypatch.setattr(yf_cache, "CACHE_DIR", tmp_path)
+    monkeypatch.setattr(yf_cache, "CACHE_TTL_SECONDS", 1)
+    monkeypatch.setattr(yf_cache, "YF_MAX_RETRIES", 1)
+    monkeypatch.setattr(yf_cache.time, "sleep", lambda _seconds: None)
+    monkeypatch.setattr(yf_cache.yf, "Ticker", lambda _symbol: EmptyTicker())
+
+    assert yf_cache.get_ticker_info("EMPTY") == {
+        "longName": "Cached Empty Corp",
+        "symbol": "EMPTY",
+    }
 
 
 def test_get_ticker_history_uses_stale_cache_after_transient_failure(monkeypatch, tmp_path):
