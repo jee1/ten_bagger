@@ -48,6 +48,16 @@ def _info_has_fields(info: dict[str, Any]) -> bool:
     return bool(info.get("symbol") or info.get("shortName"))
 
 
+def _stale_usable_after_failure(info: dict[str, Any], exc: Exception) -> bool:
+    if not info:
+        return False
+    if isinstance(exc, EmptyInfoError):
+        return _info_has_fields(info)
+    if _is_transient_failure(exc):
+        return True
+    return False
+
+
 def fundamental_rate_limit_events() -> int:
     """Count of observed yfinance info rate-limit hits this process (tests / metrics)."""
     return _fundamental_rate_limit_events
@@ -249,15 +259,15 @@ def get_ticker_info_with_provenance(symbol: str) -> tuple[dict[str, Any], InfoPr
         if _is_rate_limited(exc):
             _note_fundamental_rate_limit(symbol, where="exhausted", exc=exc)
         stale = _read_info_cache_with_provenance(path)
-        if stale is not None and _info_has_fields(stale[0]):
-            if _is_transient_failure(exc) or isinstance(exc, EmptyInfoError):
+        if stale is not None:
+            stale_info, prov = stale
+            if _stale_usable_after_failure(stale_info, exc):
                 logger.warning(
                     "Using stale yfinance info cache for %s after fetch failure: %s",
                     symbol,
                     exc,
                 )
-                info, prov = stale
-                return info, InfoProvenance(
+                return stale_info, InfoProvenance(
                     known_at=prov.known_at,
                     cache_hit=False,
                     provider=prov.provider,
