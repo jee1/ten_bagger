@@ -40,6 +40,24 @@ _fundamental_rate_limit_events = 0
 _FUNDAMENTAL_RATE_LIMIT_TAG = "tech-debt/td-006-fundamental-rate-limit"
 
 
+class EmptyInfoError(RuntimeError):
+    """yfinance returned no symbol fields (often a soft rate-limit response)."""
+
+
+def _info_has_fields(info: dict[str, Any]) -> bool:
+    return bool(info.get("symbol") or info.get("shortName"))
+
+
+def _stale_usable_after_failure(info: dict[str, Any], exc: Exception) -> bool:
+    if not info:
+        return False
+    if isinstance(exc, EmptyInfoError):
+        return _info_has_fields(info)
+    if _is_transient_failure(exc):
+        return True
+    return False
+
+
 def fundamental_rate_limit_events() -> int:
     """Count of observed yfinance info rate-limit hits this process (tests / metrics)."""
     return _fundamental_rate_limit_events
@@ -199,7 +217,7 @@ def _with_retry[T](
             if attempt + 1 >= YF_MAX_RETRIES:
                 break
             delay = YF_RETRY_BASE_DELAY * (2**attempt)
-            if _is_rate_limited(exc):
+            if _is_rate_limited(exc) or isinstance(exc, EmptyInfoError):
                 delay = max(delay, YF_RATE_LIMIT_DELAY)
             logger.warning(
                 "%s failed (attempt %d/%d): %s; retry in %.1fs",
@@ -227,7 +245,10 @@ def get_ticker_info_with_provenance(symbol: str) -> tuple[dict[str, Any], InfoPr
             return info, prov
 
     def _fetch() -> dict[str, Any]:
-        return yf.Ticker(symbol).info or {}
+        info = yf.Ticker(symbol).info or {}
+        if not _info_has_fields(info):
+            raise EmptyInfoError(f"yfinance returned empty info for {symbol}")
+        return info
 
     def _on_rl(exc: Exception) -> None:
         _note_fundamental_rate_limit(symbol, where="retry", exc=exc)
@@ -238,18 +259,19 @@ def get_ticker_info_with_provenance(symbol: str) -> tuple[dict[str, Any], InfoPr
         if _is_rate_limited(exc):
             _note_fundamental_rate_limit(symbol, where="exhausted", exc=exc)
         stale = _read_info_cache_with_provenance(path)
-        if stale is not None and _is_transient_failure(exc):
-            logger.warning(
-                "Using stale yfinance info cache for %s after fetch failure: %s",
-                symbol,
-                exc,
-            )
-            info, prov = stale
-            return info, InfoProvenance(
-                known_at=prov.known_at,
-                cache_hit=False,
-                provider=prov.provider,
-            )
+        if stale is not None:
+            stale_info, prov = stale
+            if _stale_usable_after_failure(stale_info, exc):
+                logger.warning(
+                    "Using stale yfinance info cache for %s after fetch failure: %s",
+                    symbol,
+                    exc,
+                )
+                return stale_info, InfoProvenance(
+                    known_at=prov.known_at,
+                    cache_hit=False,
+                    provider=prov.provider,
+                )
         raise
     fetched_at = _now_fetched_at()
     if info:
