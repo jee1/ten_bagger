@@ -1,10 +1,14 @@
-"""Live price bar fetch via yfinance (not used in offline unit tests)."""
+"""Live price bars: finnaut-ohlc snapshot first, then yfinance/stooq (#174)."""
 
 from __future__ import annotations
+
+import sys
 
 import pandas as pd
 from yf_cache import get_ticker_history_with_provider
 
+from performance.ohlc_bars import PROVIDER as OHLC_PROVIDER
+from performance.ohlc_bars import OhlcMiss, load_ohlc_bars, ohlc_root
 from performance.pit_prices import filter_session_bars, infer_as_of_session_closed, market_tz
 
 # Matches yf_cache.get_ticker_history(..., auto_adjust=True) — vendor split/dividend adjusted.
@@ -51,15 +55,30 @@ def fetch_live_bars(
     period: str = "10y",
     market: str | None = None,
     as_of_session_closed: bool | None = None,
+    since: str | None = None,
 ) -> pd.DataFrame:
-    """Fetch OHLCV via get_ticker_history (retry/backoff) and apply PIT filter."""
-    hist, provider = get_ticker_history_with_provider(symbol, period=period)
-    bars = _history_to_bars(hist, market=market, provider=provider)
+    """Fetch OHLCV and apply PIT filter.
+
+    With FINNAUT_OHLC_DIR set, the finnaut-ohlc snapshot is used when it covers `since`;
+    otherwise get_ticker_history (retry/backoff, yfinance then stooq).
+    """
     closed = (
         as_of_session_closed
         if as_of_session_closed is not None
         else infer_as_of_session_closed(as_of_date, market=market or "US")
     )
+    root = ohlc_root()
+    if root is not None:
+        try:
+            bars = load_ohlc_bars(symbol, market or "US", as_of_date, since=since, root=root)
+        except OhlcMiss as miss:
+            print(f"finnaut-ohlc fallback: {miss}", file=sys.stderr)
+        else:
+            out = filter_session_bars(bars, as_of_date, as_of_session_closed=closed)
+            out.attrs.update(bars.attrs, provider=OHLC_PROVIDER)
+            return out
+    hist, provider = get_ticker_history_with_provider(symbol, period=period)
+    bars = _history_to_bars(hist, market=market, provider=provider)
     out = filter_session_bars(bars, as_of_date, as_of_session_closed=closed)
     out.attrs["provider"] = provider
     out.attrs["priceBasis"] = PROVIDER_BASIS.get(provider, "unknown")
@@ -67,24 +86,24 @@ def fetch_live_bars(
 
 
 def default_price_provider(as_of_date: str):
-    """Return callable(symbol, market) -> bars for regenerate CLI."""
+    """Return callable(symbol, market, since=None) -> bars for regenerate CLI."""
 
-    def provider(symbol: str, market: str) -> pd.DataFrame:
-        return fetch_live_bars(symbol, as_of_date, market=market)
+    def provider(symbol: str, market: str, since: str | None = None) -> pd.DataFrame:
+        return fetch_live_bars(symbol, as_of_date, market=market, since=since)
 
     return provider
 
 
 def default_benchmark_provider(as_of_date: str):
-    """Return callable(benchmark_id) -> bars | None."""
+    """Return callable(benchmark_id, since=None) -> bars | None."""
 
-    def provider(benchmark_id: str) -> pd.DataFrame | None:
+    def provider(benchmark_id: str, since: str | None = None) -> pd.DataFrame | None:
         yf_symbol = BENCHMARK_SYMBOLS.get(benchmark_id)
         if not yf_symbol:
             return None
         market = "KR" if benchmark_id.startswith("KR") else "US"
         try:
-            return fetch_live_bars(yf_symbol, as_of_date, market=market)
+            return fetch_live_bars(yf_symbol, as_of_date, market=market, since=since)
         except Exception:
             return None
 

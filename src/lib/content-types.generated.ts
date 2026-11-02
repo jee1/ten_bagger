@@ -188,6 +188,10 @@ export interface RunMeta {
   priceAdjustment: string;
   generatedAt: string;
   asOfDate: string;
+  /**
+   * finnaut-ohlc snapshot session date the bars came from (absent when none did)
+   */
+  ohlcAsOf?: string;
 }
 
 export type WalkForwardReport = {
