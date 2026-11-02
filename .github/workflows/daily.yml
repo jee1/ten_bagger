@@ -124,6 +124,9 @@ jobs:
         env:
           SITE_URL: https://tenbagger.finnaut.com
           BASE_PATH: /
+          PUBLIC_CF_WEB_ANALYTICS_TOKEN: ${{ secrets.PUBLIC_CF_WEB_ANALYTICS_TOKEN_TENBAGGER }}
+          PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ secrets.PUBLIC_GOOGLE_SITE_VERIFICATION_TENBAGGER }}
+          PUBLIC_NAVER_SITE_VERIFICATION: ${{ secrets.PUBLIC_NAVER_SITE_VERIFICATION_TENBAGGER }}
         run: |
           npm ci
           npm run check
