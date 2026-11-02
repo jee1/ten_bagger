@@ -1,18 +1,10 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-29",
-  "generatedAt": "2026-10-29T01:18:23.675140+00:00",
+  "asOfDate": "2026-11-02",
+  "generatedAt": "2026-11-02T01:30:20.277141+00:00",
   "count": 40,
   "picks": [
-    {
-      "symbol": "UFCS",
-      "pickDate": "2026-08-04",
-      "horizonsNeeded": [
-        "H60"
-      ],
-      "latestHorizon": "H60"
-    },
     {
       "symbol": "CBL",
       "pickDate": "2026-08-06",
@@ -225,7 +217,6 @@
       "symbol": "EBS",
       "pickDate": "2026-09-30",
       "horizonsNeeded": [
-        "H20",
         "H60"
       ],
       "latestHorizon": "H60"
@@ -332,6 +323,15 @@
     {
       "symbol": "BWMX",
       "pickDate": "2026-10-28",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "SENEB",
+      "pickDate": "2026-11-02",
       "horizonsNeeded": [
         "H20",
         "H60"

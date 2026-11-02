@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-29",
+  "asOfDate": "2026-11-02",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -324,6 +324,12 @@
     {
       "pickDate": "2026-10-28",
       "symbol": "BWMX",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-02",
+      "symbol": "SENEB",
       "status": "pick",
       "scoreVersion": "2"
     }
