@@ -25,7 +25,11 @@ function normalizeProvider(value: unknown): NewsletterProvider | null {
 function isStibeeSubscribeUrl(url: string): boolean {
   try {
     const u = new URL(url);
-    return u.protocol === 'https:' && u.hostname.endsWith('stibee.com');
+    const host = u.hostname;
+    return (
+      u.protocol === 'https:' &&
+      (host === 'stibee.com' || host.endsWith('.stibee.com'))
+    );
   } catch {
     return false;
   }

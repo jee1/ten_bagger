@@ -64,3 +64,16 @@ test('resolveNewsletterFormConfig stibee rejects non-stibee host', () => {
     null,
   );
 });
+
+test('resolveNewsletterFormConfig stibee rejects evilstibee.com suffix trick', () => {
+  assert.equal(
+    resolveNewsletterFormConfig(
+      {
+        PUBLIC_NEWSLETTER_PROVIDER: 'stibee',
+        PUBLIC_STIBEE_SUBSCRIBE_URL: 'https://evilstibee.com/subscribe',
+      },
+      'www',
+    ),
+    null,
+  );
+});
