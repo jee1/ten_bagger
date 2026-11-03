@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -23,7 +24,16 @@ LEDGER_SCHEMA_PATH = SCHEMA_DIR / "ledger.schema.json"
 PERFORMANCE_BUNDLE_SCHEMA_PATH = SCHEMA_DIR / "performance-bundle.schema.json"
 WALK_FORWARD_SCHEMA_PATH = SCHEMA_DIR / "walk-forward-report.schema.json"
 CALIBRATION_SCHEMA_PATH = SCHEMA_DIR / "calibration-report.schema.json"
-CACHE_DIR = Path(__file__).resolve().parent / "cache"
+
+
+def _yf_cache_dir() -> Path:
+    override = os.environ.get("TEN_BAGGER_YF_CACHE_DIR", "").strip()
+    if override:
+        return Path(override)
+    return Path(__file__).resolve().parent / "cache"
+
+
+CACHE_DIR = _yf_cache_dir()
 CACHE_TTL_SECONDS = 43_200  # 12 hours
 
 SCORE_VERSION = 2
