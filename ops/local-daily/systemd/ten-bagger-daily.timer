@@ -1,0 +1,11 @@
+[Unit]
+Description=Ten Bagger daily at 06:07 KST on weekdays
+
+[Timer]
+OnCalendar=Mon..Fri *-*-* 06:07:00
+Timezone=Asia/Seoul
+Persistent=true
+Unit=ten-bagger-daily.service
+
+[Install]
+WantedBy=timers.target

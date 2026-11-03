@@ -119,7 +119,11 @@ Yahoo가 429/rate limit 또는 일시적 네트워크 오류를 반환하면 스
 5. `.github/workflows/daily.yml`이 평일(월~금) 06:00 KST에 시작됩니다. GitHub Actions 지연으로 리포트는 보통 오전 중에 올라옵니다
 6. `workflow_dispatch`로 날짜 지정 수동 실행도 가능합니다
 
-### 외부 스케줄러 (선택)
+### Paperclip 호스트 (systemd, FINA-27)
+
+평일 **06:07 KST**에 Paperclip 서버에서 daily JSON만 생성·push하려면 [`ops/local-daily/README.md`](ops/local-daily/README.md)를 따릅니다. yfinance 캐시는 clone 밖 `~/.cache/ten_bagger/yfinance`, 시크릿은 `~/.config/ten_bagger/daily.env`(600)입니다.
+
+### 외부 스케줄러 (선택, workflow_dispatch)
 
 GitHub 스케줄은 부하에 따라 수 시간 지연되기도 합니다. 정시 실행이 필요하면 외부 cron이 `workflow_dispatch`를 호출합니다.
 

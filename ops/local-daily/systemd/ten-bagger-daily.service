@@ -1,0 +1,13 @@
+[Unit]
+Description=Ten Bagger daily JSON generate and push
+Documentation=file://%h/git/ten_bagger-daily/ops/local-daily/README.md
+
+[Service]
+Type=oneshot
+Environment=TEN_BAGGER_ENV_FILE=%h/.config/ten_bagger/daily.env
+Environment=TEN_BAGGER_REPO=%h/git/ten_bagger-daily
+Environment=TEN_BAGGER_YF_CACHE_DIR=%h/.cache/ten_bagger/yfinance
+ExecStart=%h/git/ten_bagger-daily/ops/local-daily/ten-bagger-daily.sh
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ten-bagger-daily
