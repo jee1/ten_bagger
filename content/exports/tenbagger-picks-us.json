@@ -1,18 +1,10 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-11-02",
-  "generatedAt": "2026-11-02T01:30:20.277141+00:00",
-  "count": 40,
+  "asOfDate": "2026-11-03",
+  "generatedAt": "2026-11-03T03:26:00.713010+00:00",
+  "count": 39,
   "picks": [
-    {
-      "symbol": "CBL",
-      "pickDate": "2026-08-06",
-      "horizonsNeeded": [
-        "H60"
-      ],
-      "latestHorizon": "H60"
-    },
     {
       "symbol": "EVER",
       "pickDate": "2026-08-08",
@@ -225,7 +217,6 @@
       "symbol": "TILE",
       "pickDate": "2026-10-02",
       "horizonsNeeded": [
-        "H20",
         "H60"
       ],
       "latestHorizon": "H60"
@@ -234,7 +225,6 @@
       "symbol": "UVE",
       "pickDate": "2026-10-04",
       "horizonsNeeded": [
-        "H20",
         "H60"
       ],
       "latestHorizon": "H60"
