@@ -55,7 +55,8 @@ jobs:
     needs: gate
     if: needs.gate.outputs.skip != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    # Backfill (workflow_dispatch) can exceed 90m on US days after rate-limit retries (#238).
+    timeout-minutes: ${{ github.event_name == 'workflow_dispatch' && 150 || 90 }}
     steps:
       - uses: actions/checkout@v4
 
