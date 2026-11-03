@@ -4,9 +4,9 @@ Production host: `https://tenbagger.finnaut.com`
 
 ## Hosting
 
-Production deploy is **GitHub Pages** via `.github/workflows/daily.yml` (content + site build). Ledger rebuilds also upload Pages artifacts.
+**Target (FINA-29):** **Cloudflare Pages** on `main` push — see [deploy-cloudflare-pages.md](./deploy-cloudflare-pages.md).
 
-Measurement tokens are injected at **GitHub Actions build time** from repository secrets (see below), not from Cloudflare Pages.
+Until cutover completes, production may still be **GitHub Pages** (`server: GitHub.com` on `curl -sI`). After cutover, measurement tokens are injected at **Cloudflare Pages build time** (Production env vars). GitHub Actions secrets remain the source of truth when copying values into Cloudflare; `daily.yml` may still pass the same mapping for pre-push validation builds.
 
 ## Cloudflare Web Analytics
 
