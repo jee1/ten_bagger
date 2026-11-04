@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-11-03",
+  "asOfDate": "2026-11-04",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -330,6 +330,12 @@
     {
       "pickDate": "2026-11-02",
       "symbol": "SENEB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-04",
+      "symbol": "SLDE",
       "status": "pick",
       "scoreVersion": "2"
     }

@@ -1,18 +1,10 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-11-03",
-  "generatedAt": "2026-11-03T03:26:00.713010+00:00",
+  "asOfDate": "2026-11-04",
+  "generatedAt": "2026-11-04T02:25:52.208523+00:00",
   "count": 39,
   "picks": [
-    {
-      "symbol": "EVER",
-      "pickDate": "2026-08-08",
-      "horizonsNeeded": [
-        "H60"
-      ],
-      "latestHorizon": "H60"
-    },
     {
       "symbol": "HBB",
       "pickDate": "2026-08-10",
@@ -322,6 +314,15 @@
     {
       "symbol": "SENEB",
       "pickDate": "2026-11-02",
+      "horizonsNeeded": [
+        "H20",
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "SLDE",
+      "pickDate": "2026-11-04",
       "horizonsNeeded": [
         "H20",
         "H60"
