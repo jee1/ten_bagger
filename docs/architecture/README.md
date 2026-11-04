@@ -52,7 +52,7 @@ authorize weight or pick-logic changes.
 ## Daily pick publication path (summary)
 
 `GitHub Actions (06:00 KST)` → screening/scoring scripts → commit
-`content/daily/*.json` + `manifest.json` → Astro build → GitHub Pages.
+`content/daily/*.json` + `manifest.json` → Astro build → Cloudflare Pages (`main` push; FINA-29).
 
 Performance Loop **adds** ledger/performance artifacts later (#63+); it does **not**
 rewrite historical daily pick semantics by default ([ADR 0001](./adr/0001-performance-data-storage.md)).

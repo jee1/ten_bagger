@@ -3,7 +3,7 @@
 매일 하나의 **텐베거(5년 10배) 후보**를 규칙 기반으로 선정해 공개하는 정적 사이트입니다.
 
 - **DB 없음**: `content/daily/YYYY-MM-DD.json`이 기록의 원천
-- **평일 06:00 KST 시작**: GitHub Actions가 스크리닝 → JSON 커밋 → Astro 빌드 → GitHub Pages 배포
+- **평일 06:00 KST 시작**: GitHub Actions가 스크리닝 → JSON 커밋 → Astro 검증 빌드 → (컷오버 전) GitHub Pages / (컷오버 후) Cloudflare Pages가 `main` push로 배포
 - **한·미 교대**: 날짜(일) 홀수=한국, 짝수=미국
 - **없음 표시**: 복합 점수 70 미만이면 해당 일 `no_pick` (2026-10-17 기준 실제 `no_pick`은 0건, 선정 최저 점수 76.2. 사실상 매일 1위 종목 공개. 현황은 Methodology 페이지에 빌드 시 자동 집계)
 - **Score v2**: 규모·FCF·지속 성장·진입 타이밍 반영 (Methodology 참고)
@@ -107,17 +107,22 @@ Yahoo가 429/rate limit 또는 일시적 네트워크 오류를 반환하면 스
 
 시크릿이 없으면 `notify-failure` job의 Slack 스텝은 조용히 건너뜁니다 (Issue 생성은 항상 동작).
 
-## 배포 (GitHub Pages)
+## 배포
 
-프로덕션: **https://tenbagger.finnaut.com** (`SITE_URL` / `BASE_PATH=/` / `public/CNAME`)
+프로덕션: **https://tenbagger.finnaut.com** (`SITE_URL` / `BASE_PATH=/`)
 
-1. GitHub 저장소 생성 후 push
-2. **Settings → Pages → Source**: GitHub Actions
-3. **Settings → Pages → Custom domain**: `tenbagger.finnaut.com` (DNS CNAME → `jee1.github.io`)
-4. **Settings → Pages → Enforce HTTPS**: 체크 (인증서 발급 완료 후 활성화됨).
-   확인: `gh api repos/:owner/:repo/pages --jq '.https_enforced'` → `true`
-5. `.github/workflows/daily.yml`이 평일(월~금) 06:00 KST에 시작됩니다. GitHub Actions 지연으로 리포트는 보통 오전 중에 올라옵니다
-6. `workflow_dispatch`로 날짜 지정 수동 실행도 가능합니다
+**Cloudflare Pages (FINA-29, finnaut-box와 동일):** [docs/deploy-cloudflare-pages.md](docs/deploy-cloudflare-pages.md)
+
+- Build: `npm run build`, output `dist`, `NODE_VERSION=22`
+- Production env: `SITE_URL`, `BASE_PATH`, `PUBLIC_*` (표는 문서 참고)
+
+**레거시 GitHub Pages (컷오버 전):**
+
+1. **Settings → Pages → Source**: GitHub Actions
+2. **Custom domain**: `tenbagger.finnaut.com` (DNS → GitHub Pages)
+3. `.github/workflows/daily.yml` — 컷오버 PR 머지 후에는 Pages deploy job 없음; CF가 `main` push를 배포
+
+`.github/workflows/daily.yml`은 평일(월~금) 06:00 KST에 시작합니다. GitHub Actions 지연으로 리포트는 보통 오전 중에 올라옵니다. `workflow_dispatch`로 날짜 지정 수동 실행 가능.
 
 ### Paperclip 호스트 (systemd, FINA-27)
 
