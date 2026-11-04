@@ -1,0 +1,299 @@
+{
+  "date": "2026-11-05",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "461300.KQ",
+    "name": {
+      "ko": "아이스크림미디어",
+      "en": "i-Scream Media CO., LTD."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "아이스크림미디어는 Consumer Defensive 분야 Education & Training Services 기업입니다.",
+        "en": "i-Scream Media CO., LTD. operates as a digital education company in South Korea and internationally."
+      },
+      "sector": {
+        "ko": "Consumer Defensive",
+        "en": "Consumer Defensive"
+      },
+      "industry": {
+        "ko": "Education & Training Services",
+        "en": "Education & Training Services"
+      }
+    }
+  },
+  "scores": {
+    "composite": 76.9,
+    "size": 100.0,
+    "growth": 73.3,
+    "valuation": 65.8,
+    "entry": 75.0,
+    "momentum": 57.1,
+    "quality": 87.7,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "아이스크림미디어(461300.KQ)는 v2 복합 점수 76.9로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "i-Scream Media CO., LTD. (461300.KQ) cleared the 70.0 threshold with v2 composite 76.9; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 19.3% / 이익 100.0% (혼합 55.62%) — 지속 가능 성장 점수 73.3.",
+      "en": "Revenue 19.3% / earnings 100.0% (blended 55.62%) — sustainable growth score 73.3."
+    },
+    "valuation": {
+      "ko": "PER 데이터 없음, PEG 데이터 없음, FCF수익률 15.13%, PBR 데이터 없음 — 밸류 점수 65.8.",
+      "en": "P/E No data, PEG No data, FCF yield 15.13%, P/B No data — valuation score 65.8."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -1.18% — 보조 모멘텀 점수 57.1.",
+      "en": "6M return -1.18% — auxiliary momentum score 57.1."
+    },
+    "quality": {
+      "ko": "ROE 33.99%, ROA 17.01%, FCF/순이익 0.45 — 품질 점수 87.7.",
+      "en": "ROE 33.99%, ROA 17.01%, FCF/net income 0.45 — quality score 87.7."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 216324390912 기준 규모 점수 100.0.",
+      "en": "Market cap 216324390912 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 54.9%, 52주 고점 대비 -14.11% — 진입 점수 75.0.",
+      "en": "12M price range 54.9%, -14.11% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-11-05T06:27:27+09:00",
+    "candidatesScreened": 1849,
+    "excludedRecent": 23,
+    "skippedMarketCap": 908,
+    "skippedRedFlags": 339,
+    "noData": 0,
+    "errors": 4
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "461300.KQ",
+      "name": {
+        "ko": "아이스크림미디어",
+        "en": "i-Scream Media CO., LTD."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.9,
+        "size": 100.0,
+        "growth": 73.3,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 57.1,
+        "quality": 87.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "950190.KQ",
+      "name": {
+        "ko": "고스트스튜디오",
+        "en": "Ghost Studio Co., Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.2,
+        "size": 100.0,
+        "growth": 96.5,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 60.5,
+        "quality": 59.4,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "052790.KQ",
+      "name": {
+        "ko": "액토즈소프트",
+        "en": "Actoz Soft Co.,Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 76.0,
+        "size": 100.0,
+        "growth": 85.8,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 50.5,
+        "quality": 74.1,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "214320.KS",
+      "name": {
+        "ko": "이노션",
+        "en": "Innocean Worldwide Inc."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 75.9,
+        "size": 92.0,
+        "growth": 98.9,
+        "valuation": 73.5,
+        "entry": 68.0,
+        "momentum": 52.0,
+        "quality": 59.6,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "040420.KQ",
+      "name": {
+        "ko": "정상제이엘에스",
+        "en": "JLS Co.,Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 75.7,
+        "size": 100.0,
+        "growth": 95.1,
+        "valuation": 73.5,
+        "entry": 64.5,
+        "momentum": 55.3,
+        "quality": 56.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-04T21:27:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
