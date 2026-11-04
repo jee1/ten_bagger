@@ -49,7 +49,7 @@ GitHub Actions secret 이름 → Cloudflare **Production** 변수 이름. 값은
 1. Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
 2. GitHub 앱으로 `jee1/ten_bagger` 연결.
 3. 위 빌드 표대로 설정 후 **Save and Deploy**.
-4. 첫 빌드 green 확인. Preview URL (`*.pages.dev`)에서 홈·최근 daily 페이지 로드 확인.
+4. 첫 빌드 green 확인. Preview URL은 프로젝트 이름에 따라 `*.pages.dev` 호스트가 정해진다 (예: `ten-bagger.pages.dev`는 **다른 계정/프로젝트**가 이미 쓸 수 있음). Cloudflare가 할당한 **실제 Preview URL**을 프로젝트 Overview에서 확인한 뒤 검증한다.
 
 ### 2. 측정·SEO 확인 (Pages 빌드)
 
@@ -76,7 +76,9 @@ GitHub Pages였을 때: `server: GitHub.com`.
 
 ### 4. GitHub Pages 배포 중단 (프로덕션이 CF일 때만)
 
-1. **머지:** `fina-29` PR (workflow에서 `upload-pages-artifact`·`deploy` job 제거, `pages` permission 정리).
+DNS 전환 후 `server: cloudflare` 확인 **전에는** `daily.yml` / `ledger.yml`의 deploy job을 제거하는 PR을 **머지하지 않는다** (머지 시 GitHub Pages 갱신만 멈춤).
+
+1. **머지:** 별도 PR로 workflow에서 `upload-pages-artifact`·`deploy` job 제거 (`docs/plans/fina-29-cutover-workflows.patch.md` 참고).
 2. GitHub **Settings → Pages**: custom domain 해제 또는 Pages 비활성화 (선택, DNS가 CF면 트래픽 없음).
 3. `public/CNAME`은 Astro root 배포에 불필요. CF 전용이면 후속 PR에서 제거 검토 (GitHub Pages 복귀 계획 없을 때).
 
