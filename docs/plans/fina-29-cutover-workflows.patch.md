@@ -15,4 +15,4 @@ Apply only when `curl -sI https://tenbagger.finnaut.com` shows `server: cloudfla
 - Same: remove `pages`/`id-token` permissions, artifact upload, `deploy` job.
 - Fix `notify-failure` `needs: [regenerate-ledger]` only.
 
-The PR branch `fina-29-cloudflare-pages` documents cutover; **apply the workflow edits below only after** `curl -sI https://tenbagger.finnaut.com` shows `server: cloudflare` (follow-up commit or PR).
+The PR `#248` branch is **docs only**. Apply workflow edits in a **follow-up PR after** `curl -sI https://tenbagger.finnaut.com` shows `server: cloudflare`.
