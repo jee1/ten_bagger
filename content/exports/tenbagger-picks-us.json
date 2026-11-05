@@ -1,10 +1,26 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-11-04",
-  "generatedAt": "2026-11-04T02:25:52.208523+00:00",
-  "count": 39,
+  "asOfDate": "2026-10-30",
+  "generatedAt": "2026-11-05T01:34:43.025733+00:00",
+  "count": 40,
   "picks": [
+    {
+      "symbol": "CBL",
+      "pickDate": "2026-08-06",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
+    {
+      "symbol": "EVER",
+      "pickDate": "2026-08-08",
+      "horizonsNeeded": [
+        "H60"
+      ],
+      "latestHorizon": "H60"
+    },
     {
       "symbol": "HBB",
       "pickDate": "2026-08-10",
@@ -209,6 +225,7 @@
       "symbol": "TILE",
       "pickDate": "2026-10-02",
       "horizonsNeeded": [
+        "H20",
         "H60"
       ],
       "latestHorizon": "H60"
@@ -217,6 +234,7 @@
       "symbol": "UVE",
       "pickDate": "2026-10-04",
       "horizonsNeeded": [
+        "H20",
         "H60"
       ],
       "latestHorizon": "H60"
@@ -312,17 +330,8 @@
       "latestHorizon": "H60"
     },
     {
-      "symbol": "SENEB",
-      "pickDate": "2026-11-02",
-      "horizonsNeeded": [
-        "H20",
-        "H60"
-      ],
-      "latestHorizon": "H60"
-    },
-    {
-      "symbol": "SLDE",
-      "pickDate": "2026-11-04",
+      "symbol": "UFCS",
+      "pickDate": "2026-10-30",
       "horizonsNeeded": [
         "H20",
         "H60"
