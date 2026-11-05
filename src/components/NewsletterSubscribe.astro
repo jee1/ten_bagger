@@ -1,0 +1,117 @@
+---
+import { label, type Lang } from '../lib/i18n';
+import { resolveNewsletterFormConfig } from '../lib/newsletterSubscribe';
+
+interface Props {
+  lang?: Lang;
+  sourceSite?: string;
+}
+
+const { lang = 'ko', sourceSite = 'tenbagger' } = Astro.props;
+
+const config = resolveNewsletterFormConfig(import.meta.env, sourceSite);
+---
+
+{
+  config ? (
+    <section class="newsletter-subscribe" aria-labelledby="newsletter-heading">
+      <h2 id="newsletter-heading" data-i18n="newsletterHeading">
+        {label('newsletterHeading', lang)}
+      </h2>
+      <p class="newsletter-lede" data-i18n="newsletterLede">
+        {label('newsletterLede', lang)}
+      </p>
+      <form
+        class="newsletter-form"
+        method="post"
+        action={config.actionUrl}
+        target="_blank"
+      >
+        {config.hiddenFields.map((field) => (
+          <input type="hidden" name={field.name} value={field.value} />
+        ))}
+        <label class="newsletter-field">
+          <span class="visually-hidden" data-i18n="newsletterEmailLabel">
+            {label('newsletterEmailLabel', lang)}
+          </span>
+          <input
+            type="email"
+            name="email"
+            required
+            autocomplete="email"
+            placeholder={label('newsletterEmailPlaceholder', lang)}
+          />
+        </label>
+        <button type="submit" data-i18n="newsletterSubmit">
+          {label('newsletterSubmit', lang)}
+        </button>
+      </form>
+      <p class="newsletter-note" data-i18n="newsletterConfirmNote">
+        {label('newsletterConfirmNote', lang)}
+      </p>
+    </section>
+  ) : null
+}
+
+<style>
+  .newsletter-subscribe {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .newsletter-subscribe h2 {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-lede,
+  .newsletter-note {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: stretch;
+    max-width: 28rem;
+  }
+
+  .newsletter-field {
+    flex: 1 1 12rem;
+  }
+
+  .newsletter-field input {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+  }
+
+  .newsletter-form button {
+    padding: 0.55rem 1rem;
+    border-radius: var(--radius);
+    border: none;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>
