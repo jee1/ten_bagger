@@ -1,5 +1,5 @@
 yfinance==1.7.0
 finance-datareader==0.9.202
-pytest==9.0.3
+pytest==9.2.0
 jsonschema==4.25.0
 typesafe-sdk==0.7.5
