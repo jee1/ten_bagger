@@ -1,0 +1,299 @@
+{
+  "date": "2026-11-10",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "HCI",
+    "name": {
+      "ko": "Hci Group Inc",
+      "en": "HCI Group, Inc."
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Hci Group Inc는 Financial Services 분야 Insurance - Property & Casualty 기업입니다.",
+        "en": "HCI Group, Inc., together with its subsidiaries, engages in the property and casualty insurance business in the United States. The company operates through Insurance Operations, Exzeo, Reciprocal Exchange Operations, and Real Estate segments."
+      },
+      "sector": {
+        "ko": "Financial Services",
+        "en": "Financial Services"
+      },
+      "industry": {
+        "ko": "Insurance - Property & Casualty",
+        "en": "Insurance - Property & Casualty"
+      }
+    }
+  },
+  "scores": {
+    "composite": 83.7,
+    "size": 83.0,
+    "growth": 91.5,
+    "valuation": 88.0,
+    "entry": 57.5,
+    "momentum": 69.3,
+    "quality": 91.4,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Hci Group Inc(HCI)는 v2 복합 점수 83.7로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "HCI Group, Inc. (HCI) cleared the 70.0 threshold with v2 composite 83.7; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 13.2% / 이익 31.7% (혼합 21.53%) — 지속 가능 성장 점수 91.5.",
+      "en": "Revenue 13.2% / earnings 31.7% (blended 21.53%) — sustainable growth score 91.5."
+    },
+    "valuation": {
+      "ko": "PER 7.53, PEG 0.97, FCF수익률 21.06%, PBR 2.07 — 밸류 점수 88.0.",
+      "en": "P/E 7.53, PEG 0.97, FCF yield 21.06%, P/B 2.07 — valuation score 88.0."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 22.15% — 보조 모멘텀 점수 69.3.",
+      "en": "6M return 22.15% — auxiliary momentum score 69.3."
+    },
+    "quality": {
+      "ko": "ROE 34.8%, ROA 12.13%, FCF/순이익 1.54 — 품질 점수 91.4.",
+      "en": "ROE 34.8%, ROA 12.13%, FCF/net income 1.54 — quality score 91.4."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 2315214592 기준 규모 점수 83.0.",
+      "en": "Market cap 2315214592 — size score 83.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 65.02%, 52주 고점 대비 -9.88% — 진입 점수 57.5.",
+      "en": "12M price range 65.02%, -9.88% from 52W high — entry score 57.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-11-10T07:15:05+09:00",
+    "candidatesScreened": 6244,
+    "excludedRecent": 23,
+    "skippedMarketCap": 2046,
+    "skippedRedFlags": 951,
+    "noData": 0,
+    "errors": 72
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "HCI",
+      "name": {
+        "ko": "Hci Group Inc",
+        "en": "HCI Group, Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.7,
+        "size": 83.0,
+        "growth": 91.5,
+        "valuation": 88.0,
+        "entry": 57.5,
+        "momentum": 69.3,
+        "quality": 91.4,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "KINS",
+      "name": {
+        "ko": "Kingstone Companies Inc",
+        "en": "Kingstone Companies, Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 83.4,
+        "size": 100.0,
+        "growth": 90.9,
+        "valuation": 80.8,
+        "entry": 36.5,
+        "momentum": 83.6,
+        "quality": 90.1,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "HBB",
+      "name": {
+        "ko": "Hamilton Beach Brands Holding Company",
+        "en": "Hamilton Beach Brands Holding Company"
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 81.9,
+        "size": 100.0,
+        "growth": 81.9,
+        "valuation": 83.5,
+        "entry": 57.5,
+        "momentum": 94.0,
+        "quality": 72.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "MAKO",
+      "name": {
+        "ko": "Mako Mining Corp",
+        "en": "Mako Mining Corp."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 81.1,
+        "size": 100.0,
+        "growth": 79.6,
+        "valuation": 72.9,
+        "entry": 75.0,
+        "momentum": 58.9,
+        "quality": 93.0,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "ADMA",
+      "name": {
+        "ko": "ADMA Biologics  Inc.",
+        "en": "ADMA Biologics, Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.9,
+        "size": 83.0,
+        "growth": 93.8,
+        "valuation": 63.9,
+        "entry": 66.0,
+        "momentum": 84.8,
+        "quality": 93.0,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-09T22:15:05+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
