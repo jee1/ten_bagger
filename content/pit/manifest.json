@@ -1,7 +1,26 @@
 {
   "schemaVersion": 1,
-  "lastUpdated": "2026-11-10T07:15:10+09:00",
+  "lastUpdated": "2026-11-11T06:27:24+09:00",
   "entries": [
+    {
+      "date": "2026-11-11",
+      "market": "KR",
+      "fundamentals": {
+        "path": "fundamentals/KR/2026-11-11.jsonl.gz",
+        "sha256": "a1ed14750edf0ffe3c9e48a1626fba80461b9cd33198b83bdb9f1a007969e994",
+        "bytes": 145123,
+        "rowCount": 1846,
+        "knownAtMin": "2026-11-11T06:07:23+09:00",
+        "knownAtMax": "2026-11-11T06:27:17+09:00"
+      },
+      "universe": {
+        "path": "universe/KR/2026-11-11.json.gz",
+        "sha256": "00da9d004c576b00821882d264b51840784a9575fefa018e99109e6f1c56c21d",
+        "bytes": 7707,
+        "symbolCount": 2768,
+        "builtAt": "2026-11-11T06:07:07+09:00"
+      }
+    },
     {
       "date": "2026-11-10",
       "market": "US",
