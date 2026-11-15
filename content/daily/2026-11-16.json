@@ -1,0 +1,299 @@
+{
+  "date": "2026-11-16",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "HBB",
+    "name": {
+      "ko": "Hamilton Beach Brands Holding Company",
+      "en": "Hamilton Beach Brands Holding Company"
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "Hamilton Beach Brands Holding Company는 Consumer Cyclical 분야 Furnishings, Fixtures & Appliances 기업입니다.",
+        "en": "Hamilton Beach Brands Holding Company, together with its subsidiaries, designs, markets, and distributes small electric household and specialty housewares appliances in the United States and internationally."
+      },
+      "sector": {
+        "ko": "Consumer Cyclical",
+        "en": "Consumer Cyclical"
+      },
+      "industry": {
+        "ko": "Furnishings, Fixtures & Appliances",
+        "en": "Furnishings, Fixtures & Appliances"
+      }
+    }
+  },
+  "scores": {
+    "composite": 82.6,
+    "size": 100.0,
+    "growth": 81.9,
+    "valuation": 83.5,
+    "entry": 57.5,
+    "momentum": 97.4,
+    "quality": 74.2,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "Hamilton Beach Brands Holding Company(HBB)는 v2 복합 점수 82.6로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "Hamilton Beach Brands Holding Company (HBB) cleared the 70.0 threshold with v2 composite 82.6; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 5.6% / 이익 100.0% (혼합 48.08%) — 지속 가능 성장 점수 81.9.",
+      "en": "Revenue 5.6% / earnings 100.0% (blended 48.08%) — sustainable growth score 81.9."
+    },
+    "valuation": {
+      "ko": "PER 7.1, PEG 데이터 없음, FCF수익률 15.77%, PBR 1.9 — 밸류 점수 83.5.",
+      "en": "P/E 7.1, PEG No data, FCF yield 15.77%, P/B 1.9 — valuation score 83.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 76.25% — 보조 모멘텀 점수 97.4.",
+      "en": "6M return 76.25% — auxiliary momentum score 97.4."
+    },
+    "quality": {
+      "ko": "ROE 30.84%, ROA 6.96%, FCF/순이익 1.11 — 품질 점수 74.2.",
+      "en": "ROE 30.84%, ROA 6.96%, FCF/net income 1.11 — quality score 74.2."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 418763296 기준 규모 점수 100.0.",
+      "en": "Market cap 418763296 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 69.73%, 52주 고점 대비 -19.75% — 진입 점수 57.5.",
+      "en": "12M price range 69.73%, -19.75% from 52W high — entry score 57.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-11-16T07:15:35+09:00",
+    "candidatesScreened": 6240,
+    "excludedRecent": 21,
+    "skippedMarketCap": 2086,
+    "skippedRedFlags": 949,
+    "noData": 0,
+    "errors": 72
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "HBB",
+      "name": {
+        "ko": "Hamilton Beach Brands Holding Company",
+        "en": "Hamilton Beach Brands Holding Company"
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 82.6,
+        "size": 100.0,
+        "growth": 81.9,
+        "valuation": 83.5,
+        "entry": 57.5,
+        "momentum": 97.4,
+        "quality": 74.2,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:34+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "ZVRA",
+      "name": {
+        "ko": "Zevra Therapeutics  Inc.",
+        "en": "Zevra Therapeutics, Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 82.2,
+        "size": 92.0,
+        "growth": 94.7,
+        "valuation": 80.8,
+        "entry": 59.0,
+        "momentum": 51.0,
+        "quality": 91.2,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "JILL",
+      "name": {
+        "ko": "JJill Inc",
+        "en": "J.Jill, Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.8,
+        "size": 100.0,
+        "growth": 97.7,
+        "valuation": 80.2,
+        "entry": 47.0,
+        "momentum": 100.0,
+        "quality": 57.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "HNST",
+      "name": {
+        "ko": "The Honest Company  Inc.",
+        "en": "The Honest Company, Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.7,
+        "size": 92.0,
+        "growth": 85.0,
+        "valuation": 83.5,
+        "entry": 57.5,
+        "momentum": 85.5,
+        "quality": 73.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "PGY",
+      "name": {
+        "ko": "Pagaya Technologies Ltd.",
+        "en": "Pagaya Technologies Ltd."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.0,
+        "size": 92.0,
+        "growth": 78.4,
+        "valuation": 90.7,
+        "entry": 66.0,
+        "momentum": 73.9,
+        "quality": 69.1,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-15T22:15:35+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
