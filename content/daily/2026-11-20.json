@@ -1,0 +1,299 @@
+{
+  "date": "2026-11-20",
+  "market": "US",
+  "status": "pick",
+  "stock": {
+    "symbol": "JILL",
+    "name": {
+      "ko": "JJill Inc",
+      "en": "J.Jill, Inc."
+    },
+    "exchange": "NYSE",
+    "currency": "USD",
+    "profile": {
+      "overview": {
+        "ko": "JJill Inc는 Consumer Cyclical 분야 Apparel Retail 기업입니다.",
+        "en": "J.Jill, Inc. operates as an omnichannel retailer for women's apparel in the United States. It offers apparel, footwear, and accessories, such as jewelry, bags, belts, shoes, and scarves."
+      },
+      "sector": {
+        "ko": "Consumer Cyclical",
+        "en": "Consumer Cyclical"
+      },
+      "industry": {
+        "ko": "Apparel Retail",
+        "en": "Apparel Retail"
+      }
+    }
+  },
+  "scores": {
+    "composite": 82.2,
+    "size": 100.0,
+    "growth": 97.7,
+    "valuation": 83.5,
+    "entry": 57.5,
+    "momentum": 95.3,
+    "quality": 57.7,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "JJill Inc(JILL)는 v2 복합 점수 82.2로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "J.Jill, Inc. (JILL) cleared the 70.0 threshold with v2 composite 82.2; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 0.5% / 이익 61.0% (혼합 27.72%) — 지속 가능 성장 점수 97.7.",
+      "en": "Revenue 0.5% / earnings 61.0% (blended 27.72%) — sustainable growth score 97.7."
+    },
+    "valuation": {
+      "ko": "PER 11.77, PEG 데이터 없음, FCF수익률 10.49%, PBR 2.25 — 밸류 점수 83.5.",
+      "en": "P/E 11.77, PEG No data, FCF yield 10.49%, P/B 2.25 — valuation score 83.5."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 72.31% — 보조 모멘텀 점수 95.3.",
+      "en": "6M return 72.31% — auxiliary momentum score 95.3."
+    },
+    "quality": {
+      "ko": "ROE 20.78%, ROA 5.0%, FCF/순이익 1.22 — 품질 점수 57.7.",
+      "en": "ROE 20.78%, ROA 5.0%, FCF/net income 1.22 — quality score 57.7."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 314946496 기준 규모 점수 100.0.",
+      "en": "Market cap 314946496 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 73.98%, 52주 고점 대비 -14.69% — 진입 점수 57.5.",
+      "en": "12M price range 73.98%, -14.69% from 52W high — entry score 57.5."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-11-20T07:14:27+09:00",
+    "candidatesScreened": 6242,
+    "excludedRecent": 22,
+    "skippedMarketCap": 2139,
+    "skippedRedFlags": 917,
+    "noData": 0,
+    "errors": 70
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "JILL",
+      "name": {
+        "ko": "JJill Inc",
+        "en": "J.Jill, Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 82.2,
+        "size": 100.0,
+        "growth": 97.7,
+        "valuation": 83.5,
+        "entry": 57.5,
+        "momentum": 95.3,
+        "quality": 57.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "TXR",
+      "name": {
+        "ko": "Torex Resources Inc.",
+        "en": "Torex Resources Inc."
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 81.9,
+        "size": 83.0,
+        "growth": 99.3,
+        "valuation": 83.5,
+        "entry": 59.0,
+        "momentum": 58.9,
+        "quality": 84.5,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "YB",
+      "name": {
+        "ko": "Yuanbao Inc ADR",
+        "en": "Yuanbao Inc."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 81.2,
+        "size": 100.0,
+        "growth": 98.9,
+        "valuation": 67.7,
+        "entry": 59.0,
+        "momentum": 54.7,
+        "quality": 90.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "ETG",
+      "name": {
+        "ko": "Eaton Vance Tax Advantaged Global Dividend Income Closed Fund",
+        "en": "Eaton Vance Tax-Advantaged Global Dividend Income Fund"
+      },
+      "exchange": "NYSE",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.5,
+        "size": 100.0,
+        "growth": 85.0,
+        "valuation": 74.7,
+        "entry": 75.0,
+        "momentum": 56.7,
+        "quality": 83.4,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "ARLP",
+      "name": {
+        "ko": "Alliance Resource Partners Units",
+        "en": "Alliance Resource Partners, L.P."
+      },
+      "exchange": "NASDAQ",
+      "currency": "USD",
+      "scores": {
+        "composite": 80.3,
+        "size": 83.0,
+        "growth": 94.0,
+        "valuation": 90.7,
+        "entry": 75.0,
+        "momentum": 57.4,
+        "quality": 65.6,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-19T22:14:27+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
