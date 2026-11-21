@@ -1,4 +1,4 @@
-yfinance==1.7.0
+yfinance==1.8.0
 finance-datareader==0.9.202
 pytest==9.2.0
 jsonschema==4.25.0
