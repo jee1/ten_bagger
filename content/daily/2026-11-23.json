@@ -1,0 +1,299 @@
+{
+  "date": "2026-11-23",
+  "market": "KR",
+  "status": "pick",
+  "stock": {
+    "symbol": "340570.KQ",
+    "name": {
+      "ko": "티앤엘",
+      "en": "T&L Co., Ltd."
+    },
+    "exchange": "KOSDAQ",
+    "currency": "KRW",
+    "profile": {
+      "overview": {
+        "ko": "티앤엘는 Healthcare 분야 Medical Devices 기업입니다.",
+        "en": "T&L Co., Ltd. engages in the manufacture and sale of medical and polymer material products in South Korea."
+      },
+      "sector": {
+        "ko": "Healthcare",
+        "en": "Healthcare"
+      },
+      "industry": {
+        "ko": "Medical Devices",
+        "en": "Medical Devices"
+      }
+    }
+  },
+  "scores": {
+    "composite": 78.3,
+    "size": 100.0,
+    "growth": 93.2,
+    "valuation": 64.7,
+    "entry": 75.0,
+    "momentum": 51.7,
+    "quality": 79.2,
+    "threshold": 70.0,
+    "version": 2
+  },
+  "reasoning": {
+    "summary": {
+      "ko": "티앤엘(340570.KQ)는 v2 복합 점수 78.3로 임계 70.0를 상회했습니다. 소형·가치·현금·진입 타이밍이 균형을 이룹니다.",
+      "en": "T&L Co., Ltd. (340570.KQ) cleared the 70.0 threshold with v2 composite 78.3; size, value, cash, and entry align."
+    },
+    "growth": {
+      "ko": "매출 29.2% / 이익 15.8% (혼합 23.17%) — 지속 가능 성장 점수 93.2.",
+      "en": "Revenue 29.2% / earnings 15.8% (blended 23.17%) — sustainable growth score 93.2."
+    },
+    "valuation": {
+      "ko": "PER 6.39, PEG 데이터 없음, FCF수익률 3.99%, PBR 데이터 없음 — 밸류 점수 64.7.",
+      "en": "P/E 6.39, PEG No data, FCF yield 3.99%, P/B No data — valuation score 64.7."
+    },
+    "momentum": {
+      "ko": "6개월 수익률 -11.69% — 보조 모멘텀 점수 51.7.",
+      "en": "6M return -11.69% — auxiliary momentum score 51.7."
+    },
+    "quality": {
+      "ko": "ROE 24.18%, ROA 18.06%, FCF/순이익 0.32 — 품질 점수 79.2.",
+      "en": "ROE 24.18%, ROA 18.06%, FCF/net income 0.32 — quality score 79.2."
+    },
+    "risks": [
+      {
+        "ko": "실적 가이던스 하향 시 성장 프리미엄 축소 가능",
+        "en": "Growth premium may compress on guidance cuts"
+      },
+      {
+        "ko": "글로벌 금리·유동성 변화에 따른 밸류에이션 리레이팅",
+        "en": "Valuation re-rating risk from rates and liquidity"
+      },
+      {
+        "ko": "5년 10배는 목표 시나리오이며 달성을 보장하지 않음",
+        "en": "10x in five years is a scenario, not a guarantee"
+      }
+    ],
+    "size": {
+      "ko": "시가총액 420138156032 기준 규모 점수 100.0.",
+      "en": "Market cap 420138156032 — size score 100.0."
+    },
+    "entry": {
+      "ko": "12개월 가격대 41.56%, 52주 고점 대비 -21.04% — 진입 점수 75.0.",
+      "en": "12M price range 41.56%, -21.04% from 52W high — entry score 75.0."
+    }
+  },
+  "meta": {
+    "generatedAt": "2026-11-23T06:27:12+09:00",
+    "candidatesScreened": 1797,
+    "excludedRecent": 20,
+    "skippedMarketCap": 965,
+    "skippedRedFlags": 332,
+    "noData": 0,
+    "errors": 4
+  },
+  "topCandidates": [
+    {
+      "rank": 1,
+      "symbol": "340570.KQ",
+      "name": {
+        "ko": "티앤엘",
+        "en": "T&L Co., Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 78.3,
+        "size": 100.0,
+        "growth": 93.2,
+        "valuation": 64.7,
+        "entry": 75.0,
+        "momentum": 51.7,
+        "quality": 79.2,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 2,
+      "symbol": "404990.KS",
+      "name": {
+        "ko": "신한서부티엔디리츠",
+        "en": "Shinhan Seobu T&D REIT Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 77.5,
+        "size": 100.0,
+        "growth": 96.6,
+        "valuation": 65.8,
+        "entry": 68.0,
+        "momentum": 56.2,
+        "quality": 71.4,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 3,
+      "symbol": "483650.KS",
+      "name": {
+        "ko": "달바글로벌",
+        "en": "d'Alba Global Co., Ltd."
+      },
+      "exchange": "KOSPI",
+      "currency": "KRW",
+      "scores": {
+        "composite": 77.3,
+        "size": 92.0,
+        "growth": 94.4,
+        "valuation": 70.0,
+        "entry": 59.0,
+        "momentum": 35.5,
+        "quality": 88.2,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 4,
+      "symbol": "053610.KQ",
+      "name": {
+        "ko": "프로텍",
+        "en": "Protec Co., Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 75.9,
+        "size": 100.0,
+        "growth": 98.1,
+        "valuation": 64.7,
+        "entry": 66.0,
+        "momentum": 41.8,
+        "quality": 71.7,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    },
+    {
+      "rank": 5,
+      "symbol": "950190.KQ",
+      "name": {
+        "ko": "고스트스튜디오",
+        "en": "Ghost Studio Co., Ltd."
+      },
+      "exchange": "KOSDAQ",
+      "currency": "KRW",
+      "scores": {
+        "composite": 75.8,
+        "size": 100.0,
+        "growth": 96.5,
+        "valuation": 65.8,
+        "entry": 75.0,
+        "momentum": 65.0,
+        "quality": 55.1,
+        "version": 2
+      },
+      "riskClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "moatClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      },
+      "megatrendClassification": {
+        "model": "jev-1.13.0",
+        "sdkVersion": "0.7.1",
+        "inputAt": "2026-11-22T21:27:12+00:00",
+        "fallback": true,
+        "fallbackReason": "missing_api_key"
+      }
+    }
+  ]
+}
