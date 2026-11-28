@@ -15,7 +15,9 @@ def test_daily_chains_ledger_after_site_publish() -> None:
     assert DAILY.count("gh workflow run ledger.yml") == 1
     assert "--ref main" in DAILY
     assert "asOfDate=${AS_OF}" in DAILY or "asOfDate=${AS_OF}" in DAILY
-    assert "AS_OF: ${{ needs.gate.outputs.date }}" in DAILY
+    # Backfill targets must not move the ledger back in time (2026-11-05 regress).
+    assert "AS_OF: ${{ needs.gate.outputs.date }}" not in DAILY
+    assert "AS_OF=$(TZ=Asia/Seoul date +%F)" in DAILY
     assert "gh run list" not in DAILY
     assert "gh run watch" not in DAILY
     assert "MARKER=" not in DAILY
@@ -39,6 +41,11 @@ def test_daily_never_writes_ledger_or_performance() -> None:
     assert "git add content/ledger/" not in DAILY
     assert "git add content/performance/" not in DAILY
     assert "Must not write content/ledger/** or content/performance/**" in DAILY
+
+
+def test_daily_is_manual_fallback_only() -> None:
+    assert "schedule:" not in DAILY
+    assert "workflow_dispatch:" in DAILY
 
 
 def test_ledger_stays_manual_dispatch_only() -> None:

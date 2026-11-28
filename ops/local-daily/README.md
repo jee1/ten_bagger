@@ -1,6 +1,6 @@
-# Local daily runner (Paperclip / systemd)
+# Local daily runner (main PC / systemd)
 
-GitHub Actions 스케줄 지연을 피하려고 **Paperclip 호스트**에서 평일 06:07 KST에 `generate_daily.py`만 돌리고 `content/`만 push합니다. Astro 빌드와 Pages 배포는 저장소의 `daily.yml`이 담당합니다.
+GitHub Actions 스케줄 지연을 피하려고 메인 PC 에서 평일 06:07 KST 에 daily JSON 을 만들고, 이어 ledger, performance, exports 를 다시 만들어 `content/` 를 push 합니다. 이 타이머가 주 실행입니다. `daily.yml` 은 스케줄 없이 수동 실행(workflow_dispatch)만 남겼습니다. 사이트 빌드와 배포는 Cloudflare Pages 가 main push 를 받아 합니다.
 
 ## 경로 (기본값)
 
@@ -37,7 +37,7 @@ chmod 600 ~/.config/ten_bagger/daily.env
 
 ```bash
 ~/git/ten_bagger-daily/ops/local-daily/ten-bagger-daily.sh
-# 또는 특정 날짜 (gate 우회 없음 — origin/main에 파일 있으면 skip):
+# 또는 특정 날짜 (gate 우회 없음 — origin/main에 파일 있으면 skip). 주말에는 날짜를 꼭 넘깁니다:
 # TEN_BAGGER_FORCE=1 ~/git/ten_bagger-daily/ops/local-daily/ten-bagger-daily.sh 2026-10-30
 ```
 
@@ -45,7 +45,7 @@ chmod 600 ~/.config/ten_bagger/daily.env
 
 ## 4. Gate (CI와 동일)
 
-스크립트는 **오늘(KST) `content/daily/<날짜>.json`이 이미 `origin/main`에 있으면** 생성·push 없이 exit 0 합니다. `.github/workflows/daily.yml`의 `gate` job과 같은 조건입니다.
+스크립트는 **오늘(KST) `content/daily/<날짜>.json`이 이미 `origin/main`에 있으면** daily 생성을 건너뜁니다. `.github/workflows/daily.yml`의 `gate` job과 같은 조건입니다.
 
 확인:
 
@@ -55,7 +55,7 @@ cd ~/git/ten_bagger-daily && git fetch origin main
 git cat-file -e "origin/main:content/daily/${TARGET}.json" && echo "would skip" || echo "would run"
 ```
 
-저장소 cron(06:07 KST fallback)은 그대로 두면, systemd가 먼저 push한 날에는 Actions `gate`가 skip 합니다.
+daily 가 이미 있어도 ledger 단계는 따로 판단합니다(아래 7).
 
 ## 5. systemd user timer (PR 머지 후 활성화)
 
@@ -80,11 +80,16 @@ journalctl --user -u ten-bagger-daily.service -n 80 --no-pager
 
 ## 7. push 흐름
 
-1. `git fetch` 후 gate 검사  
-2. `git pull --ff-only origin main`  
-3. `build_universe.py` → `generate_daily.py` → (선택) `pit_snapshot.py` → manifest/validate  
-4. `content/` commit  
-5. **`git pull --rebase origin main`** — 실패 시 종료  
-6. `git push origin main`
+1. `git fetch`, `git pull --ff-only origin main`
+2. daily 가 없으면 `build_universe.py`, `generate_daily.py`, (선택) `pit_snapshot.py`, manifest/validate, `content/` commit
+3. 앞선 commit 을 `git pull --rebase` 후 push. ledger 가 실패해도 daily 는 먼저 나갑니다.
+4. ledger: `content/ledger/{KR,US}.json` 중 오래된 `asOfDate` 가 이번 asOfDate(기본은 대상 날짜)보다 오래됐을 때만 `regenerate_ledger.py`, manifest/validate, `export_picks.py` 를 돌리고 `content/ledger`, `content/performance`, `content/exports` 를 commit, push 합니다.
+   - 오래된 날짜로 backfill 해도 ledger 를 과거로 되돌리지 않습니다(2026-11-05 에 10-30 backfill 이 ledger 를 되돌린 일).
+   - 같은 날짜로 다시 만들려면 `TEN_BAGGER_FORCE_LEDGER=1`, 날짜를 정하려면 `TEN_BAGGER_AS_OF=YYYY-MM-DD`.
+   - 금요일 edge baseline(`edge_baseline.py`)은 돌리지 않습니다. 필요하면 `ledger.yml` 을 수동 실행합니다.
 
-GitHub push 권한은 호스트에 설정된 `git`/`gh` 자격(예: Paperclip runner용 SSH 또는 credential helper)에 의존합니다.
+## 8. 실패 알림
+
+0 이 아닌 코드로 끝나면 `orca orchestration send --to bot:오르카 --type status --subject 'ten_bagger 매일 실행 실패'` 를 보냅니다. 본문은 대상 날짜, 단계(sync, deps, daily, push, ledger), 종료 코드, 스크립트의 오류 문구뿐입니다. env 값은 넣지 않습니다. CLI 경로는 `TEN_BAGGER_ORCA_BIN`, 보내는 이는 `TEN_BAGGER_NOTIFY_FROM`(기본 `bot:ten-bagger-daily`)으로 바꿉니다.
+
+GitHub push 권한은 호스트에 설정된 `git`/`gh` 자격(예: SSH 또는 credential helper)에 의존합니다.
