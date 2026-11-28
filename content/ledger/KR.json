@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "KR",
-  "asOfDate": "2026-10-30",
+  "asOfDate": "2026-11-27",
   "entries": [
     {
       "pickDate": "2026-07-03",
@@ -348,6 +348,66 @@
     {
       "pickDate": "2026-10-29",
       "symbol": "100030.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-03",
+      "symbol": "211050.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-05",
+      "symbol": "461300.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-09",
+      "symbol": "260970.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-11",
+      "symbol": "143240.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-13",
+      "symbol": "134380.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-17",
+      "symbol": "000240.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-19",
+      "symbol": "472850.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-23",
+      "symbol": "340570.KQ",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-25",
+      "symbol": "483650.KS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-27",
+      "symbol": "068930.KQ",
       "status": "pick",
       "scoreVersion": "2"
     }

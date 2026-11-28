@@ -1,7 +1,7 @@
 {
   "schemaVersion": "0.1.0",
   "market": "US",
-  "asOfDate": "2026-10-30",
+  "asOfDate": "2026-11-27",
   "entries": [
     {
       "pickDate": "2026-07-04",
@@ -330,6 +330,66 @@
     {
       "pickDate": "2026-10-30",
       "symbol": "UFCS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-02",
+      "symbol": "SENEB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-04",
+      "symbol": "SLDE",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-06",
+      "symbol": "SBC",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-10",
+      "symbol": "HCI",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-12",
+      "symbol": "KINS",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-16",
+      "symbol": "HBB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-18",
+      "symbol": "ZVRA",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-20",
+      "symbol": "JILL",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-24",
+      "symbol": "YB",
+      "status": "pick",
+      "scoreVersion": "2"
+    },
+    {
+      "pickDate": "2026-11-26",
+      "symbol": "TXR",
       "status": "pick",
       "scoreVersion": "2"
     }
