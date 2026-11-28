@@ -1,5 +1,5 @@
 [Unit]
-Description=Ten Bagger daily JSON generate and push
+Description=Ten Bagger daily JSON, ledger regenerate, and push
 Documentation=file://%h/git/ten_bagger-daily/ops/local-daily/README.md
 
 [Service]
